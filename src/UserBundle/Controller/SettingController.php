@@ -245,4 +245,21 @@ class SettingController extends Controller
                 return new JsonResponse('ERR');
         }
     }
+
+    /**
+     * @Route("/linkpan/setting/links",name="links")
+     */
+    public function linksAction(Request $request)
+    {
+        $user = $this->getUser();
+        $user->setFacebook($request->get('facebook'));
+        $user->setTwitter($request->get('twitter'));
+        $user->setLinkedin($request->get('linkedin'));
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+        echo '<script language="javascript">alert("networking links updated !")</script>';
+        return $this->render('UserBundle::setting.html.twig');
+    }
+
 }

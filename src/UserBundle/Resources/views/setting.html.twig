@@ -33,7 +33,7 @@
                         </li>
                         <li><a href="#billing" data-toggle="tab" title="Billing & Payments">Billing & Payements</a>
                         </li>
-
+                        <li><a href="#link" data-toggle="tab" title="Links">Links</a> </li>
                     </ul>
                 </div>
 
@@ -100,42 +100,6 @@
                                         <input  type="file" class="form-control-file" name="image" id="exampleInputFile" aria-describedby="fileHelp">
                                     </div>
                                 </div>
-                                <!-- Links -->
-                                <div class="row">
-                                    <label for="exampleInputFile" style="font-size:15px">Connect to </label>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <a href="#" class="btn btn-primary onl_btn-facebook" style="background:#3b5998;border:none;width:60px;" data-toggle="tooltip" data-placement="top" title="Facebook" >
-                                            <i style="" class="fa fa-facebook fa-lg"></i>
-                                        </a>
-                                    </span>
-                                        {% if user.fb is null  or user.fb is not defined %} {% set fb = '...' %} {% else %} {% set fb = user.fb %} {% endif %}
-                                        <input type="text" class="form-control" placeholder="/{{ fb }}" id="fb">
-                                    </div>
-
-                                    <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <a href="#" class="btn btn btn-primary onl_btn-twitter" style="background:#1da1f2;border:none;width:60px;" data-toggle="tooltip" data-placement="top" title="Twitter" >
-                                            <i class="fa fa-twitter fa-lg"></i>
-                                        </a>
-                                    </span>
-                                        {% if user.twitter is null or user.twitter is not defined %} {% set twitter = '...' %} {% else %} {% set twitter = user.twitter  %} {% endif %}
-                                        <input type="text" class="form-control" placeholder="/{{ twitter }}" id="twitter">
-
-                                    </div>
-                                    <div class="input-group">
-                                    <span class="input-group-btn">
-                                        <a href="#" class="btn btn-primary onl_btn-linkedin" style="background:#007b5;border:none;width:60px;" data-toggle="tooltip" data-placement="top" title="LinkedIn">
-                                            <i class="fa fa-linkedin fa-lg"></i>
-                                        </a>
-                                    </span>
-                                        {% if user.linkedin is null or user.linkedin is not defined  %} {% set linkedin = '...' %} {% else %} {% set linkedin = user.linkedin  %} {% endif %}
-                                        <input type="text" class="form-control" placeholder="/{{ linkedin }}" id="linkedin">
-                                    </div>
-                                </div>
-                                <!-- -->
                                 <div class="form-group" style="float: right">
                                     <div class="">
                                         <button id="send" type="submit" class="btn btn-success">Confirm</button>
@@ -317,6 +281,47 @@
                                             </tbody>
                                         </table>
                                 {% endif %}
+                            </div>
+                        </div>
+                        <!-- Links -->
+                        <div class="tab-pane" id="link" >
+                            <div class="row">
+                                <label for="exampleInputFile" style="font-size:15px">Connect to </label>
+                            </div>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <form method="post" action="{{ path('links') }}">
+                                    <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <a href="#" class="btn btn-primary onl_btn-facebook" style="background:#3b5998;border:none;width:60px;" data-toggle="tooltip" data-placement="top" title="Facebook" >
+                                            <i style="" class="fa fa-facebook fa-lg"></i>
+                                        </a>
+                                    </span>
+                                        {% if user.facebook == '' %}{% set fb = '..' %}{% else %}{% set fb = user.facebook %}{% endif %}
+                                        <input type="text" name="facebook" class="form-control" placeholder="/{{ fb }}" id="fb">
+                                    </div>
+
+                                    <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <a href="#" class="btn btn btn-primary onl_btn-twitter" style="background:#1da1f2;border:none;width:60px;" data-toggle="tooltip" data-placement="top" title="Twitter" >
+                                            <i class="fa fa-twitter fa-lg"></i>
+                                        </a>
+                                    </span>
+                                        {% if user.twitter == '' %}{% set tw = '..' %}{% else %}{% set tw = user.twitter %}{% endif %}
+                                        <input type="text" name="twitter" class="form-control" placeholder="/{{ tw }}" id="twitter">
+
+                                    </div>
+                                    <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <a href="#" class="btn btn-primary onl_btn-linkedin" style="background:#007b5;border:none;width:60px;" data-toggle="tooltip" data-placement="top" title="LinkedIn">
+                                            <i class="fa fa-linkedin fa-lg"></i>
+                                        </a>
+                                    </span>
+                                        {% if user.linkedin == '' %}{% set linkedin = '..' %}{% else %}{% set linkedin = user.linkedin %}{% endif %}
+                                        <input type="text" name="linkedin" class="form-control" placeholder="/{{ linkedin }}" id="linkedin">
+                                    </div>
+                                    <input type="submit" class="btn btn-primary savelink" style="float:right" value="valider">
+                                </form>
+
                             </div>
                         </div>
                     </div>

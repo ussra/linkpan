@@ -33,6 +33,8 @@ class User implements UserInterface
      */
     private $firstname;
 
+
+
     /**
      * @var string
      *
@@ -169,6 +171,76 @@ class User implements UserInterface
      * @ORM\Column(name="stripeId", type="text", nullable=true)
      */
     private $stripeId;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="facebook", type="text", nullable=true)
+     */
+    private $facebook;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="twitter", type="text", nullable=true)
+     */
+    private $twitter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="linkedin", type="text", nullable=true)
+     */
+    private $linkedin;
+
+    /**
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * @param string $facebook
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTwitter()
+    {
+        return $this->twitter;
+    }
+
+    /**
+     * @param string $twitter
+     */
+    public function setTwitter($twitter)
+    {
+        $this->twitter = $twitter;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLinkedin()
+    {
+        return $this->linkedin;
+    }
+
+    /**
+     * @param string $linkedin
+     */
+    public function setLinkedin($linkedin)
+    {
+        $this->linkedin = $linkedin;
+    }
+
 
     /**
      * @return string
