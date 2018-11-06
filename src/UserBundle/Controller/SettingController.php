@@ -2,16 +2,51 @@
 
 namespace UserBundle\Controller;
 
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\Billing;
 use Symfony\Component\HttpFoundation\Session\Session;
+use UserBundle\Entity\Block;
 
 class SettingController extends Controller
 {
+    /**
+     * Get block list by user
+     * @param $user
+     */
+    private function getBlocklist($user)
+    {
+        $blockList = array();
+        $repository = $this->getDoctrine()->getRepository(Block::class);
+        $list = $repository->findBy(array('user'=>$user));
+        if(sizeof($list)>0)
+        {
+            $repository = $this->getDoctrine()->getRepository(User::class);
+            foreach ($list as $val)
+            {
+                $BUser = $repository->findOneById($val->getUserToBlock());
+                if(!is_null($BUser))
+                {
+                    $temp = array(
+                        'block_id'=>$val->getId(),
+                        'block_first_name'=>$BUser->getFirstname(),
+                        'block_last_name'=>$BUser->getLastname()
+                    );
+                    array_push($blockList,$temp);
+                }
+            }
+        }
+        $session = new Session();
+        $session->set('block_list',$blockList);
+    }
 
+    /**
+     * Get billin data by user
+     * @param $user
+     */
     private function getBilling($user)
     {
         $billinglist = array();
@@ -47,6 +82,7 @@ class SettingController extends Controller
         if($match)
         {
             $this->getBilling($user);
+            $this->getBlocklist($user);
             return new JsonResponse($this->generateUrl('setting'));
         }
         else
@@ -262,4 +298,21 @@ class SettingController extends Controller
         return $this->render('UserBundle::setting.html.twig');
     }
 
+
+    /**
+     * @Route("/linkpan/setting/unblock",name="unblock")
+     */
+    public function unblockAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Block');
+        $block = $repo->findOneById($request->get('block_item'));
+        if(!is_null($block))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($block);
+            $em->flush();
+        }
+        $this->getBlocklist($this->getUser());
+        return new JsonResponse($this->generateUrl('setting'));
+    }
 }

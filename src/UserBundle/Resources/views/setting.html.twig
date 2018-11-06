@@ -34,6 +34,8 @@
                         <li><a href="#billing" data-toggle="tab" title="Billing & Payments">Billing & Payements</a>
                         </li>
                         <li><a href="#link" data-toggle="tab" title="Links">Links</a> </li>
+                        <li><a href="#unblock" data-toggle="tab" title="Links">Unblock List</a> </li>
+                        <li><a href="#add" data-toggle="tab" title="Invite friends">Invite friends</a> </li>
                     </ul>
                 </div>
 
@@ -324,6 +326,84 @@
 
                             </div>
                         </div>
+                        <!-- block list -->
+                        <div class="tab-pane" id="unblock" >
+                            {% set blockList = app.session.get('block_list') %}
+                            {% if blockList is null %}
+                                <h4>Empty list</h4>
+                                {% else %}
+                                    <table class="table table-striped" style="margin-top: 8%" >
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for value in blockList %}
+                                            <tr id="value">
+                                                <th scope="row">{{ value.block_first_name }} {{ value.block_last_name }}</th>
+                                                <td>
+                                                    <a onclick="unblock({{ value.block_id }})" >
+                                                        <button type="button" class="btn btn-danger btn-xs unblock" > <i class="fa fa-unlock" title="unblock"></i> </button>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                            {% endif %}
+                        </div>
+                        <!-- Invite friends -->
+                        <div class="tab-pane" id="add" >
+                            <!--**************************************************-->
+                            <div class="col-md-6">
+                                <div class="box box-widget" style="height: auto;">
+                                    <div class="box-header with-border">
+                                        <div class="panel-body">
+                                            <form method="post" style="max-width: 412px;">
+                                                <div class="form-group">
+                                                    <h2 style="line-height: 32px; font-weight: 400;">See who you already know on Linkpan</h2>
+                                                    <p>The fastest way to grow your network is to import your contacts</p>
+                                                    <input type="email" id="inviteemail" name="inviteemail" class="form-control">
+                                                </div>
+                                                <div class="form-atfooter" style="border:none;">
+                                                    <a><input type="button" class="btn btn-primary" id="send" value="Continue" onclick="invite()"></a>&nbsp; <span id="notice"></span>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--**************************************************-->
+                            <!--**************************************************-->
+                            <div class="col-md-2">
+                                <div class="col-md-2">
+                                    <ul class="mt1" style="list-style: none; margin: 2px 0; margin-left: -21px;">
+                                        <li>
+                                            <a href="#" style="text-decoration: none;">
+                                                <img src={{ asset('Userscripts/img/settings/gmail.png') }} width="40px" height="30px" style="margin:10px;">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" style="text-decoration: none;">
+                                                <img src={{ asset('Userscripts/img/settings/outlook.png') }} width="40px" height="35px" style="margin:10px;">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" style="text-decoration: none;">
+                                                <img src={{ asset('Userscripts/img/settings/yahoo.png') }}  width="40px" height="25px" style="margin:10px;">
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" style="text-decoration: none;" data-toggle="modal" data-target="#myModal">
+                                                <img src={{ asset('Userscripts/img/settings/mail.png') }}  width="40px" height="35px" style="margin:10px;">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -376,6 +456,28 @@
                 </div>
 
             </div>
+        </div>
+    </div>
+    <!-- Invite friends password -->
+    <div id="inviteModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Set  password </h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="password" class="form-control " id="invitepassword" placeholder="Password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" onclick="sendInvit()" class="btn btn-info" data-dismiss="modal" id="inviteConfirm">Confirm</button>
+                </div>
+            </div>
+
         </div>
     </div>
 {% endblock pageContent %}
@@ -498,6 +600,54 @@
                         }
                     }
                 });
+            }
+        }
+    </script>
+
+    <!-- unblock -->
+    <script>
+        function unblock(block)
+        {
+
+            $.ajax({
+                url: '{{ (path('unblock')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:
+                    {
+                       'block_item':block
+                    },
+                async: true,
+                success: function (data)
+                {
+                    window.location.href = data
+                }
+            });
+        }
+    </script>
+
+    <!-- invite -->
+    <script>
+        function invite()
+        {
+            if($('#inviteemail').val() == '')
+                alert('please set your email !')
+            else
+                $('#inviteModal').modal('show')
+        }
+
+        function sendInvit()
+        {
+            if($('#invitepassword').val() == '')
+                alert('please set your email s password')
+            else
+            {
+               // send mails
+               //
+                alert('we will invite your contacts to join linkpan , Thanks !')
+                $('#invitepassword').val('')
+                $('#inviteemail').val('')
+                $('#inviteModal').modal('hide');
             }
         }
     </script>
