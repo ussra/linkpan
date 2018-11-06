@@ -1,0 +1,24 @@
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css);
+@import url(http://fonts.googleapis.com/css?family=Titillium+Web&subset=latin,latin-ext);
+@media (min-width: 768px) {
+    .onl_row-sm-offset-3 div:first-child[class*="col-"] {
+        margin-left: 25%;
+    }
+}
+.onl_login .onl_authTitle {
+    text-align: center;
+    line-height: 300%;
+}
+
+.onl_login .onl_socialButtons a {
+    color: white; // In yourUse @body-bg
+opacity:0.9;
+}
+.onl_login .onl_socialButtons a:hover {
+    color: white;
+    opacity:1;
+}
+.onl_login .onl_socialButtons .onl_btn-facebook {background: #3b5998;border-color:#172d5e;}
+.onl_login .onl_socialButtons .onl_btn-twitter {background: #00aced;border-color:#043d52}
+.onl_login .onl_socialButtons .onl_btn-google-plus {background: #c32f10;border-color:#6b1301}
+.onl_login .onl_socialButtons .onl_btn-linkedin {background: #0976b4;border-color:#004269}

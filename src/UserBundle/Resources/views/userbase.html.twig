@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel='shortcut icon' type='image/x-icon' href={{ asset('Userscripts/img/logo.png') }} />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block Title %}Home{% endblock %}</title>
+
+    <!-- Photos -->
+    <link href={{ asset('Userscripts/js/photos/ekko-lightbox.css') }} rel="stylesheet">
+    <script src={{ asset('Userscripts/js/photos/ekko-lightbox.js') }}></script>
+    <!--end Photos -->
+    <!-- video -->
+    <link href={{ asset('Userscripts/js/video/plyr.css') }} rel="stylesheet">
+    <!--end video -->
+
+    <!-- Bootstrap -->
+    <link href={{ asset('Userscripts/vendors/bootstrap/dist/css/bootstrap.min.css') }} rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href={{ asset('Userscripts/vendors/font-awesome/css/font-awesome.min.css') }} rel="stylesheet">
+    <!-- NProgress -->
+    <link href= {{ asset('Userscripts/vendors/nprogress/nprogress.css') }} rel="stylesheet">
+    <!-- jQuery custom content scroller -->
+    <link href={{ asset('Userscripts/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css') }} rel="stylesheet"/>
+
+    <!-- Custom Theme Style -->
+    <link href={{ asset('Userscripts/build/css/custom.min.css') }} rel="stylesheet">
+    <link href={{ asset('Userscripts/build/css/custom.css') }} rel="stylesheet">
+
+    <!-- -->
+    <link rel="stylesheet" href={{ asset('Userscripts/css/font.css') }}>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    {% block style %}
+        <link rel="stylesheet" href={{ asset('Userscripts/css/newpost.css') }}>
+        <link rel="stylesheet" href={{ asset('Userscripts/css/socialpost.css') }}>
+        <style>
+            .btn-sm{
+                margin-top: 2%;
+            }
+        </style>
+    {% endblock %}
+</head>
+
+<body class="nav-md">
+{% set user = app.user %}
+
+
+
+{% if user is not null %}
+    <div class="container body">
+        {% if user.image is null or user.image == '' %}
+            {% set image = 'default.png' %}
+            {% else %}
+                {% set image = user.image %}
+        {% endif %}
+        <div class="main_container">
+            <div class="col-md-3 left_col menu_fixed" style="background-color:#0e7ac3">
+                <div class="left_col scroll-view"style="background-color:#0e7ac3" >
+                    <div class="navbar nav_title" style="border: 0; background-color:#0e7ac3">
+                        <a href="#" class="site_title" ><img id="logoimg" src={{ asset('Userscripts/img/logo.png') }} class="img-fluid" style=" width: 40px;height: auto;"><span style="margin-left:10px">LINKPAN</span></a>
+                    </div>
+
+                    <div class="clearfix" style="background-color:#0e7ac3"></div>
+
+
+                    <!-- menu profile quick info -->
+                    <div class="profile clearfix" style="background-color:#0e7ac3">
+                        <div class="profile_pic">
+                            <img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle profile_img" style="width: 60px;height: 60px;object-fit: cover;">
+                        </div>
+                        <div class="profile_info">
+                            <h4 style="color:white;margin-top:-5%">{{ user.firstname }} {{ user.lastname }}</h4>
+                            <p style="color:white;font-size:8.6px; "> 0 FOLLOWING</p>
+                            <p style="margin-top:-6.5%;color:white;font-size:8.6px;"> 0 FOLLOWERS</p>
+
+
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+
+                    <div style="background-color:#0e7ac3">
+                        </br>
+                    </div>
+
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" style="background-color:#0e7ac3">
+                        <div class="menu_section">
+
+                            <ul class="nav side-menu">
+                                <li><a href="#"> Home</a></li>
+                            </ul>
+
+                            <ul class="nav side-menu">
+                                <li><a href="#"> Pans</a></li>
+                            </ul>
+                            <ul class="nav side-menu">
+                                <li><a href="#" > Discover</a></li>
+                            </ul>
+                            <ul class="nav side-menu">
+                                <li><a href="#" > Groups</a></li>
+                            </ul>
+                            <ul class="nav side-menu">
+                                <li><a href="#"  > Globe Pro</a></li>
+                            </ul>
+                            <ul class="nav side-menu">
+                                <li><a href="#" > FCC</a></li>
+                            </ul>
+
+                        </div>
+
+
+                    </div>
+                    <!-- /sidebar menu -->
+
+                    <!-- /menu footer buttons -->
+                    <div class="sidebar-footer hidden-small" style="background-color:#0e7ac3">
+                        <a data-toggle="tooltip" data-placement="top" title="Settings" style="background-color:#0e7ac3" onclick="$('#settingModal').modal('show')">
+                            <span class="glyphicon glyphicon-cog" aria-hidden="true" style="color:#373948;"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="FullScreen" style="background-color:#0e7ac3" onclick="full()">
+                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true" style="color:#373948;"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Lock" style="background-color:#0e7ac3">
+                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true" style="color:#373948;"></span>
+                        </a>
+                        <a data-toggle="tooltip" data-placement="top" title="Logout" style="background-color:#0e7ac3" href="{{ path('logout') }}" >
+                            <span class="glyphicon glyphicon-off" aria-hidden="true" style="color:#373948;"></span>
+                        </a>
+                    </div>
+                    <!-- /menu footer buttons -->
+                </div>
+            </div>
+
+            <!-- top navigation -->
+            <div class="top_nav navbar-fixed-top">
+                <div class="nav_menu">
+                    <nav >
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="">
+                                <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    <img src="{{ asset('images/profile/') }}{{ image }}" style="object-fit: cover;"><div id="idkwtf" style="display:inline">{{ user.firstname }} {{ user.lastname }} </div>
+                                    <!--<img src="scripts/img/Ace/ACE.svg" id="logo" width="80px" height="80px">-->
+                                    <span class=" fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                    <li><a href="#"> Profile</a></li>
+                                    <li>
+                                        <a onclick="$('#settingModal').modal('show')">
+                                            <span>Settings</span>
+                                        </a>
+                                    </li>
+
+                                    <li><a><strong>Upgrade Membership</strong></a></li>
+                                    <li><a > Business solutions</a></li>
+                                    <li><a > Boost posts</a></li>
+                                    <li><a href="#"> Terms</a></li>
+                                    <li><a href="#"> Privacy</a></li>
+                                    <li><a href="{{ path('logout') }}"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                                </ul>
+                            </li>
+
+                            <li role="presentation" class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="badge bg-blue">6</span>
+                                </a>
+                                <ul id="messagerie" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                    <li>
+                                        <div class="text-center">
+                                            <a href="#">
+                                                <strong>See All Messages</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <li role="presentation" class="dropdown">
+                                <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="fa fa-bell-o"></i>
+                                    <span class="badge bg-blue">0</span>
+                                </a>
+                                <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                                    <li>
+                                        <a>
+                                            <span class="image"> <img src={{ asset('Userscripts/img/user2.jpg') }}> </span>
+                                            <span>
+							                <span>John Smith</span>
+							                <span class="time">3 mins ago</span>
+							            </span>
+                                            <span class="message">
+							                Film festivals used to be do-or-die moments for movie makers. They were where...
+							            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="text-center">
+                                            <a href="#">
+                                                <strong>See All Alerts</strong>
+                                                <i class="fa fa-angle-right"></i>
+                                            </a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li id="search">
+                                <form class="form-inline" style="margin-top: 4%">
+                                    <input class="form-control searchinput" type="text" placeholder="Search" id="textinput" >
+                                    <a onclick="filter()"><button class="btn btn-outline-primary" type="button" ><i class="fa fa-search"></i></button></a>
+                                </form>
+                            </li>
+                            <li>
+                                <a id="respSearch"><i class="fa fa-search"></i></a>
+                            </li>
+                        </ul>
+
+                    </nav>
+                </div>
+            </div>
+            <!-- /top navigation -->
+
+            <!-- page content -->
+
+            <div class="right_col" role="main">
+                {% block pageContent %}
+                {% endblock pageContent %}
+            </div>
+            <!-- footer content -->
+            <footer>
+                <div class="pull-right">
+                    DOCKIES PRIME - 2018
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+
+
+
+        </div>
+    </div>
+
+{% else %}
+    <div class="container body">
+        <div class="main_container">
+            <!-- page content -->
+            <div class="col-md-12">
+                <div class="col-middle">
+                    <div class="text-center">
+                        <h1 class="error-number">500</h1>
+                        <h2>User Account Security</h2>
+                        <p></a>
+                        </p>
+                        <div class="mid_center">
+                                <span class="input-group-btn">
+                                    <a href="{{ path('linkpan') }}"><button class="btn btn-default" type="button">Go to linkpan!</button></a>
+                                </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /page content -->
+        </div>
+    </div>
+{% endif %}
+
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="up_modal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">do you really want to upgrade your membership</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="dockiestype">Dockies Type:</label>
+                    <select class="form-control" id="dockiestype">
+                        <option disabled selected value="selected"> -- select an option -- </option>
+                        <option value="monthly">monthly</option>
+                        <option value="6 months ">6 months</option>
+                        <option value="annually">annually</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a onclick="confirmupgrade()"><button type="button" class="btn btn-default" id="modal-btn-si">Upgrade</button></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Setting Modal -->
+
+<div id="settingModal" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+        <!-- Modal content-->
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Setting </h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="password" class="form-control " id="settingpassword" placeholder="Password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info" data-dismiss="modal" id="settingConfirm" onclick="settingAccess()">Confirm</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Search Modal -->
+<div id="respSearchMod" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+        <!-- Modal content-->
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Search </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-inline">
+                    <form class="form-inline">
+                        <input class="form-control searchinput" type="text" placeholder="Search" id="textinput2" >
+                        <a onclick="filter()"><button class="btn btn-outline-primary" type="button" ><i class="fa fa-search"></i></button></a>
+                    </form>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--end Search Modal -->
+
+
+
+<!-- jQuery -->
+<script src={{ asset('Userscripts/vendors/jquery/dist/jquery.min.js') }}></script>
+<!-- Bootstrap -->
+<script src={{ asset('Userscripts/vendors/bootstrap/dist/js/bootstrap.min.js') }}></script>
+<!-- FastClick -->
+<script src={{ asset('Userscripts/vendors/fastclick/lib/fastclick.js') }}></script>
+<!-- NProgress -->
+<script src={{ asset('Userscripts/vendors/nprogress/nprogress.js') }}></script>
+<!-- jQuery custom content scroller -->
+<script src={{ asset('Userscripts/vendors/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js') }}></script>
+
+<!-- Custom Theme Scripts -->
+<script src={{ asset('Userscripts/build/js/custom.min.js') }}></script>
+<!-- -->
+<script src={{ asset('Userscripts/js/upgradeConfirmation.js') }}></script>
+
+<!-- Setting access -->
+<script>
+    function settingAccess()
+    {
+        if($('#settingpassword').val() != '')
+        {
+            $('#settingConfirm').prop('disabled',true)
+            $.ajax({
+                url: '{{ (path('setting_access')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:
+                    {
+                        'password':$('#settingpassword').val()
+                    },
+                async: true,
+                success: function (data)
+                {
+                    if(data == 'ERR')
+                    {
+                        $('#settingConfirm').prop('disabled',false)
+                        alert('Incorrect password')
+                    }
+                    else
+                        window.location.href = data
+                }
+            });
+        }
+    }
+</script>
+
+{% block scripts %}
+
+    <!-- post -->
+    <script>
+
+
+        $(function() {
+            // Multiple images preview in browser
+            var imagesPreview = function(input, placeToInsertImagePreview) {
+                $("#cover").css({});
+                if (input.files) {
+                    var filesAmount = input.files.length;
+
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+
+                        reader.onload = function(event) {
+                            $($.parseHTML('<img>')).attr({src:event.target.result,style:"width:50px;height:50px;object-fit:cover;border-radius:5px;margin:5px; display: inline-block"}).appendTo(placeToInsertImagePreview);
+                        }
+
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+
+            };
+
+            $('#gallery-photo-add').on('change', function() {
+                imagesPreview(this, 'div.gallery');
+            });
+        });
+
+
+        // Video
+        var video = null;
+        function readVideoURL(input) {
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+                var filename = $('#post_video').val().split('\\').pop();
+
+                reader.onload = function (e) {
+                    $("#upload_Video_title").text(filename)
+                };
+
+
+                reader.readAsDataURL(input.files[0]);
+                //
+                video = input.files[0]
+
+            }
+        }
+    </script>
+    <script src="{{ asset('Userscripts/js/video/plyr.js') }}"></script>
+    <script>
+        //const player = new Plyr('.Vidoe_Player');
+        const players = Array.from(document.querySelectorAll('.Vidoe_Player')).map(p => new Plyr(p));
+
+    </script>
+
+    <script src="{{ asset('Userscripts/js/photos/ekko-lightbox.js') }}"></script>
+    <script>
+        $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+    </script>
+
+
+{% endblock %}
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 500 500" style="enable-background:new 0 0 500 500;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#073B5B;}
+	.st1{fill:#70CCDA;}
+	.st2{fill:#C6EBF0;}
+	.st3{fill:#10AAC1;}
+	.st4{fill:#0C8091;}
+	.st5{font-family:'BerlinSansFBDemi-Bold';}
+	.st6{font-size:100px;}
+</style>
+<g id="Layer_2">
+	<circle class="st0" cx="245.1" cy="200.3" r="191"/>
+</g>
+<g id="OBJECTS">
+	<g>
+		
+			<image style="overflow:visible;opacity:0.5;" width="457" height="314" xlink:href="827C1268.png"  transform="matrix(1 0 0 1 23.6621 68.3379)">
+		</image>
+		<g>
+			<g>
+				<g>
+					<g>
+						<g>
+							<g>
+								<polygon class="st1" points="176.7,129.3 318.5,129.3 247.6,58.4 								"/>
+							</g>
+						</g>
+						<g>
+							<g>
+								<polygon class="st1" points="34.9,129.3 176.7,129.3 105.8,58.4 								"/>
+							</g>
+						</g>
+						<g>
+							<g>
+								<polygon class="st2" points="105.8,58.4 176.7,129.3 247.6,58.4 								"/>
+							</g>
+						</g>
+						<g>
+							<g>
+								<polygon class="st2" points="247.6,58.4 318.5,129.3 389.4,58.4 								"/>
+							</g>
+						</g>
+						<g>
+							<g>
+								<polygon class="st1" points="389.8,58.4 389.4,58.4 318.5,129.3 460.7,129.3 								"/>
+							</g>
+						</g>
+					</g>
+					<g>
+						<g>
+							<g>
+								<polygon class="st2" points="34.9,129.3 247.7,342.1 176.7,129.3 								"/>
+							</g>
+						</g>
+						<g>
+							<g>
+								<polygon class="st3" points="176.7,129.3 247.7,342.1 318.5,129.3 								"/>
+							</g>
+						</g>
+						<g>
+							<g>
+								<polygon class="st4" points="318.5,129.3 247.7,342.1 460.5,129.3 								"/>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+		</g>
+	</g>
+	<text transform="matrix(1 0 0 1 155.5605 470.1055)" class="st0 st5 st6">ACE</text>
+</g>
+</svg>

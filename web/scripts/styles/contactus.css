@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif');
+
+*{
+    font-family: 'Bree Serif', serif;
+
+    padding: 0;
+    margin: 0;
+   /* background-color: #0e7ac3; */
+}
+html, body{
+    height: 100%
+  }
+body{
+      margin: 0;
+}
+/* nav background */
+#navbackground{
+    background: #0e7ac3;
+}
+
+
+.nav-link{
+    font-size: 12px;
+}
+
+.nav-item{
+    margin-left: 20px;
+}
+.btn-xl {
+    padding: 2px 10px;
+    font-size: 10px;
+}
+
+/* end nav */
+#s1{
+    background: #0e7ac3;
+    color: white;
+    font-size: 25px;
+    padding: 20px;
+}
+
+
+
+textarea , select ,input{
+    border: none;
+    border-radius: 10px;
+}
+select{
+   
+    border-radius: 10px;
+    color:373948 ;
+    height: 35px; 
+    margin-top:25px!important; 
+    width: 61.5%;  
+}
+
+.smallinput{   
+    margin:25px 0 10px 0;
+    height: 35px;
+    margin-right: 10px;
+    width: 30%;    
+}
+.smallinput , #message::placeholder{
+   padding-left: 15px;
+}
+
+ .smallinput::-ms-input-placeholder{
+    padding-left: 15px;
+ }
+ #message{
+   
+    border-radius: 10px;
+    color:373948 ;
+    height: 100px; 
+    margin-top:25px!important; 
+    width: 61.5%;  
+ }
+ #form{
+    background: #0e7ac3 ;
+     border-radius: 25px;
+     margin: 15px;
+
+     
+ }
+ #btn_send{
+    margin-right:19%; 
+    background:#373948;
+    border: none;
+    margin-bottom: 20px;
+    margin-top: 20px;
+ }
+ #s2 {
+     background: #0e7ac3 url(../img/contactus/mid.svg);
+     background-repeat: no-repeat;
+     background-position: left ;
+     left: 0;
+ }
+ #s3{
+     background: #0e7ac3 url(../img/contactus/footer.svg);
+     background-repeat: no-repeat;
+     background-position: bottom right;
+     color: white;
+    
+ }
+/* footer    #373948 */
+
+

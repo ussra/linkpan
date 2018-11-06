@@ -1,0 +1,462 @@
+{% extends "UserBundle::userbase.html.twig" %}
+
+{% block Title %}
+    Setting
+{% endblock %}
+{% block style %}
+{% endblock %}
+
+{% block pageContent %}
+    <div style="margin-top:50px">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><i class="fa fa-bars"></i>  Settings</h2>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <!-- required for floating -->
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs tabs-left">
+                        <li class="active"><a href="#contact" data-toggle="tab" title="Contact Informations">Contact Informations</a>
+                        </li>
+                        </li>
+                        <li><a href="#company" data-toggle="tab" title="Company's Informations">Company's Informations</a>
+                        <li><a href="#uppass" data-toggle="tab" title="Change Password" id="account">Account</a>
+                        </li>
+                        <li>
+                            <a href="#qtsecurity" data-toggle="tab" title="Security Question">
+                                Change security Question
+                            </a>
+                        </li>
+                        <li><a href="#billing" data-toggle="tab" title="Billing & Payments">Billing & Payements</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-9">
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <!-- Contact -->
+                        <div class="tab-pane active" id="contact">
+                            <form id="contactForm" data-parsley-validate class="form-horizontal form-label-left" method="post" enctype="multipart/form-data" action="{{ path('contact') }}">
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >First Name
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="firstname" name="firstname" value="{{ user.firstname }}" class="form-control col-md-7 col-xs-12" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"  >Last Name
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="lastname" name="lastname" value="{{ user.lastname }}" class="form-control col-md-7 col-xs-12" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Email
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="email" id="email" name="email" value="{{ user.email }}"class="form-control col-md-7 col-xs-12" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Adress
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="email" name="adress" value="{{ user.adress }}"class="form-control col-md-7 col-xs-12" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Alternative Email
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="email" id="alteremail" name="alteremail" value="{{ user.alternativeEmail }}" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >FAX
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="tel" id="fax" value="{{ user.fax }}" name="fax"  class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Tel
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="tel" id="tel" value="{{ user.tel }}" name="tel" class="form-control col-md-7 col-xs-12">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">Image</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input  type="file" class="form-control-file" name="image" id="exampleInputFile" aria-describedby="fileHelp">
+                                    </div>
+                                </div>
+                                <div class="form-group" style="float: right">
+                                    <div class="">
+                                        <button id="send" type="submit" class="btn btn-success">Confirm</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Company Informations -->
+                        <div class="tab-pane" id="company">
+                            <form  data-parsley-validate class="form-horizontal form-label-left" id="companyinfo"  method="post" enctype="multipart/form-data" action="{{ path('company') }}">
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Name
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12" name="name" value="{{ user.companyName }}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">
+                                        Logo
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input  type="file" class="form-control-file" id="uploadimage" name="uploadimage" aria-describedby="fileHelp" accept="image/*">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">Year Established</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="number" id="year" required="required" class="form-control col-md-7 col-xs-12" min="1900" name="year"  value="{{ user.yearEstablished }}" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">Official Website</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="website" required="required" class="form-control col-md-7 col-xs-12" name="website" value="{{ user.website }}"  >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">Business Type</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="bustype" required="required" class="form-control col-md-7 col-xs-12" name="business" value="{{ user.businessType }}" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">Total Number Of employees</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="number" id="numberemp" required="required" class="form-control col-md-7 col-xs-12" min="1" name="number" value="{{ user.numberEmp }}" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">Registred Adress</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="regadress" required="required" class="form-control col-md-7 col-xs-12" name="regadress" value="{{ user.regAdress }}" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">Operational Adress</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="opadress" required="required" class="form-control col-md-7 col-xs-12" name="optadress" value="{{ user.optAdress }}" >
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">About Us</label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <textarea class="form-control col-md-7 col-xs-12" rows="5" id="aboutus" maxlength="30" name="aboutus" >{{ user.aboutUs }} </textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="float: right">
+                                    <div class="">
+                                        <button  type="submit" class="btn btn-success" >Save</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Update password -->
+                        <div class="tab-pane" id="uppass">
+                            <form id="uppassform" data-parsley-validate class="form-horizontal form-label-left" style="margin-top: 15%" method="post" action="{{ path('updatepassword') }}">
+                                <div style="margin-top: 5%">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" > Old Password
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="password" id="oldpass" name="oldpass" class="form-control col-md-7 col-xs-12" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" > New Password
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="password" id="newpass" name="newpass" class="form-control col-md-7 col-xs-12" required>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="float: right">
+                                    <div class="">
+                                        <button  type="submit" class="btn btn-danger">Change</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Security Question -->
+                        <div class="tab-pane" id="qtsecurity">
+                            {% if user.secuityQuestion == '' %}
+                                <small>You have no set any security question yet !</small>
+                                {% else %}
+                                    <small>Your security question is : <strong>{{ user.secuityQuestion }}</strong></small>
+                            {% endif %}
+                            <form id="SQ_form" data-parsley-validate class="form-horizontal form-label-left" style="margin-top: 15%" method="post" action="{{ path('securityquestion') }}">
+                                <div class="form-group" style="margin-top: 8%">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Security Question
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select id="securityQuestion" name="securityQuestion" class="form-control col-md-7 col-xs-12" required>
+                                            <option value="">Choose..</option>
+                                            <option value="What was your childhood nickname?">What was your childhood nickname?</option>
+                                            <option value="What is the name of your favorite childhood friend?">What is the name of your favorite childhood friend?</option>
+                                            <option value="In what city or town did your mother and father meet?">In what city or town did your mother and father meet?</option>
+                                            <option value="What is the middle name of your oldest child?">What is the middle name of your oldest child?</option>
+                                            <option value="What is your favorite team?">What is your favorite team?</option>
+                                            <option value="What is your favorite movie?">What is your favorite movie?</option>
+                                            <option value="What was your favorite sport in high school?">What was your favorite sport in high school?</option>
+                                            <option value="What was your favorite food as a child?">What was your favorite food as a child?</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" > Response
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input type="text" id="response" name="response" class="form-control col-md-7 col-xs-12" required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" style="float: right">
+                                    <div class="">
+                                        <button type="submit" class="btn btn-success" id="qsconfirm" onclick="security()">Confirm</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Billing & payment -->
+                        <div class="tab-pane" id="billing">
+                            <div style="margin-top: 10%">
+                                <div style="float: right">
+                                    <button type="button" class="btn btn-primary btn-md method" id="addmethod" onclick="$('#methodModal').modal('show');">
+                                        Add Method
+                                    </button>
+                                </div>
+                                {% set billing = app.session.get('billing')  %}
+                                {% if billing is null or billing is not defined or billing is empty  %}
+                                    <h2 id="billingtitle">You have not set any billing method yet </h2>
+                                    <div style="display: none" id="billingtable">
+                                        <h2 id="billingtitle">You have not set any billing method yet </h2>
+                                    </div>
+
+                                    {% else %}
+                                        <table class="table table-striped" style="margin-top: 8%" id="billinglist">
+                                            <thead>
+                                            <tr>
+                                                <th>Card end with</th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for value in billing %}
+                                                    <tr id="value{{ value.id }}">
+                                                        <th scope="row">{{ value.number }}</th>
+                                                        <td>{{ value.brand }}</td>
+                                                        <td>
+                                                            <a onclick="removeCard({{ value.id }})">
+                                                                <button type="button" class="btn btn-danger btn-xs removecard" > <i class="fa fa-minus" title="remove cart"></i> </button>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--Add Billing modal -->
+    <div id="methodModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Add a Billing Method</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-default credit-card-box">
+                        <div class="panel-heading display-table" >
+                            <div class="row display-tr" >
+                                <h3 class="panel-title display-td" >Payment Details</h3>
+                                <div class="display-td" >
+                                    <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form action="/charge" method="post" id="payment-form">
+                                <div class="form-row">
+                                    <label for="card-element">
+                                        Credit or debit card
+                                    </label>
+                                    <div id="card-element">
+                                        <!-- A Stripe Element will be inserted here. -->
+                                    </div>
+
+                                    <!-- Used to display form errors. -->
+                                    <div id="card-errors" role="alert"></div>
+                                </div>
+
+                                <button class="btn btn-success" style="margin-top:10px;float:right ">Save Card</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock pageContent %}
+
+{% block scripts %}
+    <!-- Save data -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        // Create a Stripe client.
+        var stripe = Stripe('pk_test_W7BV1CRR2gqWVgH7S2X0JEn8');
+
+        // Create an instance of Elements.
+        var elements = stripe.elements();
+
+        // Custom styling can be passed to options when creating an Element.
+        // (Note that this demo uses a wider set of styles than the guide below.)
+        var style = {
+            base: {
+                color: '#32325d',
+                lineHeight: '18px',
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '16px',
+                '::placeholder': {
+                    color: '#aab7c4'
+                }
+            },
+            invalid: {
+                color: '#fa755a',
+                iconColor: '#fa755a'
+            }
+        };
+
+        // Create an instance of the card Element.
+        var card = elements.create('card', {style: style});
+
+        // Add an instance of the card Element into the `card-element` <div>.
+        card.mount('#card-element');
+
+        // Handle real-time validation errors from the card Element.
+        card.addEventListener('change', function(event) {
+            var displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        // Handle form submission.
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            stripe.createToken(card).then(function(result) {
+                if (result.error) {
+                    // Inform the user if there was an error.
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    // Send the token to your server.
+                    //stripeTokenHandler(result.token);
+                    alert('Please , wait a moment to verify your card informations')
+                    $.ajax({
+                        url: '{{ (path('billing')) }}',
+                        type: 'POST',
+                        dataType: 'json',
+                        data:
+                            {
+                                'token': result.token
+                            },
+                        async: true,
+                        success: function (data)
+                        {
+                            if(data == 'ERR')
+                                alert('Sorry we cannot insert this card , please retry again')
+                            else
+                            {
+                                if(data == 'exist')
+                                    alert('This card already exist !')
+                                else
+                                    window.location.href = data
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+    <!-- Remove card -->
+    <script>
+        function removeCard(CardId)
+        {
+            //$('#value'.concat(CardId)).remove()
+            var r = confirm("Are you sure you want to cancel this card ?");
+            if (r == true)
+            {
+                $('.removecard').prop('disabled',true)
+                $.ajax({
+                    url: '{{ (path('remove_card')) }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data:
+                        {
+                            'billingid':CardId
+                        },
+                    async: true,
+                    success: function (data)
+                    {
+                        if(data =='ERR')
+                        {
+                            alert('Sorry , we cannot remove this card , please retry again')
+                            $('.removecard').prop('disabled',false)
+                        }
+                        else
+                        {
+                            alert('Card deleted')
+                            window.location.href = data
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+{% endblock %}
