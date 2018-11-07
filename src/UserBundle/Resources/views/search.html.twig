@@ -35,7 +35,7 @@
                                                 {% else %}
                                                     <button type="button" onclick="unfollow({{ user.user_id }})" class="btn btn-danger btn-xs" title="unfollow"> <i class="fa fa-minus"></i> </button>
                                             {% endif %}
-                                            <button type="button" class="btn btn-primary btn-xs" title="view profil"> <i class="fa fa-eye"></i> </button>
+                                            <button type="button" class="btn btn-primary btn-xs" title="view profil" onclick="view({{ user.user_id }})"> <i class="fa fa-eye"></i> </button>
                                             <button type="button" class="btn btn-success btn-xs" title="contact" > <i class="fa fa-comments-o"></i> </button>
                                         </div>
                                     </div>
@@ -76,20 +76,22 @@
         function unfollow(tounfollow)
         {
             $.ajax({
-            url: '{{ (path('unfollow')) }}',
-            type: 'POST',
-            dataType: 'json',
-            data:
+                url: '{{ (path('unfollow')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:
+                    {
+                        'unfollow': tounfollow
+                    },
+                async: true,
+                success: function (data)
                 {
-                    'unfollow': tounfollow
-                },
-            async: true,
-            success: function (data)
-            {
-                window.location.href = data
-            }
-        });
+                    window.location.href = data
+                }
+            });
 
         }
     </script>
+
+
 {% endblock %}

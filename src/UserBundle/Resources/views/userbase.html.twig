@@ -151,7 +151,7 @@
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                    <li><a href="#"> Profile</a></li>
+                                    <li><a onclick="view({{ user.id }})"> Profile</a></li>
                                     <li>
                                         <a onclick="$('#settingModal').modal('show')">
                                             <span>Settings</span>
@@ -393,6 +393,27 @@
                 }
             });
         }
+    }
+</script>
+
+<!-- view -->
+<script>
+    function view(user)
+    {
+        $.ajax({
+            url: '{{ (path('search_profile')) }}',
+            type: 'POST',
+            dataType: 'json',
+            data:
+                {
+                    'user': user
+                },
+            async: true,
+            success: function (data)
+            {
+                window.location.href = data
+            }
+        });
     }
 </script>
 
