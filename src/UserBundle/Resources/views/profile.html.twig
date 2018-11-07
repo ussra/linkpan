@@ -62,14 +62,14 @@
                         </ul>
                         {% if user.id != userProfile.user_id %}
                             {% if userProfile.follow_result == 'follow' %}
-                                <button type="button" class="btn btn-default btn-xs follow" title="follow" > <i class="fa fa-plus"></i> </button>
+                                <button type="button" class="btn btn-default btn-xs follow" title="follow" onclick="follow({{ userProfile.user_id }})" > <i class="fa fa-plus"></i> </button>
                                 {% else %}
-                                    <button type="button" class="btn btn-danger btn-xs" title="unfollow" > <i class="fa fa-minus"></i> </button>
+                                    <button type="button" class="btn btn-danger btn-xs" title="unfollow" onclick="unfollow({{ userProfile.user_id }})"> <i class="fa fa-minus"></i> </button>
                             {% endif %}
 
 
                             <button type="button" class="btn btn-success btn-xs" title="contact" > <i class="fa fa-comments-o"></i> </button>
-                            <button type="button" class="btn btn-danger btn-xs" title="block"> <i class="fa fa-ban"></i> </button>
+                            <button type="button" class="btn btn-danger btn-xs" title="block" onclick="block({{ userProfile.user_id }})" > <i class="fa fa-ban"></i> </button>
                         {% endif %}
                     </div>
 
@@ -210,4 +210,27 @@
 
     </div>
 
+{% endblock %}
+
+{% block scripts %}
+    <!-- block -->
+    <script>
+        function block(userToBlock)
+        {
+            $.ajax({
+                url: '{{ (path('block')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:
+                    {
+                        'Toblock': userToBlock
+                    },
+                async: true,
+                success: function (data)
+                {
+                    window.location.href = data
+                }
+            });
+        }
+    </script>
 {% endblock %}

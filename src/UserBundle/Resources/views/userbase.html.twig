@@ -417,6 +417,48 @@
     }
 </script>
 
+<!-- follow -->
+<script>
+    function follow(tofollow)
+    {
+        $.ajax({
+            url: '{{ (path('follow')) }}',
+            type: 'POST',
+            dataType: 'json',
+            data:
+                {
+                    'tofollow': tofollow
+                },
+            async: true,
+            success: function (data)
+            {
+                window.location.href = data
+            }
+        });
+    }
+</script>
+<!-- unfollow -->
+<script>
+    function unfollow(tounfollow)
+    {
+        $.ajax({
+            url: '{{ (path('unfollow')) }}',
+            type: 'POST',
+            dataType: 'json',
+            data:
+                {
+                    'unfollow': tounfollow
+                },
+            async: true,
+            success: function (data)
+            {
+                window.location.href = data
+            }
+        });
+
+    }
+</script>
+
 {% block scripts %}
 
     <!-- post -->
