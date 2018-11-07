@@ -33,6 +33,48 @@ class ProfileController extends Controller
             $type_result = 'follow';
         else
             $type_result = 'unfollow';
+        //Get Followers
+        $followers = array();
+        $flresult = $frepo->findBy(
+          array('userToFollow'=>$user)
+        );
+        if(sizeof($flresult)>0)
+        {
+            foreach ($flresult as $value)
+            {
+                $follower = $repo->findOneById($value->getUser());
+                $tempf = array(
+                   'follower_id'=>$follower->getId(),
+                   'follower_first_name'=>$follower->getFirstname(),
+                    'follower_last_name'=>$follower->getLastname(),
+                    'follower_image'=>$follower->getImage(),
+                    'follower_company_name'=>$follower->getCompanyName()
+                );
+                array_push($followers,$tempf);
+            }
+        }
+        //Get Following
+        $following = array();
+        $fogresult =$frepo->findBy(
+            array('user'=>$user)
+        );
+        if(sizeof($fogresult)>0)
+        {
+            foreach ($fogresult as $value)
+            {
+                $follg= $repo->findOneById($value->getUserToFollow());
+               $tempfg = array(
+                    'follower_id'=>$follg->getId(),
+                   'follower_first_name'=>$follg->getFirstname(),
+                   'follower_last_name'=>$follg->getLastname(),
+                   'follower_image'=>$follg->getImage(),
+                   'follower_company_name'=>$follg->getCompanyName()
+                );
+
+                array_push($following,$tempfg);
+
+            }
+        }
         //
         $temp = array(
           'user_id'=>$user->getId(),
@@ -43,8 +85,11 @@ class ProfileController extends Controller
           'user_adress'=>$user->getAdress(),
           'user_website'=>$user->getWebsite(),
           'user_email'=>$user->getEmail(),
-          'follow_result'=>$type_result
+          'follow_result'=>$type_result,
+          'followers'=>$followers,
+          'following'=>$following
         );
+
         $session = new Session();
         $session->set('user_info',$temp);
         return new JsonResponse($this->generateUrl('profile'));

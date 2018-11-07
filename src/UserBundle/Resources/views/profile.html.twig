@@ -35,26 +35,28 @@
                             <h3>{{ userProfile.user_first_name }} {{ userProfile.user_last_name }}</h3>
                         </div>
                         <ul class="list-unstyled user_data">
-                            <li><i class="fa fa-map-marker user-profile-icon"></i>
-                                {% if userProfile.user_adress is not null %}
+                            {% if userProfile.user_adress is not null %}
+                                <li><i class="fa fa-map-marker user-profile-icon"></i>
                                     {{ userProfile.user_adress }}
-                                {% endif %}
-                            </li>
 
-                            <li>
-                                <i class="fa fa-briefcase user-profile-icon"></i>
-                                {% if userProfile.user_company_name is not null %}
-                                    {{ userProfile.user_company_name }}
-                                {% endif %}
-                            </li>
+                                </li>
+                            {% endif %}
 
-                            <li class="m-top-xs">
-                                <i class="fa fa-external-link user-profile-icon"></i>
-                                {% if userProfile.user_website is not null %}
-                                    <a href="{{ userProfile.user_website }}" target="_blank">userProfile.user_website</a>
-                                {% endif %}
+                            {% if userProfile.user_company_name is not null %}
+                                <li>
+                                    <i class="fa fa-briefcase user-profile-icon"></i>
 
-                            </li>
+                                        {{ userProfile.user_company_name }}
+
+                                </li>
+                            {% endif %}
+
+                            {% if userProfile.user_website is not null %}
+                                <li class="m-top-xs">
+                                    <i class="fa fa-external-link user-profile-icon"></i>
+                                        <a href="{{ userProfile.user_website }}" target="_blank">userProfile.user_website</a>
+                                </li>
+                            {% endif %}
                             <li>
                                 <i class="fa fa-envelope-o user-profile-icon"></i>
                                 {{ userProfile.user_email }}
@@ -116,89 +118,50 @@
 
                                 <div class="tab-pane" id="profile-r">
                                     <div class="row"> <!--group rows-->
-                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
-                                            <div class="bord">
-                                                <img src="scripts/img/pc.jpg" width="100 " height="100"/>
-                                                <h4>user name</h4>
-                                                <div class=""><h5>Company name</h5></div>
-                                                <div>
-                                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i> <i class="fa fa-comments-o"></i> </button>
-                                                    <button type="button" class="btn btn-primary btn-xs"> <i class="fa fa-eye"></i> </button>
+                                        {% if userProfile.followers is not empty %}
+                                            <h4><small>Followers : </small> {{ userProfile.followers|length }} </h4>
+                                            {% for follower in userProfile.followers %}
+                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center" >
+                                                    <div class="bord">
+                                                        {% if follower.follower_image is null %}
+                                                            {% set followerImage = 'default.png' %}
+                                                            {% else %}
+                                                                {% set followerImage = follower.follower_image%}
+                                                        {% endif %}
+                                                        <img src="{{ asset('images/profile/') }}{{ followerImage }}" width="100 " height="100"/>
+                                                        <h4>{{ follower.follower_first_name }} {{ follower.follower_last_name }}</h4>
+                                                        <div class=""><h5>{{ follower.follower_company_name }}</h5></div>
+                                                    </div>
                                                 </div>
+                                            {% endfor %}
 
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center" >
-                                            <div class="bord">
-                                                <img src="scripts/img/user2.jpg" width="100 " height="100"/>
-                                                <h4>user name</h4>
-                                                <div class=""><h5>Company name</h5></div>
-                                                <div>
-                                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i> <i class="fa fa-comments-o"></i> </button>
-                                                    <button type="button" class="btn btn-primary btn-xs"> <i class="fa fa-eye"></i> </button>
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center" >
-                                            <div class="bord">
-                                                <img src="scripts/img/user2.jpg" width="100 " height="100"/>
-                                                <h4>user name</h4>
-                                                <div class=""><h5>Company name</h5></div>
-                                                <div>
-                                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i> <i class="fa fa-comments-o"></i> </button>
-                                                    <button type="button" class="btn btn-primary btn-xs"> <i class="fa fa-eye"></i> </button>
-                                                </div>
-
-                                            </div>
-                                        </div>
-
-
+                                            {% else %}
+                                                <h4>No followers</h4>
+                                        {% endif %}
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="messages-r">
                                     <div class="row"> <!--group rows-->
-                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
-                                            <div class="bord">
-                                                <img src="scripts/img/pc.jpg" width="100 " height="100"/>
-                                                <h4>user name</h4>
-                                                <div class=""><h5>Company name</h5></div>
-                                                <div>
-                                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i> <i class="fa fa-comments-o"></i> </button>
-                                                    <button type="button" class="btn btn-primary btn-xs"> <i class="fa fa-eye"></i> </button>
-                                                    <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-minus"> </i> </button>
+                                        {% if userProfile.following is not empty %}
+                                            <h4><small>Followings : </small> {{ userProfile.following|length }} </h4>
+                                            {% for follower in userProfile.following %}
+                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center" >
+                                                    <div class="bord">
+                                                        {% if follower.follower_image is null %}
+                                                            {% set followerImage = 'default.png' %}
+                                                        {% else %}
+                                                            {% set followerImage = follower.follower_image%}
+                                                        {% endif %}
+                                                        <img src="{{ asset('images/profile/') }}{{ followerImage }}" width="100 " height="100"/>
+                                                        <h4>{{ follower.follower_first_name }} {{ follower.follower_last_name }}</h4>
+                                                        <div class=""><h5>{{ follower.follower_company_name }}</h5></div>
+                                                    </div>
                                                 </div>
+                                            {% endfor %}
 
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center" >
-                                            <div class="bord">
-                                                <img src="scripts/img/user2.jpg" width="100 " height="100"/>
-                                                <h4>user name</h4>
-                                                <div class=""><h5>Company name</h5></div>
-                                                <div>
-                                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i> <i class="fa fa-comments-o"></i> </button>
-                                                    <button type="button" class="btn btn-primary btn-xs"> <i class="fa fa-eye"></i> </button>
-                                                    <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-minus"> </i> </button>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center" >
-                                            <div class="bord">
-                                                <img src="scripts/img/user2.jpg" width="100 " height="100"/>
-                                                <h4>user name</h4>
-                                                <div class=""><h5>Company name</h5></div>
-                                                <div>
-                                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i> <i class="fa fa-comments-o"></i> </button>
-                                                    <button type="button" class="btn btn-primary btn-xs"> <i class="fa fa-eye"></i> </button>
-                                                    <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-minus"> </i> </button>
-
-                                                </div>
-
-                                            </div>
-                                        </div>
+                                        {% else %}
+                                            <h4>No followings</h4>
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
