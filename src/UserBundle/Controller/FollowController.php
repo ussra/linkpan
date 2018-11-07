@@ -14,7 +14,7 @@ class FollowController extends Controller
     /**
      * @Route("/linkpan/follow",name="follow")
      */
-    public function indexAction(Request $request)
+    public function followAction(Request $request)
     {
 
         $repo = $this->getDoctrine()->getRepository('AppBundle:User');
@@ -37,6 +37,30 @@ class FollowController extends Controller
             }
         }
 
-        return $this->forward('UserBundle:Profile:profile',array('user'=>$request->get('tofollow')));
+        return $this->forward('UserBundle:Profile:searchprofile',array('user'=>$request->get('tofollow')));
+    }
+
+    /**
+     * @Route("/linkpan/unfollow",name="unfollow")
+     */
+    public function unfollowAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('AppBundle:User');
+        $userToUnFollow = $repo->findOneById($request->get('unfollow'));
+        if(!is_null($userToUnFollow))
+        {
+            //check
+            $followrepo = $this->getDoctrine()->getRepository('UserBundle:Follow');
+            $check = $followrepo->findOneBy(
+                array('user'=>$this->getUser(),'userToFollow'=>$userToUnFollow)
+            );
+            if(!is_null($check))
+            {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($check);
+                $em->flush();
+            }
+        }
+        return $this->forward('UserBundle:Profile:searchprofile',array('user'=>$request->get('unfollow')));
     }
 }

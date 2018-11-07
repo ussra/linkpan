@@ -8,42 +8,69 @@
     <div style="margin-top:50px">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Profile </h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                {{ dump(app.session.get('user_info')) }}
+                {% set userProfile  = app.session.get('user_info') %}
                 <!-- User Informations -->
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 profile_left">
                     <div class="profile_img">
                         <div class="container" >
+                            {% if userProfile.user_image == '' %}
+                                {% set profileImage = 'default.png' %}
+                                {% else %}
+                                    {% set profileImage = userProfile.user_image %}
+                            {% endif %}
                             <!-- Current avatar -->
-                            <img class=" img-circle" src="scripts/img/userimage.png" id="img-main" height="200px" width="200px" style="position:absolute;">
+                            <!--<img class=" img-circle" src="{{ asset('images/profile/') }}{{ profileImage }}" id="img-main" height="200px" width="200px" style="position:absolute;">
 
-                            <img class=" img-circle" src="scripts/img/Ace/Border.png" id="im-cover" height="200px" width="200px" style="position:relative;">
+                            <img class=" img-circle" src="{{ asset('Userscripts/img/Ace/Border.png') }}" id="im-cover" height="200px" width="200px" style="position:relative;">-->
+
+                            <img class=" img-circle" src="{{ asset('images/profile/') }}{{ profileImage }}" id="img-main" height="200px" width="200px" style="position:static;">
+                            <img class=" img-circle" src="{{ asset('Userscripts/img/Ace/Border.png') }}" id="im-cover" height="200px" width="200px" style="position:relative;display: none;">
                         </div>
                     </div>
                     <div id="infos" class="row">
                         <div class="text-left">
-                            <h3>JOHN DOE</h3>
+                            <h3>{{ userProfile.user_first_name }} {{ userProfile.user_last_name }}</h3>
                         </div>
                         <ul class="list-unstyled user_data">
-                            <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
+                            <li><i class="fa fa-map-marker user-profile-icon"></i>
+                                {% if userProfile.user_adress is not null %}
+                                    {{ userProfile.user_adress }}
+                                {% endif %}
                             </li>
 
                             <li>
-                                <i class="fa fa-briefcase user-profile-icon"></i> Linkpan s Company
+                                <i class="fa fa-briefcase user-profile-icon"></i>
+                                {% if userProfile.user_company_name is not null %}
+                                    {{ userProfile.user_company_name }}
+                                {% endif %}
                             </li>
 
                             <li class="m-top-xs">
                                 <i class="fa fa-external-link user-profile-icon"></i>
-                                <a href="http://www.kimlabs.com/profile/" target="_blank">www.Test.com</a>
+                                {% if userProfile.user_website is not null %}
+                                    <a href="{{ userProfile.user_website }}" target="_blank">userProfile.user_website</a>
+                                {% endif %}
+
                             </li>
                             <li>
-                                <i class="fa fa-envelope-o user-profile-icon"></i> test@gmail.com
+                                <i class="fa fa-envelope-o user-profile-icon"></i>
+                                {{ userProfile.user_email }}
                             </li>
                         </ul>
-                        <a class="btn btn-success" href="setting.html"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                        {% if user.id != userProfile.user_id %}
+                            {% if userProfile.follow_result == 'follow' %}
+                                <button type="button" class="btn btn-default btn-xs follow" title="follow" > <i class="fa fa-plus"></i> </button>
+                                {% else %}
+                                    <button type="button" class="btn btn-danger btn-xs" title="unfollow" > <i class="fa fa-minus"></i> </button>
+                            {% endif %}
+
+
+                            <button type="button" class="btn btn-success btn-xs" title="contact" > <i class="fa fa-comments-o"></i> </button>
+                            <button type="button" class="btn btn-danger btn-xs" title="block"> <i class="fa fa-ban"></i> </button>
+                        {% endif %}
                     </div>
 
                 </div>
