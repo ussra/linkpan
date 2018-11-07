@@ -215,9 +215,9 @@
                             </li>
 
                             <li id="search">
-                                <form class="form-inline" style="margin-top: 4%">
-                                    <input class="form-control searchinput" type="text" placeholder="Search" id="textinput" >
-                                    <a onclick="filter()"><button class="btn btn-outline-primary" type="button" ><i class="fa fa-search"></i></button></a>
+                                <form class="form-inline" style="margin-top: 4%" method="post" action="{{ path('search') }}">
+                                    <input class="form-control" name="searchinput" type="text" placeholder="Search" id="textinput" required >
+                                    <a><button class="btn btn-outline-primary" type="submit" ><i class="fa fa-search"></i></button></a>
                                 </form>
                             </li>
                             <li>

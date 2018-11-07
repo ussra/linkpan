@@ -1,0 +1,73 @@
+{% extends "UserBundle::userbase.html.twig" %}
+
+{% block Title %}
+    Search Result
+{% endblock %}
+
+{% block pageContent %}
+    <div style="margin-top:80px">
+        <div class="x_panel">
+            {% set result = app.session.get('users')  %}
+            <div class="x_title">
+                <h2>search results ({{ result|length }}) </h2>
+
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row"> <!--group rows-->
+                    {% if result|length == 0 %}
+                        <h4>We couldn't find anything for <b>Input value</b>  </h4>
+                        {% else %}
+                            {% for user in result %}
+                                {% if user.user_image is null %}
+                                    {% set image = 'default.png' %}
+                                    {% else %}
+                                        {% set image = user.user_image %}
+                                {% endif %}
+                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center" >
+                                    <div class="bord">
+                                        <img src="{{ asset('images/profile/') }}{{ image }}" width="100" height="100"/>
+                                        <h4>{{ user.user_first_name }} {{ user.user_last_name }}</h4>
+                                        <div class=""><h5>{{ user.user_company_name }}</h5></div>
+                                        <div>
+                                            {% if user.user_type_follow == 'follow' %}
+                                                <a onclick="follow({{ user.user_id }})"><button type="button" class="btn btn-default btn-xs" title="follow"> <i class="fa fa-plus"></i> </button></a>
+                                                {% else %}
+                                                    <button type="button" onclick="follow({{ user.user_id }})" class="btn btn-danger btn-xs" title="unfollow"> <i class="fa fa-minus"></i> </button>
+                                            {% endif %}
+                                            <button type="button" class="btn btn-primary btn-xs" title="view profil"> <i class="fa fa-eye"></i> </button>
+                                            <button type="button" class="btn btn-success btn-xs" title="contact" > <i class="fa fa-comments-o"></i> </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    <!-- follow -->
+    <script>
+        function follow(tofollow)
+        {
+            $.ajax({
+                url: '{{ (path('follow')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:
+                    {
+                        'tofollow': tofollow
+                    },
+                async: true,
+                success: function (data)
+                {
+                }
+            });
+        }
+    </script>
+{% endblock %}

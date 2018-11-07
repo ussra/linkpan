@@ -1,0 +1,186 @@
+{% extends "UserBundle::userbase.html.twig" %}
+
+{% block Title %}
+    Profile
+{% endblock %}
+
+{% block pageContent %}
+    <div style="margin-top:50px">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Profile </h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                {{ dump(app.session.get('user_info')) }}
+                <!-- User Informations -->
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 profile_left">
+                    <div class="profile_img">
+                        <div class="container" >
+                            <!-- Current avatar -->
+                            <img class=" img-circle" src="scripts/img/userimage.png" id="img-main" height="200px" width="200px" style="position:absolute;">
+
+                            <img class=" img-circle" src="scripts/img/Ace/Border.png" id="im-cover" height="200px" width="200px" style="position:relative;">
+                        </div>
+                    </div>
+                    <div id="infos" class="row">
+                        <div class="text-left">
+                            <h3>JOHN DOE</h3>
+                        </div>
+                        <ul class="list-unstyled user_data">
+                            <li><i class="fa fa-map-marker user-profile-icon"></i> San Francisco, California, USA
+                            </li>
+
+                            <li>
+                                <i class="fa fa-briefcase user-profile-icon"></i> Linkpan s Company
+                            </li>
+
+                            <li class="m-top-xs">
+                                <i class="fa fa-external-link user-profile-icon"></i>
+                                <a href="http://www.kimlabs.com/profile/" target="_blank">www.Test.com</a>
+                            </li>
+                            <li>
+                                <i class="fa fa-envelope-o user-profile-icon"></i> test@gmail.com
+                            </li>
+                        </ul>
+                        <a class="btn btn-success" href="setting.html"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+                    </div>
+
+                </div>
+                <!-- -->
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="x_content" style="margin-left: 5%;">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <!-- required for floating -->
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs tabs-right">
+                                <li class="active"><a href="#home-r" data-toggle="tab">Recent Activity</a>
+                                </li>
+                                <li><a href="#profile-r" data-toggle="tab">Followers</a>
+                                </li>
+                                <li><a href="#messages-r" data-toggle="tab">Following</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="home-r">
+                                    <div class="col-12">
+                                        <ul class="list-unstyled msg_list">
+                                            <li>
+                                                <a>
+                                                                    <span class="image">
+                                                                      <img src="scripts/img/userimage.png" alt="img" />
+                                                                    </span>
+                                                    <span>
+                                                                        <span>John Doe</span>
+                                                                        <span class="time">3 mins ago</span>
+                                                                    </span>
+                                                    <span class="message">
+                                                                        Description Description Description Description Description
+                                                                    </span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="tab-pane" id="profile-r">
+                                    <div class="row"> <!--group rows-->
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
+                                            <div class="bord">
+                                                <img src="scripts/img/pc.jpg" width="100 " height="100"/>
+                                                <h4>user name</h4>
+                                                <div class=""><h5>Company name</h5></div>
+                                                <div>
+                                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i> <i class="fa fa-comments-o"></i> </button>
+                                                    <button type="button" class="btn btn-primary btn-xs"> <i class="fa fa-eye"></i> </button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center" >
+                                            <div class="bord">
+                                                <img src="scripts/img/user2.jpg" width="100 " height="100"/>
+                                                <h4>user name</h4>
+                                                <div class=""><h5>Company name</h5></div>
+                                                <div>
+                                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i> <i class="fa fa-comments-o"></i> </button>
+                                                    <button type="button" class="btn btn-primary btn-xs"> <i class="fa fa-eye"></i> </button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center" >
+                                            <div class="bord">
+                                                <img src="scripts/img/user2.jpg" width="100 " height="100"/>
+                                                <h4>user name</h4>
+                                                <div class=""><h5>Company name</h5></div>
+                                                <div>
+                                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i> <i class="fa fa-comments-o"></i> </button>
+                                                    <button type="button" class="btn btn-primary btn-xs"> <i class="fa fa-eye"></i> </button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="messages-r">
+                                    <div class="row"> <!--group rows-->
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center">
+                                            <div class="bord">
+                                                <img src="scripts/img/pc.jpg" width="100 " height="100"/>
+                                                <h4>user name</h4>
+                                                <div class=""><h5>Company name</h5></div>
+                                                <div>
+                                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i> <i class="fa fa-comments-o"></i> </button>
+                                                    <button type="button" class="btn btn-primary btn-xs"> <i class="fa fa-eye"></i> </button>
+                                                    <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-minus"> </i> </button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center" >
+                                            <div class="bord">
+                                                <img src="scripts/img/user2.jpg" width="100 " height="100"/>
+                                                <h4>user name</h4>
+                                                <div class=""><h5>Company name</h5></div>
+                                                <div>
+                                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i> <i class="fa fa-comments-o"></i> </button>
+                                                    <button type="button" class="btn btn-primary btn-xs"> <i class="fa fa-eye"></i> </button>
+                                                    <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-minus"> </i> </button>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center" >
+                                            <div class="bord">
+                                                <img src="scripts/img/user2.jpg" width="100 " height="100"/>
+                                                <h4>user name</h4>
+                                                <div class=""><h5>Company name</h5></div>
+                                                <div>
+                                                    <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user"></i> <i class="fa fa-comments-o"></i> </button>
+                                                    <button type="button" class="btn btn-primary btn-xs"> <i class="fa fa-eye"></i> </button>
+                                                    <button type="button" class="btn btn-danger btn-xs"> <i class="fa fa-minus"> </i> </button>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
