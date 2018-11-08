@@ -22,12 +22,14 @@
                                     {% set profileImage = userProfile.user_image %}
                             {% endif %}
                             <!-- Current avatar -->
-                            <!--<img class=" img-circle" src="{{ asset('images/profile/') }}{{ profileImage }}" id="img-main" height="200px" width="200px" style="position:absolute;">
+                            {% if app.session.get('membership') == 'dockies' %}
+                                <img class=" img-circle" src="{{ asset('images/profile/') }}{{ profileImage }}" id="img-main" height="200px" width="200px" style="position:absolute;">
+                                <img class=" img-circle" src="{{ asset('Userscripts/img/Ace/Border.png') }}" id="im-cover" height="200px" width="200px" style="position:relative;">
+                                {% else %}
+                                    <img class=" img-circle" src="{{ asset('images/profile/') }}{{ profileImage }}" id="img-main" height="200px" width="200px" style="position:static;">
+                                    <img class=" img-circle" src="{{ asset('Userscripts/img/Ace/Border.png') }}" id="im-cover" height="200px" width="200px" style="position:relative;display: none;">
+                            {% endif %}
 
-                            <img class=" img-circle" src="{{ asset('Userscripts/img/Ace/Border.png') }}" id="im-cover" height="200px" width="200px" style="position:relative;">-->
-
-                            <img class=" img-circle" src="{{ asset('images/profile/') }}{{ profileImage }}" id="img-main" height="200px" width="200px" style="position:static;">
-                            <img class=" img-circle" src="{{ asset('Userscripts/img/Ace/Border.png') }}" id="im-cover" height="200px" width="200px" style="position:relative;display: none;">
                         </div>
                     </div>
                     <div id="infos" class="row">
