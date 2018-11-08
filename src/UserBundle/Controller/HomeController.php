@@ -37,11 +37,20 @@ class HomeController extends Controller
         //
         return $this->render('UserBundle::userbase.html.twig');
     }
+
     /**
      * @Route("/linkpan/setting",name="setting")
      */
     public function settingAction(Request $request)
     {
         return $this->render('UserBundle::setting.html.twig');
+    }
+
+    /**
+     * @Route("/linkpan/business_solutions",name="business_solutions")
+     */
+    public function business_olutionsAction(Request $request)
+    {
+        return $this->render('UserBundle::businessSolutions.html.twig');
     }
 }
