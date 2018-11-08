@@ -47,10 +47,49 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/linkpan/business_solutions",name="business_solutions")
+     * @Route("/linkpan/linkpan/business_solutions",name="business_solutions")
      */
-    public function business_olutionsAction(Request $request)
+    public function business_solutionsAction()
     {
         return $this->render('UserBundle::businessSolutions.html.twig');
+    }
+
+    /**
+     * @Route("/linkpan/linkpan/boost_posts",name="boost_posts")
+     */
+    public function boost_postsAction()
+    {
+        $session = new Session();
+        //get all posts
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Post');
+        $posts = array();
+        $result = $repo->findBy(
+          array('user'=>$this->getUser())
+        );
+        if(sizeof($result)>0)
+        {
+            $boostrepo = $this->getDoctrine()->getRepository('UserBundle:BoostPost');
+            foreach ($result as $post)
+            {
+                // get boost type
+                $boost = $boostrepo->findOneBy(
+                  array('post'=>$post)
+                );
+                if(is_null($boost))
+                    $boostType = 'Boost';
+                else
+                    $boostType = 'Remove Boost';
+                //
+                $temp = array(
+                  'post_id'=>$post->getId(),
+                  'post_content'=>$post->getContent(),
+                  'post_boost_type'=>$boostType
+                );
+                array_push($posts,$temp);
+            }
+            $session->set('posts',$posts);
+        }
+        //
+        return $this->render('UserBundle::boostPost.html.twig');
     }
 }

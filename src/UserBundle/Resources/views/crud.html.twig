@@ -1,0 +1,67 @@
+{% extends "UserBundle::userbase.html.twig" %}
+
+{% block style %}
+    <!-- DataTable-->
+    <!-- NProgress -->
+    <link href="{{ asset('Userscripts/vendors/nprogress/nprogress.css')}}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{{ asset('Userscripts/vendors/iCheck/skins/flat/green.css')}}" rel="stylesheet">
+    <link href="{{ asset('Userscripts/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('Userscripts/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('Userscripts/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('Userscripts/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('Userscripts/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+{% endblock %}
+
+{% block pageContent %}
+    <div style="margin-top:80px;">
+        {% block actions %}
+            <div  style="margin-bottom: 14px; text-align: center; ">
+                <button type="button" class="btn btn-success btn-sm" style="float: right" id="addbtn"><i class="fa fa-plus"></i></button>
+                <button type="button" class="btn btn-danger btn-sm" style="float: right" id="delete" onclick="{% block deleteaction %}{% endblock %}"><i class="fa fa-trash"></i></button>
+                <!-- <button  class="btn btn-outline-secondary" style="display: inline;" title="Fiche " >
+                     <span class="glyphicon glyphicon-download-alt"></span>
+                 </button>-->
+            </div>
+        {% endblock %}
+        <form>
+            <table id="datatable" class="table   table-bordered" style="width: 100%;">
+                <thead>
+                <tr>
+                    {% block thead %}
+
+                    {% endblock %}
+                </tr>
+                </thead>
+                <tbody>
+                {% block tbody %}
+
+                {% endblock %}
+                </tbody>
+            </table>
+        </form>
+    </div>
+    {% block modals %}
+    {% endblock %}
+{% endblock %}
+
+
+{% block scripts %}
+    <!--DataTable-->
+    <!-- iCheck -->
+    <script src="{{ asset('Userscripts/vendors/iCheck/icheck.min.js')}}"></script>
+    <!-- Datatables -->
+    <script src="{{ asset('Userscripts/vendors/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{ asset('Userscripts/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+    <script src="{{ asset('Userscripts/vendors/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{ asset('Userscripts/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js')}}"></script>
+    <script src="{{ asset('Userscripts/vendors/datatables.net-buttons/js/buttons.flash.min.js')}}"></script>
+    <script src="{{ asset('Userscripts/vendors/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
+    <script src="{{ asset('Userscripts/vendors/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
+    <script src="{{ asset('Userscripts/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js')}}"></script>
+    <script src="{{ asset('Userscripts/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js')}}"></script>
+    <script src="{{ asset('Userscripts/vendors/datatables.net-responsive/js/dataTables.responsive.min.js')}}"></script>
+    <script src="{{ asset('Userscripts/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js')}}"></script>
+    <script src="{{ asset('Userscripts/vendors/datatables.net-scroller/js/dataTables.scroller.min.js')}}"></script>
+    <script src="{{ asset('Userscripts/vendors/jszip/dist/jszip.min.js')}}"></script>
+{% endblock %}

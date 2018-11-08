@@ -5,12 +5,12 @@ namespace UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Membership
+ * BoostPost
  *
- * @ORM\Table(name="membership")
- * @ORM\Entity(repositoryClass="UserBundle\Repository\MembershipRepository")
+ * @ORM\Table(name="boost_post")
+ * @ORM\Entity(repositoryClass="UserBundle\Repository\BoostPostRepository")
  */
-class Membership
+class BoostPost
 {
     /**
      * @var int
@@ -24,15 +24,16 @@ class Membership
     /**
      * @var string
      *
-     * @ORM\Column(name="planId", type="text")
+     * @ORM\Column(name="boostId", type="text")
      */
-    private $planId;
+    private $boostId;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Post")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
-    private $user;
+    private $post;
+
 
     /**
      * Get id
@@ -45,44 +46,45 @@ class Membership
     }
 
     /**
-     * Set planId
+     * Set boostId
      *
-     * @param string $planId
+     * @param string $boostId
      *
-     * @return Membership
+     * @return BoostPost
      */
-    public function setPlanId($planId)
+    public function setBoostId($boostId)
     {
-        $this->planId = $planId;
+        $this->boostId = $boostId;
 
         return $this;
     }
 
     /**
-     * Get planId
+     * Get boostId
      *
      * @return string
      */
-    public function getPlanId()
+    public function getBoostId()
     {
-        return $this->planId;
+        return $this->boostId;
     }
 
     /**
      * @return mixed
      */
-    public function getUser()
+    public function getPost()
     {
-        return $this->user;
+        return $this->post;
     }
 
     /**
-     * @param mixed $user
+     * @param mixed $post
      */
-    public function setUser($user)
+    public function setPost($post)
     {
-        $this->user = $user;
+        $this->post = $post;
     }
+
 
 }
 
