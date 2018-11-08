@@ -47,7 +47,7 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/linkpan/linkpan/business_solutions",name="business_solutions")
+     * @Route("/linkpan/business_solutions",name="business_solutions")
      */
     public function business_solutionsAction()
     {
@@ -55,7 +55,7 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/linkpan/linkpan/boost_posts",name="boost_posts")
+     * @Route("/linkpan/boost_posts",name="boost_posts")
      */
     public function boost_postsAction()
     {
@@ -91,5 +91,21 @@ class HomeController extends Controller
         }
         //
         return $this->render('UserBundle::boostPost.html.twig');
+    }
+
+    /**
+     * @Route("/linkpan/terms",name="terms")
+     */
+    public function termsAction()
+    {
+        return $this->render('UserBundle::terms.html.twig');
+    }
+
+    /**
+     * @Route("/linkpan/privacy",name="privacy")
+     */
+    public function privacyAction()
+    {
+        return $this->render('UserBundle::privacy.html.twig');
     }
 }

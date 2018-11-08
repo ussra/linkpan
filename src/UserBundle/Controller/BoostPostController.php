@@ -92,13 +92,11 @@ class BoostPostController extends Controller
             }
             else
             {
-                echo '<script language="javascript">alert("Sorry , we cannot remove the boost now ! can you try again please?")</script>';
                 return $this->forward('UserBundle:Home:boost_posts');
             }
         }
         else
         {
-            echo '<script language="javascript">alert("Sorry , we cannot find the post you have selected , can you try again please?")</script>';
             return $this->forward('UserBundle:Home:boost_posts');
         }
     }
