@@ -20,3 +20,11 @@ services:
     app.form_login_authenticator:
         class: AppBundle\Security\FormLoginAuthenticator
         arguments: ["@router", "@security.password_encoder"]
+
+    UserBundle\Payment\StripeClient:
+        autowire: true
+        autoconfigure: true
+        lazy: true
+    my.stripe.client:
+        class: UserBundle\Payment\StripeClient
+        public: true

@@ -76,7 +76,9 @@
                             <h4 style="color:white;margin-top:-5%">{{ user.firstname }} {{ user.lastname }}</h4>
                             <p style="color:white;font-size:8.6px; "> 0 FOLLOWING</p>
                             <p style="margin-top:-6.5%;color:white;font-size:8.6px;"> 0 FOLLOWERS</p>
-
+                            {% if app.session.get('membership') == 'dockies' %}
+                                <img src={{ asset('Userscripts/img/Ace/ACE.svg') }} id="logo" width="55px" height="55px">
+                            {% endif %}
 
                         </div>
                     </div>
@@ -94,6 +96,11 @@
                                 <li><a href="#"> Home</a></li>
                             </ul>
 
+                            {% if app.session.get('membership') == 'dockies' %}
+                                <ul class="nav side-menu">
+                                    <li><a href="#"> Dockies</a></li>
+                                </ul>
+                            {% endif %}
                             <ul class="nav side-menu">
                                 <li><a href="#"> Pans</a></li>
                             </ul>
@@ -157,8 +164,12 @@
                                             <span>Settings</span>
                                         </a>
                                     </li>
+                                    {% if app.session.get('membership') == 'simple' %}
+                                        <li><a onclick="$('#up_modal').modal('show')"><strong>Upgrade Membership</strong></a></li>
+                                        {% else %}
+                                            <li><a href="{{ path('downgrade_membership') }}"><small style="color: red;">Downgrade Membership</small></a></li>
+                                    {% endif %}
 
-                                    <li><a><strong>Upgrade Membership</strong></a></li>
                                     <li><a > Business solutions</a></li>
                                     <li><a > Boost posts</a></li>
                                     <li><a href="#"> Terms</a></li>
@@ -234,6 +245,7 @@
 
             <div class="right_col" role="main">
                 {% block pageContent %}
+
                 {% endblock pageContent %}
             </div>
             <!-- footer content -->
@@ -274,6 +286,7 @@
     </div>
 {% endif %}
 
+<!-- Membership modal -->
 <div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="up_modal">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -281,20 +294,21 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">do you really want to upgrade your membership</h4>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label for="dockiestype">Dockies Type:</label>
-                    <select class="form-control" id="dockiestype">
-                        <option disabled selected value="selected"> -- select an option -- </option>
-                        <option value="monthly">monthly</option>
-                        <option value="6 months ">6 months</option>
-                        <option value="annually">annually</option>
-                    </select>
+            <form method="post" action="{{ path('change_membership') }}">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="dockiestype">Dockies Type:</label>
+                        <select class="form-control" id="dockiestype" name="dockiestype" required>
+                            <option value="monthly">monthly</option>
+                            <option value="6 months ">6 months</option>
+                            <option value="annually">annually</option>
+                        </select>
+                    </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <a onclick="confirmupgrade()"><button type="button" class="btn btn-default" id="modal-btn-si">Upgrade</button></a>
-            </div>
+                <div class="modal-footer">
+                    <a ><button type="submit"  class="btn btn-default upggradebtn" id="modal-btn-si">Upgrade</button></a>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -335,9 +349,9 @@
             </div>
             <div class="modal-body">
                 <form class="form-inline">
-                    <form class="form-inline">
-                        <input class="form-control searchinput" type="text" placeholder="Search" id="textinput2" >
-                        <a onclick="filter()"><button class="btn btn-outline-primary" type="button" ><i class="fa fa-search"></i></button></a>
+                    <form class="form-inline" method="post" action="{{ path('search') }}">
+                        <input class="form-control searchinput" type="text" placeholder="Search" name="searchinput" id="textinput2" >
+                        <a><button class="btn btn-outline-primary" type="submit" ><i class="fa fa-search"></i></button></a>
                     </form>
                 </form>
             </div>
@@ -458,6 +472,8 @@
 
     }
 </script>
+
+
 
 {% block scripts %}
 
