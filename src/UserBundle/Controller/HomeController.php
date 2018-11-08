@@ -108,4 +108,6 @@ class HomeController extends Controller
     {
         return $this->render('UserBundle::privacy.html.twig');
     }
+
+
 }

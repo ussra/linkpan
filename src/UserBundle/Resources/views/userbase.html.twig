@@ -93,7 +93,7 @@
                         <div class="menu_section">
 
                             <ul class="nav side-menu">
-                                <li><a href="#"> Home</a></li>
+                                <li><a href="{{ path('home') }}"> Home</a></li>
                             </ul>
 
                             {% if app.session.get('membership') == 'dockies' %}
@@ -245,7 +245,44 @@
 
             <div class="right_col" role="main">
                 {% block pageContent %}
+                    <div style="margin-top:80px">
+                        <div class="container bootstrap snippet">
+                            <div class="panel profile-info">
+                                <form id="postform" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="{{ path('home_post') }}">
+                                    <textarea class="form-control input-lg p-text-area" rows="4" placeholder="What's in your mind today?" name="post_description" id="description" required></textarea>
+                                    <div id="cover">
+                                        <div class="gallery"></div>
+                                        <div id="add_photo"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                                    </div>
 
+                                    <div id="post_line"></div>
+
+                                    <div id="up_area"> <!-- upload -->
+                                        <div style="display:inline-block;">
+                                            <div class="form-inline">
+                                                <img src="{{ asset('Userscripts/img/upimg.svg') }}" width="20px" height="20px" style="display:inline" onclick="document.getElementById('gallery-photo-add').click();">
+                                                <input type="file"  name="uploadimage[]"  id="gallery-photo-add" style="display:none" accept="image/*" multiple>
+                                                <h9 id="upload_title">Photo</h9>
+                                            </div>
+                                        </div>
+                                        <!--Video -->
+                                        <div style="display:inline-block;">
+                                            <div class="form-inline">
+                                                <img src="{{ asset('Userscripts/img//upvideo.svg') }}" id="video_prev" width="20px" height="20px" onclick="document.getElementById('post_video').click();">
+                                                <input type="file" id="post_video" name="post_video"  onchange="readVideoURL(this);"  accept="video/mp4" style="display:none;">
+                                                <h9 id="upload_Video_title">Video</h9>
+                                            </div>
+                                        </div>
+                                        <!--Video -->
+                                    </div><!--end upload -->
+
+
+                                    <button type="submit" class="btn btn-info" id="postpan" >Post</button>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 {% endblock pageContent %}
             </div>
             <!-- footer content -->
