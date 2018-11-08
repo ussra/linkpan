@@ -25,6 +25,26 @@ class HomeController extends Controller
     }
 
 
+    private function getPosts()
+    {
+        $currentUser = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT p
+            FROM UserBundle:Post p
+            WHERE p.user = :user
+            OR IDENTITY(p.user) IN (SELECT IDENTITY(f.userToFollow) FROM 
+            UserBundle:Follow f 
+            WHERE f.user = :user)
+            OR p.id IN (
+              SELECT IDENTITY(bp.post) FROM UserBundle:BoostPost bp
+            )'
+        )->setParameter('user', $currentUser);
+        $result =  $query->getResult();
+
+    }
+
+
     /**
      * @Route("/linkpan/home",name="home")
      */
@@ -34,6 +54,8 @@ class HomeController extends Controller
         $currentUser = $this->getUser();
         // Membership
         $this->getMembership($session,$currentUser);
+        // posts
+        $this->getPosts();
         //
         return $this->render('UserBundle::userbase.html.twig');
     }

@@ -30,7 +30,7 @@ class PostImage
 
     /**
      * @ORM\ManyToOne(targetEntity="UserBundle\Entity\Post")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
     private $post;
 
