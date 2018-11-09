@@ -25,12 +25,12 @@ class HomeController extends Controller
     }
 
 
-    private function getPosts()
+    private function getPosts($session,$currentUser)
     {
-        $currentUser = $this->getUser();
+        $posts = array();
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
-            'SELECT p
+            'SELECT DISTINCT p
             FROM UserBundle:Post p
             WHERE p.user = :user
             OR IDENTITY(p.user) IN (SELECT IDENTITY(f.userToFollow) FROM 
@@ -41,7 +41,90 @@ class HomeController extends Controller
             )'
         )->setParameter('user', $currentUser);
         $result =  $query->getResult();
+        if(sizeof($result)>0)
+        {
+            $repo = $this->getDoctrine()->getRepository('AppBundle:User');
+            $imagesrepo = $this->getDoctrine()->getRepository('UserBundle:PostImage');
+            $boostedrepo = $this->getDoctrine()->getRepository('UserBundle:BoostPost');
+            $likerepo = $this->getDoctrine()->getRepository('UserBundle:PostLike');
+            $commentrepo = $this->getDoctrine()->getRepository('UserBundle:PostComment');
+            foreach ($result as $post)
+            {
+                $owner = $repo->findOneById($post->getUser());
+                //Get images
+                $result = $imagesrepo->findBy(
+                    array('post'=>$post)
+                );
+                $images = array();
+                if(!empty($result))
+                {
+                    foreach ($result as $img)
+                    {
+                        array_push($images,$img->getImage());
+                    }
+                }
+                //Get if boosted or not
+                $boosted = $boostedrepo->findOneBy(
+                  array('post'=>$post)
+                );
+                if(is_null($boosted)) $bType = 'not'; else $bType = 'boosted';
+                // Get if liked or not by current user
+                $liked = $likerepo->findOneBy(
+                  array('user'=>$currentUser,'post'=>$post)
+                );
+                if(is_null($liked)) $like = 'like'; else $like = 'dislike';
+                //Get count likes
+                $query = $em->createQuery(
+                    'SELECT l
+                     FROM UserBundle:PostLike l 
+                     WHERE l.post = :post
+                     AND  l.user != :user'
+                )->setParameter('post', $post)
+                    ->setParameter('user', $currentUser);
+                $likes = $query->getResult();
+                // Get post comments
+                $comments = array();
+                $commresult = $commentrepo->findBy(
+                  array('post'=>$post)
+                );
+                if(sizeof($commresult)>0)
+                {
+                    foreach ($commresult as $comment)
+                    {
+                        $commentOwner = $repo->findOneById($comment->getUser());
+                        $temp = array(
+                            'comment_owner_id'=>$commentOwner->getId(),
+                            'comment_owner_image'=>$commentOwner->getImage(),
+                            'comment_owner_first_name'=>$commentOwner->getFirstname(),
+                            'comment_owner_last_name'=>$commentOwner->getLastname(),
+                            'comment_content'=>$comment->getComment()
+                        );
+                        array_push($comments,$temp);
+                    }
+                }
+                //
+                $temp = array(
+                  'id'=>$post->getId(),
+                  'owner_id'=>$owner->getId(),
+                  'owner_first_name'=>$owner->getFirstname(),
+                  'owner_last_name'=>$owner->getLastname(),
+                  'owner_company_name'=>$owner->getCompanyName(),
+                  'owner_adress'=>$owner->getAdress(),
+                  'owner_image'=>$owner->getImage(),
+                  'post_creation_date'=>$post->getCreationDate(),
+                  'post_content'=>$post->getContent(),
+                  'post_video'=>$post->getVideo(),
+                  'post_images'=>$images,
+                  'post_boosted'=>$bType,
+                  'post_like_type'=>$like,
+                  'likes_count'=>sizeof($likes),
+                  'post_comments'=>$comments
+                );
+                array_push($posts,$temp);
+            }
+        }
 
+        $session->set('Homeposts',array_reverse($posts));
     }
 
 
@@ -55,7 +138,7 @@ class HomeController extends Controller
         // Membership
         $this->getMembership($session,$currentUser);
         // posts
-        $this->getPosts();
+        $this->getPosts($session,$currentUser);
         //
         return $this->render('UserBundle::userbase.html.twig');
     }

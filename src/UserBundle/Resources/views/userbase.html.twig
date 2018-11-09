@@ -53,9 +53,9 @@
 {% if user is not null %}
     <div class="container body">
         {% if user.image is null or user.image == '' %}
-            {% set image = 'default.png' %}
+            {% set currentimage = 'default.png' %}
             {% else %}
-                {% set image = user.image %}
+                {% set currentimage = user.image %}
         {% endif %}
         <div class="main_container">
             <div class="col-md-3 left_col menu_fixed" style="background-color:#0e7ac3">
@@ -70,7 +70,7 @@
                     <!-- menu profile quick info -->
                     <div class="profile clearfix" style="background-color:#0e7ac3">
                         <div class="profile_pic">
-                            <img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle profile_img" style="width: 60px;height: 60px;object-fit: cover;">
+                            <img src="{{ asset('images/profile/') }}{{ currentimage }}" class="img-circle profile_img" style="width: 60px;height: 60px;object-fit: cover;">
                         </div>
                         <div class="profile_info">
                             <h4 style="color:white;margin-top:-5%">{{ user.firstname }} {{ user.lastname }}</h4>
@@ -153,7 +153,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{ asset('images/profile/') }}{{ image }}" style="object-fit: cover;"><div id="idkwtf" style="display:inline">{{ user.firstname }} {{ user.lastname }} </div>
+                                    <img src="{{ asset('images/profile/') }}{{ currentimage }}" style="object-fit: cover;"><div id="idkwtf" style="display:inline">{{ user.firstname }} {{ user.lastname }} </div>
                                     <!--<img src="scripts/img/Ace/ACE.svg" id="logo" width="80px" height="80px">-->
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
@@ -281,6 +281,238 @@
 
                                 </form>
                             </div>
+
+                            {% set data = app.session.get('Homeposts') %}
+                            {% if data is not null %}
+                                {% for item in data %}
+                                    <div class="panel" style="margin-top: 2.5%;">
+                                        <div class="panel-body">
+                                            <!-- Image -->
+                                            <div class="fb-user-thumb">
+                                                {% if item.owner_image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.owner_image  %}{% endif %}
+                                                <a href="#" onclick="view({{ item.owner_id }})"><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
+                                            </div>
+                                            <!-- Name / Boosted /Date / Adress -->
+                                            <div class="fb-user-details">
+                                                <h3><a href="#" class="#" onclick="view({{ item.owner_id }})">{{ item.owner_first_name }} {{ item.owner_last_name }}</a> {% if item.owner_company_name is not null %} <small> {{ item.owner_company_name }}</small> {% endif %}</h3>
+                                                <p>{% if item.post_boosted == 'boosted' %}<strong style="color:black">BOOSTED</strong></strong> | {% endif %} {{ item.post_creation_date|date("m/d/Y H:m:s") }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
+                                            </div>
+
+                                            <div class="clearfix"></div>
+
+                                            <!-- display post content -->
+                                            <p class="fb-user-status">
+                                                <div>
+                                                    {{ item.post_content }}
+                                                </div>
+                                                <br>
+                                                <!-- images + video -->
+                                                <div class="parent" style="max-width: 650px;">
+                                                    {% if item.post_video is not null %}
+                                                        {% if item.post_images >0 %}
+                                                            {% if item.post_images|length == 1 %}<!-- 1 photo+video: -->
+
+                                                                <div style="max-width:600px">
+                                                                    <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                        <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
+                                                                        Your browser does not support the video tag.
+                                                                    </video>
+                                                                </div>
+                                                                <div>
+                                                                    <a  href="{{ asset('images/post/') }}{{ item.post_images|first }}" data-max-width="600" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ item.post_images|first }}" id="post_img" class="post-1img-video img-responsive"></a>
+                                                                </div>
+                                                            {% endif %}<!--end 1 photo+video: -->
+
+                                                            {% if item.post_images|length == 2 or item.post_images|length == 3   %}<!--end 2 or 3 photo+video -->
+                                                                <div style="max-width:600px">
+                                                                    <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                        <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
+                                                                        Your browser does not support the video tag.
+                                                                    </video>
+                                                                </div>
+
+                                                                <div>
+                                                                    {% for img in item.post_images %}
+                                                                        <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.post_images|length == 2 %}class="img-responsive post-2img-video" {% else %}class="post-3img-video-fixed img-responsive"{% endif %}></a>
+                                                                    {% endfor %}
+                                                                </div>
+
+                                                            {% endif %}<!--end 2 or 3 photo+video -->
+
+                                                            {% if item.post_images|length > 3 %}<!--more than 3 photo+video: -->
+                                                                <div style="max-width:600px">
+                                                                    <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                        <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
+                                                                        Your browser does not support the video tag.
+                                                                    </video>
+                                                                </div>
+
+                                                                <div>
+                                                                    {% for img in item.post_images[0:2]  %}
+                                                                        <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
+                                                                    {% endfor %}
+
+                                                                    <a  href="{{ asset('images/post/') }}{{ item.post_images[2] }}" data-toggle="lightbox"  data-gallery="{{ item.id }}">
+                                                                        <div class="post-3imgvid-wrapblack">
+
+                                                                            <img src="{{ asset('images/post/') }}{{ item.post_images[2] }}"  class="post-3imgvid-blackimg img-responsive">
+
+                                                                            <div class="post-3imgvid-count">
+                                                                                +{{ item.post_images|length - 2 }}
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+
+                                                                    <!-- elements not showing, use data-remote -->
+                                                                    {% for img in item.post_images[3:item.post_images|length] %}
+                                                                        <div data-toggle="lightbox" data-gallery="{{ item.id }}" data-remote="{{ asset('images/post/') }}{{ img }}" ></div>
+                                                                    {% endfor %}
+
+
+                                                                </div>
+
+                                                            {% endif %}<!--end more than 3 photo+video: -->
+
+                                                            {% if item.post_images|length == 0  %}
+                                                                <div style="max-width:600px">
+                                                                    <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                        <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
+                                                                        Your browser does not support the video tag.
+                                                                    </video>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endif %}
+
+                                                    {% if item.post_video is null %}
+                                                        {% if item.post_images|length == 1  %}<!--1 photo -->
+                                                            <div>
+                                                                <a  href="{{ asset('images/post/') }}{{ item.post_images|first }}" data-max-width="650" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ item.post_images|first }}" id="post_img" class="post-1img img-responsive"></a>
+                                                            </div>
+                                                        {% endif %}<!--end 1 photo-->
+
+                                                        {% if item.post_images|length == 2 or item.post_images|length == 3   %}<!--2 or 3 photo -->
+                                                            <div>
+                                                                {% for img in item.post_images %}
+                                                                    <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.post_images|length == 2 %}class="img-responsive post-2-img" {% else %}class="post-3-img img-responsive"{% endif %}></a>
+                                                                {% endfor %}
+                                                            </div>
+                                                        {% endif %}<!--end 2 or 3 photo -->
+
+                                                        {% if item.post_images|length > 3   %} <!--more than 3 photo -->
+                                                            <div>
+                                                                {% for img in item.post_images[0:2]  %}
+                                                                    <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
+                                                                {% endfor %}
+
+                                                                <a  href="{{ asset('images/post/') }}{{ item.post_images[2] }}" data-toggle="lightbox"  data-gallery="{{ item.id }}">
+                                                                    <div class="post-3imgvid-wrapblack">
+
+                                                                        <img src="{{ asset('images/post/') }}{{ item.post_images[2] }}"  class="post-3imgvid-blackimg img-responsive">
+
+                                                                        <div class="post-3imgvid-count">
+                                                                            +{{ item.post_images|length - 2 }}
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                                <!-- elements not showing, use data-remote -->
+                                                                {% for img in item.post_images[3:item.post_images|length] %}
+                                                                    <div data-toggle="lightbox" data-gallery="{{ item.id }}" data-remote="{{ asset('images/post/') }}{{ img }}" ></div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        {% endif %}<!--more than 3 photo -->
+                                                    {% endif %}
+
+
+                                                </div>
+                                            </p>
+                                            <!-- actions -->
+                                            <div class="fb-status-container fb-border">
+                                                <div class="fb-time-action">
+                                                    {% if item.post_like_type == 'like' %}
+                                                        <a href="#like" id="like{{ item.id }}" onclick="like({{ item.id }},{{ item.likes_count }})" title="Like this" style="background-color: transparent !important;"><i class="fa fa-thumbs-o-up" ></i></a>
+                                                        <a href="#dislike" id="dislike{{ item.id }}" onclick="dislike({{ item.id }},{{ item.likes_count }})" title="Dislike this" style="background-color: transparent !important; display: none;" ><i class="fa fa-thumbs-up" ></i></a>
+                                                        {% else %}
+                                                            <a href="#dislike" id="dislike{{ item.id }}" title="Dislike this" onclick="dislike({{ item.id }},{{ item.likes_count }})" style="background-color: transparent !important;"><i class="fa fa-thumbs-up" ></i></a>
+                                                            <a href="#like" id="like{{ item.id }}" title="Like this" onclick="like({{ item.id }},{{ item.likes_count }})"  style="background-color: transparent !important; display: none;"><i class="fa fa-thumbs-o-up" ></i></a>
+                                                    {% endif %}
+                                                    <span></span>
+                                                    <a href="#share_post" onclick="sharePost({{ item.id }})" title="Send this to friend or post it on your time line"><i class="fa fa-share fa-lg"></i></a>
+                                                </div>
+                                            </div>
+
+                                            <!-- count likes and comments -->
+                                            <div class="fb-status-container fb-border fb-gray-bg">
+                                                <div class="fb-time-action like-info">
+                                                    <!-- current user  (and) others-->
+                                                    {% if item.post_like_type == 'dislike' %}
+                                                        <div id="youitem{{ item.id }}" style="display: inline;"><b style="display: inline;"> You</b> {% if item.likes_count == 0 %}<small style="display: inline;">like this</small>{% endif %} </div>
+                                                        {% else %}
+                                                            <div id="youitem{{ item.id }}" style="display: none;"><b style="display: inline;">You</b> {% if item.likes_count == 0 %}<small style="display: inline;">like this</small>{% endif %} </div>
+                                                    {% endif %}
+
+                                                    {% if item.likes_count > 1 %}
+                                                        {% if item.post_like_type == 'dislike' %}
+                                                            <small id="anditem{{ item.id }}" style="display: inline;">and</small>
+                                                            {% else %}
+                                                                <small id="anditem{{ item.id }}" style="display: none;">and</small>
+                                                        {% endif %}
+                                                        <div id="youitem{{ item.id }}" style="display: inline;">  {{ item.likes_count }} <small>like this</small> </div>
+                                                    {% endif %}
+                                                </div>
+
+                                                <ul class="fb-comments" id="commentslist{{ item.id }}" style="padding: 0">
+                                                    {% set comments = item.post_comments %}
+                                                    {% if comments|length > 0 %}
+                                                        {% for comment in comments[0:3] %}
+                                                            <li>
+                                                                <a  class="cmt-thumb">
+                                                                    {% if comment.comment_owner_image is null %}{% set commentow_image = 'default.png' %}{% else %}{% set commentow_image = comment.comment_owner_image %} {% endif %}
+                                                                    <img src="{{ asset('images/profile/') }}{{ commentow_image }}" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;">
+                                                                </a>
+                                                                <div class="cmt-details">
+                                                                    <div><a href="" onclick="view({{ comment.comment_owner_id }})">{{ comment.comment_owner_first_name }} {{ comment.comment_owner_last_name }}</a></div>
+                                                                    <div><span> {{ comment.comment_content }} </span></div>
+                                                                </div>
+                                                            </li>
+                                                        {% endfor %}
+
+                                                        {% if comments|length >3 %}
+                                                            <a id="morelink{{ item.id }}" href="#more_comments" onclick="morecomments({{ item.id }});return false;">more comments</a>
+                                                            <div id="more{{ item.id }}" style="display: none;">
+                                                                {% for comment in comments[4:comments|length] %}
+                                                                    <li>
+                                                                        <a  class="cmt-thumb">
+                                                                            {% if comment.comment_owner_image is null %}{% set commentow_image = 'default.png' %}{% else %}{% set commentow_image = comment.comment_owner_image %} {% endif %}
+                                                                            <img src="{{ asset('images/profile/') }}{{ commentow_image }}" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;">
+                                                                        </a>
+                                                                        <div class="cmt-details">
+                                                                            <div><a href="" onclick="view({{ comment.comment_owner_id }})">{{ comment.comment_owner_first_name }} {{ comment.comment_owner_last_name }}</a></div>
+                                                                            <div><span> {{ comment.comment_content }} </span></div>
+                                                                        </div>
+                                                                    </li>
+                                                                {% endfor %}
+                                                                <div><a href="#less_comments" onclick="lesscomments({{ item.id }});return false;">less comments</a></div>
+                                                            </div>
+                                                        {% endif %}
+                                                    {% endif %}
+                                                    <!-- comment form -->
+                                                    <li>
+                                                        <div class="input-group">
+                                                            <spana  class="input-group-btn">
+                                                                <img src="{{ asset('images/profile/') }}{{ currentimage }}" alt="{{ user.firstname }}{{ user.lastname }}" class="img-circle" style="width: 45px;height: 45px;object-fit: cover">
+                                                            </spana>
+                                                            <textarea class="form-control" placeholder="Write a comment..." name="" id="contentComment{{ item.id }}" style="resize:none;border-radius: 30px;margin-left: 5px;"></textarea>
+                                                        </div>
+                                                        <button type="button" class="btn btn-primary" style="float: right;border-radius: 30px" onclick="postComment({{ item.id }})">Comment</button>
+                                                        <br><br>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
                         </div>
                     </div>
                 {% endblock pageContent %}
@@ -512,7 +744,159 @@
 
 
 
+
+
+
+
 {% block scripts %}
+    <!-- display more/less comments -->
+    <script>
+        function morecomments(post)
+        {
+            $('#morelink'.concat(post)).hide()
+            $('#more'.concat(post)).show()
+        }
+
+        function lesscomments(post)
+        {
+            $('#morelink'.concat(post)).show()
+            $('#more'.concat(post)).hide()
+        }
+    </script>
+    <!-- comment -->
+    <script>
+        function postComment(post)
+        {
+            if($('#contentComment'.concat(post)).val() != '')
+            {
+                $('#contentComment'.concat(post)).prop('disabled', true);
+                $.ajax({
+                    url: '{{ (path('post_comment')) }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data:
+                        {
+                            'post':post,
+                            'comment':$('#contentComment'.concat(post)).val()
+                        },
+                    async: true,
+                    success: function (data)
+                    {
+                        if(data == 'Done')
+                        {
+                            // output
+                            var output = '<li><a  class="cmt-thumb">'
+                            var image = '{{ currentimage }}'
+                            output += '<img src="{{ asset('images/profile/') }}'+image+'" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;margin-right: 20px;"></a>'
+                            output += '<div class="cmt-details">'
+                            var fullname = '{{ user.firstname }}'.concat(' ').concat('{{ user.lastname }}')
+                            output += '<div><a href="#">'+fullname+ '</a></div>'
+                            output += '<div><span> '+$('#contentComment'.concat(post)).val()+' </span><div>'
+                            output += '</div></li>'; //
+                            $('#commentslist'.concat(post)).prepend(output);
+                            $('#contentComment'.concat(post)).val('')
+                            $('#contentComment'.concat(post)).prop('disabled', false);
+                        }
+                    }
+                });
+            }
+            else
+                alert('Please , set a comment')
+        }
+    </script>
+    <!-- share -->
+    <script>
+        function sharePost(post)
+        {
+            alert('Post shared on your profile !')
+            $.ajax({
+                url: '{{ (path('post_share')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:
+                    {
+                        'post':post
+                    },
+                async: true
+            });
+        }
+    </script>
+    <!-- Dislike -->
+    <script>
+        function dislike(post,countLikes)
+        {
+            $('#dislike'.concat(post)).hide()
+            $('#like'.concat(post)).show()
+            //
+            $('#youitem'.concat(post)).hide()
+            $('#youitem'.concat(post)).css('display','none')
+            //
+            if(countLikes>1)
+                $('#anditem'.concat(post)).hide()
+            $.ajax({
+                url: '{{ (path('post_dislike')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:
+                    {
+                        'post':post
+                    },
+                async: true,
+                success: function (data)
+                {
+                    if(data == 'ERR')
+                    {
+                        alert('sorry you cannot like the post , you can try another time')
+                        $('#like'.concat(post)).hide()
+                        $('#dislike'.concat(post)).show()
+                        //
+                        $('#youitem'.concat(post)).show()
+                        $('#youitem'.concat(post)).css('display','inline')
+                    }
+                }
+            });
+        }
+    </script>
+
+    <!-- Like -->
+    <script>
+        function like(post,countLikes)
+        {
+            $('#like'.concat(post)).hide()
+            $('#dislike'.concat(post)).show()
+            //
+            $('#youitem'.concat(post)).show()
+            $('#youitem'.concat(post)).css('display','inline')
+            //
+            if(countLikes > 1)
+            {
+                $('#anditem'.concat(post)).show()
+                $('#anditem'.concat(post)).css('display','inline')
+            }
+            $.ajax({
+                url: '{{ (path('post_like')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:
+                    {
+                        'post':post
+                    },
+                async: true,
+                success: function (data)
+                {
+                    if(data == 'ERR')
+                    {
+                        alert('sorry you cannot like the post , you can try another time')
+                        $('#dislike'.concat(post)).hide()
+                        $('#like'.concat(post)).show()
+                        //
+                        $('#youitem'.concat(post)).hide()
+                        $('#youitem'.concat(post)).css('display','none')
+                    }
+                }
+            });
+        }
+    </script>
 
     <!-- post -->
     <script>
