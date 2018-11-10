@@ -28,7 +28,7 @@
 
     {% for pan in pans %}
         <tr>
-            <td width="30px;"><input type="checkbox" id="check-all" class="flat" name="CheckedPoste"></td>
+            <td width="30px;"><input type="checkbox" id="check-all" class="flat" name="CheckedPoste" value="{{ pan.pan_id }}"></td>
             <td>{{ pan.pan_name }}</td>
             <td>{{ pan.pan_origine }}</td>
             <td>{{ pan.pan_av }}</td>
@@ -47,7 +47,7 @@
     {% endfor %}
 {% endblock %}
 
-
+{% block deleteaction %}removePans(){% endblock %}
 
 
 {% block modals %}
@@ -1691,4 +1691,35 @@
 {% block scripts %}
     {{ parent() }}
     <script src="{{ asset('Userscripts/js/wizard.js') }}"></script>
+
+    <!-- remove pans-->
+    <script>
+        function removePans()
+        {
+            var selected = new Array();
+            $('#datatable input[type="checkbox"]:checked').each(function() {
+                selected.push($(this).attr('value'));
+            });
+            if(selected.length > 0)
+            {
+                $.ajax({
+                    url:'{{ (path('remove_pan')) }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data:
+                        {
+                            'selected':selected
+                        },
+                    async: true,
+                    success: function (data)
+                    {
+                        alert('Deleted !')
+                        location.reload();
+                    }
+                });
+            }
+            else
+                alert('please , choose the item to delete')
+        }
+    </script>
 {% endblock %}

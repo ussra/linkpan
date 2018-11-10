@@ -70,4 +70,25 @@ class PanController extends Controller
             return $this->forward('UserBundle:Home:pans');
         }
     }
+
+
+    /**
+     * @Route("/linkpan/remove_pan",name="remove_pan")
+     */
+    public function remove_panAction(Request $request)
+    {
+        $selected = $request->get('selected');
+        $em = $this->getDoctrine()->getManager();
+        $repo = $this->getDoctrine()->getRepository(Pan::class);
+        foreach ( $selected as $value)
+        {
+            $pan = $repo->findOneById($value);
+            if(!is_null($pan))
+            {
+                $em->remove($pan);
+                $em->flush();
+            }
+        }
+        return new JsonResponse('Done');
+    }
 }
