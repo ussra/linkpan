@@ -48,6 +48,7 @@ class PanController extends Controller
             $files = scandir($imagdir);
             $count = count($files)-2;
             $name = $count.'_'.$image->getClientOriginalName();
+            $image->move($imagdir,$name );
             $pan->setImage($name);
             if(is_null($request->get('pantype')))
                 $pan->setType('Discover');

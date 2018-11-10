@@ -258,4 +258,68 @@ class HomeController extends Controller
         //
         return $this->render('UserBundle::pans.html.twig');
     }
+
+
+    /**
+     * @Route("/linkpan/discover",name="discover")
+     */
+    public function discoverAction()
+    {
+        //get pans
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT DISTINCT p
+            FROM UserBundle:Pan p
+            WHERE p.user = :user
+            
+            OR IDENTITY(p.user) IN (
+              SELECT IDENTITY(f.userToFollow)
+              FROM UserBundle:Follow f 
+              WHERE f.user = :user
+            )
+            OR p.id IN (
+              SELECT IDENTITY(bp.pan) 
+              FROM UserBundle:BoostPan bp 
+            )
+            AND p.type = :typepan
+            
+             '
+        )
+            ->setParameter('user', $this->getUser())
+            ->setParameter('typepan', 'Discover');
+        $result = $query->getResult();
+        $pans = array();
+        if(sizeof($result)>0)
+        {
+            $repo = $this->getDoctrine()->getRepository('AppBundle:User');
+            $brepo = $this->getDoctrine()->getRepository('UserBundle:BoostPan');
+            foreach ($result as $val)
+            {
+                //Get if the pan is boosted
+                $boost = $brepo->findOneBy(
+                    array('pan'=>$val)
+                );
+                if(!is_null($boost)) $type = 'boost'; else $type ='simple';
+                //
+                $owner = $repo->findOneById($val->getUser());
+                $temp = array(
+                  'pan_id'=>$val->getId(),
+                  'pan_name'=>$val->getName(),
+                  'pan_other_name'=>$val->getOthername(),
+                  'pan_description'=>$val->getDescription(),
+                  'pan_image'=>$val->getImage(),
+                  'pan_price'=>$val->getPrice(),
+                  'pan_category'=>$val->getCategory(),
+                  'pan_owner'=>$owner,
+                  'pan_boosted'=>$type
+                );
+                array_push($pans,$temp);
+            }
+        }
+
+        //
+        $session = new Session();
+        $session->set('discover_pans',array_reverse($pans));
+        return $this->render('UserBundle::discover.html.twig');
+    }
 }
