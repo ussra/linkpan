@@ -219,6 +219,43 @@ class HomeController extends Controller
      */
     public function pansAction()
     {
+        // get user pans
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Pan');
+        $pans = array();
+        $result = $repo->findBy(
+          array('user'=>$this->getUser())
+        );
+        if(sizeof($result)>0)
+        {
+            $boostrepo = $this->getDoctrine()->getRepository('UserBundle:BoostPan');
+            foreach ($result as $pan)
+            {
+                //get boost type
+                $boost = $boostrepo->findOneBy(
+                    array('pan'=>$pan)
+                );
+                if(is_null($boost))
+                    $boostType = 'Boost';
+                else
+                    $boostType = 'Remove Boost';
+                //
+                $temp = array(
+                  'pan_id'=>$pan->getId(),
+                  'pan_name'=>$pan->getName(),
+                  'pan_origine'=>$pan->getOrigin(),
+                  'pan_av'=>$pan->getAvailability(),
+                  'pan_quantity'=>$pan->getQuentity(),
+                  'pan_category'=>$pan->getCategory(),
+                  'pan_description'=>$pan->getDescription(),
+                  'pan_creation_date'=>$pan->getCreationDate(),
+                  'pan_boost_type'=>$boostType
+                );
+                array_push($pans,$temp);
+            }
+        }
+        $session = new Session();
+        $session->set('boost_pans',array_reverse($pans));
+        //
         return $this->render('UserBundle::pans.html.twig');
     }
 }
