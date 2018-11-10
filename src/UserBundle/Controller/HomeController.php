@@ -214,5 +214,11 @@ class HomeController extends Controller
         return $this->render('UserBundle::privacy.html.twig');
     }
 
-
+    /**
+     * @Route("/linkpan/pans",name="pans")
+     */
+    public function pansAction()
+    {
+        return $this->render('UserBundle::pans.html.twig');
+    }
 }

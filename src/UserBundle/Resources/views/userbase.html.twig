@@ -102,7 +102,7 @@
                                 </ul>
                             {% endif %}
                             <ul class="nav side-menu">
-                                <li><a href="#"> Pans</a></li>
+                                <li><a href={{ path('pans') }}> Pans</a></li>
                             </ul>
                             <ul class="nav side-menu">
                                 <li><a href="#" > Discover</a></li>
@@ -283,7 +283,7 @@
                             </div>
 
                             {% set data = app.session.get('Homeposts') %}
-                            {% if data is not null %}
+                            {% if  data|length > 0 %}
                                 {% for item in data %}
                                     <div class="panel" style="margin-top: 2.5%;">
                                         <div class="panel-body">
@@ -512,7 +512,13 @@
                                         </div>
                                     </div>
                                 {% endfor %}
+
+                                {% else %}
+                                    <h3>Sorry there's no data to display now !</h3>
                             {% endif %}
+
+
+
                         </div>
                     </div>
                 {% endblock pageContent %}
