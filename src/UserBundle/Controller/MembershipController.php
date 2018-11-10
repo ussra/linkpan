@@ -19,7 +19,7 @@ class MembershipController extends Controller
         if(is_null($currentUser->getStripeId()))
         {
             echo '<script language="javascript">alert("please first you must set your billing method")</script>';
-            return $this->render('UserBundle::userbase.html.twig');
+            return $this->forward('UserBundle:Home:index');
         }
         else
         {
@@ -48,11 +48,19 @@ class MembershipController extends Controller
                     $em->persist($membership);
                     $em->flush();
                     echo '<script language="javascript">alert("Membership Updated")</script>';
+                    return $this->forward('UserBundle:Home:index');
+                }
+                else
+                {
+                    echo '<script language="javascript">alert("Can you try another time , Thank you")</script>';
+                    return $this->forward('UserBundle:Home:index');
                 }
             }
-            //
-
-            return $this->forward('UserBundle:Home:index');
+            else
+            {
+                echo '<script language="javascript">alert("You already have a membership !!")</script>';
+                return $this->forward('UserBundle:Home:index');
+            }
         }
 
     }
