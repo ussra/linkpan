@@ -273,8 +273,7 @@ class HomeController extends Controller
             'SELECT DISTINCT p
             FROM UserBundle:Pan p
             WHERE p.user = :user
-            
-            OR IDENTITY(p.user) IN (
+            OR IDENTITY(p.user) = (
               SELECT IDENTITY(f.userToFollow)
               FROM UserBundle:Follow f 
               WHERE f.user = :user
@@ -284,8 +283,7 @@ class HomeController extends Controller
               FROM UserBundle:BoostPan bp 
             )
             AND p.type = :typepan
-            
-             '
+            '
         )
             ->setParameter('user', $this->getUser())
             ->setParameter('typepan', 'Discover');
@@ -306,6 +304,7 @@ class HomeController extends Controller
                 //Get pan owner
                 $owner = $repo->findOneById($val->getUser());
                 //Get pan rating
+                $ratingvalue = '0';
                 if($currentUser->getId() != $owner->getId())
                 {
                     $ratresult = $prrepo->findOneBy(
@@ -314,6 +313,7 @@ class HomeController extends Controller
                     if(!is_null($ratresult))
                     {
                         $rating = 'fixed';
+                        $ratingvalue = $ratresult->getRate();
                     }
                     else
                         $rating ='rate';
@@ -331,7 +331,8 @@ class HomeController extends Controller
                   'pan_category'=>$val->getCategory(),
                   'pan_owner'=>$owner,
                   'pan_boosted'=>$type,
-                  'pan_rating'=>$rating
+                  'pan_rating'=>$rating,
+                  'pan_rating_value'=>$ratingvalue
                 );
                 array_push($pans,$temp);
             }
