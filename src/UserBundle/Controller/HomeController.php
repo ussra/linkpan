@@ -3,12 +3,13 @@ namespace UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
+
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Request;
 
 class HomeController extends Controller
 {
@@ -265,6 +266,7 @@ class HomeController extends Controller
      */
     public function discoverAction()
     {
+        $currentUser = $this->getUser();
         //get pans
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
@@ -293,6 +295,7 @@ class HomeController extends Controller
         {
             $repo = $this->getDoctrine()->getRepository('AppBundle:User');
             $brepo = $this->getDoctrine()->getRepository('UserBundle:BoostPan');
+            $prrepo = $this->getDoctrine()->getRepository('UserBundle:PanRating');
             foreach ($result as $val)
             {
                 //Get if the pan is boosted
@@ -300,8 +303,24 @@ class HomeController extends Controller
                     array('pan'=>$val)
                 );
                 if(!is_null($boost)) $type = 'boost'; else $type ='simple';
-                //
+                //Get pan owner
                 $owner = $repo->findOneById($val->getUser());
+                //Get pan rating
+                if($currentUser->getId() != $owner->getId())
+                {
+                    $ratresult = $prrepo->findOneBy(
+                        array('user'=>$this->getUser(),'pan'=>$val)
+                    );
+                    if(!is_null($ratresult))
+                    {
+                        $rating = 'fixed';
+                    }
+                    else
+                        $rating ='rate';
+                }
+                else
+                   $rating ='ERR';
+                //
                 $temp = array(
                   'pan_id'=>$val->getId(),
                   'pan_name'=>$val->getName(),
@@ -311,7 +330,8 @@ class HomeController extends Controller
                   'pan_price'=>$val->getPrice(),
                   'pan_category'=>$val->getCategory(),
                   'pan_owner'=>$owner,
-                  'pan_boosted'=>$type
+                  'pan_boosted'=>$type,
+                  'pan_rating'=>$rating
                 );
                 array_push($pans,$temp);
             }
@@ -321,5 +341,36 @@ class HomeController extends Controller
         $session = new Session();
         $session->set('discover_pans',array_reverse($pans));
         return $this->render('UserBundle::discover.html.twig');
+    }
+
+
+    /**
+     * @Route("/linkpan/groups",name="groups")
+     */
+    public function groupsAction()
+    {
+        $session = new Session();
+        $currentUser = $this->getUser();
+        //Get user Groups
+        $user_groups = array();
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Groupe');
+        $userGroups = $repo->findBy(
+          array('user'=>$currentUser)
+        );
+        if(sizeof($userGroups)>0)
+        {
+            foreach ($userGroups as $group)
+            {
+                $temp = array(
+                    'group_id'=>$group->getId(),
+                    'group_name'=>$group->getName(),
+                    'group_image'=>$group->getImage(),
+                );
+                array_push($user_groups,$temp);
+            }
+        }
+        $session->set('user_groups',$user_groups);
+        //
+        return $this->render('UserBundle::groups.html.twig');
     }
 }

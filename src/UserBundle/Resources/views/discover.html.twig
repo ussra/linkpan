@@ -1,5 +1,6 @@
 {% extends "UserBundle::userbase.html.twig" %}
 
+
 {% block style %}
     <link rel="stylesheet" href={{ asset('Userscripts/css/Discover.css') }}>
     <link rel="stylesheet" href={{ asset('Userscripts/css/starability-all.css') }}>
@@ -8,6 +9,8 @@
 
     <!--end Rting -->
 {% endblock %}
+
+
 {% block Title %}
     Discover
 {% endblock %}
@@ -18,17 +21,26 @@
             <!-- search -->
             <div style="align-content: right;">
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right top_search">
-
+                    <form class="form-inline" style="float:right">
+                        <div class="form-group">
+                            <!-- <div class="input-group">
+                                 <!--<input type="text" class="form-control" placeholder="Search">
+                                 <div class="input-group-addon"><a href="#upload" onclick=""><i class="fa fa-camera"></i></a></div>
+                                 <input  type="file" class="form-control-file" id="uploadimage" name="uploadimage" aria-describedby="fileHelp" accept="image/*">
+                             </div>-->
+                        </div>
+                        <!--<input type="file" id="upload" style="display:none;">
+                         <button type="submit" class="btn btn-primary"><i class="fa fa-search" style="color:white;"></i></button>-->
+                    </form>
                 </div>
             </div>
         </div>
 
-        <!-- content -->
         <div class="row">
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        {% set pans = app.session.get('pans') %}
+                        {% set pans = app.session.get('discover_pans') %}
                         <div class="form-inline">
                             <select id="filter" class="CC form-control" required  onchange="productfilter(this.options[this.selectedIndex].value)">
                                 <option disabled selected value> Sort By .. </option>
@@ -1148,50 +1160,62 @@
                     </div>
                     <div class="x_content">
                         <div class="row">
-                            {% set discover_pans = app.session.get('discover_pans') %}
-                            {% if discover_pans|length > 0 %}
-                                {% for pan in discover_pans %}
-                                    <div class="col-md-3">
-                                        <div class="thumbnail">
-                                            <div class="image view view-first">
-                                                <img style="width: 100%; display: block;" src="{{ asset('images/pans/') }}{{ pan.pan_image }}" alt="{{ pan.pan_name }}"  />
+                            {% if pans|length > 0 %}
+                                {% if pans|length <= 13 %}
+                                    {% for pan in pans %}
+                                        <div class="col-md-3">
+                                            <div class="thumbnail">
+                                                <div class="image view view-first">
 
-                                                <div class="mask">
-                                                    <p>{{ pan.pan_name }} - {{ pan.pan_other_name }}</p>
-                                                    <div class="tools tools-bottom">
-                                                        <a href="#" ><i class="fa fa-link"></i></a>
+                                                    <img style="width: 100%; display: block;" src="{{ asset('images/pans/') }}{{ pan.pan_image }}" alt="image"  />
+
+                                                    <div class="mask">
+                                                        <p>{{ pan.pan_name }} - {{ pan.pan_other_name }}</p>
+                                                        <div class="tools tools-bottom">
+                                                            <a href="#"><i class="fa fa-link"></i></a>
+                                                            <!--<a href="#" onclick="UpdateItem()"><i class="fa fa-pencil"></i></a>
+                                                            <a href="#"><i class="fa fa-times"></i></a>-->
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
 
-                                            <div class="caption">
-                                                <strong>{{ pan.pan_price }} $  {% if pan.pan_boosted == 'boost' %} |<strong style="color:black"> BOOSTED</strong></strong> {% endif %} <br>
-                                                <!-- Rating -->
-                                                {% if pan.pan_owner.id != user.id %}
-                                                   rate
-                                                {% else %}
-                                                    <small>you cannot rate your pan</small>
-                                                {% endif %}
-                                            </div>
+                                                <div class="caption">
+                                                    <strong>{{ pan.pan_price }} $  {% if pan.pan_boosted == 'boost' %} |<strong style="color:black"> BOOSTED</strong></strong> {% endif %} <br>
+                                                    <!-- Rating -->
+                                                    {% if pan.pan_owner.id != user.id %}
+                                                        {% if pan.pan_rating == "rate" %}
+                                                            <div class="pan-rate" id="{{ pan.pan_id }}" data-score="0"></div>
+                                                        {% else %}
+                                                            <div class="pan-stars"  data-score="0"></div>
+                                                        {% endif %}
 
+                                                    {% else %}
+                                                        <small>you cannot rate your pan</small>
+                                                    {% endif %}
+                                                </div>
+
+                                            </div>
                                         </div>
-                                    </div>
-                                {% endfor %}
-                                {% else %}
-                                    <h3>sorry currently we have nothing to display  !</h3>
+                                    {% endfor %}
+                                {% endif %}
                             {% endif %}
                         </div>
+
+
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+
 {% endblock %}
 
-
 {% block scripts %}
-    <!-- Fix rating script -->
+
+    <!-- Fix rating script script-->
     <script src={{ asset('Userscripts/rating/javascripts/labs.js') }}></script>
     <script src={{ asset('Userscripts/rating/javascripts/jquery.raty.js') }}></script>
     <script>
@@ -1200,6 +1224,27 @@
             score: function() {
                 return $(this).attr('data-score');
             },
+
         });
     </script>
+    <!-- Rating event script-->
+    <script>
+        $('.pan-rate').raty({
+            click: function(score, evt)
+            {
+               // alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
+
+                $.ajax({
+                    url:'{{ (path('rate_pan')) }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data:{
+                        'pan': this.id,
+                        'value': score,
+                    }
+                });
+            }
+        });
+    </script>
+
 {% endblock %}

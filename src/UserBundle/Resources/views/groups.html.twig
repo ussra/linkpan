@@ -1,0 +1,129 @@
+{% extends "UserBundle::userbase.html.twig" %}
+
+{% block Title %}
+    Groups
+{% endblock %}
+
+{% block pageContent %}
+    <div style="margin-top:80px">
+        <div class="x_panel">
+            <div class="x_title">
+                <div style="float: right">
+                    <button type="button" class="btn btn-success create" onclick="$('#creategroupe').modal('show');"><i class="fa fa-plus"></i>  Create Group</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <!-- required for floating -->
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs tabs-left">
+                        <li class="active"><a href="#discover" data-toggle="tab" title="Discover"> Discover Groups</a>
+                        </li>
+                        <li ><a href="#groupsmanage" data-toggle="tab" title="Groups You manage">Groups You manage</a>
+                        </li>
+                        <li><a href="#pending" data-toggle="tab" title="Pending Invites">Pending Invitations</a>
+                        </li>
+                        <li><a href="#yourgroups" data-toggle="tab" title="Your Groups">Your Groups</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-9">
+                    <!-- Tab panes  -->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="discover">
+                            <!-- discover other groups -->
+                        </div>
+                        <!-- user groups -->
+                        <div class="tab-pane" id="groupsmanage">
+                            {% set groups_manage = app.session.get('user_groups') %}
+                            {% if groups_manage|length >0 %}
+                                {% for group in  groups_manage %}
+                                    <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-left" id="groupdiv{{ group.group_id }}">
+                                        <div class="my-list" style="margin-bottom:20px">
+                                            <img src="{{ asset('images/group/') }}{{ group.group_image }}" class="img-responsive"  style="object-fit:cover;width:150px; height:100px"/>
+                                            <h4>{{ group.group_name }}</h4>
+                                            <div class=""><h5>72000 Member</h5></div>
+                                            <div>
+                                                <a href="#" class="btn btn-danger"  title="Delete Group"><i class="fa fa-times"></i></a>
+                                                <a href="#" class="btn btn-primary" title="View Group"><i class="fa fa-eye"></i></a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                {% else %}
+                                    <h3>you are not managing any group for the moment</h3>
+                            {% endif %}
+                        </div>
+                        <div class="tab-pane" id="pending">
+                            <!-- invites to join groups -->
+                        </div>
+                        <div class="tab-pane" id="yourgroups">
+                            <!-- your groups -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Create Group -->
+    <div id="creategroupe" class="modal fade" role="dialog">
+        <div class="modal-dialog " >
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <form method="post" action="{{ path('create_group') }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Image<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="file" id="groupimage" required="required" class="form-control col-md-7 col-xs-12" name="groupimage" accept="image/*" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" id="groupname" required="required" class="form-control col-md-7 col-xs-12" name="groupname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description<span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <textarea class="form-control col-md-7 col-xs-12" row="3" id="groupdescription" name="groupdescription" required></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Privacy</label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <div id="gender" class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                        <input type="radio" name="pv" value="private"> &nbsp; Private &nbsp;
+                                    </label>
+                                    <label class="btn btn-success" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                        <input type="radio" name="pv" value="public"> Public
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" >Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
