@@ -262,88 +262,12 @@ class HomeController extends Controller
 
 
     /**
-     * @Route("/linkpan/discover",name="discover")
+     * @Route("/linkpan/discover_view",name="discover_view")
      */
-    public function discoverAction()
+    public function discover_viewAction()
     {
-        $currentUser = $this->getUser();
-        //get pans
-        $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-            'SELECT DISTINCT p
-            FROM UserBundle:Pan p
-            WHERE p.user = :user
-            OR IDENTITY(p.user) = (
-              SELECT IDENTITY(f.userToFollow)
-              FROM UserBundle:Follow f 
-              WHERE f.user = :user
-            )
-            OR p.id IN (
-              SELECT IDENTITY(bp.pan) 
-              FROM UserBundle:BoostPan bp 
-            )
-            AND p.type = :typepan
-            '
-        )
-            ->setParameter('user', $this->getUser())
-            ->setParameter('typepan', 'Discover');
-        $result = $query->getResult();
-        $pans = array();
-        if(sizeof($result)>0)
-        {
-            $repo = $this->getDoctrine()->getRepository('AppBundle:User');
-            $brepo = $this->getDoctrine()->getRepository('UserBundle:BoostPan');
-            $prrepo = $this->getDoctrine()->getRepository('UserBundle:PanRating');
-            foreach ($result as $val)
-            {
-                //Get if the pan is boosted
-                $boost = $brepo->findOneBy(
-                    array('pan'=>$val)
-                );
-                if(!is_null($boost)) $type = 'boost'; else $type ='simple';
-                //Get pan owner
-                $owner = $repo->findOneById($val->getUser());
-                //Get pan rating
-                $ratingvalue = '0';
-                if($currentUser->getId() != $owner->getId())
-                {
-                    $ratresult = $prrepo->findOneBy(
-                        array('user'=>$this->getUser(),'pan'=>$val)
-                    );
-                    if(!is_null($ratresult))
-                    {
-                        $rating = 'fixed';
-                        $ratingvalue = $ratresult->getRate();
-                    }
-                    else
-                        $rating ='rate';
-                }
-                else
-                   $rating ='ERR';
-                //
-                $temp = array(
-                  'pan_id'=>$val->getId(),
-                  'pan_name'=>$val->getName(),
-                  'pan_other_name'=>$val->getOthername(),
-                  'pan_description'=>$val->getDescription(),
-                  'pan_image'=>$val->getImage(),
-                  'pan_price'=>$val->getPrice(),
-                  'pan_category'=>$val->getCategory(),
-                  'pan_owner'=>$owner,
-                  'pan_boosted'=>$type,
-                  'pan_rating'=>$rating,
-                  'pan_rating_value'=>$ratingvalue
-                );
-                array_push($pans,$temp);
-            }
-        }
-
-        //
-        $session = new Session();
-        $session->set('discover_pans',array_reverse($pans));
         return $this->render('UserBundle::discover.html.twig');
     }
-
 
     /**
      * @Route("/linkpan/groups",name="groups")
@@ -360,12 +284,20 @@ class HomeController extends Controller
         );
         if(sizeof($userGroups)>0)
         {
+
+            $em = $this->getDoctrine()->getManager();
+            //
             foreach ($userGroups as $group)
             {
+                //get count of memebers
+                $query = $em->createQuery(
+                    'SELECT count(gj.id) FROM UserBundle:GroupJoin gj where IDENTITY(gj.group) = :grp  '
+                )->setParameter('grp', $group->getId());
                 $temp = array(
                     'group_id'=>$group->getId(),
                     'group_name'=>$group->getName(),
                     'group_image'=>$group->getImage(),
+                    'group_count_memebers'=>$query->getSingleScalarResult()
                 );
                 array_push($user_groups,$temp);
             }
@@ -374,4 +306,7 @@ class HomeController extends Controller
         //
         return $this->render('UserBundle::groups.html.twig');
     }
+
+
+
 }

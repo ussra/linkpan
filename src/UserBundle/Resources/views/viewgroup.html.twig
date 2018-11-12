@@ -1,0 +1,218 @@
+{% extends "UserBundle::userbase.html.twig" %}
+
+{% block Title %}
+    {% set group = app.session.get('group_view_data') %}
+    {{ group.group_name }}
+{% endblock %}
+
+{% block pageContent %}
+    {% set group = app.session.get('group_view_data') %}
+
+    <div style="margin-top:80px">
+        <div class="container bootstrap snippet">
+            <div style="float: right;margin-top: 5px">
+                <a href="#group_config" onclick="$('#configModal').modal('show');" ><button type="button" class="btn btn-sm"><i class="fa fa-cog"></i></button></a>
+            </div>
+
+            <div class="panel profile-info">
+                <form id="postform" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="{{ path('group_post',{'group':group.group_id}) }}">
+                    <textarea class="form-control input-lg p-text-area" rows="4" placeholder="What's in your mind today?" name="post_description" id="description" required></textarea>
+                    <div id="cover">
+                        <div class="gallery"></div>
+                        <div id="add_photo"><i class="fa fa-plus" aria-hidden="true"></i></div>
+                    </div>
+
+                    <div id="post_line"></div>
+
+                    <div id="up_area"> <!-- upload -->
+                        <div style="display:inline-block;">
+                            <div class="form-inline">
+                                <img src="{{ asset('Userscripts/img/upimg.svg') }}" width="20px" height="20px" style="display:inline" onclick="document.getElementById('gallery-photo-add').click();">
+                                <input type="file"  name="uploadimage[]"  id="gallery-photo-add" style="display:none" accept="image/*" multiple>
+                                <h9 id="upload_title">Photo</h9>
+                            </div>
+                        </div>
+                        <!--Video -->
+                        <div style="display:inline-block;">
+                            <div class="form-inline">
+                                <img src="{{ asset('Userscripts/img//upvideo.svg') }}" id="video_prev" width="20px" height="20px" onclick="document.getElementById('post_video').click();">
+                                <input type="file" id="post_video" name="post_video"  onchange="readVideoURL(this);"  accept="video/mp4" style="display:none;">
+                                <h9 id="upload_Video_title">Video</h9>
+                            </div>
+                        </div>
+                        <!--Video -->
+                    </div><!--end upload -->
+
+
+                    <button type="submit" class="btn btn-info" id="postpan" >Post</button>
+
+                </form>
+            </div>
+
+            {% set group_posts = group.group_posts %}
+            {% if  group_posts|length > 0 %}
+
+                {% for item in group_posts %}
+                    <div class="panel" style="margin-top: 2.5%;">
+                        <div class="panel-body">
+                            <!-- Image -->
+                            <div class="fb-user-thumb">
+                                {% if item.owner_image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.owner_image  %}{% endif %}
+                                <a href="#" onclick="view({{ item.owner_id }})"><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
+                            </div>
+                            <!-- Name  -->
+                            <div class="fb-user-details">
+                                <h3><a href="#" class="#" onclick="view({{ item.owner_id }})">{{ item.owner_first_name }} {{ item.owner_last_name }}</a> {% if item.owner_company_name is not null %} <small> {{ item.owner_company_name }}</small> {% endif %}</h3>
+                                <p> {{ item.post_creation_date }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                            <!-- display post content -->
+                            <p class="fb-user-status">
+                                <div>
+                                    {{ item.post_content }}
+                                </div>
+                                <br>
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {% else %}
+                    <h3>Sorry there's no data to display now !</h3>
+            {% endif %}
+        </div>
+    </div>
+
+
+
+
+    <!-- Config Modal -->
+    <div id="configModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{ group.group_name }}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                        <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                            <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">About</a>
+                            </li>
+                            <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Members (<strong>{{ group.group_members|length }}</strong>)</a>
+                            </li>
+                        </ul>
+                        <div id="myTabContent" class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                <ul class="list-unstyled timeline">
+                                    <li>
+                                        <div class="block">
+                                            <div class="tags">
+                                                <a href="" class="tag">
+                                                    <span>Created By</span>
+                                                </a>
+                                            </div>
+                                            <div class="block_content">
+                                                <div class="byline">
+                                                    <span>on {{ group.group_creation_date }}</span> by <a href="#view_profile" onclick="view({{ group.group_owner_id }})">{{ group.group_owner_first_name }} {{ group.group_owner_last_name }}</a>
+                                                </div>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="block">
+                                            <div class="tags">
+                                                <a href="" class="tag">
+                                                    <span>Description</span>
+                                                </a>
+                                            </div>
+                                            <div class="block_content">
+                                                <div class="byline">
+                                                    <p>{{ group.group_description }}</p>
+                                                </div>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if group.group_members|length > 0 %}
+                                            {% for member in group.group_members %}
+                                                <tr id="tr{{ member.member_id }}">
+                                                    <td><strong>{{ member.member_first_name }} {{ member.member_last_name }}</strong></td>
+                                                    <td>
+                                                        <button type="button" class="btn btn-round btn-success btn-xs"><i class="fa fa-comment"></i></button>
+                                                        <a onclick="view({{ member.member_id }})"><button type="button" class="btn btn-round btn-info btn-xs"><i class="fa fa-eye"></i></button></a>
+                                                        <a onclick="removeMember({{ member.member_id }},{{ group.group_id }})" id="member{{ member.member_id }}" title="remove from group"><button type="button" id="btn_remove{{ member.member_id }}" class="btn btn-round btn-danger btn-xs"><i class="fa fa-minus"></i></button></a>
+                                                    </td>
+
+                                                </tr>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </tbody>
+                                </table>
+
+
+                               <!--<div style="text-align: center;margin-top: 15%">
+                                    <button type="button" class="btn btn-round btn-default btn-xs"><i class="fa fa-arrow-down"></i></button>
+                                </div>-->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- remove member -->
+    <script>
+        function removeMember(member,group)
+        {
+            $('#btn_remove'.concat(member)).prop('disabled',true)
+            $.ajax({
+                url:'{{ (path('remove_member')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:
+                    {
+                        'member':member,
+                        'group':group
+                    },
+                async: true,
+                success:function (data) {
+                    if(data == 'Done')
+                        $('#tr'.concat(member)).remove()
+                    else
+                    {
+                        alert('You cannot remove this member now , please retry again !')
+                        $('#btn_remove'.concat(member)).prop('disabled',false)
+                    }
+                }
+            });
+
+        }
+    </script>
+{% endblock %}

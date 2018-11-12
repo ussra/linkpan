@@ -75,6 +75,13 @@ class ProfileController extends Controller
 
             }
         }
+        //Get membership
+        $mrepo = $this->getDoctrine()->getRepository('UserBundle:Membership');
+        $result = $mrepo->findOneBy(array('user'=>$user));
+        if(!is_null($result))
+            $membership  = 'dockies';
+        else
+            $membership  = 'simple';
         //
         $temp = array(
           'user_id'=>$user->getId(),
@@ -87,7 +94,8 @@ class ProfileController extends Controller
           'user_email'=>$user->getEmail(),
           'follow_result'=>$type_result,
           'followers'=>$followers,
-          'following'=>$following
+          'following'=>$following,
+          'user_membership'=>$membership
         );
 
         $session = new Session();

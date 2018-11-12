@@ -1,0 +1,218 @@
+{% extends "UserBundle::userbase.html.twig" %}
+
+
+{% block style %}
+    <link rel="stylesheet" href={{ asset('Userscripts/css/starability-all.css') }}>
+    <!-- Rting -->
+    <link href={{ asset('Userscripts/rating/css/labs.css') }} rel="stylesheet">
+
+    <!--end Rting -->
+{% endblock %}
+
+{% block Title %}
+    {% set product = app.session.get('selected_product') %}
+    {{ product.product_name }}
+{% endblock %}
+
+{% block pageContent %}
+    {% set product = app.session.get('selected_product') %}
+    <div style="margin-top:20px">
+        <div class="page-title">
+            <!-- search -->
+            <div style="align-content: right;">
+                <div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right top_search">
+                    <form class="form-inline" style="float:right">
+                        <div class="form-group">
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        {{ product.product_name }} | {{ product.product_other_name }}
+                    </div>
+                    <div class="x_content">
+                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Details</a>
+                                </li>
+                                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Recommendations</a>
+                                </li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                    <div class="col-md-7 col-sm-7 col-xs-12">
+                                        <div class="product-image">
+                                            <img src="{{ asset('images/pans/') }}{{ product.product_image }}" alt="..." />
+                                            <div class="rating-block">
+                                                <h4>Average  rating</h4>
+                                                <h2 class="bold padding-bottom-7" style="display:inline;margin-right: 10px;">{{ product.product_average_rating }} <small>/ 5</small></h2><button type="button" class="btn btn-warning btn-sm" aria-label="Left Align"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
+
+                                        <h3 class="prod_title">{{ product.product_owner_first_name }} {{ product.product_owner_last_name }}</h3>
+
+                                        <p>{{ product.prodcut_description }}</p>
+                                        <small>{{ product.product_category }}</small>
+                                        <br />
+
+
+                                        <div class="">
+                                            <div class="product_price">
+                                                <h1 class="price">{{ product.product_price }} $</h1>
+                                                <br>
+                                            </div>
+                                        </div>
+
+                                        <div class="">
+                                            <a href="#" class="btn btn" title="share" onclick="sharePan({{ product.product_id }})"><i class="fa fa-share"></i></a>
+                                            <a href="#" class="btn btn" title="Contact seller"><i class="fa fa-comments-o"></i></a>
+                                        </div>
+
+
+                                    </div>
+
+
+
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                    <div class="x_panel">
+                                        <div class="x_content">
+                                            <div>
+                                                <div class="row bootstrap snippets">
+                                                    <div class="col-md-12">
+                                                        <div class="comment-wrapper">
+                                                            <div class="panel panel-info">
+                                                                <div class="panel-heading">
+                                                                    <h4>Reviews</h4>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <form>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control" placeholder="write a comment..."  id="comment">
+                                                                            <span class="input-group-btn">
+                                                                                <a ><button class="btn btn btn-info" type="button" id="review" onclick="setreview({{ product.product_id}})">Submit Review</button></a>
+                                                                            </span>
+                                                                        </div>
+                                                                    </form>
+                                                                    <div class="clearfix"></div>
+                                                                    <hr>
+                                                                    <ul class="media-list" id="addcomment">
+                                                                        {% for product in product.product_reviews %}
+                                                                            <li class="media">
+                                                                                <a href="#" class="pull-left" onclick="view({{ product.review_owner_id }})">
+                                                                                    {% if product.review_owner_image is null %}{% set review_image = 'default.png' %} {% else %} {% set review_image = product.review_owner_image %} {% endif %}
+                                                                                    <img src="{{ asset('images/profile/') }}{{ review_image }}" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;">
+                                                                                </a>
+                                                                                <div class="media-body">
+                                                                                    <div class="names">
+                                                                                        {{ product.review_owner_first_name }} {{ product.review_owner_last_name }}
+                                                                                        {% if product.review_owner_pan_rating != 'no rating' %}
+                                                                                            <div class="" style="display:inline; margin-left: 15px">
+                                                                                                <div class="pan-stars"  data-score="{{ product.review_owner_pan_rating }}"></div>
+                                                                                            </div>
+                                                                                        {% endif %}
+                                                                                    </div>
+                                                                                    <p>
+                                                                                        {{ product.review_owner_content }}
+                                                                                    </p>
+                                                                                </div>
+                                                                            </li>
+                                                                        {% endfor %}
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block scripts %}
+    <!-- Fix rating script script-->
+    <script src={{ asset('Userscripts/rating/javascripts/labs.js') }}></script>
+    <script src={{ asset('Userscripts/rating/javascripts/jquery.raty.js') }}></script>
+    <script>
+        $('.pan-stars').raty({
+            readOnly: true,
+            score: function() {
+                return $(this).attr('data-score');
+            },
+
+        });
+    </script>
+
+
+    <!-- Review -->
+    <script>
+        function setreview(product)
+        {
+          if($('#comment').val() != '')
+          {
+              $('#comment').prop('disabled', true);
+              $.ajax({
+                  url:'{{ path('review') }}',
+                  type: 'POST',
+                  dataType: 'json',
+                  data:{
+                      'pan': product,
+                      'review':$('#comment').val()
+                  },
+                  success: function (data)
+                  {
+                      var output = '<li class="media"><a href="#" class="pull-left">'
+                      var image = '{{ currentimage }}'
+                      output += '<a href="#" class="pull-left"><img src="{{ asset('images/profile/') }}'+image+'" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;"">'
+                      output += '</a><div class="media-body"><div class="names">' + '{{ user.firstname }}' + ' ' + '{{ user.lastname }}'
+                      output += '</div><p>' + $('#comment').val() + '</p></div><li>'
+
+                      $('#addcomment').prepend(output);
+                      $('#comment').val('')
+
+                      $('#comment').prop('disabled', false);
+                  }
+              });
+          }
+          else
+              alert('Please, set a review !')
+        }
+    </script>
+
+    <!-- Share pan -->
+    <script>
+        function sharePan(pan)
+        {
+            alert('Pan shared on your profile')
+            $.ajax({
+                url: '{{ path('pan_share') }}',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'pan': pan
+                },
+            });
+        }
+    </script>
+{% endblock %}

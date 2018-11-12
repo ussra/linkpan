@@ -1172,9 +1172,7 @@
                                                     <div class="mask">
                                                         <p>{{ pan.pan_name }} - {{ pan.pan_other_name }}</p>
                                                         <div class="tools tools-bottom">
-                                                            <a href="#"><i class="fa fa-link"></i></a>
-                                                            <!--<a href="#" onclick="UpdateItem()"><i class="fa fa-pencil"></i></a>
-                                                            <a href="#"><i class="fa fa-times"></i></a>-->
+                                                            <a href="{{ path('view_product',{'product': pan.pan_id })}}" ><i class="fa fa-link"></i></a>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1212,19 +1210,18 @@
                                 {% endif %}
 
                                 {% if pans|length > 50 %}
-
+                                    <div class="row">
+                                        <div class="text-center"> <!--load-->
+                                            <a href="#" id="loadmore" onclick="loadmorepans()">Load more</a>
+                                        </div><!--end load-->
+                                    </div>
+                                    <div class="row" style="display: none;" id="hideevent">
+                                        <div class="text-center"> <!--load-->
+                                            <a href="#" onclick="loadlesspans()">show less</a>
+                                        </div><!--end load-->
+                                    </div>
                                 {% endif %}
 
-                                <div class="row">
-                                    <div class="text-center"> <!--load-->
-                                        <a href="#" id="loadmore" onclick="loadmorepans()">Load more</a>
-                                    </div><!--end load-->
-                                </div>
-                                <div class="row" style="display: none;" id="hideevent">
-                                    <div class="text-center"> <!--load-->
-                                        <a href="#" onclick="loadlesspans()">show less</a>
-                                    </div><!--end load-->
-                                </div>
 
                                 <!-- Noth to display -->
                                 {% else %}
@@ -1291,6 +1288,58 @@
             $('#loadmore').show()
             $('#showalldata').hide()
             $('#hideevent').hide()
+        }
+    </script>
+
+
+    <!-- products filter -->
+    <script>
+        function productfilter(obj)
+        {
+            if(obj == 'New in')
+                location.reload();
+            else
+            {
+                $.ajax({
+                    url:'{{ (path('discover_filter')) }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data:
+                    {
+                        'obj':obj
+                    },
+                    async: true,
+                    success: function (data)
+                    {
+                        window.location.href = data
+                    }
+                });
+            }
+        }
+
+        // filter by category
+        function Categfilter(obj)
+        {
+            if(obj == 'Default')
+                location.reload();
+            else
+            {
+                $.ajax({
+                    url:'{{ (path('discover_by_group')) }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data:
+                        {
+                            'obj':obj
+                        },
+                    async: true,
+                    success: function (data)
+                    {
+                        if(data == 'Done')
+                            location.reload();
+                    }
+                });
+            }
         }
     </script>
 {% endblock %}

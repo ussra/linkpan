@@ -50,6 +50,7 @@ class BoostPanController extends Controller
             echo '<script language="javascript">alert("please , retry again")</script>';
             return $this->forward('UserBundle:Home:pans');
         }
+        return $this->forward('UserBundle:Home:pans');
     }
 
     /**

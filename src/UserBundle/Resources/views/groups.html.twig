@@ -45,10 +45,10 @@
                                         <div class="my-list" style="margin-bottom:20px">
                                             <img src="{{ asset('images/group/') }}{{ group.group_image }}" class="img-responsive"  style="object-fit:cover;width:150px; height:100px"/>
                                             <h4>{{ group.group_name }}</h4>
-                                            <div class=""><h5>72000 Member</h5></div>
+                                            <div class=""><h5>{{ group.group_count_memebers }} Members</h5></div>
                                             <div>
-                                                <a href="#" class="btn btn-danger"  title="Delete Group"><i class="fa fa-times"></i></a>
-                                                <a href="#" class="btn btn-primary" title="View Group"><i class="fa fa-eye"></i></a>
+                                                <a href="{{ path('remove_group',{'group':group.group_id }) }}" class="btn btn-danger"  title="Delete Group"><i class="fa fa-times"></i></a>
+                                                <a href="{{ path('view_group',{'group':group.group_id }) }}) }}" class="btn btn-primary" title="View Group"><i class="fa fa-eye"></i></a>
                                             </div>
 
                                         </div>
