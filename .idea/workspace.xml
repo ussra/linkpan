@@ -60,8 +60,8 @@
       <file leaf-file-name="dockies.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/dockies.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="19" column="84" lean-forward="false" selection-start-line="19" selection-start-column="84" selection-end-line="19" selection-end-column="84" />
+            <state relative-caret-position="251">
+              <caret line="18" column="20" lean-forward="false" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
               <folding>
                 <element signature="e#48#92#0#Twig" expanded="false" />
                 <element signature="e#439#463#0#HTML" expanded="true" />
@@ -241,7 +241,7 @@
       <path value="$PROJECT_DIR$/vendor/flosch/stripe-bundle" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="252" />
     <option name="y" value="4" />
     <option name="width" value="683" />
@@ -354,15 +354,15 @@
       <workItem from="1542026637329" duration="10769000" />
       <workItem from="1542057039084" duration="182000" />
       <workItem from="1542065996292" duration="2915000" />
-      <workItem from="1542073169197" duration="3914000" />
+      <workItem from="1542073169197" duration="4087000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="174123000" />
+    <option name="totallyTimeSpent" value="174296000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1384" height="738" extended-state="6" />
+    <frame x="-9" y="-9" width="1384" height="738" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -783,8 +783,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/dockies.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="19" column="84" lean-forward="false" selection-start-line="19" selection-start-column="84" selection-end-line="19" selection-end-column="84" />
+        <state relative-caret-position="251">
+          <caret line="18" column="20" lean-forward="false" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
           <folding>
             <element signature="e#48#92#0#Twig" expanded="false" />
             <element signature="e#439#463#0#HTML" expanded="true" />
