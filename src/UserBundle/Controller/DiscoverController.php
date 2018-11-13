@@ -168,8 +168,7 @@ class DiscoverController extends Controller
         }
 
         //
-        $session = new Session();
-        $session->set('discover_pans',array_reverse($pans));
+        return $pans;
     }
 
 
@@ -200,7 +199,9 @@ class DiscoverController extends Controller
             ->setParameter('user', $this->getUser())
             ->setParameter('typepan', 'Discover');
         $result = $query->getResult();
-        $this->getPansResult($result,$currentUser);
+        $pans = $this->getPansResult($result,$currentUser);
+        $session = new Session();
+        $session->set('discover_pans',array_reverse($pans));
         return $this->render('UserBundle::discover.html.twig');
     }
 
@@ -281,5 +282,28 @@ class DiscoverController extends Controller
         );
         $this->getPansResult($products,$this->getUser());
         return new JsonResponse('Done');
+    }
+
+
+    /**
+     * @Route("/linkpan/dockies",name="dockies")
+     */
+    public function dockiesAction()
+    {
+        $currentUser = $this->getUser();
+        //get pans
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT DISTINCT p
+            FROM UserBundle:Pan p
+            WHERE  p.type = :typepan
+            '
+        )
+            ->setParameter('typepan', 'Dockies');
+        $result = $query->getResult();
+        $pans = $this->getPansResult($result,$currentUser);
+        $session = new Session();
+        $session->set('dockies_pans',array_reverse($pans));
+        return $this->render('UserBundle::dockies.html.twig');
     }
 }

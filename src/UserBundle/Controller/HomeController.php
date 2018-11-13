@@ -269,43 +269,6 @@ class HomeController extends Controller
         return $this->render('UserBundle::discover.html.twig');
     }
 
-    /**
-     * @Route("/linkpan/groups",name="groups")
-     */
-    public function groupsAction()
-    {
-        $session = new Session();
-        $currentUser = $this->getUser();
-        //Get user Groups
-        $user_groups = array();
-        $repo = $this->getDoctrine()->getRepository('UserBundle:Groupe');
-        $userGroups = $repo->findBy(
-          array('user'=>$currentUser)
-        );
-        if(sizeof($userGroups)>0)
-        {
-
-            $em = $this->getDoctrine()->getManager();
-            //
-            foreach ($userGroups as $group)
-            {
-                //get count of memebers
-                $query = $em->createQuery(
-                    'SELECT count(gj.id) FROM UserBundle:GroupJoin gj where IDENTITY(gj.group) = :grp  '
-                )->setParameter('grp', $group->getId());
-                $temp = array(
-                    'group_id'=>$group->getId(),
-                    'group_name'=>$group->getName(),
-                    'group_image'=>$group->getImage(),
-                    'group_count_memebers'=>$query->getSingleScalarResult()
-                );
-                array_push($user_groups,$temp);
-            }
-        }
-        $session->set('user_groups',$user_groups);
-        //
-        return $this->render('UserBundle::groups.html.twig');
-    }
 
 
 

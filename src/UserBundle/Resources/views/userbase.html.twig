@@ -98,7 +98,7 @@
 
                             {% if app.session.get('membership') == 'dockies' %}
                                 <ul class="nav side-menu">
-                                    <li><a href="#"> Dockies</a></li>
+                                    <li><a href="{{ path('dockies') }}"> Dockies</a></li>
                                 </ul>
                             {% endif %}
                             <ul class="nav side-menu">
@@ -108,7 +108,7 @@
                                 <li><a href="{{ path('discover') }}" > Discover</a></li>
                             </ul>
                             <ul class="nav side-menu">
-                                <li><a href="{{ path('groups') }}" > Groups</a></li>
+                                <li><a  > Groups</a></li>
                             </ul>
                             <ul class="nav side-menu">
                                 <li><a href="#"  > Globe Pro</a></li>
@@ -116,7 +116,6 @@
                             <ul class="nav side-menu">
                                 <li><a href="#" > FCC</a></li>
                             </ul>
-
                         </div>
 
 
@@ -904,7 +903,7 @@
         }
     </script>
 
-    <!-- post -->
+    <!-- media -->
     <script>
 
 

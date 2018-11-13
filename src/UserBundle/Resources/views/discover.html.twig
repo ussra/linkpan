@@ -1199,12 +1199,72 @@
 
                                 {% if pans|length > 50 %}
                                     {% for pan in pans[0:50] %}
+                                        <div class="col-md-3">
+                                            <div class="thumbnail">
+                                                <div class="image view view-first">
 
+                                                    <img style="width: 100%; display: block;" src="{{ asset('images/pans/') }}{{ pan.pan_image }}" alt="image"  />
+
+                                                    <div class="mask">
+                                                        <p>{{ pan.pan_name }} - {{ pan.pan_other_name }}</p>
+                                                        <div class="tools tools-bottom">
+                                                            <a href="{{ path('view_product',{'product': pan.pan_id })}}" ><i class="fa fa-link"></i></a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="caption">
+                                                    <strong>{{ pan.pan_price }} $  {% if pan.pan_boosted == 'boost' %} |<strong style="color:black"> BOOSTED</strong></strong> {% endif %} <br>
+                                                    <!-- Rating -->
+                                                    {% if pan.pan_owner.id != user.id %}
+                                                        {% if pan.pan_rating == "rate" %}
+                                                            <div class="pan-rate" id="{{ pan.pan_id }}" data-score="0"></div>
+                                                        {% else %}
+                                                            <div class="pan-stars"  data-score="{{ pan.pan_rating_value }}"></div>
+                                                        {% endif %}
+
+                                                    {% else %}
+                                                        <small>you cannot rate your pan</small>
+                                                    {% endif %}
+                                                </div>
+
+                                            </div>
+                                        </div>
                                     {% endfor %}
 
                                     <div style="display: none;" id="showalldata">
                                         {% for pan in pans[51:pans|length] %}
+                                            <div class="col-md-3">
+                                                <div class="thumbnail">
+                                                    <div class="image view view-first">
 
+                                                        <img style="width: 100%; display: block;" src="{{ asset('images/pans/') }}{{ pan.pan_image }}" alt="image"  />
+
+                                                        <div class="mask">
+                                                            <p>{{ pan.pan_name }} - {{ pan.pan_other_name }}</p>
+                                                            <div class="tools tools-bottom">
+                                                                <a href="{{ path('view_product',{'product': pan.pan_id })}}" ><i class="fa fa-link"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="caption">
+                                                        <strong>{{ pan.pan_price }} $  {% if pan.pan_boosted == 'boost' %} |<strong style="color:black"> BOOSTED</strong></strong> {% endif %} <br>
+                                                        <!-- Rating -->
+                                                        {% if pan.pan_owner.id != user.id %}
+                                                            {% if pan.pan_rating == "rate" %}
+                                                                <div class="pan-rate" id="{{ pan.pan_id }}" data-score="0"></div>
+                                                            {% else %}
+                                                                <div class="pan-stars"  data-score="{{ pan.pan_rating_value }}"></div>
+                                                            {% endif %}
+
+                                                        {% else %}
+                                                            <small>you cannot rate your pan</small>
+                                                        {% endif %}
+                                                    </div>
+
+                                                </div>
+                                            </div>
                                         {% endfor %}
                                     </div>
                                 {% endif %}
