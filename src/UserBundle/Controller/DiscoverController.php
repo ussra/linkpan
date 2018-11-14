@@ -213,40 +213,70 @@ class DiscoverController extends Controller
     {
         $currentUser = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        if($request->get('obj') == 'Highest Price')
-        {
+
+        if($request->get('obj') == 'New in') {
             $query = $em->createQuery(
-                'SELECT p
+                'SELECT DISTINCT p
             FROM UserBundle:Pan p
             WHERE p.user = :user
-            AND p.type = :typepan
-            OR p.user = (
+            OR IDENTITY(p.user) = (
               SELECT IDENTITY(f.userToFollow)
-              FROM UserBundle:Follow f
-              WHERE  IDENTITY(f.user) = :user
+              FROM UserBundle:Follow f 
+              WHERE f.user = :user
             )
-              ORDER BY p.price ASC '
+            OR p.id IN (
+              SELECT IDENTITY(bp.pan) 
+              FROM UserBundle:BoostPan bp 
             )
-                ->setParameter('user', $currentUser->getId())
-                ->setParameter('typepan', 'Discover');
+            AND p.type = :typepan
+            '
+            )
+                ->setParameter('user', $this->getUser())
+                ->setParameter('typepan', $request->get('type'));
+        }
+
+        if($request->get('obj') == 'Highest Price') {
+            $query = $em->createQuery(
+                'SELECT DISTINCT p
+            FROM UserBundle:Pan p
+            WHERE p.user = :user
+            OR IDENTITY(p.user) = (
+              SELECT IDENTITY(f.userToFollow)
+              FROM UserBundle:Follow f 
+              WHERE f.user = :user
+            )
+            OR p.id IN (
+              SELECT IDENTITY(bp.pan) 
+              FROM UserBundle:BoostPan bp 
+            )
+            AND p.type = :typepan
+            ORDER BY p.price ASC
+            '
+            )
+                ->setParameter('user', $this->getUser())
+                ->setParameter('typepan', $request->get('type'));
         }
 
         if($request->get('obj') == 'Lowest Price')
         {
             $query = $em->createQuery(
-                'SELECT p
-                FROM UserBundle:Pan p
-                WHERE p.user = :user
-                AND p.type = :typepan
-                OR p.user = (
-                SELECT IDENTITY(f.userToFollow)
-                FROM UserBundle:Follow f
-                WHERE  IDENTITY(f.user) = :user
+                'SELECT DISTINCT p
+            FROM UserBundle:Pan p
+            WHERE p.user = :user
+            OR IDENTITY(p.user) = (
+              SELECT IDENTITY(f.userToFollow)
+              FROM UserBundle:Follow f 
+              WHERE f.user = :user
             )
-              ORDER BY p.price DESC '
+            OR p.id IN (
+              SELECT IDENTITY(bp.pan) 
+              FROM UserBundle:BoostPan bp 
+            )
+            AND p.type = :typepan
+            ORDER BY p.price DESC '
             )
                 ->setParameter('user', $currentUser->getId())
-                ->setParameter('typepan', 'Discover');
+                ->setParameter('typepan', $request->get('type'));
         }
 
         if($request->get('obj') == 'Last Viewed')
@@ -254,21 +284,32 @@ class DiscoverController extends Controller
             $query = $em->createQuery(
                 'SELECT p
                 FROM UserBundle:Pan p
-                WHERE p.id = (
+                WHERE
+                  p.type = :typepan and p.id IN (
                   SELECT IDENTITY(lastv.pan) FROM UserBundle:PanLastViewed lastv
                   WHERE lastv.user = :user
                 )
                 '
             )
-                ->setParameter('user', $currentUser->getId());
-
+                ->setParameter('user', $currentUser->getId())
+            ->setParameter('typepan', $request->get('type'));
 
         }
 
         $pans = $query->getResult();
+        $data = $this->getPansResult($pans,$currentUser);
+        $session = new Session();
+        if($request->get('type') == 'Discover')
+        {
+            $session->set('discover_pans',array_reverse($data));
+            return new JsonResponse($this->generateUrl('discover_view'));
+        }
+        if($request->get('type') == 'Dockies')
+        {
+            $session->set('dockies_pans',array_reverse($data));
+            return new JsonResponse($this->generateUrl('dockies_pans'));
+        }
 
-        $this->getPansResult($pans,$currentUser);
-        return new JsonResponse($this->generateUrl('discover_view'));
     }
 
     /**
@@ -277,13 +318,24 @@ class DiscoverController extends Controller
     public function discover_by_groupAction(Request $request)
     {
         $repo = $this->getDoctrine()->getRepository('UserBundle:Pan');
+        /**if($request->get('obj') == 'Default')
+
         $products = $repo->findBy(
-            array('category' => $request->get('obj'),'type'=>'Discover')
+            array('category' => $request->get('obj'),'type'=>$request->get('type'))
         );
-        $this->getPansResult($products,$this->getUser());
-        return new JsonResponse('Done');
+        $result = $this->getPansResult($products,$this->getUser());
+        $session = new Session();**/
+
+        return new JsonResponse('');
     }
 
+    /**
+     * @Route("/linkpan/dockies_pans",name="dockies_pans")
+     */
+    public function dockies_pansAction()
+    {
+        return $this->render('UserBundle::dockies.html.twig');
+    }
 
     /**
      * @Route("/linkpan/dockies",name="dockies")

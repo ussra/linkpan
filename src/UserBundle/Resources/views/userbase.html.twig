@@ -294,7 +294,7 @@
                                             <!-- Name / Boosted /Date / Adress -->
                                             <div class="fb-user-details">
                                                 <h3><a href="#" class="#" onclick="view({{ item.owner_id }})">{{ item.owner_first_name }} {{ item.owner_last_name }}</a> {% if item.owner_company_name is not null %} <small> {{ item.owner_company_name }}</small> {% endif %}</h3>
-                                                <p>{% if item.post_boosted == 'boosted' %}<strong style="color:black">BOOSTED</strong></strong> | {% endif %} {{ item.post_creation_date|date("m/d/Y H:m:s") }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
+                                                <p>{% if item.post_boosted == 'boosted' %}<strong style="color:black">BOOSTED</strong></strong> | {% endif %} {{ item.post_creation_date }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
                                             </div>
 
                                             <div class="clearfix"></div>

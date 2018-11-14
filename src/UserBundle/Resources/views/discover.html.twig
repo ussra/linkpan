@@ -1356,50 +1356,41 @@
     <script>
         function productfilter(obj)
         {
-            if(obj == 'New in')
-                location.reload();
-            else
-            {
-                $.ajax({
-                    url:'{{ (path('discover_filter')) }}',
-                    type: 'POST',
-                    dataType: 'json',
-                    data:
+            $.ajax({
+                url:'{{ (path('discover_filter')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:
                     {
-                        'obj':obj
+                        'obj':obj,
+                        'type':'Discover'
                     },
-                    async: true,
-                    success: function (data)
-                    {
-                        window.location.href = data
-                    }
-                });
-            }
+                async: true,
+                success: function (data)
+                {
+                    window.location.href = data
+                }
+            });
         }
 
         // filter by category
         function Categfilter(obj)
         {
-            if(obj == 'Default')
-                location.reload();
-            else
-            {
-                $.ajax({
-                    url:'{{ (path('discover_by_group')) }}',
-                    type: 'POST',
-                    dataType: 'json',
-                    data:
-                        {
-                            'obj':obj
-                        },
-                    async: true,
-                    success: function (data)
+            $.ajax({
+                url:'{{ (path('discover_by_group')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:
                     {
-                        if(data == 'Done')
-                            location.reload();
-                    }
-                });
-            }
+                        'obj':obj,
+                        'type':'Discover'
+                    },
+                async: true,
+                success: function (data)
+                {
+                    alert(data)
+                }
+            });
         }
     </script>
 {% endblock %}

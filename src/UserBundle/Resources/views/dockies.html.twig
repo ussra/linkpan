@@ -1136,6 +1136,7 @@
             <div class="row">
                 {% set dockies = app.session.get('dockies_pans') %}
 
+
                 {% for item in dockies %}
                     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                         <div class="my-list">
@@ -1144,18 +1145,21 @@
                             <span>{{ item.pan_price }}$</span>
                             <span class="pull-right">7</span>
                             <div class="offer">
+
                                 {% if item.pan_owner.id != user.id %}
                                     {% if item.pan_rating == "rate" %}
                                         <div class="pan-rate" id="{{ item.pan_id }}" data-score="0"></div>
-                                        {% else %}
-                                            <div class="pan-stars"  data-score="{{ item.pan_rating_value }}"></div>
+                                    {% else %}
+                                        <div class="pan-stars"  data-score="{{ item.pan_rating_value }}"></div>
                                     {% endif %}
 
                                     {% else %}
-                                        <small>you cannot rate your pan</small>
+                                    <small>you cannot rate your pan</small>
                                 {% endif %}
+
+
                             </div>
-                            <a href="Detail.html" class="btn btn-info" style="float:right">Detail</a>
+                            <a  class="btn btn-info" style="float:right">Detail</a>
                         </div>
                     </div>
                 {% endfor %}
@@ -1180,5 +1184,75 @@
             },
 
         });
+
+        $('.pan-rate').raty({
+            click: function(score, evt)
+            {
+                 //alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
+                $.ajax({
+                    url:'{{ (path('rate_pan')) }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data:{
+                        'pan': this.id,
+                        'value': score,
+                    }
+                });
+            }
+        });
+    </script>
+
+
+    <!-- filter -->
+    <script>
+        function productfilter(obj)
+        {
+            $.ajax({
+                url:'{{ (path('discover_filter')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:
+                    {
+                        'obj':obj,
+                        'type':'Dockies'
+                    },
+                async: true,
+                success: function (data)
+                {
+                    window.location.href = data
+                }
+            });
+        }
+
+
+        function Categfilter(obj)
+        {
+            if(obj == 'Default')
+                location.reload();
+            else
+            {
+                $.ajax({
+                    url:'{{ (path('discover_by_group')) }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data:
+                        {
+                            'obj':obj,
+                            'type':'Dockies'
+                        },
+                    async: true,
+                    success: function (data)
+                    {
+                        if(data == 0)
+                            alert('Nothing to  display for this category : '.concat(obj))
+                        else
+                        {
+                            alert(data)
+                            location.reload();
+                        }
+                    }
+                });
+            }
+        }
     </script>
 {% endblock %}
