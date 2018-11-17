@@ -2,6 +2,7 @@
 
 
 {% block style %}
+    {{ parent() }}
     <link rel="stylesheet" href={{ asset('Userscripts/css/starability-all.css') }}>
     <!-- Rting -->
     <link href={{ asset('Userscripts/rating/css/labs.css') }} rel="stylesheet">
@@ -47,7 +48,7 @@
                                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
                                     <div class="col-md-7 col-sm-7 col-xs-12">
                                         <div class="product-image">
-                                            <img src="{{ asset('images/pans/') }}{{ product.product_image }}" alt="..." />
+                                            <a href="{{ asset('images/pans/') }}{{ product.product_image }}" data-max-width="600" data-toggle="lightbox" data-gallery="product-main-img"><img src="{{ asset('images/pans/') }}{{ product.product_image }}" id="product-main-img" style="width: 400px;height: 400px;object-fit: cover;" /></a>
                                             <div class="rating-block">
                                                 <h4>Average  rating</h4>
                                                 <h2 class="bold padding-bottom-7" style="display:inline;margin-right: 10px;">{{ product.product_average_rating }} <small>/ 5</small></h2><button type="button" class="btn btn-warning btn-sm" aria-label="Left Align"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
@@ -151,6 +152,7 @@
 
 
 {% block scripts %}
+    {{ parent() }}
     <!-- Fix rating script script-->
     <script src={{ asset('Userscripts/rating/javascripts/labs.js') }}></script>
     <script src={{ asset('Userscripts/rating/javascripts/jquery.raty.js') }}></script>
