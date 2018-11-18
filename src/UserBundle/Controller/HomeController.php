@@ -26,22 +26,33 @@ class HomeController extends Controller
     }
 
 
-    private function getPosts($session,$currentUser)
+    private function getCountFollow()
     {
+        $session = new Session();
+        $currentUser = $this->getUser();
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Follow');
+        //Following
+        $followingdata = $repo->findBy(
+            array('user'=>$currentUser)
+        );
+        if(sizeof($followingdata)>0) $following = sizeof($followingdata); else $following = 0;
+        $session->set('following',$following);
+        //Followers
+        $folllowersdata = $repo->findBy(
+            array('userToFollow'=>$currentUser)
+        );
+        if(sizeof($folllowersdata)>0) $followers = sizeof($folllowersdata); else $followers = 0;
+        $session->set('followers',$followers);
+    }
+
+    private function Homeresult($result)
+    {
+        //set number of followers - following
+        $this->getCountFollow();
+        //
         $posts = array();
         $em = $this->getDoctrine()->getManager();
-        $query = $em->createQuery(
-            'SELECT DISTINCT p
-            FROM UserBundle:Post p
-            WHERE p.user = :user
-            OR IDENTITY(p.user) IN (SELECT IDENTITY(f.userToFollow) FROM 
-            UserBundle:Follow f 
-            WHERE f.user = :user)
-            OR p.id IN (
-              SELECT IDENTITY(bp.post) FROM UserBundle:BoostPost bp
-            )'
-        )->setParameter('user', $currentUser);
-        $result =  $query->getResult();
+        $currentUser = $this->getUser();
         if(sizeof($result)>0)
         {
             $repo = $this->getDoctrine()->getRepository('AppBundle:User');
@@ -66,12 +77,12 @@ class HomeController extends Controller
                 }
                 //Get if boosted or not
                 $boosted = $boostedrepo->findOneBy(
-                  array('post'=>$post)
+                    array('post'=>$post)
                 );
                 if(is_null($boosted)) $bType = 'not'; else $bType = 'boosted';
                 // Get if liked or not by current user
                 $liked = $likerepo->findOneBy(
-                  array('user'=>$currentUser,'post'=>$post)
+                    array('user'=>$currentUser,'post'=>$post)
                 );
                 if(is_null($liked)) $like = 'like'; else $like = 'dislike';
                 //Get count likes
@@ -86,7 +97,7 @@ class HomeController extends Controller
                 // Get post comments
                 $comments = array();
                 $commresult = $commentrepo->findBy(
-                  array('post'=>$post)
+                    array('post'=>$post)
                 );
                 if(sizeof($commresult)>0)
                 {
@@ -105,27 +116,112 @@ class HomeController extends Controller
                 }
                 //
                 $temp = array(
-                  'id'=>$post->getId(),
-                  'owner_id'=>$owner->getId(),
-                  'owner_first_name'=>$owner->getFirstname(),
-                  'owner_last_name'=>$owner->getLastname(),
-                  'owner_company_name'=>$owner->getCompanyName(),
-                  'owner_adress'=>$owner->getAdress(),
-                  'owner_image'=>$owner->getImage(),
-                  'post_creation_date'=>$post->getCreationDate(),
-                  'post_content'=>$post->getContent(),
-                  'post_video'=>$post->getVideo(),
-                  'post_images'=>$images,
-                  'post_boosted'=>$bType,
-                  'post_like_type'=>$like,
-                  'likes_count'=>sizeof($likes),
-                  'post_comments'=>$comments
+                    'id'=>$post->getId(),
+                    'owner_id'=>$owner->getId(),
+                    'owner_first_name'=>$owner->getFirstname(),
+                    'owner_last_name'=>$owner->getLastname(),
+                    'owner_company_name'=>$owner->getCompanyName(),
+                    'owner_adress'=>$owner->getAdress(),
+                    'owner_image'=>$owner->getImage(),
+                    'post_creation_date'=>$post->getCreationDate(),
+                    'post_content'=>$post->getContent(),
+                    'post_video'=>$post->getVideo(),
+                    'post_images'=>$images,
+                    'post_boosted'=>$bType,
+                    'post_like_type'=>$like,
+                    'likes_count'=>sizeof($likes),
+                    'post_comments'=>$comments
                 );
                 array_push($posts,$temp);
             }
         }
+        return $posts ;
+    }
 
-        $session->set('Homeposts',array_reverse($posts));
+
+
+    /**
+     * @Route("/linkpan/home/news",name="home_news")
+     */
+    public function home_newsAction()
+    {
+        $currentUser = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT count(DISTINCT p.id) 
+            FROM UserBundle:Post p 
+            WHERE p.user = :user
+            OR IDENTITY(p.user) IN (SELECT IDENTITY(f.userToFollow) FROM 
+            UserBundle:Follow f 
+            WHERE f.user = :user)
+            OR p.id IN (
+              SELECT IDENTITY(bp.post) FROM UserBundle:BoostPost bp
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+            ) 
+            ORDER BY p.id DESC 
+            '
+        )->setParameter('user', $currentUser);
+        return new JsonResponse($query->getResult()[0][1]);
+    }
+
+    /**
+     * @Route("/linkpan/home/more_posts",name="more_posts")
+     */
+    public function postsmoreAction()
+    {
+        $session = new Session();
+        $currentUser = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT DISTINCT p 
+            FROM UserBundle:Post p 
+            WHERE p.user = :user
+            OR IDENTITY(p.user) IN (SELECT IDENTITY(f.userToFollow) FROM 
+            UserBundle:Follow f 
+            WHERE f.user = :user)
+            OR p.id IN (
+              SELECT IDENTITY(bp.post) FROM UserBundle:BoostPost bp
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+            ) 
+            ORDER BY p.id DESC 
+            '
+        )->setParameter('user', $currentUser);//
+        $result =  $query->getResult();
+        $posts = $this->Homeresult($result);
+        $session->set('Homeposts',$posts);
+        // count
+        $query = $em->createQuery(
+            'SELECT count(DISTINCT p.id) 
+            FROM UserBundle:Post p 
+            WHERE p.user = :user
+            OR IDENTITY(p.user) IN (SELECT IDENTITY(f.userToFollow) FROM 
+            UserBundle:Follow f 
+            WHERE f.user = :user)
+            OR p.id IN (
+              SELECT IDENTITY(bp.post) FROM UserBundle:BoostPost bp
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+            ) 
+            ORDER BY p.id DESC 
+            '
+        )->setParameter('user', $currentUser);
+        $session->set('Homeposts_count',$query->getResult()[0][1]);
+        //
+        return $this->render('UserBundle::userbase.html.twig');
     }
 
 
@@ -136,11 +232,53 @@ class HomeController extends Controller
     {
         $session = new Session();
         $currentUser = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
         // Membership
         $this->getMembership($session,$currentUser);
+        // count
+        $query = $em->createQuery(
+            'SELECT count(DISTINCT p.id) 
+            FROM UserBundle:Post p 
+            WHERE p.user = :user
+            OR IDENTITY(p.user) IN (SELECT IDENTITY(f.userToFollow) FROM 
+            UserBundle:Follow f 
+            WHERE f.user = :user)
+            OR p.id IN (
+              SELECT IDENTITY(bp.post) FROM UserBundle:BoostPost bp
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+            ) 
+            ORDER BY p.id DESC 
+            '
+        )->setParameter('user', $currentUser);
+        $session->set('Homeposts_count',$query->getResult()[0][1]);
         // posts
-        $this->getPosts($session,$currentUser);
-        //
+        $query = $em->createQuery(
+            'SELECT DISTINCT p 
+            FROM UserBundle:Post p 
+            WHERE p.user = :user
+            OR IDENTITY(p.user) IN (SELECT IDENTITY(f.userToFollow) FROM 
+            UserBundle:Follow f 
+            WHERE f.user = :user)
+            OR p.id IN (
+              SELECT IDENTITY(bp.post) FROM UserBundle:BoostPost bp
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+            ) 
+            ORDER BY p.id DESC 
+            '
+        )->setParameter('user', $currentUser);
+        $result =  $query->setMaxResults(5)->getResult();
+        $posts = $this->Homeresult($result);
+        $session->set('Homeposts',$posts);
         return $this->render('UserBundle::userbase.html.twig');
     }
 
@@ -261,51 +399,8 @@ class HomeController extends Controller
     }
 
 
-    /**
-     * @Route("/linkpan/discover_view",name="discover_view")
-     */
-    public function discover_viewAction()
-    {
-        return $this->render('UserBundle::discover.html.twig');
-    }
 
-    /**
-     * @Route("/linkpan/groups",name="groups")
-     */
-    public function groupsAction()
-    {
-        $session = new Session();
-        $currentUser = $this->getUser();
-        //Get user Groups
-        $user_groups = array();
-        $repo = $this->getDoctrine()->getRepository('UserBundle:Groupe');
-        $userGroups = $repo->findBy(
-          array('user'=>$currentUser)
-        );
-        if(sizeof($userGroups)>0)
-        {
 
-            $em = $this->getDoctrine()->getManager();
-            //
-            foreach ($userGroups as $group)
-            {
-                //get count of memebers
-                $query = $em->createQuery(
-                    'SELECT count(gj.id) FROM UserBundle:GroupJoin gj where IDENTITY(gj.group) = :grp  '
-                )->setParameter('grp', $group->getId());
-                $temp = array(
-                    'group_id'=>$group->getId(),
-                    'group_name'=>$group->getName(),
-                    'group_image'=>$group->getImage(),
-                    'group_count_memebers'=>$query->getSingleScalarResult()
-                );
-                array_push($user_groups,$temp);
-            }
-        }
-        $session->set('user_groups',$user_groups);
-        //
-        return $this->render('UserBundle::groups.html.twig');
-    }
 
 
 

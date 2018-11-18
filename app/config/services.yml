@@ -28,3 +28,4 @@ services:
     my.stripe.client:
         class: UserBundle\Payment\StripeClient
         public: true
+

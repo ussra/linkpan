@@ -10,9 +10,7 @@
 
     <title>{% block Title %}Home{% endblock %}</title>
 
-    <!-- Photos -->
-    <link href={{ asset('Userscripts/js/photos/ekko-lightbox.css') }} rel="stylesheet">
-    <script src={{ asset('Userscripts/js/photos/ekko-lightbox.js') }}></script>
+
     <!--end Photos -->
     <!-- video -->
     <link href={{ asset('Userscripts/js/video/plyr.css') }} rel="stylesheet">
@@ -42,6 +40,10 @@
                 margin-top: 2%;
             }
         </style>
+
+        <!-- Photos -->
+        <link href={{ asset('Userscripts/js/photos/ekko-lightbox.css') }} rel="stylesheet">
+        <script src={{ asset('Userscripts/js/photos/ekko-lightbox.js') }}></script>
     {% endblock %}
 </head>
 
@@ -74,8 +76,8 @@
                         </div>
                         <div class="profile_info">
                             <h4 style="color:white;margin-top:-5%">{{ user.firstname }} {{ user.lastname }}</h4>
-                            <p style="color:white;font-size:8.6px; "> 0 FOLLOWING</p>
-                            <p style="margin-top:-6.5%;color:white;font-size:8.6px;"> 0 FOLLOWERS</p>
+                            <p style="color:white;font-size:8.6px; "> {{ app.session.get('following') }} FOLLOWING</p>
+                            <p style="margin-top:-6.5%;color:white;font-size:8.6px;"> {{ app.session.get('followers') }} FOLLOWERS</p>
                             {% if app.session.get('membership') == 'dockies' %}
                                 <img src={{ asset('Userscripts/img/Ace/ACE.svg') }} id="logo" width="55px" height="55px">
                             {% endif %}
@@ -91,24 +93,24 @@
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" style="background-color:#0e7ac3">
                         <div class="menu_section">
-
+                            {% set countData = app.session.get('Homeposts_count') %}
                             <ul class="nav side-menu">
-                                <li><a href="{{ path('home') }}"> Home</a></li>
+                                <li><a href="{{ path('home') }}" data-id="{{ countData }}" id="home_menu"> Home</a></li>
                             </ul>
 
                             {% if app.session.get('membership') == 'dockies' %}
                                 <ul class="nav side-menu">
-                                    <li><a href="#"> Dockies</a></li>
+                                    <li><a > Dockies</a></li>
                                 </ul>
                             {% endif %}
                             <ul class="nav side-menu">
                                 <li><a href="{{ path('pans') }}"> Pans</a></li>
                             </ul>
                             <ul class="nav side-menu">
-                                <li><a href="{{ path('discover') }}" > Discover</a></li>
+                                <li><a  > Discover</a></li>
                             </ul>
                             <ul class="nav side-menu">
-                                <li><a href="{{ path('groups') }}" > Groups</a></li>
+                                <li><a  > Groups</a></li>
                             </ul>
                             <ul class="nav side-menu">
                                 <li><a href="#"  > Globe Pro</a></li>
@@ -116,7 +118,6 @@
                             <ul class="nav side-menu">
                                 <li><a href="#" > FCC</a></li>
                             </ul>
-
                         </div>
 
 
@@ -245,6 +246,8 @@
 
             <div class="right_col" role="main">
                 {% block pageContent %}
+
+
                     <div style="margin-top:80px">
                         <div class="container bootstrap snippet">
                             <div class="panel profile-info">
@@ -282,6 +285,15 @@
                                 </form>
                             </div>
 
+
+                            <div style="text-align: center; display: none" id="news" >
+                                <a href="{{ path('home') }}">
+                                    <button type="button" class="btn btn-round btn-primary btn-xs">
+                                        <i class="fa fa-arrow-up"></i>New posts
+                                    </button>
+                                </a>
+                            </div>
+
                             {% set data = app.session.get('Homeposts') %}
                             {% if  data|length > 0 %}
                                 {% for item in data %}
@@ -290,116 +302,63 @@
                                             <!-- Image -->
                                             <div class="fb-user-thumb">
                                                 {% if item.owner_image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.owner_image  %}{% endif %}
-                                                <a href="#" onclick="view({{ item.owner_id }})"><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
+                                                <a onclick="view({{ item.owner_id }})"><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
                                             </div>
                                             <!-- Name / Boosted /Date / Adress -->
                                             <div class="fb-user-details">
                                                 <h3><a href="#" class="#" onclick="view({{ item.owner_id }})">{{ item.owner_first_name }} {{ item.owner_last_name }}</a> {% if item.owner_company_name is not null %} <small> {{ item.owner_company_name }}</small> {% endif %}</h3>
-                                                <p>{% if item.post_boosted == 'boosted' %}<strong style="color:black">BOOSTED</strong></strong> | {% endif %} {{ item.post_creation_date|date("m/d/Y H:m:s") }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
+                                                <p>{% if item.post_boosted == 'boosted' %}<strong style="color:black">BOOSTED</strong></strong> | {% endif %} {{ item.post_creation_date }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
                                             </div>
 
                                             <div class="clearfix"></div>
 
                                             <!-- display post content -->
                                             <p class="fb-user-status">
-                                                <div>
-                                                    {{ item.post_content }}
-                                                </div>
-                                                <br>
-                                                <!-- images + video -->
-                                                <div class="parent" style="max-width: 650px;">
-                                                    {% if item.post_video is not null %}
-                                                        {% if item.post_images >0 %}
-                                                            {% if item.post_images|length == 1 %}<!-- 1 photo+video: -->
+                                            <div>
+                                                {{ item.post_content }}
+                                            </div>
+                                            <br>
+                                            <!-- images + video -->
+                                            <div class="parent" style="max-width: 650px;">
+                                                {% if item.post_video is not null %}
+                                                    {% if item.post_images >0 %}
+                                                        {% if item.post_images|length == 1 %}<!-- 1 photo+video: -->
 
-                                                                <div style="max-width:600px">
-                                                                    <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
-                                                                        <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                        Your browser does not support the video tag.
-                                                                    </video>
-                                                                </div>
-                                                                <div>
-                                                                    <a  href="{{ asset('images/post/') }}{{ item.post_images|first }}" data-max-width="600" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ item.post_images|first }}" id="post_img" class="post-1img-video img-responsive"></a>
-                                                                </div>
-                                                            {% endif %}<!--end 1 photo+video: -->
-
-                                                            {% if item.post_images|length == 2 or item.post_images|length == 3   %}<!--end 2 or 3 photo+video -->
-                                                                <div style="max-width:600px">
-                                                                    <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
-                                                                        <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                        Your browser does not support the video tag.
-                                                                    </video>
-                                                                </div>
-
-                                                                <div>
-                                                                    {% for img in item.post_images %}
-                                                                        <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.post_images|length == 2 %}class="img-responsive post-2img-video" {% else %}class="post-3img-video-fixed img-responsive"{% endif %}></a>
-                                                                    {% endfor %}
-                                                                </div>
-
-                                                            {% endif %}<!--end 2 or 3 photo+video -->
-
-                                                            {% if item.post_images|length > 3 %}<!--more than 3 photo+video: -->
-                                                                <div style="max-width:600px">
-                                                                    <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
-                                                                        <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                        Your browser does not support the video tag.
-                                                                    </video>
-                                                                </div>
-
-                                                                <div>
-                                                                    {% for img in item.post_images[0:2]  %}
-                                                                        <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
-                                                                    {% endfor %}
-
-                                                                    <a  href="{{ asset('images/post/') }}{{ item.post_images[2] }}" data-toggle="lightbox"  data-gallery="{{ item.id }}">
-                                                                        <div class="post-3imgvid-wrapblack">
-
-                                                                            <img src="{{ asset('images/post/') }}{{ item.post_images[2] }}"  class="post-3imgvid-blackimg img-responsive">
-
-                                                                            <div class="post-3imgvid-count">
-                                                                                +{{ item.post_images|length - 2 }}
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-
-                                                                    <!-- elements not showing, use data-remote -->
-                                                                    {% for img in item.post_images[3:item.post_images|length] %}
-                                                                        <div data-toggle="lightbox" data-gallery="{{ item.id }}" data-remote="{{ asset('images/post/') }}{{ img }}" ></div>
-                                                                    {% endfor %}
-
-
-                                                                </div>
-
-                                                            {% endif %}<!--end more than 3 photo+video: -->
-
-                                                            {% if item.post_images|length == 0  %}
-                                                                <div style="max-width:600px">
-                                                                    <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
-                                                                        <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                        Your browser does not support the video tag.
-                                                                    </video>
-                                                                </div>
-                                                            {% endif %}
-                                                        {% endif %}
-                                                    {% endif %}
-
-                                                    {% if item.post_video is null %}
-                                                        {% if item.post_images|length == 1  %}<!--1 photo -->
-                                                            <div>
-                                                                <a  href="{{ asset('images/post/') }}{{ item.post_images|first }}" data-max-width="650" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ item.post_images|first }}" id="post_img" class="post-1img img-responsive"></a>
+                                                            <div style="max-width:600px">
+                                                                <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                    <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
+                                                                    Your browser does not support the video tag.
+                                                                </video>
                                                             </div>
-                                                        {% endif %}<!--end 1 photo-->
+                                                            <div>
+                                                                <a  href="{{ asset('images/post/') }}{{ item.post_images|first }}" data-max-width="600" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ item.post_images|first }}" id="post_img" class="post-1img-video img-responsive"></a>
+                                                            </div>
+                                                        {% endif %}<!--end 1 photo+video: -->
 
-                                                        {% if item.post_images|length == 2 or item.post_images|length == 3   %}<!--2 or 3 photo -->
+                                                        {% if item.post_images|length == 2 or item.post_images|length == 3   %}<!--end 2 or 3 photo+video -->
+                                                            <div style="max-width:600px">
+                                                                <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                    <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
+                                                                    Your browser does not support the video tag.
+                                                                </video>
+                                                            </div>
+
                                                             <div>
                                                                 {% for img in item.post_images %}
-                                                                    <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.post_images|length == 2 %}class="img-responsive post-2-img" {% else %}class="post-3-img img-responsive"{% endif %}></a>
+                                                                    <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.post_images|length == 2 %}class="img-responsive post-2img-video" {% else %}class="post-3img-video-fixed img-responsive"{% endif %}></a>
                                                                 {% endfor %}
                                                             </div>
-                                                        {% endif %}<!--end 2 or 3 photo -->
 
-                                                        {% if item.post_images|length > 3   %} <!--more than 3 photo -->
+                                                        {% endif %}<!--end 2 or 3 photo+video -->
+
+                                                        {% if item.post_images|length > 3 %}<!--more than 3 photo+video: -->
+                                                            <div style="max-width:600px">
+                                                                <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                    <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
+                                                                    Your browser does not support the video tag.
+                                                                </video>
+                                                            </div>
+
                                                             <div>
                                                                 {% for img in item.post_images[0:2]  %}
                                                                     <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
@@ -415,16 +374,69 @@
                                                                         </div>
                                                                     </div>
                                                                 </a>
+
                                                                 <!-- elements not showing, use data-remote -->
                                                                 {% for img in item.post_images[3:item.post_images|length] %}
                                                                     <div data-toggle="lightbox" data-gallery="{{ item.id }}" data-remote="{{ asset('images/post/') }}{{ img }}" ></div>
                                                                 {% endfor %}
+
+
                                                             </div>
-                                                        {% endif %}<!--more than 3 photo -->
+
+                                                        {% endif %}<!--end more than 3 photo+video: -->
+
+                                                        {% if item.post_images|length == 0  %}
+                                                            <div style="max-width:600px">
+                                                                <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                    <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
+                                                                    Your browser does not support the video tag.
+                                                                </video>
+                                                            </div>
+                                                        {% endif %}
                                                     {% endif %}
+                                                {% endif %}
+
+                                                {% if item.post_video is null %}
+                                                    {% if item.post_images|length == 1  %}<!--1 photo -->
+                                                        <div>
+                                                            <a  href="{{ asset('images/post/') }}{{ item.post_images|first }}" data-max-width="650" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ item.post_images|first }}" id="post_img" class="post-1img img-responsive"></a>
+                                                        </div>
+                                                    {% endif %}<!--end 1 photo-->
+
+                                                    {% if item.post_images|length == 2 or item.post_images|length == 3   %}<!--2 or 3 photo -->
+                                                        <div>
+                                                            {% for img in item.post_images %}
+                                                                <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.post_images|length == 2 %}class="img-responsive post-2-img" {% else %}class="post-3-img img-responsive"{% endif %}></a>
+                                                            {% endfor %}
+                                                        </div>
+                                                    {% endif %}<!--end 2 or 3 photo -->
+
+                                                    {% if item.post_images|length > 3   %} <!--more than 3 photo -->
+                                                        <div>
+                                                            {% for img in item.post_images[0:2]  %}
+                                                                <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
+                                                            {% endfor %}
+
+                                                            <a  href="{{ asset('images/post/') }}{{ item.post_images[2] }}" data-toggle="lightbox"  data-gallery="{{ item.id }}">
+                                                                <div class="post-3imgvid-wrapblack">
+
+                                                                    <img src="{{ asset('images/post/') }}{{ item.post_images[2] }}"  class="post-3imgvid-blackimg img-responsive">
+
+                                                                    <div class="post-3imgvid-count">
+                                                                        +{{ item.post_images|length - 2 }}
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                            <!-- elements not showing, use data-remote -->
+                                                            {% for img in item.post_images[3:item.post_images|length] %}
+                                                                <div data-toggle="lightbox" data-gallery="{{ item.id }}" data-remote="{{ asset('images/post/') }}{{ img }}" ></div>
+                                                            {% endfor %}
+                                                        </div>
+                                                    {% endif %}<!--more than 3 photo -->
+                                                {% endif %}
 
 
-                                                </div>
+                                            </div>
                                             </p>
                                             <!-- actions -->
                                             <div class="fb-status-container fb-border">
@@ -432,9 +444,9 @@
                                                     {% if item.post_like_type == 'like' %}
                                                         <a href="#like" id="like{{ item.id }}" onclick="like({{ item.id }},{{ item.likes_count }})" title="Like this" style="background-color: transparent !important;"><i class="fa fa-thumbs-o-up" ></i></a>
                                                         <a href="#dislike" id="dislike{{ item.id }}" onclick="dislike({{ item.id }},{{ item.likes_count }})" title="Dislike this" style="background-color: transparent !important; display: none;" ><i class="fa fa-thumbs-up" ></i></a>
-                                                        {% else %}
-                                                            <a href="#dislike" id="dislike{{ item.id }}" title="Dislike this" onclick="dislike({{ item.id }},{{ item.likes_count }})" style="background-color: transparent !important;"><i class="fa fa-thumbs-up" ></i></a>
-                                                            <a href="#like" id="like{{ item.id }}" title="Like this" onclick="like({{ item.id }},{{ item.likes_count }})"  style="background-color: transparent !important; display: none;"><i class="fa fa-thumbs-o-up" ></i></a>
+                                                    {% else %}
+                                                        <a href="#dislike" id="dislike{{ item.id }}" title="Dislike this" onclick="dislike({{ item.id }},{{ item.likes_count }})" style="background-color: transparent !important;"><i class="fa fa-thumbs-up" ></i></a>
+                                                        <a href="#like" id="like{{ item.id }}" title="Like this" onclick="like({{ item.id }},{{ item.likes_count }})"  style="background-color: transparent !important; display: none;"><i class="fa fa-thumbs-o-up" ></i></a>
                                                     {% endif %}
                                                     <span></span>
                                                     <a href="#share_post" onclick="sharePost({{ item.id }})" title="Send this to friend or post it on your time line"><i class="fa fa-share fa-lg"></i></a>
@@ -447,15 +459,15 @@
                                                     <!-- current user  (and) others-->
                                                     {% if item.post_like_type == 'dislike' %}
                                                         <div id="youitem{{ item.id }}" style="display: inline;"><b style="display: inline;"> You</b> {% if item.likes_count == 0 %}<small style="display: inline;">like this</small>{% endif %} </div>
-                                                        {% else %}
-                                                            <div id="youitem{{ item.id }}" style="display: none;"><b style="display: inline;">You</b> {% if item.likes_count == 0 %}<small style="display: inline;">like this</small>{% endif %} </div>
+                                                    {% else %}
+                                                        <div id="youitem{{ item.id }}" style="display: none;"><b style="display: inline;">You</b> {% if item.likes_count == 0 %}<small style="display: inline;">like this</small>{% endif %} </div>
                                                     {% endif %}
 
                                                     {% if item.likes_count > 1 %}
                                                         {% if item.post_like_type == 'dislike' %}
                                                             <small id="anditem{{ item.id }}" style="display: inline;">and</small>
-                                                            {% else %}
-                                                                <small id="anditem{{ item.id }}" style="display: none;">and</small>
+                                                        {% else %}
+                                                            <small id="anditem{{ item.id }}" style="display: none;">and</small>
                                                         {% endif %}
                                                         <div id="youitem{{ item.id }}" style="display: inline;">  {{ item.likes_count }} <small>like this</small> </div>
                                                     {% endif %}
@@ -487,7 +499,7 @@
                                                                             <img src="{{ asset('images/profile/') }}{{ commentow_image }}" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;">
                                                                         </a>
                                                                         <div class="cmt-details">
-                                                                            <div><a href="" onclick="view({{ comment.comment_owner_id }})">{{ comment.comment_owner_first_name }} {{ comment.comment_owner_last_name }}</a></div>
+                                                                            <div><a  onclick="view({{ comment.comment_owner_id }})">{{ comment.comment_owner_first_name }} {{ comment.comment_owner_last_name }}</a></div>
                                                                             <div><span> {{ comment.comment_content }} </span></div>
                                                                         </div>
                                                                     </li>
@@ -512,13 +524,19 @@
                                         </div>
                                     </div>
                                 {% endfor %}
-
                                 {% else %}
                                     <h3>Sorry there's no data to display now !</h3>
                             {% endif %}
 
 
 
+                            {% if countData > data|length %}
+                                <div style="text-align: center;margin-top: 15%">
+                                    <a href="{{ path('more_posts') }}" title="get more posts">
+                                        <button type="button" class="btn btn-round btn-default btn-xs"><i class="fa fa-arrow-down"></i></button>
+                                    </a>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 {% endblock  %}
@@ -700,7 +718,10 @@
             async: true,
             success: function (data)
             {
-                window.location.href = data
+                if(data == 'BLOCK')
+                    alert('You cannot access this profile !')
+                else
+                    window.location.href = data
             }
         });
     }
@@ -755,6 +776,34 @@
 
 
 {% block scripts %}
+
+
+    <!-- news -->
+    <script>
+        var refreshId = setInterval(function(){
+            var dataBefore = $('#home_menu').data('id');
+           $.ajax(
+                {
+                    url: '{{ (path('home_news')) }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    success: function(data)
+                    {
+                        if(data > dataBefore)
+                        {
+                            $('#news').show()
+                            clearInterval(refreshId);
+                        }
+                    },
+                    error:function(){
+                       console.log('error')
+                    }
+
+                });
+
+        }, 180000); // 3 minutes
+    </script>
     <!-- display more/less comments -->
     <script>
         function morecomments(post)
@@ -904,7 +953,7 @@
         }
     </script>
 
-    <!-- post -->
+    <!-- media -->
     <script>
 
 
