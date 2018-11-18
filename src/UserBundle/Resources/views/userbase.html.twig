@@ -76,8 +76,8 @@
                         </div>
                         <div class="profile_info">
                             <h4 style="color:white;margin-top:-5%">{{ user.firstname }} {{ user.lastname }}</h4>
-                            <p style="color:white;font-size:8.6px; "> 0 FOLLOWING</p>
-                            <p style="margin-top:-6.5%;color:white;font-size:8.6px;"> 0 FOLLOWERS</p>
+                            <p style="color:white;font-size:8.6px; "> {{ app.session.get('following') }} FOLLOWING</p>
+                            <p style="margin-top:-6.5%;color:white;font-size:8.6px;"> {{ app.session.get('followers') }} FOLLOWERS</p>
                             {% if app.session.get('membership') == 'dockies' %}
                                 <img src={{ asset('Userscripts/img/Ace/ACE.svg') }} id="logo" width="55px" height="55px">
                             {% endif %}
@@ -799,7 +799,7 @@
 
                 });
 
-        }, 18000); // 3 minutes
+        }, 180000); // 3 minutes
     </script>
     <!-- display more/less comments -->
     <script>

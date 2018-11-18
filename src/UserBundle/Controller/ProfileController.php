@@ -100,6 +100,26 @@ class ProfileController extends Controller
 
         $session = new Session();
         $session->set('user_info',$temp);
+
+        $this->getCountFollow($session);
         return new JsonResponse($this->generateUrl('profile'));
+    }
+
+    private function getCountFollow($session)
+    {
+        $currentUser = $this->getUser();
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Follow');
+        //Following
+        $followingdata = $repo->findBy(
+            array('user'=>$currentUser)
+        );
+        if(sizeof($followingdata)>0) $following = sizeof($followingdata); else $following = 0;
+        $session->set('following',$following);
+        //Followers
+        $folllowersdata = $repo->findBy(
+            array('userToFollow'=>$currentUser)
+        );
+        if(sizeof($folllowersdata)>0) $followers = sizeof($folllowersdata); else $followers = 0;
+        $session->set('followers',$followers);
     }
 }

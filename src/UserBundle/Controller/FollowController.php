@@ -11,6 +11,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class FollowController extends Controller
 {
+
+
+
+
+
     /**
      * @Route("/linkpan/follow",name="follow")
      */
@@ -61,6 +66,10 @@ class FollowController extends Controller
                 $em->flush();
             }
         }
+
         return $this->forward('UserBundle:Profile:searchprofile',array('user'=>$request->get('unfollow')));
     }
+
+
+
 }

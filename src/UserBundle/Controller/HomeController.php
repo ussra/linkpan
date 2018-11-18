@@ -25,8 +25,31 @@ class HomeController extends Controller
         $session->set('membership',$membership);
     }
 
+
+    private function getCountFollow()
+    {
+        $session = new Session();
+        $currentUser = $this->getUser();
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Follow');
+        //Following
+        $followingdata = $repo->findBy(
+            array('user'=>$currentUser)
+        );
+        if(sizeof($followingdata)>0) $following = sizeof($followingdata); else $following = 0;
+        $session->set('following',$following);
+        //Followers
+        $folllowersdata = $repo->findBy(
+            array('userToFollow'=>$currentUser)
+        );
+        if(sizeof($folllowersdata)>0) $followers = sizeof($folllowersdata); else $followers = 0;
+        $session->set('followers',$followers);
+    }
+
     private function Homeresult($result)
     {
+        //set number of followers - following
+        $this->getCountFollow();
+        //
         $posts = array();
         $em = $this->getDoctrine()->getManager();
         $currentUser = $this->getUser();
@@ -114,6 +137,8 @@ class HomeController extends Controller
         }
         return $posts ;
     }
+
+
 
     /**
      * @Route("/linkpan/home/news",name="home_news")
