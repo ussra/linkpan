@@ -1229,7 +1229,7 @@
         $('.pan-rate').raty({
             click: function(score, evt)
             {
-                alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
+                //alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
 
                 $.ajax({
                     url:'{{ (path('rate_pan')) }}',
@@ -1238,13 +1238,30 @@
                     data:{
                         'pan': this.id,
                         'value': score,
-                    },
-                    success:function(data)
-                    {
-                        alert(data)
                     }
                 });
             }
         });
     </script>
+
+    <!-- Filter -->
+    <script>
+        function productfilter(obj)
+        {
+            $.ajax({
+                url:'{{ (path('discover_filter')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:{
+                    'filter':obj
+                },
+                success:function(data)
+                {
+                    window.location.href = data
+                }
+            });
+        }
+    </script>
+    <!-- -->
+
 {% endblock %}
