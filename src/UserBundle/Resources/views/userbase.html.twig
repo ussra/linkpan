@@ -718,7 +718,10 @@
             async: true,
             success: function (data)
             {
-                window.location.href = data
+                if(data == 'BLOCK')
+                    alert('You cannot access this profile !')
+                else
+                    window.location.href = data
             }
         });
     }
