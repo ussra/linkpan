@@ -57,40 +57,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="userbase.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig">
+      <file leaf-file-name="BoostPanController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/BoostPanController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="721" column="58" lean-forward="false" selection-start-line="721" selection-start-column="58" selection-end-line="721" selection-end-column="58" />
-              <folding>
-                <element signature="e#19254#25859#0#Twig" expanded="false" />
-                <element signature="e#19339#20558#0#Twig" expanded="false" />
-                <element signature="e#20642#22126#0#Twig" expanded="false" />
-                <element signature="e#22214#24968#0#Twig" expanded="false" />
-                <element signature="e#26054#26616#0#Twig" expanded="false" />
-                <element signature="e#26688#27493#0#Twig" expanded="false" />
-                <element signature="e#27571#29617#0#Twig" expanded="false" />
-                <element signature="e#32814#33567#0#Twig" expanded="false" />
-                <element signature="e#33976#35303#0#Twig" expanded="false" />
-                <element signature="e#39211#39684#0#Twig" expanded="false" />
-                <element signature="e#48511#50349#0#HTML" expanded="false" />
-                <element signature="e#50437#50782#0#HTML" expanded="false" />
-                <element signature="e#50881#52006#0#HTML" expanded="false" />
-                <element signature="e#52100#53319#0#HTML" expanded="false" />
-              </folding>
+            <state relative-caret-position="286">
+              <caret line="37" column="44" lean-forward="true" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProfileController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/ProfileController.php">
+      <file leaf-file-name="pans.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/pans.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="38" column="12" lean-forward="false" selection-start-line="38" selection-start-column="12" selection-end-line="38" selection-end-column="12" />
-              <folding>
-                <element signature="e#4685#5370#0#PHP" expanded="false" />
-                <marker date="1542560010667" expanded="true" signature="977:1212" ph="SELECT b FRO... UserBundle" />
-              </folding>
+            <state relative-caret-position="771">
+              <caret line="35" column="43" lean-forward="false" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="crud.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/crud.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -159,7 +151,6 @@
         <option value="$PROJECT_DIR$/src/UserBundle/Controller/PostController.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Entity/Pan.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Entity/BoostPan.php" />
-        <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/crud.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/pans.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Controller/MembershipController.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Controller/PanController.php" />
@@ -182,7 +173,6 @@
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/viewgroup.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/groups.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Controller/GroupPostController.php" />
-        <option value="$PROJECT_DIR$/src/UserBundle/Controller/BoostPanController.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Controller/DockiesController.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/discover.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/product.html.twig" />
@@ -195,6 +185,8 @@
         <option value="$PROJECT_DIR$/src/UserBundle/Controller/HomeController.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Controller/ProfileController.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/crud.html.twig" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Controller/BoostPanController.php" />
       </list>
     </option>
   </component>
@@ -299,7 +291,15 @@
               <item name="linkpan" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="UserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="linkpan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="linkpan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="UserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -361,12 +361,12 @@
       <workItem from="1542314147762" duration="6384000" />
       <workItem from="1542403532274" duration="7882000" />
       <workItem from="1542465233681" duration="12141000" />
-      <workItem from="1542551013125" duration="8242000" />
+      <workItem from="1542551013125" duration="9693000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="217698000" />
+    <option name="totallyTimeSpent" value="219149000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1384" height="738" extended-state="6" />
@@ -425,11 +425,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/web/Userscripts/rating/img/5.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/Userscripts/rating/img/star-on.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -465,13 +460,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/pans.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="35" column="43" lean-forward="true" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -590,13 +578,6 @@
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/viewgroup.html.twig" />
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/GroupPostController.php" />
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/GroupPostLike.php" />
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/BoostPanController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="47" column="12" lean-forward="true" selection-start-line="47" selection-start-column="12" selection-end-line="47" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/PanReviewController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="365">
@@ -728,6 +709,30 @@
             <element signature="e#50881#52006#0#HTML" expanded="false" />
             <element signature="e#52100#53319#0#HTML" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/pans.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="771">
+          <caret line="35" column="43" lean-forward="false" selection-start-line="35" selection-start-column="43" selection-end-line="35" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/crud.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/BoostPanController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="37" column="44" lean-forward="true" selection-start-line="37" selection-start-column="44" selection-end-line="37" selection-end-column="44" />
+          <folding />
         </state>
       </provider>
     </entry>
