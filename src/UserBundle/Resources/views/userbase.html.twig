@@ -53,7 +53,7 @@
 
 
 {% if user is not null %}
-    <div class="container body">
+    <div class="container body" style="background:white">
         {% if user.image is null or user.image == '' %}
             {% set currentimage = 'default.png' %}
             {% else %}
@@ -300,15 +300,30 @@
                                     <div class="panel" style="margin-top: 2.5%;">
                                         <div class="panel-body">
                                             <!-- Image -->
-                                            <div class="fb-user-thumb">
+                                            <div class="fb-user-thumb" style="display:inline">
                                                 {% if item.owner_image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.owner_image  %}{% endif %}
                                                 <a onclick="view({{ item.owner_id }})"><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
                                             </div>
+                                             <!--add remove post -->
+                                            <div style="display:inline;float:right">
+                                             <!-- Single button -->
+                                                    <div class="btn-group ">
+                                                        <button style="    visibility: hidden;"type="button" class="btn btn-primary">Right dropup</button> 
+                                                        <button type="button" style="background:white;border:0" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 
+                                                            <i style="color:black" class="fa fa-ellipsis-h"></i>
+                                                        </button> 
+                                                        <ul class="dropdown-menu dropdown-menu-right">
+                                                            <li><a href="#">Delet</a></li>
+                                                        </ul> 
+                                                    </div>
+                                            </div>
+                                            <!--end delet post -->
                                             <!-- Name / Boosted /Date / Adress -->
                                             <div class="fb-user-details">
                                                 <h3><a href="#" class="#" onclick="view({{ item.owner_id }})">{{ item.owner_first_name }} {{ item.owner_last_name }}</a> {% if item.owner_company_name is not null %} <small> {{ item.owner_company_name }}</small> {% endif %}</h3>
                                                 <p>{% if item.post_boosted == 'boosted' %}<strong style="color:black">BOOSTED</strong></strong> | {% endif %} {{ item.post_creation_date }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
                                             </div>
+                                           
 
                                             <div class="clearfix"></div>
 
@@ -449,7 +464,22 @@
                                                         <a href="#like" id="like{{ item.id }}" title="Like this" onclick="like({{ item.id }},{{ item.likes_count }})"  style="background-color: transparent !important; display: none;"><i class="fa fa-thumbs-o-up" ></i></a>
                                                     {% endif %}
                                                     <span></span>
-                                                    <a href="#share_post" onclick="sharePost({{ item.id }})" title="Send this to friend or post it on your time line"><i class="fa fa-share fa-lg"></i></a>
+                                                    <!--<a href="#share_post" onclick="sharePost({ item.id }})" title="Send this to friend or post it on your time line"><i class="fa fa-share fa-lg"></i></a> -->
+                                                <!--add share fb twiter googlr plus linkedin -->
+                                                <div class="btn-group">
+                                                    <button type="button" style="border:0" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <i class="fa fa-share fa-lg"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="#share_post" onclick="sharePost({{ item.id }})" title="Send this to friend or post it on your time line">on your timeline</a></li>
+                                                        <li role="separator" class="divider"></li>
+                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>                                                        
+                                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                                                        
+                                                    </ul>
+                                                    </div>
+                                                    <!--end add share fb twiter googlr plus linkedin -->
                                                 </div>
                                             </div>
 
@@ -478,6 +508,20 @@
                                                     {% if comments|length > 0 %}
                                                         {% for comment in comments[0:3] %}
                                                             <li>
+                                                            <!--add remove comment -->
+                                                            <div style="display:inline;float:right">
+                                                        
+                                                                <div class="btn-group ">
+                                                                    <button style="    visibility: hidden;"type="button" class="btn btn-primary">Right dropup</button> 
+                                                                    <button type="button" style="background:#f6f6f6;border:0" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 
+                                                                        <i style="color:black" class="fa fa-ellipsis-h"></i>
+                                                                    </button> 
+                                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                                        <li><a href="#">Delet</a></li>
+                                                                    </ul> 
+                                                                </div>
+                                                            </div>
+                                                            <!--end add remove comment -->
                                                                 <a  class="cmt-thumb">
                                                                     {% if comment.comment_owner_image is null %}{% set commentow_image = 'default.png' %}{% else %}{% set commentow_image = comment.comment_owner_image %} {% endif %}
                                                                     <img src="{{ asset('images/profile/') }}{{ commentow_image }}" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;">

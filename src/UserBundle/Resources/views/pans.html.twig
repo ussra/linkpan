@@ -28,7 +28,16 @@
 
     {% for pan in pans %}
         <tr>
-            <td width="30px;"><input type="checkbox" id="check-all" class="flat" name="CheckedPoste" value="{{ pan.pan_id }}"></td>
+            <td width="30px;">
+                <!-- <input type="checkbox" id="{ pan.pan_id }}" class="flat" name="CheckedPoste" value="{ pan.pan_id }}"> -->
+                <!-- Default checkbox -->
+                <div class="checkbox">
+                    <label>
+                    <input type="checkbox" value="{{ pan.pan_id }}">
+                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                    </label>
+                </div>
+            </td>
             <td>{{ pan.pan_name }}</td>
             <td>{{ pan.pan_origine }}</td>
             <td>{{ pan.pan_av }}</td>
