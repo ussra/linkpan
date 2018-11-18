@@ -115,7 +115,34 @@ class HomeController extends Controller
         return $posts ;
     }
 
-
+    /**
+     * @Route("/linkpan/home/news",name="home_news")
+     */
+    public function home_newsAction()
+    {
+        $currentUser = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT count(DISTINCT p.id) 
+            FROM UserBundle:Post p 
+            WHERE p.user = :user
+            OR IDENTITY(p.user) IN (SELECT IDENTITY(f.userToFollow) FROM 
+            UserBundle:Follow f 
+            WHERE f.user = :user)
+            OR p.id IN (
+              SELECT IDENTITY(bp.post) FROM UserBundle:BoostPost bp
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+            ) 
+            ORDER BY p.id DESC 
+            '
+        )->setParameter('user', $currentUser);
+        return new JsonResponse($query->getResult()[0][1]);
+    }
 
     /**
      * @Route("/linkpan/home/more_posts",name="more_posts")
@@ -124,7 +151,6 @@ class HomeController extends Controller
     {
         $session = new Session();
         $currentUser = $this->getUser();
-        $posts = array();
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
             'SELECT DISTINCT p 
@@ -147,7 +173,29 @@ class HomeController extends Controller
         )->setParameter('user', $currentUser);//
         $result =  $query->getResult();
         $posts = $this->Homeresult($result);
-        $session->set('Homeposts',array_reverse($posts));
+        $session->set('Homeposts',$posts);
+        // count
+        $query = $em->createQuery(
+            'SELECT count(DISTINCT p.id) 
+            FROM UserBundle:Post p 
+            WHERE p.user = :user
+            OR IDENTITY(p.user) IN (SELECT IDENTITY(f.userToFollow) FROM 
+            UserBundle:Follow f 
+            WHERE f.user = :user)
+            OR p.id IN (
+              SELECT IDENTITY(bp.post) FROM UserBundle:BoostPost bp
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+            ) 
+            ORDER BY p.id DESC 
+            '
+        )->setParameter('user', $currentUser);
+        $session->set('Homeposts_count',$query->getResult()[0][1]);
+        //
         return $this->render('UserBundle::userbase.html.twig');
     }
 
@@ -159,11 +207,31 @@ class HomeController extends Controller
     {
         $session = new Session();
         $currentUser = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
         // Membership
         $this->getMembership($session,$currentUser);
+        // count
+        $query = $em->createQuery(
+            'SELECT count(DISTINCT p.id) 
+            FROM UserBundle:Post p 
+            WHERE p.user = :user
+            OR IDENTITY(p.user) IN (SELECT IDENTITY(f.userToFollow) FROM 
+            UserBundle:Follow f 
+            WHERE f.user = :user)
+            OR p.id IN (
+              SELECT IDENTITY(bp.post) FROM UserBundle:BoostPost bp
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+            )
+            AND IDENTITY(p.user) NOT IN (
+              SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+            ) 
+            ORDER BY p.id DESC 
+            '
+        )->setParameter('user', $currentUser);
+        $session->set('Homeposts_count',$query->getResult()[0][1]);
         // posts
-
-        $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery(
             'SELECT DISTINCT p 
             FROM UserBundle:Post p 
@@ -182,11 +250,10 @@ class HomeController extends Controller
             ) 
             ORDER BY p.id DESC 
             '
-        )->setParameter('user', $currentUser);//
+        )->setParameter('user', $currentUser);
         $result =  $query->setMaxResults(5)->getResult();
         $posts = $this->Homeresult($result);
         $session->set('Homeposts',$posts);
-        //
         return $this->render('UserBundle::userbase.html.twig');
     }
 
@@ -307,15 +374,9 @@ class HomeController extends Controller
     }
 
 
-    /**
-     * @Route("/linkpan/discover_view",name="discover_view")
-     */
-    public function discover_viewAction()
-    {
-        return $this->render('UserBundle::discover.html.twig');
-    }
 
-    
+
+
 
 
 }

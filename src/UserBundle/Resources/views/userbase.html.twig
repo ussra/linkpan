@@ -93,9 +93,9 @@
                     <!-- sidebar menu -->
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu" style="background-color:#0e7ac3">
                         <div class="menu_section">
-
+                            {% set countData = app.session.get('Homeposts_count') %}
                             <ul class="nav side-menu">
-                                <li><a href="{{ path('home') }}"> Home</a></li>
+                                <li><a href="{{ path('home') }}" data-id="{{ countData }}" id="home_menu"> Home</a></li>
                             </ul>
 
                             {% if app.session.get('membership') == 'dockies' %}
@@ -246,6 +246,8 @@
 
             <div class="right_col" role="main">
                 {% block pageContent %}
+
+
                     <div style="margin-top:80px">
                         <div class="container bootstrap snippet">
                             <div class="panel profile-info">
@@ -283,6 +285,15 @@
                                 </form>
                             </div>
 
+
+                            <div style="text-align: center; display: none" id="news" >
+                                <a href="{{ path('home') }}">
+                                    <button type="button" class="btn btn-round btn-primary btn-xs">
+                                        <i class="fa fa-arrow-up"></i>New posts
+                                    </button>
+                                </a>
+                            </div>
+
                             {% set data = app.session.get('Homeposts') %}
                             {% if  data|length > 0 %}
                                 {% for item in data %}
@@ -291,7 +302,7 @@
                                             <!-- Image -->
                                             <div class="fb-user-thumb">
                                                 {% if item.owner_image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.owner_image  %}{% endif %}
-                                                <a href="#" onclick="view({{ item.owner_id }})"><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
+                                                <a onclick="view({{ item.owner_id }})"><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
                                             </div>
                                             <!-- Name / Boosted /Date / Adress -->
                                             <div class="fb-user-details">
@@ -488,7 +499,7 @@
                                                                             <img src="{{ asset('images/profile/') }}{{ commentow_image }}" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;">
                                                                         </a>
                                                                         <div class="cmt-details">
-                                                                            <div><a href="" onclick="view({{ comment.comment_owner_id }})">{{ comment.comment_owner_first_name }} {{ comment.comment_owner_last_name }}</a></div>
+                                                                            <div><a  onclick="view({{ comment.comment_owner_id }})">{{ comment.comment_owner_first_name }} {{ comment.comment_owner_last_name }}</a></div>
                                                                             <div><span> {{ comment.comment_content }} </span></div>
                                                                         </div>
                                                                     </li>
@@ -516,11 +527,16 @@
                                 {% else %}
                                     <h3>Sorry there's no data to display now !</h3>
                             {% endif %}
-                            <div style="text-align: center;margin-top: 15%">
-                                <a href="{{ path('more_posts') }}" title="get more posts">
-                                    <button type="button" class="btn btn-round btn-default btn-xs"><i class="fa fa-arrow-down"></i></button>
-                                </a>
-                            </div>
+
+
+
+                            {% if countData > data|length %}
+                                <div style="text-align: center;margin-top: 15%">
+                                    <a href="{{ path('more_posts') }}" title="get more posts">
+                                        <button type="button" class="btn btn-round btn-default btn-xs"><i class="fa fa-arrow-down"></i></button>
+                                    </a>
+                                </div>
+                            {% endif %}
                         </div>
                     </div>
                 {% endblock  %}
@@ -757,6 +773,34 @@
 
 
 {% block scripts %}
+
+
+    <!-- news -->
+    <script>
+        var refreshId = setInterval(function(){
+            var dataBefore = $('#home_menu').data('id');
+           $.ajax(
+                {
+                    url: '{{ (path('home_news')) }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    success: function(data)
+                    {
+                        if(data > dataBefore)
+                        {
+                            $('#news').show()
+                            clearInterval(refreshId);
+                        }
+                    },
+                    error:function(){
+                       console.log('error')
+                    }
+
+                });
+
+        }, 18000); // 3 minutes
+    </script>
     <!-- display more/less comments -->
     <script>
         function morecomments(post)
