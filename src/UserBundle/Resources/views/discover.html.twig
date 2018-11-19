@@ -1156,6 +1156,7 @@
                     <div class="x_content">
                         {% set discover_pans = app.session.get('discover_pans') %}
                         <div class="row">
+
                             {% if discover_pans|length > 0 %}
                                 {% for pan in  discover_pans %}
                                     <div class="col-md-3">
@@ -1196,7 +1197,7 @@
                         </div>
 
                         <!-- More -->
-                        {% if app.session.get('Discover_count') > discover_pans|length %}
+                        {% if app.session.get('Discover_count')|number_format > discover_pans|length %}
                             <div style="text-align: center;margin-top: 15%">
                                 <a href="{{ path('more_pans') }}"  title="get more pans">
                                     <button type="button" class="btn btn-round btn-default btn-xs"><i class="fa fa-arrow-down"></i></button>
@@ -1246,6 +1247,7 @@
 
     <!-- Filter -->
     <script>
+        <!-- options -->
         function productfilter(obj)
         {
             $.ajax({
@@ -1257,6 +1259,24 @@
                 },
                 success:function(data)
                 {
+                    window.location.href = data
+                }
+            });
+        }
+
+        <!-- categories -->
+        function Categfilter(obj)
+        {
+            $.ajax({
+                url:'{{ (path('discover_filter_category')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:{
+                    'categ':obj
+                },
+                success:function(data)
+                {
+                    //alert(data)
                     window.location.href = data
                 }
             });
