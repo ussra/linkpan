@@ -58,7 +58,6 @@ class PostController extends Controller
                 $em->flush();
             }
         }
-
         return $this->forward('UserBundle:Home:index');
     }
 

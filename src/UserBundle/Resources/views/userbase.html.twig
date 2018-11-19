@@ -107,7 +107,7 @@
                                 <li><a href="{{ path('pans') }}"> Pans</a></li>
                             </ul>
                             <ul class="nav side-menu">
-                                <li><a  > Discover</a></li>
+                                <li><a onclick="discover()"> Discover</a></li>
                             </ul>
                             <ul class="nav side-menu">
                                 <li><a  > Groups</a></li>
@@ -278,7 +278,6 @@
                                         </div>
                                         <!--Video -->
                                     </div><!--end upload -->
-
 
                                     <button type="submit" class="btn btn-info" id="postpan" >Post</button>
 
@@ -810,6 +809,32 @@
             }
         });
 
+    }
+</script>
+
+
+<!-- Discover -->
+<script>
+    function discover()
+    {
+        $.ajax({
+            url: '{{ (path('discover_filter')) }}',
+            type: 'POST',
+            dataType: 'json',
+            data:
+                {
+                    'filter': 'New in'
+                },
+            async: true,
+            success: function (data)
+            {
+                window.location.href = data
+            },
+            error:function()
+            {
+                alert('plase , retry again !')
+            }
+        });
     }
 </script>
 
