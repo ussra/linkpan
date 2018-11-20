@@ -44,12 +44,24 @@
 
                                     <li class="account">
                                         <a href="#">
-                                            My Account
+                                            {{'pub_myacc'|trans}}
                                             <i class="fa fa-angle-down"></i>
                                         </a>
                                         <ul class="account_selection">
-                                            <li><a href="{{ path('signin') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-                                            <li><a ><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                                            <li><a href="{{ path('signin') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>{{'signin_SIGN_IN'|trans }}</a></li>
+                                            <li><a ><i class="fa fa-user-plus" aria-hidden="true"></i>{{'pub_sign_up'|trans }}</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="account">
+                                        <a href="#">
+                                            {{'pub_lang'|trans}}
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                        <ul class="account_selection">
+                                            <li><a href=""><img class="img-fluid" src={{ asset('scripts/img/flags/usa.png') }}></a></li>
+                                            <li><a href=""><img class="img-fluid" src={{ asset('scripts/img/flags/fr.png') }} ></a></li>
+                                            <li><a href=""><img class="img-fluid" src={{ asset('scripts/img/flags/sp.png') }} ></a></li>
+                                            <li><a href=""><img class="img-fluid" src={{ asset('scripts/img/flags/ma.png') }} ></a></li>
                                         </ul>
                                     </li>
                                 </ul>
@@ -72,14 +84,14 @@
                         </div>
                         <nav class="navbar">
                             <ul class="navbar_menu">
-                                <li><a href="{{ path('linkpan') }}">HOME</a></li>
-                                <li><a href="">DISCOVER</a></li>
-                                <li><a href="">ABOUT US</a></li>
-                                <li><a href="">CONTACT US</a></li>
+                                <li><a href="{{ path('linkpan') }}">{{'pub_home'|trans }}</a></li>
+                                <li><a href="">{{'pub_discover'|trans }}</a></li>
+                                <li><a href="">{{'pub_about_us'|trans }}</a></li>
+                                <li><a href="">{{'pub_contact_us'|trans }}</a></li>
                                 {% block search %}
                                     <li>
                                         <form class="form-inline">
-                                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                            <input class="form-control mr-sm-2" type="search" placeholder="{{'pub_search'|trans }}" aria-label="Search">
 
                                             <button class="btn btn-outline-primary my-2 my-sm-0" type="button"><i class="fa fa-image"  title="Search By Image"></i></button>
                                         </form>
@@ -108,7 +120,7 @@
             <ul class="menu_top_nav">
                 <li class="menu_item has-children">
                     <a href="#">
-                        My Account
+                        {{'pub_myacc'|trans}}
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="menu_selection">
@@ -116,13 +128,13 @@
                         <li><a ><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
                     </ul>
                 </li>
-                <li class="menu_item"><a href="">HOME</a></li>
-                <li class="menu_item"><a href="">DISCOVER</a></li>
-                <li class="menu_item"><a href="">ABOUT US</a></li>
-                <li class="menu_item"><a href="">CONTACT US</a></li>
+                <li><a href="{{ path('linkpan') }}">{{'pub_home'|trans }}</a></li>
+                <li><a href="">{{'pub_discover'|trans }}</a></li>
+                <li><a href="">{{'pub_about_us'|trans }}</a></li>
+                <li><a href="">{{'pub_contact_us'|trans }}</a></li>
                 <li  style="margin-top:30px; margin-left:20px;">
                     <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width: 65%;">
+                        <input class="form-control mr-sm-2" type="search" placeholder="{{'pub_search'|trans }}" aria-label="Search" style="width: 65%;">
                         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fa fa-image"></i></button>
                     </form>
                 </li>
@@ -140,7 +152,7 @@
                     <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 text-left" style="margin-top: 3%">
                         <div class="row">
                             <div class="col-12 text-center">
-                                <h5 style="color:white;font-size:2vw;"><strong> Global Trading <br> &<br> Networking Platform</strong></h5>
+                                <h5 style="color:white;font-size:2vw;"><strong> {{'pub_GlobalTrading'|trans }} <br>&<br> {{'pub_NetworkingPlatform'|trans }} </strong></h5>
                             </div>
                         </div>
                         <div class="row">
@@ -152,45 +164,45 @@
 
                     <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 text-center" id="form">
                         <form class="text-center" method="post" action="{{ path('register') }}">
-                            <h1>SIGN UP NOW !</h1>
+                            <h1>{{'pub_sign_up_now'|trans }}</h1>
                             {% if message  is defined %}
                                 <div class="alert alert-danger">
                                     {{ message }}
                                 </div>
                             {% endif %}
                             <div class="text-center">
-                                <input type="text" placeholder="First name" class="smallinput" id="firstname" name="firstname" required>
-                                <input type="text" placeholder="Last name" class="smallinput" id="lastname" name="lastname" required>
+                                <input type="text" placeholder="{{'pub_firstname'|trans }}" class="smallinput" id="firstname" name="firstname" required>
+                                <input type="text" placeholder="{{'pub_lastname'|trans }}" class="smallinput" id="lastname" name="lastname" required>
                             </div>
                             <div class="text-center">
                                 <input type="email" placeholder="E-mail" class="biginput" id="email" name="email" required>
                             </div>
                             <div class="text-center">
-                                <input type="password" placeholder="Password" class="biginput" id="password" pattern=".{3,}" required>
+                                <input type="password" placeholder="{{'password'|trans }}" class="biginput" id="password" pattern=".{3,}" required>
                             </div>
                             <div class="text-center">
-                                <input type="password" placeholder="Confirm password" class="biginput" id="confirmpassword" name="confirmpassword" pattern=".{3,}" required>
+                                <input type="password" placeholder="{{'pub_confirmpass'|trans }}" class="biginput" id="confirmpassword" name="confirmpassword" pattern=".{3,}" required>
                             </div>
-                            <div class="text-center">
+                            <!--<div class="text-center">
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="customCheck1" checked disabled>
                                     <label class="custom-control-label" for="customCheck1" id="checkboxtext">I accept &nbsp;<a  class="checkboxlink"> terms </a>&nbsp;  and &nbsp;<a  class="checkboxlink">&nbsp;privacy</a></label>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="text-center">
                                 <a id="signup">
                                     <input type="submit"  class="btn btn-dark" value="SIGN UP" id="btn_signup">
                                 </a>
                             </div>
                             <div class="text-center">
-                                <span style="color: white">Already have an account ?</span> &nbsp;<a  class="checkboxlink"> Signin </a>
+                                <span style="color: white">{{'pub_alreadyhaveacc'|trans }}</span> &nbsp;<a  class="checkboxlink"> {{'signin_SIGN_IN'|trans }} </a>
                             </div>
                         </form>
                          <!-- ******************** -->
                         <br>
                         <div class="text-center">
                         <div style="border-bottom:5px solid white;width:60px;display:inline-block;border-radius:5px"></div> 
-                            <div style="color:white;display:inline-block;padding:10px">Or Sign up with</div>
+                            <div style="color:white;display:inline-block;padding:10px">{{'pub_orsignup'|trans }} </div>
                         <div style="border-bottom:5px solid white;width:60px;display:inline-block;border-radius:5px"></div>
                         </div>
                         <br>
@@ -198,7 +210,7 @@
                             <div class="col-xl-8 offset-xl-2" >
                             <div class="card" >
                                 <div class="card-body text-center">
-                                    <a href="#" class="btn btn-primary"><i class="fa fa-facebook-square" style="margin-right:5px"></i>  Sign Up with facebook</a>
+                                    <a href="#" class="btn btn-primary"><i class="fa fa-facebook-square" style="margin-right:5px"></i>{{'pub_orsignupwithfbk'|trans }}</a>
                                 </div>
                             </div>
                             </div>
@@ -220,42 +232,42 @@
                     <div class="col-md-4">
                         <div class="banner_item align-items-center" style="background-image:url({{ asset('scripts/img/agriculture.jpg') }})">
                             <div class="banner_category">
-                                <a>AGRICULTURE</a>
+                                <a>{{'pub_AGRICULTURE'|trans }}</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="banner_item align-items-center" style="background-image:url({{ asset('scripts/img/banner_2.jpg') }})">
                             <div class="banner_category">
-                                <a>ACCESSOIRIES</a>
+                                <a>{{'pub_ACCESSOIRIES'|trans }}</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="banner_item align-items-center" style="background-image:url({{ asset('scripts/img/electronics.jpg') }})">
                             <div class="banner_category">
-                                <a>ELECTRONICS</a>
+                                <a>{{'pub_ELECTRONICS'|trans }}</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="banner_item align-items-center" style="background-image:url({{ asset('scripts/img/construction.jpg') }})">
                             <div class="banner_category">
-                                <a>TOOLS</a>
+                                <a>{{'pub_TOOLS'|trans }}</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="banner_item align-items-center" style="background-image:url({{ asset('scripts/img/chemicals.jpg') }})">
                             <div class="banner_category">
-                                <a>CHEMICALAS</a>
+                                <a>{{'pub_CHEMICALAS'|trans }}</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="banner_item align-items-center">
                             <div class="banner_category">
-                                <a >DISCOVER MORE</a>
+                                <a>{{'pub_DISCOVER_MORE'|trans }}</a>
                             </div>
                         </div>
                     </div>
@@ -270,7 +282,7 @@
                 <div class="row">
                     <div class="col text-center">
                         <div class="section_title new_arrivals_title">
-                            <h2>New Pans</h2>
+                            <h2>{{'pub_New_Pans'|trans }}</h2>
                         </div>
                     </div>
                 </div>
@@ -278,10 +290,10 @@
                     <div class="col text-center">
                         <div class="new_arrivals_sorting">
                             <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
-                                <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">All</li>
-                                <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".agriculture">AGRICULTURE</li>
-                                <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories">ACCESSOIRIES</li>
-                                <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".electro">ELECTRONICS</li>
+                                <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">{{'all'|trans }}</li>
+                                <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".agriculture">{{'pub_AGRICULTURE'|trans }}</li>
+                                <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories">{{'pub_ACCESSOIRIES'|trans }}</li>
+                                <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".electro">{{'pub_ELECTRONICS'|trans }}</li>
                             </ul>
                         </div>
                     </div>
@@ -305,7 +317,7 @@
                                             <div class="product_price">$520.00<span>$590.00</span></div>
                                         </div>
                                     </div>
-                                    <div class="red_button add_to_cart_button"><a href="#" onclick="return false;">Details</a></div>
+                                    <div class="red_button add_to_cart_button"><a href="#" onclick="return false;">{{'pub_Details'|trans }}</a></div>
                                 </div>
                             </a>
 
@@ -323,7 +335,7 @@
                                         <div class="product_price">$610.00</div>
                                     </div>
                                 </div>
-                                <div class="red_button add_to_cart_button"><a href="#">Details</a></div>
+                                <div class="red_button add_to_cart_button"><a href="#">{{'pub_Details'|trans }}</a></div>
                             </div>
 
 
@@ -346,10 +358,10 @@
                     <div class="col-lg-6 text-right deal_ofthe_week_col">
                         <div class="deal_ofthe_week_content d-flex flex-column align-items-center float-right">
                             <div class="section_title">
-                                <h2>Discover ACE Membership</h2>
-                                <p style="font-size:2vw; color:black">You get global posting, Ace Logo And Dockies Prime. Dockies prime takes your business to a 100X option to getting deals become transcations.</p>
+                                <h2>{{'pub_Discover_Membership'|trans }}</h2>
+                                <p style="font-size:2vw; color:black">{{'pub_Discover_Membership_text'|trans }}</p>
                             </div>
-                            <div class="red_button deal_ofthe_week_button"><a href="#">UPGRADE NOW</a></div>
+                            <div class="red_button deal_ofthe_week_button"><a href="#">{{'pub_UPGRADE_NOW'|trans }}</a></div>
                         </div>
                     </div>
                 </div>

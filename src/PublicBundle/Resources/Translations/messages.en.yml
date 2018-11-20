@@ -1,0 +1,53 @@
+# SIGN IN
+
+signin_SIGN_IN : SIGN IN
+signin_Invalid_login: Invalid email or password , please retry again !
+password: Password
+signin_donthaveacc: Don't Have an Account?
+signin_forgotpass: Forgot the password?
+signin_choice: Or sign in with
+signin_withfb: Sign in with facebook
+
+#END SIGN IN
+
+#HOME PUBLIC
+  #NAV 
+pub_myacc: My Account
+pub_lang: language
+pub_sign_up: SIGN UP
+pub_sign_up_now: SIGN UP NOW !
+pub_home: HOME
+pub_discover: DISCOVER
+pub_about_us: ABOUT US
+pub_contact_us: CONTACT US
+pub_search: Search
+  #END NAV 
+
+  #SIGN UP 
+pub_sign_up_now: SIGN UP NOW !
+pub_GlobalTrading:  Global Trading 
+pub_NetworkingPlatform:  Networking Platform
+pub_firstname:  First name
+pub_lastname:  Last name
+pub_confirmpass: Confirm password
+pub_alreadyhaveacc: Already have an account ?
+pub_orsignup: Or Sign up with
+pub_orsignupwithfb: Sign Up with faceboo
+  #END SIGN UP
+
+    #BODY Pans
+pub_AGRICULTURE: AGRICULTURE
+pub_ACCESSOIRIES: ACCESSOIRIES
+pub_ELECTRONICS: ELECTRONICS
+pub_TOOLS: TOOLS
+pub_CHEMICALAS: CHEMICALAS
+pub_DISCOVER_MORE: DISCOVER MORE
+pub_New_Pans: New Pans
+all: ALL
+pub_Details: Details
+pub_Discover_Membership: Discover ACE Membership
+pub_Discover_Membership_text: You get global posting, Ace Logo And Dockies Prime. Dockies prime takes your business to a 100X option to getting deals become transcations.
+pub_UPGRADE_NOW: UPGRADE NOW
+
+
+    #END BODY Pans
