@@ -839,19 +839,12 @@
 </script>
 
 
-
-
-
-
-
-{% block scripts %}
-
-
+{% block privacy  %}
     <!-- news -->
     <script>
         var refreshId = setInterval(function(){
             var dataBefore = $('#home_menu').data('id');
-           $.ajax(
+            $.ajax(
                 {
                     url: '{{ (path('home_news')) }}',
                     type: 'POST',
@@ -866,13 +859,23 @@
                         }
                     },
                     error:function(){
-                       console.log('error')
+                        console.log('error')
                     }
 
                 });
 
         }, 180000); // 3 minutes
     </script>
+{% endblock %}
+
+
+
+
+
+{% block scripts %}
+
+
+
     <!-- display more/less comments -->
     <script>
         function morecomments(post)
