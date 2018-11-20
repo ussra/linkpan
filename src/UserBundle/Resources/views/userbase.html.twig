@@ -413,7 +413,7 @@
                                                 {% if item.post_video is null %}
                                                     {% if item.post_images|length == 1  %}<!--1 photo -->
                                                         <div>
-                                                            <a  href="{{ asset('images/post/') }}{{ item.post_images|first }}" data-max-width="650" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ item.post_images|first }}" id="post_img" class="post-1img img-responsive"></a>
+                                                            <a  href="{{ asset('images/post/') }}{{ item.post_images|first }}" data-max-width="1000" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ item.post_images|first }}" id="post_img" class="post-1img img-responsive"></a>
                                                         </div>
                                                     {% endif %}<!--end 1 photo-->
 
