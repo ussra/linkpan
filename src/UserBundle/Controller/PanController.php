@@ -8,6 +8,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\Pan;
 use DateTime;
+use UserBundle\Entity\PanReview;
+use UserBundle\Entity\PanShare;
+
 class PanController extends Controller
 {
     /**
@@ -92,4 +95,56 @@ class PanController extends Controller
         }
         return new JsonResponse('Done');
     }
+
+
+    /**
+     * @Route("/linkpan/discover/share_pan",name="share_pan")
+     */
+    public function share_panAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository(Pan::class);
+        $pan = $repo->findOneById($request->get('pan'));
+        if($pan)
+        {
+            $currentUser = $this->getUser();
+            $psrepo = $this->getDoctrine()->getRepository('UserBundle:PanShare');
+            $item = $psrepo->findOneBy(
+                array('pan'=>$pan,'user'=>$currentUser)
+            );
+            if(sizeof($item) == 0)
+            {
+                $panShare = new PanShare();
+                $panShare->setPan($pan);
+                $panShare->setUser($currentUser);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($panShare);
+                $em->flush();
+            }
+        }
+        return new JsonResponse('Pass');
+    }
+
+    /**
+     * @Route("/linkpan/discover/review_pan",name="review_pan")
+     */
+    public function review_panAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository(Pan::class);
+        $pan = $repo->findOneById($request->get('pan'));
+        if($pan)
+        {
+            $currentUser = $this->getUser();
+            $panrev = new PanReview();
+            $panrev->setUser($currentUser);
+            $panrev->setPan($pan);
+            $panrev->setReview($request->get('review'));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($panrev);
+            $em->flush();
+            return new JsonResponse('Done');
+        }
+        else
+            return new JsonResponse('ERR');
+    }
+
 }

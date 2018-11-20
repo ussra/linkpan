@@ -10,13 +10,16 @@
     <!--end Rting -->
 {% endblock %}
 
+
 {% block Title %}
-    {% set product = app.session.get('selected_product') %}
-    {{ product.product_name }}
+    {{ app.session.get('selected_product').product.name }}
 {% endblock %}
 
+
 {% block pageContent %}
-    {% set product = app.session.get('selected_product') %}
+   {% set selected = app.session.get('selected_product') %}
+
+
     <div style="margin-top:20px">
         <div class="page-title">
             <!-- search -->
@@ -24,17 +27,17 @@
                 <div class="col-md-12 col-sm-12 col-xs-12 form-group pull-right top_search">
                     <form class="form-inline" style="float:right">
                         <div class="form-group">
-
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="row">
+
+          <div class="row">
             <div class="col-12">
                 <div class="x_panel">
                     <div class="x_title">
-                        {{ product.product_name }} | {{ product.product_other_name }}
+                        {{ selected.product.name }} - {{ selected.product.othername }}
                     </div>
                     <div class="x_content">
                         <div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -44,47 +47,38 @@
                                 <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Recommendations</a>
                                 </li>
                             </ul>
+
                             <div id="myTabContent" class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
                                     <div class="col-md-7 col-sm-7 col-xs-12">
                                         <div class="product-image">
-                                            <a href="{{ asset('images/pans/') }}{{ product.product_image }}" data-max-width="600" data-toggle="lightbox" data-gallery="product-main-img"><img src="{{ asset('images/pans/') }}{{ product.product_image }}" id="product-main-img" style="width: 400px;height: 400px;object-fit: cover;" /></a>
+                                            <a href="{{ asset('images/pans/') }}{{ selected.product.image }}" data-max-width="600" data-toggle="lightbox" data-gallery="product-main-img"><img src="{{ asset('images/pans/') }}{{ selected.product.image }}" id="product-main-img" style="width: 400px;height: 400px;object-fit: cover;" /></a>
                                             <div class="rating-block">
                                                 <h4>Average  rating</h4>
-                                                <h2 class="bold padding-bottom-7" style="display:inline;margin-right: 10px;">{{ product.product_average_rating }} <small>/ 5</small></h2><button type="button" class="btn btn-warning btn-sm" aria-label="Left Align"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
+                                                <h2 class="bold padding-bottom-7" style="display:inline;margin-right: 10px;">{{ selected.average }} <small>/ 5</small></h2><button type="button" class="btn btn-warning btn-sm" aria-label="Left Align"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
                                             </div>
                                         </div>
-
-
                                     </div>
 
                                     <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
-
-                                        <h3 class="prod_title">{{ product.product_owner_first_name }} {{ product.product_owner_last_name }}</h3>
-
-                                        <p>{{ product.prodcut_description }}</p>
-                                        <small>{{ product.product_category }}</small>
+                                        <h3 class="prod_title">{{ selected.product.user.firstname }} {{ selected.product.user.lastname }}</h3>
+                                        <p>{{ selected.product.description }}</p>
+                                        <small>{{ selected.product.category }}</small>
                                         <br />
-
 
                                         <div class="">
                                             <div class="product_price">
-                                                <h1 class="price">{{ product.product_price }} $</h1>
+                                                <h1 class="price">{{ selected.product.price }} $</h1>
                                                 <br>
                                             </div>
+                                            <div class="">
+                                                <a href="#" class="btn btn" title="share" onclick="sharePan({{ selected.product.id }})"><i class="fa fa-share"></i></a>
+                                                <a href="#" class="btn btn" title="Contact seller"><i class="fa fa-comments-o"></i></a>
+                                            </div>
                                         </div>
-
-                                        <div class="">
-                                            <a href="#" class="btn btn" title="share" onclick="sharePan({{ product.product_id }})"><i class="fa fa-share"></i></a>
-                                            <a href="#" class="btn btn" title="Contact seller"><i class="fa fa-comments-o"></i></a>
-                                        </div>
-
-
                                     </div>
-
-
-
                                 </div>
+
                                 <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                                     <div class="x_panel">
                                         <div class="x_content">
@@ -99,16 +93,16 @@
                                                                 <div class="panel-body">
                                                                     <form>
                                                                         <div class="input-group">
-                                                                            <input type="text" class="form-control" placeholder="write a comment..."  id="comment">
+                                                                            <input type="text" class="form-control" placeholder="write a comment..."  id="panreview">
                                                                             <span class="input-group-btn">
-                                                                                <a ><button class="btn btn btn-info" type="button" id="review" onclick="setreview({{ product.product_id}})">Submit Review</button></a>
+                                                                                <a ><button class="btn btn btn-info" type="button" id="review" onclick="panReview({{ selected.product.id }})">Submit Review</button></a>
                                                                             </span>
                                                                         </div>
                                                                     </form>
                                                                     <div class="clearfix"></div>
                                                                     <hr>
                                                                     <ul class="media-list" id="addcomment">
-                                                                        {% for product in product.product_reviews %}
+                                                                        {% for product in selected.reviews %}
                                                                             <li class="media">
                                                                                 <a href="#" class="pull-left" onclick="view({{ product.review_owner_id }})">
                                                                                     {% if product.review_owner_image is null %}{% set review_image = 'default.png' %} {% else %} {% set review_image = product.review_owner_image %} {% endif %}
@@ -133,21 +127,21 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-
                                                     </div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+          </div>
     </div>
+
 {% endblock %}
 
 
@@ -166,49 +160,13 @@
         });
     </script>
 
-
-    <!-- Review -->
-    <script>
-        function setreview(product)
-        {
-          if($('#comment').val() != '')
-          {
-              $('#comment').prop('disabled', true);
-              $.ajax({
-                  url:'{{ path('review') }}',
-                  type: 'POST',
-                  dataType: 'json',
-                  data:{
-                      'pan': product,
-                      'review':$('#comment').val()
-                  },
-                  success: function (data)
-                  {
-                      var output = '<li class="media"><a href="#" class="pull-left">'
-                      var image = '{{ currentimage }}'
-                      output += '<a href="#" class="pull-left"><img src="{{ asset('images/profile/') }}'+image+'" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;"">'
-                      output += '</a><div class="media-body"><div class="names">' + '{{ user.firstname }}' + ' ' + '{{ user.lastname }}'
-                      output += '</div><p>' + $('#comment').val() + '</p></div><li>'
-
-                      $('#addcomment').prepend(output);
-                      $('#comment').val('')
-
-                      $('#comment').prop('disabled', false);
-                  }
-              });
-          }
-          else
-              alert('Please, set a review !')
-        }
-    </script>
-
-    <!-- Share pan -->
+    <!-- share pan -->
     <script>
         function sharePan(pan)
         {
             alert('Pan shared on your profile')
             $.ajax({
-                url: '{{ path('pan_share') }}',
+                url: '{{ path('share_pan') }}',
                 type: 'POST',
                 dataType: 'json',
                 data: {
@@ -217,4 +175,49 @@
             });
         }
     </script>
+
+    <!-- submit review -->
+    <script>
+        function panReview(pan){
+            if($('#panreview').val() != '')
+            {
+                $('#panreview').prop('disabled', true);
+                $('#review').prop('disabled',true)
+
+                 $.ajax({
+                    url: '{{ path('review_pan') }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'pan': pan,
+                        'review':$('#panreview').val()
+                    },
+                    success:function (data)
+                    {
+                        if(data == 'Done')
+                        {
+                            var output = '<li class="media"><a href="#" class="pull-left">'
+                            var image = '{{ currentimage }}'
+                            output += '<a href="#" class="pull-left"><img src="{{ asset('images/profile/') }}'+image+'" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;"">'
+                            output += '</a><div class="media-body"><div class="names">' + '{{ user.firstname }}' + ' ' + '{{ user.lastname }}'
+                            output += '</div><p>' + $('#panreview').val() + '</p></div><li>'
+
+                            $('#addcomment').prepend(output);
+                        }
+                        else
+                            alert('ERR')
+
+
+                        $('#panreview').val('')
+                        $('#panreview').prop('disabled', false)
+                        $('#review').prop('disabled',false)
+
+                    }
+                });
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block privacy  %}
 {% endblock %}
