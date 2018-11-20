@@ -132,7 +132,7 @@ class DiscoverController extends Controller
     /**
      * @Route("/linkpan/discover",name="discover_pans")
      */
-    public function redirectDiscover()
+    public function redirectDiscoverAction()
     {
         return $this->render('UserBundle::discover.html.twig');
     }
@@ -384,5 +384,24 @@ class DiscoverController extends Controller
         }
 
         return new JsonResponse($this->generateUrl('discover_pans'));
+    }
+
+
+    /**
+     * @Route("/linkpan/discover/product",name="view_product")
+     */
+    public function view_productAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Pan');
+        $pan = $repo->findOneById($request->get('product'));
+        if(!is_null($pan))
+        {
+            $session = new Session();
+            $temp = array(
+                'product'=>$pan
+            );
+            $session->set('selected_product',$temp);
+            return $this->render('UserBundle::product.html.twig');
+        }
     }
 }

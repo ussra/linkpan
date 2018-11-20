@@ -92,4 +92,8 @@ class PanController extends Controller
         }
         return new JsonResponse('Done');
     }
+
+
+
+
 }
