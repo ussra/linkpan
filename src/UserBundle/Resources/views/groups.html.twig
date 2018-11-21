@@ -1,0 +1,141 @@
+{% extends "UserBundle::userbase.html.twig" %}
+{% block Title %}Groups{% endblock %}
+
+{% block pageContent %}
+    <div style="margin-top:80px">
+        <div class="x_panel">
+            <div class="x_title">
+
+                <div style="float: right">
+                    <button type="button" class="btn btn-success create" onclick="$('#creategroupe').modal('show')"><i class="fa fa-plus"></i>  Create Group</button>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                    <!-- required for floating -->
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs tabs-left">
+                        <li class="active"><a href="#discover" data-toggle="tab" title="Discover">Discover</a>
+                        </li>
+                        <li ><a href="#groupsmanage" data-toggle="tab" title="Groups You manage">Groups You manage</a>
+                        </li>
+                        <li><a href="#pending" data-toggle="tab" title="Pending Invites">Pending Invites</a>
+                        </li>
+                        <li><a href="#yourgroups" data-toggle="tab" title="Your Groups">Your Groups</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-xs-9">
+                    <!-- Tab panes  -->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="discover">
+                            <div style="float: right;margin-top:5px">
+                                <form class="form-inline">
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-outline-primary" type="button" onclick="discovergroups()"><i class="fa fa-search"></i></button>
+                                        </span>
+                                        <input class="form-control"  type="search" placeholder="Search" aria-label="Search" id="filtergroup">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="row">
+                                <div id="firstresult">
+                                    <div class="row"> <!--group rows-->
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- -->
+                        <div class="tab-pane " id="groupsmanage">
+                            <div class="row" style="margin-top: 10px;margin-left: 10px">
+
+                            </div>
+                        </div>
+
+                        <!-- -->
+                        <div class="tab-pane " id="pending">
+                            <div class="row" style="margin-top: 8%;margin-left: 3%">
+
+                            </div>
+                        </div>
+
+                        <!-- -->
+                        <div class="tab-pane " id="yourgroups">
+                            <div class="row">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Create Group Modal -->
+    <div id="creategroupe" class="modal fade" role="dialog">
+        <div class="modal-dialog " >
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                </div>
+                <form id="savegroup" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="{{ path('new_group') }}">
+                    <div class="modal-body">
+
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Image<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="file" id="groupimage" required="required" class="form-control col-md-7 col-xs-12" name="groupimage" accept="image/*" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" id="groupname" required="required" class="form-control col-md-7 col-xs-12" name="groupname" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description<span class="required">*</span>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <textarea class="form-control col-md-7 col-xs-12" row="3" id="groupdescription" name="groupdescription" required></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <small>Default is public !</small>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Privacy</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div id="gender" class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="acc" value="private"> &nbsp; Private &nbsp;
+                                        </label>
+                                        <label class="btn btn-success" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+                                            <input type="radio" name="acc" value="public"> Public
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal" id="savegroup" >Save</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block privacy  %}
+{% endblock %}
