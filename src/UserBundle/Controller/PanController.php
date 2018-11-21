@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\Pan;
-use DateTime;
+
 use UserBundle\Entity\PanReview;
 use UserBundle\Entity\PanShare;
 
