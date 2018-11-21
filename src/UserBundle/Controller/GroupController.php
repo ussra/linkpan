@@ -11,7 +11,7 @@ use UserBundle\Entity\Groupe;
 class GroupController extends Controller
 {
     /**
-     * @Route("/linkpan/groups",name="groups")
+     * @Route("{_locale}/linkpan/groups",name="groups")
      */
     public function groupsAction()
     {
@@ -19,7 +19,7 @@ class GroupController extends Controller
     }
 
     /**
-     * @Route("/linkpan/new_group",name="new_group")
+     * @Route("{_locale}/linkpan/new_group",name="new_group")
      */
     public function newgroupAction(Request $request)
     {

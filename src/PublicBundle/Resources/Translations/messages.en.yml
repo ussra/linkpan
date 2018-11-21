@@ -51,3 +51,8 @@ pub_UPGRADE_NOW: UPGRADE NOW
 
 
     #END BODY Pans
+
+    #footer
+pub_Privacy: Privacy
+pub_Terms: Terms 
+    #END footer
