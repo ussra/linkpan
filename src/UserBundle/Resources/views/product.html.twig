@@ -42,9 +42,9 @@
                     <div class="x_content">
                         <div class="" role="tabpanel" data-example-id="togglable-tabs">
                             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Details</a>
+                                <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">{{'product_Details'|trans}}</a>
                                 </li>
-                                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Recommendations</a>
+                                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">{{'product_Recommendations'|trans}}</a>
                                 </li>
                             </ul>
 
@@ -54,7 +54,7 @@
                                         <div class="product-image">
                                             <a href="{{ asset('images/pans/') }}{{ selected.product.image }}" data-max-width="600" data-toggle="lightbox" data-gallery="product-main-img"><img src="{{ asset('images/pans/') }}{{ selected.product.image }}" id="product-main-img" style="width: 400px;height: 400px;object-fit: cover;" /></a>
                                             <div class="rating-block">
-                                                <h4>Average  rating</h4>
+                                                <h4>{{'product_Average_rating'|trans}}</h4>
                                                 <h2 class="bold padding-bottom-7" style="display:inline;margin-right: 10px;">{{ selected.average }} <small>/ 5</small></h2><button type="button" class="btn btn-warning btn-sm" aria-label="Left Align"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
                                             </div>
                                         </div>
@@ -72,8 +72,8 @@
                                                 <br>
                                             </div>
                                             <div class="">
-                                                <a href="#" class="btn btn" title="share" onclick="sharePan({{ selected.product.id }})"><i class="fa fa-share"></i></a>
-                                                <a href="#" class="btn btn" title="Contact seller"><i class="fa fa-comments-o"></i></a>
+                                                <a href="#" class="btn btn" title="{{'product_share'|trans}}" onclick="sharePan({{ selected.product.id }})"><i class="fa fa-share"></i></a>
+                                                <a href="#" class="btn btn" title="{{'product_Contact_seller'|trans}}"><i class="fa fa-comments-o"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -88,14 +88,14 @@
                                                         <div class="comment-wrapper">
                                                             <div class="panel panel-info">
                                                                 <div class="panel-heading">
-                                                                    <h4>Reviews</h4>
+                                                                    <h4>{{'product_Reviews'|trans}}</h4>
                                                                 </div>
                                                                 <div class="panel-body">
                                                                     <form>
                                                                         <div class="input-group">
-                                                                            <input type="text" class="form-control" placeholder="write a comment..."  id="panreview">
+                                                                            <input type="text" class="form-control" placeholder="{{'product_write_comment'|trans}}..."  id="panreview">
                                                                             <span class="input-group-btn">
-                                                                                <a ><button class="btn btn btn-info" type="button" id="review" onclick="panReview({{ selected.product.id }})">Submit Review</button></a>
+                                                                                <a ><button class="btn btn btn-info" type="button" id="review" onclick="panReview({{ selected.product.id }})">{{'product_Submit_Review'|trans}}</button></a>
                                                                             </span>
                                                                         </div>
                                                                     </form>

@@ -16,13 +16,13 @@
                     <!-- required for floating -->
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs tabs-left">
-                        <li class="active"><a href="#discover" data-toggle="tab" title="Discover">Discover</a>
+                        <li class="active"><a href="#discover" data-toggle="tab" title="Discover">{{'discover_title'|trans}}</a>
                         </li>
-                        <li ><a href="#groupsmanage" data-toggle="tab" title="Groups You manage">Groups You manage</a>
+                        <li ><a href="#groupsmanage" data-toggle="tab" title="Groups You manage">{{'Groups_you_manage'|trans}}</a>
                         </li>
-                        <li><a href="#pending" data-toggle="tab" title="Pending Invites">Pending Invites</a>
+                        <li><a href="#pending" data-toggle="tab" title="Pending Invites">{{'Groups_Pending_Invites'|trans}}</a>
                         </li>
-                        <li><a href="#yourgroups" data-toggle="tab" title="Your Groups">Your Groups</a>
+                        <li><a href="#yourgroups" data-toggle="tab" title="Your Groups">{{'Groups_Your_Groups'|trans}}</a>
                         </li>
                     </ul>
                 </div>
@@ -91,36 +91,36 @@
                     <div class="modal-body">
 
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Image<span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name"><span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="file" id="groupimage" required="required" class="form-control col-md-7 col-xs-12" name="groupimage" accept="image/*" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Name<span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{'Groups_Name'|trans}}<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input type="text" id="groupname" required="required" class="form-control col-md-7 col-xs-12" name="groupname" required>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">Description<span class="required">*</span>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="description">{{'Groups_Description'|trans}}<span class="required">*</span>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <textarea class="form-control col-md-7 col-xs-12" row="3" id="groupdescription" name="groupdescription" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <small>Default is public !</small>
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Privacy</label>
+                                <small>{{'Groups_Default_is_public'|trans}}</small>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">{{'Groups_Privacy'|trans}}</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div id="gender" class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="acc" value="private"> &nbsp; Private &nbsp;
+                                            <input type="radio" name="acc" value="private"> &nbsp;{{'Groups_Private'|trans}} Private &nbsp;
                                         </label>
                                         <label class="btn btn-success" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="acc" value="public"> Public
+                                            <input type="radio" name="acc" value="public"> {{'Groups_Public'|trans}}
                                         </label>
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" data-dismiss="modal" id="savegroup" >Save</button>
+                        <button type="submit" class="btn btn-primary" data-dismiss="modal" id="savegroup" >{{'Groups_Save'|trans}}</button>
                     </div>
                 </form>
             </div>

@@ -1,5 +1,5 @@
 {% extends "UserBundle::userbase.html.twig" %}
-{% block Title %}Discover{% endblock %}
+{% block Title %}{{'discover_title'|trans}}{% endblock %}
 
 {% block style %}
     <link rel="stylesheet" href={{ asset('Userscripts/css/Discover.css') }}>
@@ -38,15 +38,15 @@
                         {% set pans = app.session.get('discover_pans') %}
                         <div class="form-inline">
                             <select id="filter" class="CC form-control" required  onchange="productfilter(this.options[this.selectedIndex].value)">
-                                <option disabled selected value> Sort By .. </option>
-                                <option value="New in">New in</option>
-                                <option value="Last Viewed">Last Viewed</option>
-                                <option value="Highest Price">Highest Price</option>
-                                <option value="Lowest Price">Lowest Price</option>
+                                <option disabled selected value> {{'discover_sortby'|trans}}... </option>
+                                <option value="New in">{{'discover_New_in'|trans}}</option>
+                                <option value="Last Viewed">{{'discover_Last_Viewed'|trans}}</option>
+                                <option value="Highest Price">{{'discover_Highest_Price'|trans}}</option>
+                                <option value="Lowest Price">{{'discover_Lowest_Price'|trans}}</option>
                             </select>
                             <!-- Category -->
                             <select id="filterByCategory" class="CC form-control" required  onchange="Categfilter(this.options[this.selectedIndex].value)">
-                                <option disabled selected value> Display By Category </option>
+                                <option disabled selected value>{{'discover_Display_By_Category'|trans}}</option>
                                 <option value="Default" style="color: red">Default</option>
                                 <optgroup label="Agriculture & Food">
                                     <option value="Agriculture">Agriculture </option>
@@ -1184,7 +1184,7 @@
                                                         {% endif %}
 
                                                     {% else %}
-                                                        <small>you cannot rate your pan</small>
+                                                        <small>{{'discover_you_cannot_rate'|trans}}</small>
                                                 {% endif %}
                                             </div>
 
@@ -1192,7 +1192,7 @@
                                     </div>
                                 {% endfor %}
                                 {% else %}
-                                    <h3>Currently , There s no pans to display !</h3>
+                                    <h3>{{'discover_Theres_nopans'|trans}}</h3>
                             {% endif %}
                         </div>
 

@@ -130,7 +130,7 @@ class DiscoverController extends Controller
     }
 
     /**
-     * @Route("/linkpan/discover",name="discover_pans")
+     * @Route("{_locale}/linkpan/discover",name="discover_pans")
      */
     public function redirectDiscoverAction()
     {
@@ -140,7 +140,7 @@ class DiscoverController extends Controller
 
 
     /**
-     * @Route("/linkpan/discover/more_pans",name="more_pans")
+     * @Route("{_locale}/linkpan/discover/more_pans",name="more_pans")
      */
     public function pensmoreAction()
     {
@@ -149,7 +149,7 @@ class DiscoverController extends Controller
     }
 
     /**
-     * @Route("/linkpan/discover/discover_filter",name="discover_filter")
+     * @Route("{_locale}/linkpan/discover/discover_filter",name="discover_filter")
      */
     public function filterAction(Request $request)
     {
@@ -306,7 +306,7 @@ class DiscoverController extends Controller
     }
 
     /**
-     * @Route("/linkpan/discover/discover_filter_category",name="discover_filter_category")
+     * @Route("{_locale}/linkpan/discover/discover_filter_category",name="discover_filter_category")
      */
     public function discoverfiltercategoryAction(Request $request)
     {
@@ -388,7 +388,7 @@ class DiscoverController extends Controller
 
 
     /**
-     * @Route("/linkpan/discover/product",name="view_product")
+     * @Route("{_locale}/linkpan/discover/product",name="view_product")
      */
     public function view_productAction(Request $request)
     {

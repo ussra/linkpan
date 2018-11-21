@@ -1,0 +1,38 @@
+#discover
+discover_title: Discover
+discover_sortby: Sort by
+discover_New_in: New in
+discover_Last_Viewed: Last Viewed
+discover_Highest_Price: Highest Price
+discover_Lowest_Price: Lowest Price
+
+discover_Display_By_Category:  Display By Category 
+discover_you_cannot_rate: you cannot rate your pan
+discover_Theres_nopans: Currently , There s no pans to display !
+#end discover
+
+#end Product
+product_Details: Details
+product_Recommendations: Recommendations
+product_Average_rating: Average  rating
+product_Reviews: Reviews
+product_share: share
+product_Contact_seller: Contact seller
+product_write_comment: write a comment
+product_Submit_Review: Submit Review
+#end Product
+
+#Groups
+Groups_you_manage: Groups You manage
+Groups_Pending_Invites: Pending Invites
+Groups_Your_Groups: Your Groups
+Groups_Image: Image
+Groups_Name: Name
+Groups_Description: Description
+Groups_Default_is_public: Default is public !
+Groups_Privacy: Privacy
+Groups_Private: Private
+Groups_Public: Public
+Groups_Save: Save
+
+#end Groups
