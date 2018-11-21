@@ -5,6 +5,7 @@ namespace UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\Groupe;
 
@@ -38,5 +39,6 @@ class GroupController extends Controller
             //
             $group->setImage($name);**/
         }
+        return new JsonResponse('');
     }
 }
