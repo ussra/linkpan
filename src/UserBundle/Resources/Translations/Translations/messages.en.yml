@@ -22,6 +22,33 @@ product_write_comment: write a comment
 product_Submit_Review: Submit Review
 #end Product
 
+#pans
+Name: Name
+Origine: Origine
+Availability: Availability
+Quantity: Quantity
+Category: Category
+Description: Description
+Attachement: Attachement
+Created_On: Created On
+pans_Create_new_Pan: Create a new Pan
+pans_Step: Step
+pans_Other_Name: Other Name
+pans_Product_Name: Product Name
+pans_Type: Type
+pans_select_an_option: select an option / Default is Discover
+pan_Yes : Yes.
+pan_No : No.
+Access: Access
+Public: Public
+Privacy : Private
+Price : Price
+Quantity: Quantity
+Quantity_type: Quantity Type
+Next: Next
+#end pans
+
+
 #Groups
 Groups_you_manage: Groups You manage
 Groups_Pending_Invites: Pending Invites
@@ -36,3 +63,111 @@ Groups_Public: Public
 Groups_Save: Save
 
 #end Groups
+
+#settings
+Settings: Settings
+Settings_Last_name: Last Name
+Settings_Contac_tInformations: Contact Informations
+Settings_Company_Informations: Company's Informations
+Account: Account
+Settings_Change_security_Question: Change security Question
+Settings_Billing_Payements: Billing & Payements
+Settings_Links: Links
+Settings_Unblock_List: Unblock List
+Settings_Invite_friends: Invite friends
+Settings_First_name: First name
+Adress: Adress
+Settings_Alternative: Alternative
+FAX : FAX
+Tel : Tel
+Logo: Logo
+Confirm : Confirm
+Settings_Year_Established: Year Established
+Settings_Official_Website: Official Website
+Settings_Business_Type: Business Type
+Settings_Total_umber_employees: Total Number Of employees
+Settings_Registred_Adress: Registred Adress
+Settings_Operational_Adress: Settings Operational
+About_Us: About Us
+Settings_Old_Password: Old Password
+Settings_New_Password: New Password
+Settings_Change: Change
+Settings_You_have_no_set: You have no set any security question yet !
+Settings_Your_security: Your security question is 
+Settings_Security_Question: Security Question
+Settings_Choose: Choose
+Settings_q1: What was your childhood nickname?
+Settings_q2: What is the name of your favorite childhood friend?
+Settings_q3: In what city or town did your mother and father meet?
+Settings_q4: What is the middle name of your oldest child?
+Settings_q5: What is your favorite team?
+Settings_q6: What is your favorite movie?
+Settings_q7: What was your favorite sport in high school?
+Settings_q8: What was your favorite food as a child?
+Settings_Response: Response
+Settings_Add_Method: Add Method
+Settings_Add_NOYou_billing: You have not set any billing method yet 
+Settings_Card_with: Card end with
+Settings_Connect_to: Connect to 
+close: close
+Settings_close: Save Card
+Empty_list: Empty list
+Settings_See_who: See who you already know on Linkpan
+Settings_fastest_way: The fastest way to grow your network is to import your contacts
+Continue: Continue
+Settings_Add_Billing: Add a Billing Method
+Settings_Payment_Details: Payment Details
+Settings_Credit_debit_card: Credit or debit card
+Settings_Set_password : Set  password 
+Password : Password
+Settings_deleacc: Delet your account
+Settings_deleacc_txt: Once you delete your account, there is no going back. Please be certain.
+
+#end settings
+
+#BoostPost
+Boost_Posts: Boost Posts
+Boost_Content: Content
+Boost_actions: actions
+Boost: Boost
+Boost_remove: remove boosting
+#end BoostPost
+
+#business solutions 
+Linkpan_Marketing_Solutions: Linkpan Marketing Solutions
+Display_Ads: Display Ads
+Display_Ads_txt:  Reach your target Partners in a Prime context through your preferred disciplined buying platform.
+Why_Linkpan: Why Linkpan Display Ads?
+Maximum_Viability: Maximum Viability
+Maximum_Viability_txt:  You are the master of your fate, the numbers don't lie
+Maximum_Real_Time: Real Time Reporting
+Maximum_Real_txt:  views are traceable and actions matter most to you
+Maximum_Easy: Easy To Understand and track spending 
+Maximum_Easy_txt: It can't get any easier than this
+Maximum_Trust: Trust and reliability
+Maximum_Trust_txt: We deliver, you reap the benefits, easy right? 
+Maximum_Howto: How to buy Linkpan Display Ads ?
+
+Define_Goal : Define Your Goal 
+Define_Goal_txt : Set Your Plan, and target those that matter most to you
+Define_Set_Your : Set Your Price Tag
+Define_Set_Your_txt : How much do i need to invest on this post/pans ?
+Define_Audience : Audience Pick Up
+Define_Audience_txt : Most Relevant to me? I need just those who matter to me the most
+Define_Audience : End Anytime or automatic End 
+Define_Audience_txt : Set end date, pick a number and let the rest settle for a win
+SMART : SMART 
+SMART_S_txt : Does Your Boosted post/Pans meet it required audience? Who needs to see
+SMART_M_txt : Track and see in real time the number of views, reactions taken
+SMART_A_txt : What do I need to do to get more or should I just track my audience
+SMART_R_txt : Assurance not only to you, but to the partners and audience who see my booted post/pans
+SMART_T_txt : Limit your track records, are yo within the scope of achievable outcome ?
+Cost: Cost
+Cost_txt: These advertisements only run for $1.00 a day
+
+
+
+
+
+
+#end business solutions 

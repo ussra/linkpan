@@ -72,7 +72,7 @@ class SettingController extends Controller
     }
 
     /**
-     * @Route("/linkpan/setting_access",name="setting_access")
+     * @Route("{_locale}/linkpan/setting_access",name="setting_access")
      */
     public function setting_accAction(Request $request)
     {
@@ -90,7 +90,7 @@ class SettingController extends Controller
     }
 
     /**
-     * @Route("/linkpan/setting/contact",name="contact")
+     * @Route("{_locale}/linkpan/setting/contact",name="contact")
      */
     public function contactAction(Request $request)
     {
@@ -121,7 +121,7 @@ class SettingController extends Controller
     }
 
     /**
-     * @Route("/linkpan/setting/company_informations",name="company")
+     * @Route("{_locale}/linkpan/setting/company_informations",name="company")
      */
     public function companyAction(Request $request)
     {
@@ -152,7 +152,7 @@ class SettingController extends Controller
     }
 
     /**
-     * @Route("/linkpan/setting/update_password",name="updatepassword")
+     * @Route("{_locale}/linkpan/setting/update_password",name="updatepassword")
      */
     public function upPasswordAction(Request $request)
     {
@@ -181,7 +181,7 @@ class SettingController extends Controller
     }
 
     /**
-     * @Route("/linkpan/setting/security_question",name="securityquestion")
+     * @Route("{_locale}/linkpan/setting/security_question",name="securityquestion")
      */
     public function securityquestionAction(Request $request)
     {
@@ -199,7 +199,7 @@ class SettingController extends Controller
     }
 
     /**
-     * @Route("/linkpan/setting/billing",name="billing")
+     * @Route("{_locale}/linkpan/setting/billing",name="billing")
      */
     public function billingAction(Request $request)
     {
@@ -249,7 +249,7 @@ class SettingController extends Controller
     }
 
     /**
-     * @Route("/linkpan/setting/remove_card",name="remove_card")
+     * @Route("{_locale}/linkpan/setting/remove_card",name="remove_card")
      */
     public function removecardAction(Request $request)
     {
@@ -283,7 +283,7 @@ class SettingController extends Controller
     }
 
     /**
-     * @Route("/linkpan/setting/links",name="links")
+     * @Route("{_locale}/linkpan/setting/links",name="links")
      */
     public function linksAction(Request $request)
     {
@@ -300,7 +300,7 @@ class SettingController extends Controller
 
 
     /**
-     * @Route("/linkpan/setting/unblock",name="unblock")
+     * @Route("{_locale}/linkpan/setting/unblock",name="unblock")
      */
     public function unblockAction(Request $request)
     {

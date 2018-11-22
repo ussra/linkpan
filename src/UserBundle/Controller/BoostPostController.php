@@ -12,7 +12,7 @@ use UserBundle\UserBundle;
 class BoostPostController extends Controller
 {
     /**
-     * @Route("/linkpan/boost_post",name="boost_post")
+     * @Route("{_locale}/linkpan/boost_post",name="boost_post")
      */
     public function boost_postAction(Request $request)
     {
@@ -64,7 +64,7 @@ class BoostPostController extends Controller
 
 
     /**
-     * @Route("/linkpan/remove_boost_post",name="remove_boost_post")
+     * @Route("{_locale}/linkpan/remove_boost_post",name="remove_boost_post")
      */
     public function remove_boost_postAction(Request $request)
     {

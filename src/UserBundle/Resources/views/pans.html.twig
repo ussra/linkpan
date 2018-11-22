@@ -13,13 +13,13 @@
 
 {% block thead %}
     <th></th>
-    <th>Name</th>
-    <th>Origine</th>
-    <th>Availability</th>
-    <th>Quantity</th>
-    <th>Category</th>
-    <th>Description</th>
-    <th>Created On</th>
+    <th>{{'Name'|trans}}</th>
+    <th>{{'Origine'|trans}}</th>
+    <th>{{'Availability'|trans}}</th>
+    <th>{{'Quantity'|trans}}</th>
+    <th>{{'Category'|trans}}</th>
+    <th>{{'Description'|trans}}</th>
+    <th>{{'Created_On'|trans}}</th>
     <th width="5%"></th>
 {% endblock %}
 
@@ -67,18 +67,18 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Create a new Pan</h4>
+                <h4 class="modal-title">{{'pans_Create_new_Pan'|trans}}</h4>
             </div>
             <div class="modal-body">
                 <div class="stepwizard">
                     <div class="stepwizard-row setup-panel">
                         <div class="stepwizard-step">
                             <a href="#step-1" type="button" class="btn btn-primary btn-circle">1</a>
-                            <p>Step 1</p>
+                            <p>{{'pans_Step'|trans}} 1</p>
                         </div>
                         <div class="stepwizard-step">
                             <a href="#step-2" role="button" class="btn btn-default btn-circle" aria-disabled="true">2</a>
-                            <p>Step 2</p>
+                            <p>{{'pans_Step'|trans}} 2</p>
                         </div>
 
                     </div>
@@ -90,11 +90,11 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <!--<label class="control-label">First Name</label>-->
-                                    <input  maxlength="100" type="text" required class="form-control" placeholder="Product Name" name="productname" id="productname" required/>
+                                    <input  maxlength="100" type="text" required class="form-control" placeholder="{{'pans_Product_Name'|trans}}" name="productname" id="productname" required/>
                                 </div>
                                 <div class="form-group">
                                     <!--<label class="control-label">Last Name</label>-->
-                                    <input maxlength="100" type="text" required class="form-control" placeholder="Other Name" name="othername" id="othername" required/>
+                                    <input maxlength="100" type="text" required class="form-control" placeholder="{{'pans_Other_Name'|trans}}" name="othername" id="othername" required/>
                                 </div>
                                 <div class="form-group">
                                     <!--<label class="control-label">Last Name</label>-->
@@ -353,11 +353,11 @@
                                 {% if app.session.get('membership') == 'dockies' %}
                                     <div class="form-group" style="margin-top: 4%">
                                         <div class="form-group">
-                                            <label>Type :</label> <br>
+                                            <label>{{'pans_Type'|trans}} :</label> <br>
                                             <span style="display: block; overflow: hidden;">
                                                 <select class="select2_group form-control" style="width:100%;" name="pantype" >
-                                                    <option selected value=""> -- select an option / Default is Discover -- </option>
-                                                    <option value="Discover">Discover</option>
+                                                    <option selected value="">-- {{'pans_select_an_option'|trans}}  -- </option>
+                                                    <option value="Discover">{{'discover_title'|trans}}</option>
                                                     <option value="Dockies">Dockies</option>
                                                 </select>
                                             </span>
@@ -369,28 +369,28 @@
                                 <div style="text-align: center">
                                     <!-- -->
                                     <div class="form-group" style="display: inline">
-                                        <label class="control-label">Availability :</label>
+                                        <label class="control-label"> :</label>
                                         <div id="gender" class="btn-group" data-toggle="buttons">
 
                                             <label class="btn btn-success" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default" >
-                                                <input type="radio" name="av" value="yes" required> &nbsp; Yes &nbsp;
+                                                <input type="radio" name="av" value="yes" required> &nbsp;{{'pan_Yes'|trans}} &nbsp;
                                             </label>
                                             <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="av" value="no" required> No
+                                                <input type="radio" name="av" value="no" required> {{'pan_No'|trans}}
                                             </label>
                                         </div>
                                     </div>
 
                                     <div class="form-group" style="display: inline">
-                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="control-label">Access :&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label class="control-label">{{'Access'|trans}} :&nbsp;&nbsp;&nbsp;
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
                                         <div id="gender" class="btn-group" data-toggle="buttons">
 
                                             <label class="btn btn-success" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default" >
-                                                <input type="radio" name="acc" value="public" required> &nbsp; Public &nbsp;
+                                                <input type="radio" name="acc" value="public" required> &nbsp;{{'Public'|trans}}  &nbsp;
                                             </label>
                                             <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                                <input type="radio" name="acc" value="privacy" required> Privacy
+                                                <input type="radio" name="acc" value="privacy" required>{{'Privacy'|trans}} 
                                             </label>
                                         </div>
                                     </div>
@@ -1541,19 +1541,19 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Price :</label><br>
+                                    <label>{{'Price'|trans}} :</label><br>
                                     <input type="number"  required class="form-control" min="1"  style="width:100%;"   name="price" id="price"/>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label">Quantity :</label><br>
+                                    <label class="control-label">{{'Quantity'|trans}} :</label><br>
                                     <span style="display: block; overflow: hidden;">
                                             <input type="number" required data-parsley-type="number" class="form-control" min="1"  style="width:100%;"  name="quantity" id="quantity" required/>
                                     </span>
                                 </div>
 
                                 <div class="form-group">
-                                    <label>QT Type :</label><br>
+                                    <label>{{'Quantity_type'|trans}} :</label><br>
                                     <span style="display: block; overflow: hidden;">
                                         <select class="select2_group form-control" required style="width:100%;" name="qtType" >
                                             <option selected value=""> -- select an option -- </option>
@@ -1662,7 +1662,7 @@
                                     </span>
                                 </div>
 
-                                <button class="btn btn-primary nextBtn btn-sm pull-right" href="#step-2"  style="margin-top: 4%" >Next</button>
+                                <button class="btn btn-primary nextBtn btn-sm pull-right" href="#step-2"  style="margin-top: 4%" >{{'Next'|trans}}</button>
                             </div>
                         </div>
                     </div>
@@ -1670,20 +1670,20 @@
                         <div class="col-xs-12">
                             <div class="col-md-12">
                                 <div class="">
-                                    <label>Description :</label>
+                                    <label>{{'Description'|trans}} :</label>
                                     <textarea class="form-control"  name="description" rows="5" id="description" style="display:block;" required></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="uploadattachement">Attachement</label>
+                                    <label for="uploadattachement">{{'Attachement'|trans}}</label>
                                     <input type="file" class="form-control-file multiple" name="uploadattachement" id="uploadattachement">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="uploadimage">Image</label>
+                                    <label for="uploadimage">{{'Groups_Image'|trans}}</label>
                                     <input  type="file" class="form-control-file" id="uploadimage" name="uploadimage" aria-describedby="fileHelp" accept="image/*" required>
                                 </div>
 
-                                <button class="btn btn-primary nextBtn btn-sm pull-right" type="submit" style="margin-top: 4%" onclick="enregistrer()" id="save" >Save</button>
+                                <button class="btn btn-primary nextBtn btn-sm pull-right" type="submit" style="margin-top: 4%" onclick="enregistrer()" id="save" >{{'Groups_Save'|trans}}</button>
                             </div>
                         </div>
                     </div>

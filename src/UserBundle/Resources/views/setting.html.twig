@@ -1,7 +1,7 @@
 {% extends "UserBundle::userbase.html.twig" %}
 
 {% block Title %}
-    Setting
+    {{'Settings'|trans}}
 {% endblock %}
 
 
@@ -9,7 +9,7 @@
     <div style="margin-top:50px">
         <div class="x_panel">
             <div class="x_title">
-                <h2><i class="fa fa-bars"></i>  Settings</h2>
+                <h2><i class="fa fa-bars"></i>{{'Settings'|trans}}</h2>
 
                 <div class="clearfix"></div>
             </div>
@@ -19,22 +19,22 @@
                     <!-- required for floating -->
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs tabs-left">
-                        <li class="active"><a href="#contact" data-toggle="tab" title="Contact Informations">Contact Informations</a>
+                        <li class="active"><a href="#contact" data-toggle="tab" title="Contact Informations">{{'Settings_Contac_tInformations'|trans}}</a>
                         </li>
                         </li>
-                        <li><a href="#company" data-toggle="tab" title="Company's Informations">Company's Informations</a>
-                        <li><a href="#uppass" data-toggle="tab" title="Change Password" id="account">Account</a>
+                        <li><a href="#company" data-toggle="tab" title="Company's Informations">{{'Settings_Company_Informations'|trans}}</a>
+                        <li><a href="#uppass" data-toggle="tab" title="Change Password" id="account">{{'Account'|trans}}</a>
                         </li>
                         <li>
                             <a href="#qtsecurity" data-toggle="tab" title="Security Question">
-                                Change security Question
+                                {{'Settings_Change_security_Question'|trans}}
                             </a>
                         </li>
-                        <li><a href="#billing" data-toggle="tab" title="Billing & Payments">Billing & Payements</a>
+                        <li><a href="#billing" data-toggle="tab" title="Billing & Payments">{{'Settings_Billing_Payements'|trans}}</a>
                         </li>
-                        <li><a href="#link" data-toggle="tab" title="Links">Links</a> </li>
-                        <li><a href="#unblock" data-toggle="tab" title="Links">Unblock List</a> </li>
-                        <li><a href="#add" data-toggle="tab" title="Invite friends">Invite friends</a> </li>
+                        <li><a href="#link" data-toggle="tab" title="Links">{{'Settings_Links'|trans}}</a> </li>
+                        <li><a href="#unblock" data-toggle="tab" title="Links">{{'Settings_Unblock_List'|trans}}</a> </li>
+                        <li><a href="#add" data-toggle="tab" title="Invite friends">{{'Settings_Invite_friends'|trans}}</a> </li>
                     </ul>
                 </div>
 
@@ -46,7 +46,7 @@
                             <form id="contactForm" data-parsley-validate class="form-horizontal form-label-left" method="post" enctype="multipart/form-data" action="{{ path('contact') }}">
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >First Name
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >{{'Settings_First_name'|trans}}
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="firstname" name="firstname" value="{{ user.firstname }}" class="form-control col-md-7 col-xs-12" required>
@@ -54,7 +54,7 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"  >Last Name
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12"  >{{'Settings_Last_name'|trans}}
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="lastname" name="lastname" value="{{ user.lastname }}" class="form-control col-md-7 col-xs-12" required>
@@ -68,51 +68,61 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Adress
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >{{'Adress'|trans}}
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="email" name="adress" value="{{ user.adress }}"class="form-control col-md-7 col-xs-12" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Alternative Email
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >{{'Settings_Alternative'|trans}} Email
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="email" id="alteremail" name="alteremail" value="{{ user.alternativeEmail }}" class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >FAX
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >{{'FAX'|trans}}
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="tel" id="fax" value="{{ user.fax }}" name="fax"  class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >Tel
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >{{'Tel'|trans}}
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="tel" id="tel" value="{{ user.tel }}" name="tel" class="form-control col-md-7 col-xs-12">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">Image</label>
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">{{'Groups_Image'|trans}}</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input  type="file" class="form-control-file" name="image" id="exampleInputFile" aria-describedby="fileHelp">
                                     </div>
                                 </div>
                                 <div class="form-group" style="float: right">
                                     <div class="">
-                                        <button id="send" type="submit" class="btn btn-success">Confirm</button>
+                                        <button id="send" type="submit" class="btn btn-success">{{'Confirm'|trans}}</button>
                                     </div>
                                 </div>
                             </form>
+                        
+                                <div style="border-bottom:1px solid #e0e0e0;margin:10px 0 10px 0">
+                                </div>
+                                <div class="form-group">
+                                    <label style="color:#cb2431;font-size:20px;">{{'Settings_deleacc'|trans}}</label> <br>
+                                    <label>{{'Settings_deleacc_txt'|trans}}</label> <br>
+                                    <button type="button" class="btn btn-danger btn-md method" id="" onclick="$('#deleacc').modal('show');">
+                                        {{'Settings_deleacc'|trans}}
+                                    </button>
+                                </div>
                         </div>
                         <!-- Company Informations -->
                         <div class="tab-pane" id="company">
                             <form  data-parsley-validate class="form-horizontal form-label-left" id="companyinfo"  method="post" enctype="multipart/form-data" action="{{ path('company') }}">
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">Name
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12">{{'Name'|trans}}
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="name" required="required" class="form-control col-md-7 col-xs-12" name="name" value="{{ user.companyName }}">
@@ -120,57 +130,57 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">
-                                        Logo
+                                        {{'Logo'|trans}}
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input  type="file" class="form-control-file" id="uploadimage" name="uploadimage" aria-describedby="fileHelp" accept="image/*">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">Year Established</label>
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">{{'Settings_Year_Established'|trans}}</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="number" id="year" required="required" class="form-control col-md-7 col-xs-12" min="1900" name="year"  value="{{ user.yearEstablished }}" >
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">Official Website</label>
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">{{'Settings_Official_Website'|trans}}</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="website" required="required" class="form-control col-md-7 col-xs-12" name="website" value="{{ user.website }}"  >
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">Business Type</label>
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">{{'Settings_Business_Type'|trans}}</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="bustype" required="required" class="form-control col-md-7 col-xs-12" name="business" value="{{ user.businessType }}" >
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">Total Number Of employees</label>
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">{{'Settings_Total_umber_employees'|trans}}</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="number" id="numberemp" required="required" class="form-control col-md-7 col-xs-12" min="1" name="number" value="{{ user.numberEmp }}" >
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">Registred Adress</label>
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">{{'Settings_Registred_Adress'|trans}}</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="regadress" required="required" class="form-control col-md-7 col-xs-12" name="regadress" value="{{ user.regAdress }}" >
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">Operational Adress</label>
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">{{'Settings_Operational_Adress'|trans}}</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="opadress" required="required" class="form-control col-md-7 col-xs-12" name="optadress" value="{{ user.optAdress }}" >
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">About Us</label>
+                                    <label for="exampleInputFile" class="control-label col-md-3 col-sm-3 col-xs-12">{{'About_Us'|trans}}</label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <textarea class="form-control col-md-7 col-xs-12" rows="5" id="aboutus" maxlength="30" name="aboutus" >{{ user.aboutUs }} </textarea>
                                     </div>
                                 </div>
                                 <div class="form-group" style="float: right">
                                     <div class="">
-                                        <button  type="submit" class="btn btn-success" >Save</button>
+                                        <button  type="submit" class="btn btn-success" >{{'Groups_Save'|trans}}</button>
                                     </div>
                                 </div>
                             </form>
@@ -180,14 +190,14 @@
                             <form id="uppassform" data-parsley-validate class="form-horizontal form-label-left" style="margin-top: 15%" method="post" action="{{ path('updatepassword') }}">
                                 <div style="margin-top: 5%">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" > Old Password
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >{{'Settings_Old_Password'|trans}}
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input type="password" id="oldpass" name="oldpass" class="form-control col-md-7 col-xs-12" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" > New Password
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" >{{'Settings_New_Password'|trans}}
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input type="password" id="newpass" name="newpass" class="form-control col-md-7 col-xs-12" required>
@@ -197,7 +207,7 @@
 
                                 <div class="form-group" style="float: right">
                                     <div class="">
-                                        <button  type="submit" class="btn btn-danger">Change</button>
+                                        <button  type="submit" class="btn btn-danger">{{'Settings_Change'|trans}}</button>
                                     </div>
                                 </div>
                             </form>
@@ -205,31 +215,31 @@
                         <!-- Security Question -->
                         <div class="tab-pane" id="qtsecurity">
                             {% if user.secuityQuestion == '' %}
-                                <small>You have no set any security question yet !</small>
+                                <small>{{'Settings_You_have_no_set'|trans}}</small>
                                 {% else %}
-                                    <small>Your security question is : <strong>{{ user.secuityQuestion }}</strong></small>
+                                    <small>{{'Settings_Your_security'|trans}}: <strong>{{ user.secuityQuestion }}</strong></small>
                             {% endif %}
                             <form id="SQ_form" data-parsley-validate class="form-horizontal form-label-left" style="margin-top: 15%" method="post" action="{{ path('securityquestion') }}">
                                 <div class="form-group" style="margin-top: 8%">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Security Question
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">{{'Settings_Security_Question'|trans}}
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select id="securityQuestion" name="securityQuestion" class="form-control col-md-7 col-xs-12" required>
-                                            <option value="">Choose..</option>
-                                            <option value="What was your childhood nickname?">What was your childhood nickname?</option>
-                                            <option value="What is the name of your favorite childhood friend?">What is the name of your favorite childhood friend?</option>
-                                            <option value="In what city or town did your mother and father meet?">In what city or town did your mother and father meet?</option>
-                                            <option value="What is the middle name of your oldest child?">What is the middle name of your oldest child?</option>
-                                            <option value="What is your favorite team?">What is your favorite team?</option>
-                                            <option value="What is your favorite movie?">What is your favorite movie?</option>
-                                            <option value="What was your favorite sport in high school?">What was your favorite sport in high school?</option>
-                                            <option value="What was your favorite food as a child?">What was your favorite food as a child?</option>
+                                            <option value="">{{'Settings_Choose'|trans}}...</option>
+                                            <option value="What was your childhood nickname?">{{'Settings_q1'|trans}}</option>
+                                            <option value="What is the name of your favorite childhood friend?">{{'Settings_q2'|trans}}</option>
+                                            <option value="In what city or town did your mother and father meet?">{{'Settings_q3'|trans}}</option>
+                                            <option value="What is the middle name of your oldest child?">{{'Settings_q4'|trans}}</option>
+                                            <option value="What is your favorite team?">{{'Settings_q5'|trans}}</option>
+                                            <option value="What is your favorite movie?">{{'Settings_q6'|trans}}</option>
+                                            <option value="What was your favorite sport in high school?">{{'Settings_q7'|trans}}</option>
+                                            <option value="What was your favorite food as a child?">{{'Settings_q8'|trans}}</option>
                                         </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" > Response
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" >{{'Settings_Response'|trans}}
                                     </label>
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="text" id="response" name="response" class="form-control col-md-7 col-xs-12" required>
@@ -238,7 +248,7 @@
 
                                 <div class="form-group" style="float: right">
                                     <div class="">
-                                        <button type="submit" class="btn btn-success" id="qsconfirm" onclick="security()">Confirm</button>
+                                        <button type="submit" class="btn btn-success" id="qsconfirm" onclick="security()">{{'Confirm'|trans}}</button>
                                     </div>
                                 </div>
                             </form>
@@ -248,21 +258,21 @@
                             <div style="margin-top: 10%">
                                 <div style="float: right">
                                     <button type="button" class="btn btn-primary btn-md method" id="addmethod" onclick="$('#methodModal').modal('show');">
-                                        Add Method
+                                        {{'Settings_Add_Method'|trans}}
                                     </button>
                                 </div>
                                 {% set billing = app.session.get('billing')  %}
                                 {% if billing is null or billing is not defined or billing is empty  %}
-                                    <h2 id="billingtitle">You have not set any billing method yet </h2>
+                                    <h2 id="billingtitle">{{'Settings_Add_NOYou_billing'|trans}}</h2>
                                     <div style="display: none" id="billingtable">
-                                        <h2 id="billingtitle">You have not set any billing method yet </h2>
+                                        <h2 id="billingtitle">{{'Settings_Add_NOYou_billing'|trans}}</h2>
                                     </div>
 
                                     {% else %}
                                         <table class="table table-striped" style="margin-top: 8%" id="billinglist">
                                             <thead>
                                             <tr>
-                                                <th>Card end with</th>
+                                                <th>{{'Settings_Card_with'|trans}}</th>
                                                 <th></th>
                                                 <th></th>
                                             </tr>
@@ -287,7 +297,7 @@
                         <!-- Links -->
                         <div class="tab-pane" id="link" >
                             <div class="row">
-                                <label for="exampleInputFile" style="font-size:15px">Connect to </label>
+                                <label for="exampleInputFile" style="font-size:15px">{{'Settings_Connect_to'|trans}}</label>
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <form method="post" action="{{ path('links') }}">
@@ -320,7 +330,7 @@
                                         {% if user.linkedin == '' %}{% set linkedin = '..' %}{% else %}{% set linkedin = user.linkedin %}{% endif %}
                                         <input type="text" name="linkedin" class="form-control" placeholder="/{{ linkedin }}" id="linkedin">
                                     </div>
-                                    <input type="submit" class="btn btn-primary savelink" style="float:right" value="valider">
+                                    <input type="submit" class="btn btn-primary savelink" style="float:right" value="{{'Confirm'|trans}}">
                                 </form>
 
                             </div>
@@ -329,7 +339,7 @@
                         <div class="tab-pane" id="unblock" >
                             {% set blockList = app.session.get('block_list') %}
                             {% if blockList is null %}
-                                <h4>Empty list</h4>
+                                <h4>{{'Empty_list'|trans}}</h4>
                                 {% else %}
                                     <table class="table table-striped" style="margin-top: 8%" >
                                         <thead>
@@ -362,12 +372,12 @@
                                         <div class="panel-body">
                                             <form method="post" style="max-width: 412px;">
                                                 <div class="form-group">
-                                                    <h2 style="line-height: 32px; font-weight: 400;">See who you already know on Linkpan</h2>
-                                                    <p>The fastest way to grow your network is to import your contacts</p>
+                                                    <h2 style="line-height: 32px; font-weight: 400;">{{'Settings_See_who'|trans}}</h2>
+                                                    <p>{{'Settings_fastest_way'|trans}}</p>
                                                     <input type="email" id="inviteemail" name="inviteemail" class="form-control">
                                                 </div>
                                                 <div class="form-atfooter" style="border:none;">
-                                                    <a><input type="button" class="btn btn-primary" id="send" value="Continue" onclick="invite()"></a>&nbsp; <span id="notice"></span>
+                                                    <a><input type="button" class="btn btn-primary" id="send" value="{{'Continue'|trans}}" onclick="invite()"></a>&nbsp; <span id="notice"></span>
                                                 </div>
                                             </form>
                                         </div>
@@ -419,13 +429,13 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add a Billing Method</h4>
+                    <h4 class="modal-title">{{'Settings_Add_Billing'|trans}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="panel panel-default credit-card-box">
                         <div class="panel-heading display-table" >
                             <div class="row display-tr" >
-                                <h3 class="panel-title display-td" >Payment Details</h3>
+                                <h3 class="panel-title display-td">{{'Settings_Payment_Details'|trans}}</h3>
                                 <div class="display-td" >
                                     <img class="img-responsive pull-right" src="http://i76.imgup.net/accepted_c22e0.png">
                                 </div>
@@ -435,7 +445,7 @@
                             <form action="/charge" method="post" id="payment-form">
                                 <div class="form-row">
                                     <label for="card-element">
-                                        Credit or debit card
+                                        {{'Settings_Credit_debit_card'|trans}}
                                     </label>
                                     <div id="card-element">
                                         <!-- A Stripe Element will be inserted here. -->
@@ -445,12 +455,12 @@
                                     <div id="card-errors" role="alert"></div>
                                 </div>
 
-                                <button class="btn btn-success" style="margin-top:10px;float:right ">Save Card</button>
+                                <button class="btn btn-success" style="margin-top:10px;float:right ">{{'Settings_close'|trans}}</button>
                             </form>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{'close'|trans}}</button>
                     </div>
                 </div>
 
@@ -465,20 +475,43 @@
             <div class="modal-content ">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Set  password </h4>
+                    <h4 class="modal-title">{{'Settings_Set_password'|trans}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <input type="password" class="form-control " id="invitepassword" placeholder="Password">
+                        <input type="password" class="form-control " id="invitepassword" placeholder="{{'Password'|trans}}">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" onclick="sendInvit()" class="btn btn-info" data-dismiss="modal" id="inviteConfirm">Confirm</button>
+                    <button type="button" onclick="sendInvit()" class="btn btn-info" data-dismiss="modal" id="inviteConfirm"{{'Confirm'|trans}}></button>
                 </div>
             </div>
 
         </div>
     </div>
+    <!-- dele acc -->
+    <div id="deleacc" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+
+            <!-- Modal content-->
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{'Password'|trans}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="password" class="form-control " id="" placeholder="{{'Password'|trans}}">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">{{'Confirm'|trans}}</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- End acc -->
 {% endblock pageContent %}
 
 {% block scripts %}
