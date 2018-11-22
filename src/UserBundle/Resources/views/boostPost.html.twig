@@ -1,7 +1,7 @@
 {% extends "UserBundle::crud.html.twig" %}
 
 {% block Title %}
-    Boost Posts
+   {{'Boost_Posts'|trans}}
 {% endblock %}
 
 
@@ -10,8 +10,8 @@
 
 
 {% block thead %}
-    <th>Content</th>
-    <th width="10%">actions</th>
+    <th>   {{'Boost_Content'|trans}}</th>
+    <th width="10%">{{'Boost_actions'|trans}}</th>
 {% endblock %}
 
 {% block tbody %}
@@ -22,9 +22,9 @@
                 <td>{{ post.post_content }}</td>
                 <td>
                     {% if post.post_boost_type == 'Remove Boost' %}
-                        <button type="submit" formmethod="post" formaction="{{ path('remove_boost_post',{'post':post.post_id  })}}"  class="btn btn-danger btn-xs removeBoost" title="remove boosting"> remove boosting </button>
+                        <button type="submit" formmethod="post" formaction="{{ path('remove_boost_post',{'post':post.post_id  })}}"  class="btn btn-danger btn-xs removeBoost" title="remove boosting">{{'Boost_remove'|trans}} remove boosting </button>
                     {% else %}
-                        <button type="submit" formmethod="post" formaction="{{ path('boost_post',{'post':post.post_id  })}}"  class="btn btn-default btn-xs boost" title="Boost"> Boost </button>
+                        <button type="submit" formmethod="post" formaction="{{ path('boost_post',{'post':post.post_id  })}}"  class="btn btn-default btn-xs boost" title="Boost">{{'Boost'|trans}}  </button>
 
                     {% endif %}
                 </td>

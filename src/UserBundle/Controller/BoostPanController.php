@@ -10,7 +10,7 @@ use UserBundle\Entity\BoostPan;
 class BoostPanController extends Controller
 {
     /**
-     * @Route("/linkpan/boost_pan",name="boost_pan")
+     * @Route("{_locale}/linkpan/boost_pan",name="boost_pan")
      */
     public function boost_panAction(Request $request)
     {
@@ -54,7 +54,7 @@ class BoostPanController extends Controller
     }
 
     /**
-     * @Route("/linkpan/remove_boost_pan",name="remove_boost_pan")
+     * @Route("{_locale}/linkpan/remove_boost_pan",name="remove_boost_pan")
      */
     public function remove_boost_panAction(Request $request)
     {
