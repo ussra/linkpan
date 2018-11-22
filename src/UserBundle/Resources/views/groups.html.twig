@@ -52,7 +52,25 @@
                         <!-- -->
                         <div class="tab-pane " id="groupsmanage">
                             <div class="row" style="margin-top: 10px;margin-left: 10px">
+                                {% set groupsManage = app.session.get('GroupsManage') %}
+                                {% if groupsManage|length > 0 %}
+                                        {% for group in groupsManage %}
+                                            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-left" id="groupdiv{{ group.id }}">
+                                                <div class="my-list" style="margin-bottom:20px">
+                                                    <img src="{{ asset('images/group/') }}{{ group.image }}" class="img-responsive"  style="object-fit:cover;width:150px; height:100px"/>
+                                                    <h4>{{ group.name }}</h4>
+                                                    <!--<div class=""><h5>72000 Member</h5></div>-->
+                                                    <div>
+                                                        <a href="{{ path('delete_group',{'group':group.id}) }}" class="btn btn-danger"  title="Delete Group"><i class="fa fa-times"></i></a>
+                                                        <a href="#" class="btn btn-primary" title="View Group"><i class="fa fa-eye"></i></a>
+                                                    </div>
 
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <h3>You are not currently managing any group</h3>
+                                {% endif %}
                             </div>
                         </div>
 
@@ -87,7 +105,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
 
                 </div>
-                <form id="savegroup" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="{{ path('new_group') }}">
+                <form  data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="{{ path('new_group') }}">
                     <div class="modal-body">
 
                             <div class="form-group">
@@ -112,15 +130,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <small>{{'Groups_Default_is_public'|trans}}</small>
+                               <!-- <small>{{'Groups_Default_is_public'|trans}}</small>-->
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">{{'Groups_Privacy'|trans}}</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div id="gender" class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="acc" value="private"> &nbsp;{{'Groups_Private'|trans}} Private &nbsp;
+                                            <input type="radio" name="acc" value="private" required> &nbsp;{{'Groups_Private'|trans}}  &nbsp;
                                         </label>
                                         <label class="btn btn-success" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-                                            <input type="radio" name="acc" value="public"> {{'Groups_Public'|trans}}
+                                            <input type="radio" name="acc" value="public" required> {{'Groups_Public'|trans}}
                                         </label>
                                     </div>
                                 </div>
@@ -128,7 +146,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary" data-dismiss="modal" id="savegroup" >{{'Groups_Save'|trans}}</button>
+                       <button type="submit" class="btn btn-primary" >{{'Groups_Save'|trans}}</button>
                     </div>
                 </form>
             </div>
