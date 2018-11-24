@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<head>
+    <title>Globe Pro</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel='shortcut icon' type='image/x-icon' href={{ asset('Userscripts/img/logo.png') }} />
+
+    <link rel="stylesheet" href="{{ asset('globe/css/style.css') }}">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+         <div id="map">
+            <link href="{{ asset('globe/mapStyle.css') }}" rel="stylesheet">
+            <script src="http://d3js.org/d3.v3.min.js"></script>
+            <script src="http://d3js.org/topojson.v1.min.js"></script>
+            <script src="http://d3js.org/queue.v1.min.js"></script>
+            <script src="{{ asset('globe/metaGlobe2Map2.js') }}"></script>
+            <script type="application/javascript">
+                var mapWidth = 960,
+                    mapHeight = 500,
+                    focused = false,
+                    ortho = true,
+                    sens = 0.25,
+                    speed = -7e-3,
+                    start = Date.now(),
+                    corr = 0;
+
+                var projectionGlobe = d3.geo.orthographic()
+                    .scale(240)
+                    .rotate([0, 0])
+                    .translate([mapWidth / 2, mapHeight / 2])
+                    .clipAngle(90);
+
+                var projectionMap = d3.geo.equirectangular()
+                    .scale(145)
+                    .translate([mapWidth / 2, mapHeight / 2])
+
+                var projection = projectionGlobe;
+
+                var path = d3.geo.path()
+                    .projection(projection);
+                // Requires SMIL
+                d3.select('rect').append('animate')
+                    .attr('attributeName', 'x')
+                    .attr('from', 10)
+                    .attr('to', 50);
+
+                var svgMap = d3.select("div#map")
+                    .classed("container", true)
+                    .append("svg")
+                    //responsive SVG needs these 2 attributes and no width and height attr
+                    .attr("preserveAspectRatio", "xMinYMin meet")
+                    .attr("viewBox", "0 0 1100 500")    //class to make it responsive
+                    .classed("svg-content-responsive", true);
+
+                var ocean = svgMap.append("path")
+                    .datum({type: "Sphere"})
+                    .attr("class", "background")
+                    .attr("d", path);
+
+                var zoneTooltip = d3.select("div#map").append("div").attr("class", "zoneTooltip"),
+                    infoLabel = d3.select("div#map").append("div").attr("class", "infoLabel");
+
+                var g = svgMap.append("g");
+
+                //Rotate to default before animation
+
+                function defaultRotate() {
+                    d3.transition()
+                        .duration(1500)
+                        .tween("rotate", function() {
+                            var r = d3.interpolate(projection.rotate(), [0, 0]);
+                            return function(t) {
+                                projection.rotate(r(t));
+                                g.selectAll("path").attr("d", path);
+                            };
+                        })
+                };
+
+                //Loading data
+                queue()
+                    .defer(d3.json, "{{ asset('world.json') }}")
+                    .defer(d3.tsv, "{{ asset('names.tsv') }}")
+                    .await(ready);
+
+
+                function ready(error, world, countryData) {
+
+                    var countryById = {},
+                        countries = topojson.feature(world, world.objects.countries).features;
+
+                    //Adding countries by name
+
+                    countryData.forEach(function(d) {
+                        countryById[d.id] = d.name;
+                    });
+
+                    //Drawing countries on the globe
+
+                    const colorCountry = ['#3F1715', '#CE3C15', '#9A3F44', '#EFCF21', '#534B7C'];
+
+                    var world = g.selectAll("path").data(countries);
+
+                    world.enter().append("path")
+                        .attr("class", "mapData")
+                        .attr("d", path)
+                        .style("fill", () => colorCountry[Math.floor(Math.random() * 4) + 1])
+
+                    //Drag event
+
+                    world.call(d3.behavior.drag()
+                        .origin(function() { var r = projection.rotate(); return {x: r[0] / sens, y: -r[1] / sens}; })
+                        .on("drag", function() {
+                            var λ = d3.event.x * sens,
+                                φ = -d3.event.y * sens,
+                                rotate = projection.rotate();
+                            //Restriction for rotating upside-down
+                            φ = φ > 30 ? 30 :
+                                φ < -30 ? -30 :
+                                    φ;
+                            projection.rotate([λ, φ]);
+                            g.selectAll("path.ortho").attr("d", path);
+                            g.selectAll(".focused").classed("focused", focused = false);
+                        }));
+
+                    //Events processing
+
+                    //
+
+                    world.on("mouseover", function(d) {
+                        if (ortho === true) {
+                            infoLabel.text(countryById[d.id])
+                                .style("display", "inline");
+
+                            zoneTooltip.text(countryById[d.id])
+                                .style("left", (d3.event.pageX + 7) + "px")
+                                .style("top", (d3.event.pageY - 15) + "px")
+                                .style("display", "block");
+                        }
+                    })
+
+                        .on("mouseout", function(d) {
+                            if (ortho === true) {
+                                infoLabel.style("display", "none");
+
+
+                            } else {
+
+                                zoneTooltip.style("display", "none");
+                            }
+                        })
+                        .on("mousemove", function() {
+                            if (ortho === false) {
+                                zoneTooltip.style("left", (d3.event.pageX + 7) + "px")
+                                    .style("top", (d3.event.pageY - 15) + "px");
+
+                            }
+                        })
+                        .on("click", function(d) {
+                            /*
+                            if (focused === d){
+                                d3.timer(function() {
+                                    var λ = speed * (Date.now() - start);
+
+                                    projection.rotate([λ + corr, -5]);
+                                    g.selectAll(".ortho").attr("d", path);
+
+                                })
+                            }*/
+
+                            g.selectAll(".focused").classed("focused", false);
+                            d3.select(this).classed("focused", focused = d);
+                            infoLabel.text(countryById[d.id])
+                                .style("display", "inline");
+
+
+                            // search action
+
+                            //alert(countryById[d.id]);
+
+                            var r = confirm("Discover pans of ".concat(countryById[d.id]).concat(" ?"));
+                            if (r == true) {
+                                $.ajax({
+                                    url:'{{ (path('discover_by_country')) }}',
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data:
+                                        {
+                                            'country': countryById[d.id],
+                                        },
+                                    async: true,
+                                    success: function (data)
+                                    {
+                                        window.location.href = data
+
+                                    }
+                            }
+
+                            //
+
+
+
+
+
+
+                        });
+                    if (ortho === true)
+                    {
+                        g.selectAll(".focused").classed("focused", focused = false);
+                        infoLabel.style("display", "none");
+                        zoneTooltip.style("display", "none");
+                        //Transforming Map to Globe
+
+                        //path.projection(projection);
+                        //g.selectAll("path").transition().duration(5000).attr("d", path);
+                        g.selectAll("path").classed("ortho", ortho = true);
+                    }
+                    //Adding extra data when focused
+                    function focus(d) {
+                        if (focused === d) return reset();
+                        g.selectAll(".focused").classed("focused", false);
+                        d3.select(this).classed("focused", focused = d);
+                    }
+
+
+                };
+            </script>
+
+        </div>
+        </div>
+        <!-- end -->
+        <!-- start -->
+        <section class="user-guide">
+            <div class="user-guide__title">Welcome</div>
+            <div class="user-guide__subtitle">to Globe Pro of <code style="color:#6BA5D6;">LINKPAN</code>.</div><!--<span class="user-guide__close"></span>-->
+            <div class="row">
+
+
+                <div class="slider-container">
+                    <div class="slider-turn">
+                        <p><strong>Let me take you for a quick tour.<br>To be able to use this globe!</strong></p>
+                        <p><strong>You can rotate the globe.</strong></p>
+                        <p><strong>You can choose any country you want.</strong></p>
+                        <p><strong>You can see products from any country you clicked on.</strong></p>
+                        <p><strong>If you encounter any issues ensure that you use on of supported browsers:<br> Firefox 46+,Chrome 45+,<br> Safari 9.1+, Opera 38+.</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="step"><span></span>
+                    <ul>
+                        <li data-num="1"></li>
+                        <li data-num="2"></li>
+                        <li data-num="3"></li>
+                        <li data-num="4"></li>
+                    </ul>
+                </div>
+                <button class="user-guide__next">Next</button>
+            </div>
+        </section>
+    </div>
+</div>
+<button class="user-guide__open">Open</button>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js'></script>
+<script  src="{{ asset('globe/js/index.js') }}"></script>
+</body>
+</html>

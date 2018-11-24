@@ -404,6 +404,12 @@ class HomeController extends Controller
 
 
 
-
+    /**
+     * @Route("/linkpan/globe",name="globe")
+     */
+    public function globeAction()
+    {
+        return $this->render('UserBundle::globe.html.twig');
+    }
 
 }

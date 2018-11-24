@@ -457,4 +457,55 @@ class DiscoverController extends Controller
 
         }
     }
+
+    /**
+     * @Route("{_locale}/linkpan/globe/discover_by_country",name="discover_by_country")
+     */
+    public function discover_by_countryAction(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            '
+                SELECT DISTINCT p FROM UserBundle:Pan p
+                WHERE 
+                p.origin = :origin
+                AND p.type = :type
+                
+                AND IDENTITY(p.user) NOT IN (
+                  SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                )
+                AND IDENTITY(p.user) NOT IN (
+                  SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+                ) 
+                
+                ORDER BY p.id DESC
+            '
+        )->setParameter('origin', $request->get('country'))
+        ->setParameter('type', 'Discover');
+        $result =  $query->getResult();
+        $pans = $this->getResult($result,$this->getUser());
+        $session = new Session();
+        $session->set('discover_pans',$pans);
+        // count
+        $query = $em->createQuery(
+            '
+                SELECT count(DISTINCT p.id)  FROM UserBundle:Pan p
+                WHERE 
+                p.origin = :origin
+                AND p.type = :type
+                
+                AND IDENTITY(p.user) NOT IN (
+                  SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                )
+                AND IDENTITY(p.user) NOT IN (
+                  SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+                ) 
+                
+                ORDER BY p.id DESC
+            '
+        )->setParameter('origin', $request->get('country'))
+            ->setParameter('type', 'Discover');
+        $session->set('Discover_count',$query->getResult()[0][1]);
+        return $this->render('UserBundle::discover.html.twig');
+    }
 }
