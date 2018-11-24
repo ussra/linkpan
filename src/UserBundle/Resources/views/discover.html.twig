@@ -37,7 +37,8 @@
                     <div class="x_title">
                         {% set pans = app.session.get('discover_pans') %}
                         <div class="form-inline">
-                            <select id="filter" class="CC form-control" required  onchange="productfilter(this.options[this.selectedIndex].value)">
+
+                            <select style="margin-top:5px" id="filter" class="CC form-control" required  onchange="productfilter(this.options[this.selectedIndex].value)">
                                 <option disabled selected value> {{'discover_sortby'|trans}}... </option>
                                 <option value="New in">{{'discover_New_in'|trans}}</option>
                                 <option value="Last Viewed">{{'discover_Last_Viewed'|trans}}</option>
@@ -45,7 +46,7 @@
                                 <option value="Lowest Price">{{'discover_Lowest_Price'|trans}}</option>
                             </select>
                             <!-- Category -->
-                            <select id="filterByCategory" class="CC form-control" required  onchange="Categfilter(this.options[this.selectedIndex].value)">
+                            <select style="margin-top:5px" id="filterByCategory" class="CC form-control" required  onchange="Categfilter(this.options[this.selectedIndex].value)">
                                 <option disabled selected value>{{'discover_Display_By_Category'|trans}}</option>
                                 <option value="Default" style="color: red">Default</option>
                                 <optgroup label="Agriculture & Food">
@@ -1192,13 +1193,14 @@
                                     </div>
                                 {% endfor %}
                                 {% else %}
+                                <div class="text-center">
                                     <h3>{{'discover_Theres_nopans'|trans}}</h3>
+                                </div>
                             {% endif %}
                         </div>
-
                         <!-- More -->
                         {% if app.session.get('Discover_count')|number_format > discover_pans|length %}
-                            <div style="text-align: center;margin-top: 15%">
+                            <div style="text-align: center;">
                                 <a href="{{ path('more_pans') }}"  title="get more pans">
                                     <button type="button" class="btn btn-round btn-default btn-xs"><i class="fa fa-arrow-down"></i></button>
                                 </a>
