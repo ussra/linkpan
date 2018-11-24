@@ -506,6 +506,6 @@ class DiscoverController extends Controller
         )->setParameter('origin', $request->get('country'))
             ->setParameter('type', 'Discover');
         $session->set('Discover_count',$query->getResult()[0][1]);
-        return $this->render('UserBundle::discover.html.twig');
+        return new JsonResponse($this->generateUrl('discover_pans'));
     }
 }
