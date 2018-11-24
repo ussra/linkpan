@@ -32,19 +32,57 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="discover">
                             <div style="float: right;margin-top:5px">
-                                <form class="form-inline">
+                                <form class="form-inline" method="post" action="{{ path('filter_groups') }}">
                                     <div class="input-group">
+                                        <input class="form-control"  type="search" placeholder="Search" aria-label="Search" name="filtergroup" id="filtergroup" required>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-outline-primary" type="button" onclick="discovergroups()"><i class="fa fa-search"></i></button>
+                                          <button class="btn btn-outline-primary" type="submit"><i class="fa fa-search"></i></button>
                                         </span>
-                                        <input class="form-control"  type="search" placeholder="Search" aria-label="Search" id="filtergroup">
                                     </div>
                                 </form>
                             </div>
                             <div class="row">
                                 <div id="firstresult">
-                                    <div class="row"> <!--group rows-->
+                                    {% if app.session.get('filter_text') is not empty %}
+                                        <h5> "<strong>{{ app.session.get('filter_text') }}</strong>" Search Results :   </h5>
+                                        {% else %}
+                                            <h5>Try to discover groups ..</h5>
+                                    {% endif %}
+                                    <div class="row" id="filterRow"> <!--group rows-->
+                                        {% set filter_result = app.session.get('groups_filter') %}
 
+                                        {% if filter_result is empty %}
+                                            <small>nothing to display</small>
+                                            {% else %}
+                                                {% for item in filter_result %}
+                                                    <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6 text-left">
+                                                        <div class="my-list">
+                                                            <img src="{{ asset('images/group/') }}{{ item.group.image }} "class="img-responsive img" style="object-fit:cover;width:150px; height:100px"/>
+
+                                                            <a {% if item.joinType == 'join' or item.group.user.id == user.id %} href="{{ path('view_group',{'group':item.group.id}) }}" {% endif %}><h4>{{ item.group.name }}</h4></a>
+                                                            <div class="btn-group">
+                                                                {% if item.group.user.id != user.id %}
+                                                                        {% if item.joinType == 'Request' %}
+                                                                            <div>
+                                                                                <a class="btn btn-success" href="{{ path('join_group',{'group':item.group.id}) }}"  title="join group"><i class="fa fa-user-plus" ></i></a>
+                                                                            </div>
+                                                                        {% endif %}
+                                                                        {% if item.joinType == 'Requested' %}
+                                                                            <div>
+                                                                                <a class="btn btn-danger" href="{{ path('cancel_request_group',{'group':item.group.id}) }}"   title="Cancel join request"><i class="fa fa-minus"></i></a>
+                                                                            </div>
+                                                                        {% endif %}
+                                                                        {% if item.joinType == 'join' %}
+                                                                            <div>
+                                                                                <a class="btn btn-danger" href="{{ path('exit_group',{'group':item.group.id}) }}"  title="exit group" onclick="exitGroup({{ item.group.id }})" ><i class="fa fa-sign-out"></i></a>
+                                                                            </div>
+                                                                        {% endif %}
+                                                                {% endif %}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                        {% endif %}
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +100,7 @@
                                                     <!--<div class=""><h5>72000 Member</h5></div>-->
                                                     <div>
                                                         <a href="{{ path('delete_group',{'group':group.id}) }}" class="btn btn-danger"  title="Delete Group"><i class="fa fa-times"></i></a>
-                                                        <a href="#" class="btn btn-primary" title="View Group"><i class="fa fa-eye"></i></a>
+                                                        <a href="{{ path('view_group',{'group':group.id}) }}" class="btn btn-primary" title="View Group"><i class="fa fa-eye"></i></a>
                                                     </div>
 
                                                 </div>
@@ -98,12 +136,10 @@
     <!-- Create Group Modal -->
     <div id="creategroupe" class="modal fade" role="dialog">
         <div class="modal-dialog " >
-
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-
                 </div>
                 <form  data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="{{ path('new_group') }}">
                     <div class="modal-body">
@@ -150,10 +186,13 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
+
+
+
 {% endblock %}
 
 {% block privacy  %}
 {% endblock %}
+
