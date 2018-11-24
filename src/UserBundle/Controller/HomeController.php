@@ -281,8 +281,7 @@ class HomeController extends Controller
         $result =  $query->setMaxResults(5)->getResult();
         $posts = $this->Homeresult($result);
         $session->set('Homeposts',$posts);
-        //post_csrf_token
-        $session->set('post_token',$this->createPassword(64));
+
         //
         return $this->render('UserBundle::userbase.html.twig');
     }
@@ -405,20 +404,6 @@ class HomeController extends Controller
 
 
 
-    function createPassword($length)
-    {
-        $chars = "abcdefghijkmnopqrstuvwxyz023456789";
-        srand((double)microtime()*1000000);
-        $i = 0;
-        $pass = '' ;
 
-        while ($i <= ($length - 1)) {
-            $num = rand() % 33;
-            $tmp = substr($chars, $num, 1);
-            $pass = $pass . $tmp;
-            $i++;
-        }
-        return $pass;
-    }
 
 }

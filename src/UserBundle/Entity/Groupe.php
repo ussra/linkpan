@@ -50,6 +50,13 @@ class Groupe
     private $privacy;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="creationDate", type="text")
+     */
+    private $creationDate;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
@@ -178,6 +185,22 @@ class Groupe
     public function setUser($user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * @param string $creationDate
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
     }
 
 
