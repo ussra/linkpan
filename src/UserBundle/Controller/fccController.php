@@ -4,9 +4,11 @@ namespace UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use UserBundle\Entity\Complaint;
+use UserBundle\Entity\ComplaintReview;
 
 class fccController extends Controller
 {
@@ -113,5 +115,55 @@ class fccController extends Controller
         }
 
         return $this->forward('UserBundle:fcc:complaints');
+    }
+
+    /**
+     * @Route("{_locale}/linkpan/complaints/complaint_detail",name="complaint_detail")
+     */
+    public function complaintdetailAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Complaint');
+        $complaint = $repo->findOneById($request->get('complaint'));
+        if(!is_null($complaint))
+        {
+            $session = new Session();
+            $session->set('complaint_detail',$complaint);
+            // get complaint reviews
+            $em = $this->getDoctrine()->getManager();
+            $query = $em->createQuery(
+              'SELECT rv FROM UserBundle:ComplaintReview rv WHERE 
+                IDENTITY(rv.complaint) = :complaint '
+            )->setParameter('complaint', $complaint->getId());
+            $session->set('complaint_reviews',$query->getResult());
+            //
+            return $this->render('UserBundle::complaintDetail.html.twig');
+        }
+        else
+        {
+            echo '<script language="javascript">alert("You cannot access this complaint, please retry again ")</script>';
+            return $this->forward('UserBundle:fcc:complaints');
+        }
+    }
+
+    /**
+     * @Route("{_locale}/linkpan/complaints/complaint_detail/complaint_comment",name="complaint_comment")
+     */
+    public function complaintcommentAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Complaint');
+        $complaint =  $repo->findOneById($request->get('complaint'));
+        if(is_null($complaint))
+            return new JsonResponse('ERR');
+        else
+        {
+            $complaintReview = new ComplaintReview();
+            $complaintReview->setUser($this->getUser());
+            $complaintReview->setComplaint($complaint);
+            $complaintReview->setReview($request->get('comment'));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($complaintReview);
+            $em->flush();
+            return new JsonResponse('Done');
+        }
     }
 }
