@@ -25,7 +25,9 @@
                             <select class="form-control" name="userlist" id="userlist" {% if users|length  == 0 %}disabled{% endif %}>
                                 <option selected value=''> --{% if users|length  == 0 %}There s no users to display{% else %}select the user{% endif %}  -- </option>
                                 {% for item in users %}
-                                    <option value="{{ user.id }}">{{ user.firstname }} {{ user.lastname }}</option>
+                                    {% if user.id != item.id %}
+                                        <option value="{{ item.id }}">{{ item.firstname }} {{ item.lastname }}</option>
+                                    {% endif %}
                                 {% endfor %}
                             </select><br>
                         </div>

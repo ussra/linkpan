@@ -16,6 +16,12 @@ class fccController extends Controller
      */
     public function complaintsAction()
     {
+        // GET ALL COMPLAINTS
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Complaint');
+        $complaints = $repo->findAll();
+        $session = new Session();
+        $session->set('complaints',$complaints);
+        //
         return $this->render('UserBundle::complaints.html.twig');
     }
 
@@ -52,7 +58,18 @@ class fccController extends Controller
         return $this->render('UserBundle::complaintForm.html.twig');
     }
 
-
+    /**
+     * @Route("{_locale}/linkpan/complaints/search",name="search_complaints")
+     */
+    public function searchcomplaintsAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Complaint');
+        $complaints = $repo->findBy(array('userToComplaint'=>$request->get('filtercomplaint')));
+        $session = new Session();
+        $session->set('complaint_filter_text',$request->get('filtercomplaint'));
+        $session->set('complaints',$complaints);
+        return $this->render('UserBundle::complaints.html.twig');
+    }
 
     /**
      * @Route("{_locale}/linkpan/complaints/save_complaint",name="save_complaint")
