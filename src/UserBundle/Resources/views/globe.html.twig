@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="{{ asset('globe/css/style.css') }}">
 </head>
 <body>
-<div class="container-fluid">
+<div class="container">
     <div class="row">
-        <div class="col-12">
-         <div id="map">
+
+
+        <div id="map">
             <link href="{{ asset('globe/mapStyle.css') }}" rel="stylesheet">
             <script src="http://d3js.org/d3.v3.min.js"></script>
             <script src="http://d3js.org/topojson.v1.min.js"></script>
@@ -82,6 +83,7 @@
                 };
 
                 //Loading data
+
                 queue()
                     .defer(d3.json, "{{ asset('world.json') }}")
                     .defer(d3.tsv, "{{ asset('names.tsv') }}")
@@ -185,7 +187,7 @@
                             var r = confirm("Discover pans of ".concat(countryById[d.id]).concat(" ?"));
                             if (r == true) {
                                 $.ajax({
-                                    url:'{{ (path('discover_by_country')) }}',
+                                    url: '{{ (path('discover_by_country')) }}',
                                     type: 'POST',
                                     dataType: 'json',
                                     data:
@@ -193,11 +195,11 @@
                                             'country': countryById[d.id],
                                         },
                                     async: true,
-                                    success: function (data)
-                                    {
+                                    success: function (data) {
                                         window.location.href = data
 
                                     }
+                                });
                             }
 
                             //
@@ -231,7 +233,7 @@
             </script>
 
         </div>
-        </div>
+
         <!-- end -->
         <!-- start -->
         <section class="user-guide">
