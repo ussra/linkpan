@@ -29,6 +29,9 @@
                                 {% endif %}
                             </div>
                         </div>
+                        {% if complaint.user.id == user.id %}
+                            <a href="{{ path('delete_complaint',{'complaint':complaint.id}) }}">Delete complaint</a>
+                        {% endif %}
                         <!--*****************************-->
                     </div>
 

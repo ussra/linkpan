@@ -166,4 +166,24 @@ class fccController extends Controller
             return new JsonResponse('Done');
         }
     }
+
+    /**
+     * @Route("{_locale}/linkpan/complaints/complaint_detail/delete_complaint",name="delete_complaint")
+     */
+    public function deletecomplaintAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Complaint');
+        $complaint =  $repo->findOneById($request->get('complaint'));
+        if(!is_null($complaint))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($complaint);
+            $em->flush();
+            return $this->forward('UserBundle:fcc:complaints');
+        }
+        else
+        {
+            echo '<script language="javascript">alert("You cannot delete this complaint now , please try again");this.reload();</script>';
+        }
+    }
 }
