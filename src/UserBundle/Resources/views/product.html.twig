@@ -62,8 +62,8 @@
 
                                     <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
                                         <h3 class="prod_title">{{ selected.product.user.firstname }} {{ selected.product.user.lastname }}</h3>
-                                        <p><b>Descreption: </b> {{ selected.product.description }}</p>
-                                        <p><b>Attachment:</b></p>
+                                        <p><b>Descreption: </b> {{ selected.product.description }} , <a href="{{ asset('attachements/pans/') }}{{ selected.product.attachement }}">Attachement</a></p>
+                                        
                                         <small><b>Categorie: </b>{{ selected.product.category }}</small>
                                         <br/>
 
