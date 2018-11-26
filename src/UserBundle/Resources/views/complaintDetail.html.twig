@@ -21,16 +21,16 @@
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <h3 id="bigtitle">{{ complaint.title }} <small>- to complaint {{ complaint.userToComplaint.firstname }} {{ complaint.userToComplaint.lastname }}</small></h3>
                             <div id="Detail">
-                                <small><strong>Created By : {{ complaint.user.firstname }} {{ complaint.user.lastname }}</strong></small>
+                                <strong>Created By : {{ complaint.user.firstname }} {{ complaint.user.lastname }}</strong>
                                 <br>
-                                {{ complaint.description }}
+                               <p> {{ complaint.description }} <p>
                                 {% if complaint.file is not null %}
                                     <br> <small>File : <strong><a href="{{ asset('attachements/fcc/') }}{{ complaint.file }}">{{ complaint.file }}</a></strong></small>
                                 {% endif %}
                             </div>
                         </div>
                         {% if complaint.user.id == user.id %}
-                            <a href="{{ path('delete_complaint',{'complaint':complaint.id}) }}">Delete complaint</a>
+                           <div class="text-right"> <a href="{{ path('delete_complaint',{'complaint':complaint.id}) }}"><i class="fa fa-trash"></i></a></div>
                         {% endif %}
                         <!--*****************************-->
                     </div>
