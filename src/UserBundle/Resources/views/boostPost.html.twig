@@ -22,9 +22,14 @@
                 <td>{{ post.post_content }}</td>
                 <td>
                     {% if post.post_boost_type == 'Remove Boost' %}
-                        <button type="submit" formmethod="post" formaction="{{ path('remove_boost_post',{'post':post.post_id  })}}"  class="btn btn-danger btn-xs removeBoost" title="remove boosting">{{'Boost_remove'|trans}} remove boosting </button>
-                        <button type="submit" formmethod="post" formaction="{{ path('charts',{'post':post.post_id  })}}"  class="btn btn-danger btn-xs " title="charts">charts </button>
+                    <div class="input-group">
+                        <button type="submit" style="display:inline" formmethod="post" formaction="{{ path('remove_boost_post',{'post':post.post_id  })}}"  class="btn btn-danger btn-xs removeBoost" title="remove boosting">{{'Boost_remove'|trans}}</button>
+                        <button type="submit" formmethod="post" formaction="{{ path('charts',{'post':post.post_id  })}}"  class="btn btn-success btn-xs " title="charts">State </button>
+                    </div>
                     {% else %}
+                        <button type="button" class="btn btn-primary btn-xs" onclick="$('#boostbtn').modal('show');">
+                            Boost
+                        </button>
                         <button type="submit" formmethod="post" formaction="{{ path('boost_post',{'post':post.post_id  })}}"  class="btn btn-default btn-xs boost" title="Boost">{{'Boost'|trans}}  </button>
 
                     {% endif %}
@@ -32,7 +37,46 @@
             </tr>
         {% endfor %}
     {% endif %}
+        <!--Add Billing modal -->
+    <div id="boostbtn" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{'Settings_Add_Billing'|trans}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <span class="input-group-addon">Set Your Plane</span>
+                        <select id="plan" class="form-control" aria-describedby="basic-addon1" onchange="price()">
+                            <option value='day'>1 Day / 1$</option>
+                            <option value='week'>1 Week / 7$</option>
+                            <option value='month'>1 Month / 30$</option>
+                        </select>
+                    </div>
+                     <div class="input-group">
+                        <span class="input-group-addon">Audience Pick Up</span>
+                        <select id="plan" class="form-control" aria-describedby="basic-addon1" onchange="price()">
+                            <option value='day'>idk</option>
+                            <option value='week'>idk</option>
+                            <option value='month'>idk</option>
+                        </select>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default">OK</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{'close'|trans}}</button>
+                </div>
+            </div>
+            <!-- Modal content-->
+        </div>
+    </div>
+    <!--end -->
+   
 {% endblock %}
+
 
 {% block privacy  %}
 {% endblock %}
