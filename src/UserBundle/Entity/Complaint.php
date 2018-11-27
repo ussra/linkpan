@@ -38,14 +38,14 @@ class Complaint
     /**
      * @var string
      *
-     * @ORM\Column(name="transaction", type="text")
+     * @ORM\Column(name="transaction", type="text",nullable=true)
      */
     private $transaction;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="file", type="text")
+     * @ORM\Column(name="file", type="text",nullable=true)
      */
     private $file;
 

@@ -341,21 +341,6 @@ class HomeController extends Controller
         return $this->render('UserBundle::boostPost.html.twig');
     }
 
-    /**
-     * @Route("/linkpan/terms",name="terms")
-     */
-    public function termsAction()
-    {
-        return $this->render('UserBundle::terms.html.twig');
-    }
-
-    /**
-     * @Route("/linkpan/privacy",name="privacy")
-     */
-    public function privacyAction()
-    {
-        return $this->render('UserBundle::privacy.html.twig');
-    }
 
     /**
      * @Route("/linkpan/pans",name="pans")
