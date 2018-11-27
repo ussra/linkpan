@@ -37,8 +37,8 @@
                             <div >
                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" style="border:2px solid #E6E9ED;border-radius:5px;padding:5px;margin:5px">
                                     <h3 id="bigtitle">{{ complaint.title }}</h3>
-                                    <div >
-                                        {{ complaint.description }}
+                                    <div style="word-wrap:break-word">
+                                        <span style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;display: inline-block;max-width: 100%;">{{ complaint.description }}</span>
                                     </div>
                                     <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin-top:5px"></div>
                                     <a class="btn btn-info" style="float:right" href="{{ path('complaint_detail',{'complaint': complaint.id}) }}">Details</a>
