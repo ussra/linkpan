@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class SearchController extends Controller
 {
     /**
-     * @Route("/linkpan/setting/search",name="search")
+     * @Route("{_locale}/linkpan/search",name="search")
      */
     public function searchAction(Request $request)
     {

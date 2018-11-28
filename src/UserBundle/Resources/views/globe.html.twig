@@ -186,20 +186,7 @@
 
                             var r = confirm("Discover pans of ".concat(countryById[d.id]).concat(" ?"));
                             if (r == true) {
-                                $.ajax({
-                                    url: '{{ (path('discover_by_country')) }}',
-                                    type: 'POST',
-                                    dataType: 'json',
-                                    data:
-                                        {
-                                            'country': countryById[d.id],
-                                        },
-                                    async: true,
-                                    success: function (data) {
-                                        window.location.href = data
-
-                                    }
-                                });
+                                alert('Under construction')
                             }
 
                             //

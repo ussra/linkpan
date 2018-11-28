@@ -16,5 +16,8 @@ security:
             guard:
                 authenticators:
                 - app.form_login_authenticator
-
+            logout:
+                path: /logout
+                target: /en/linkpan/signin
+                invalidate_session: true
 
