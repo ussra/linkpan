@@ -197,3 +197,8 @@ Descreption: Descreption
 Submit_Complaint: Submit Complaint
 #end form
 #end fcc
+
+#search
+Search_Result: Search Results
+Wecouldn_for: We couldn't find anything for 
+#end search
