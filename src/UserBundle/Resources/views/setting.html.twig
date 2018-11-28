@@ -500,14 +500,16 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">{{'Password'|trans}}</h4>
                 </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input type="password" class="form-control " id="" placeholder="{{'Password'|trans}}">
+                <form action="{{ path('delete_account') }}" method="post">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="password" class="form-control " id="password" placeholder="{{'Password'|trans}}" name="password" required>
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">{{'Confirm'|trans}}</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-info" >{{'Confirm'|trans}}</button>
+                    </div>
+                </form>
             </div>
 
         </div>

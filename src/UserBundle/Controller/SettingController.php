@@ -315,4 +315,29 @@ class SettingController extends Controller
         $this->getBlocklist($this->getUser());
         return new JsonResponse($this->generateUrl('setting'));
     }
+
+
+
+    /**
+     * @Route("{_locale}/linkpan/setting/delete_account",name="delete_account")
+     */
+    public function delete_accountAction(Request $request)
+    {
+        $user = $this->getUser();
+        $encoderService = $this->container->get('security.password_encoder');
+        $match = $encoderService->isPasswordValid($user, $request->get('password'));
+        if($match)
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($user);
+            $em->flush();
+            echo '<script language="javascript">alert("Account is deleted ")</script>';
+            return $this->render('PublicBundle::signin.html.twig');
+        }
+        else
+        {
+            echo '<script language="javascript">alert("You cannot delete your account , verify your password")</script>';
+            return $this->render('::base.html.twig');
+        }
+    }
 }
