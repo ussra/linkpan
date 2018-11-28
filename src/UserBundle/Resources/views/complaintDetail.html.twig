@@ -7,7 +7,7 @@
 
 
 {% block Title %}
-    Complaint Detail
+    {{'Complaint_Detail'|trans}}
 {% endblock %}
 
 {% block pageContent %}
@@ -30,11 +30,11 @@
                             </h3>
                 
                             <div id="Detail">
-                                <strong>Created By : {{ complaint.user.firstname }} {{ complaint.user.lastname }}</strong>
+                                <strong>{{'Created_By'|trans}}: {{ complaint.user.firstname }} {{ complaint.user.lastname }}</strong>
                                 <br>
                                <p style="word-wrap:break-word"> {{ complaint.description }} <p>
                                 {% if complaint.file is not null %}
-                                    <br> <small  style="word-wrap:break-word;overflow: hidden;text-overflow: ellipsis;display: inline-block;max-width: 100%;">File : <strong><a href="{{ asset('attachements/fcc/') }}{{ complaint.file }}">{{ complaint.file }}</a></strong></small>
+                                    <br> <small  style="word-wrap:break-word;overflow: hidden;text-overflow: ellipsis;display: inline-block;max-width: 100%;">{{'File'|trans}}: <strong><a href="{{ asset('attachements/fcc/') }}{{ complaint.file }}">{{ complaint.file }}</a></strong></small>
                                 {% endif %}
                             </div>
                         </div>
@@ -52,14 +52,14 @@
                                     <div class="comment-wrapper">
                                         <div class="panel panel-info">
                                             <div class="panel-heading">
-                                                <h4>complaints</h4>
+                                                <h4>{{'complaints'|trans}}</h4>
                                             </div>
                                             <!-- set comments -->
                                             {% set complaint_reviews = app.session.get('complaint_reviews') %}
                                             <div class="panel-body">
                                                 <form>
-                                                    <textarea class="form-control" placeholder="write a comment..." rows="3" style="resize:none" id="complaintcomment"></textarea>
-                                                    <a><button type="button" class="btn btn-info btn-xs pull-right" onclick="commentComplaint({{ complaint.id }})"><h5>Comment</h5></button></a>
+                                                    <textarea class="form-control" placeholder="{{'product_write_comment'|trans}}..." rows="3" style="resize:none" id="complaintcomment"></textarea>
+                                                    <a><button type="button" class="btn btn-info btn-xs pull-right" onclick="commentComplaint({{ complaint.id }})"><h5>{{'Comment'|trans}}</h5></button></a>
                                                 </form>
                                                 <div class="clearfix"></div>
                                                 <hr>

@@ -16,14 +16,14 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <form id="complaintform" name="complaintform" method="post" action="{{ 'save_complaint' }}" enctype="multipart/form-data">
                         <div class="">
-                            <label>Name :</label>
+                            <label>{{'Name'|trans}} :</label>
                             <input type="text" class="form-control" name="title" id="title" required> <br>
                         </div>
                         <div>
                             {% set users = app.session.get('all_users') %}
-                            <label>User to complaint:</label>
+                            <label>{{'User to complaint'|trans}}:</label>
                             <select class="form-control" name="userlist" id="userlist" {% if users|length  == 0 %}disabled{% endif %}>
-                                <option selected value=''> --{% if users|length  == 0 %}There s no users to display{% else %}select the user{% endif %}  -- </option>
+                                <option selected value=''> --{% if users|length  == 0 %}{{'There s no users to display'|trans}}{% else %}{{'select the user'|trans}}{% endif %}  -- </option>
                                 {% for item in users %}
                                     {% if user.id != item.id %}
                                         <option value="{{ item.id }}">{{ item.firstname }} {{ item.lastname }}</option>
@@ -33,29 +33,29 @@
                         </div>
 
                         <div>
-                            <label>Cause :</label> <br>
-                            <input type="radio" style="margin-left:20px" name="cause" id="cause" required> <label>Product not received </label><br>
-                            <input type="radio" style="margin-left:20px" name="cause" id="cause" required> <label>Wrong product shipped </label><br>
-                            <input type="radio" style="margin-left:20px" name="cause" id="cause" required> <label>Payment not received </label><br><br>
+                            <label>{{'Cause'|trans}} :</label> <br>
+                            <input type="radio" style="margin-left:20px" name="cause" id="cause" required> <label> {{'Product not received'|trans}} </label><br>
+                            <input type="radio" style="margin-left:20px" name="cause" id="cause" required> <label>{{'Wrong_shipped'|trans}} </label><br>
+                            <input type="radio" style="margin-left:20px" name="cause" id="cause" required> <label>{{'Payment_received'|trans }}</label><br><br>
                         </div>
 
                         <div>
-                            <label>Transaction amount :</label>
-                            <input class="form-control" type="number" placeholder="USD" id="amount" name="amount" min="0" required><br>
+                            <label>{{'Transaction_amount'|trans}} :</label>
+                            <input class="form-control" type="number" placeholder="{{'USD'|trans}}" id="amount" name="amount" min="0" required><br>
                         </div>
 
                         <div>
-                            <label>Upload supporting document :</label>
+                            <label>{{'Upload_supporting_document'|trans}} :</label>
                             <input class="form-control" type="file" id="file" name="file" ><br>
                         </div>
 
                         <div>
-                            <label>Descreption :</label> <br>
+                            <label>{{'Descreption'|trans}} :</label> <br>
                             <textarea class="form-control" rows="7" style="resize:none" id="description" name="description" required></textarea><br>
                         </div>
 
                         <div>
-                            <input style="float:right;margin-top:10px;" type="submit" class="btn btn-primary" id="confirm" value="Submit Complaint">
+                            <input style="float:right;margin-top:10px;" type="submit" class="btn btn-primary" id="confirm" value="{{'Submit_Complaint'|trans}}">
                         </div>
                     </form>
                 </div>
