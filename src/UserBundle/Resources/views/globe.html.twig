@@ -6,17 +6,63 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel='shortcut icon' type='image/x-icon' href={{ asset('Userscripts/img/logo.png') }} />
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">  
     <link rel="stylesheet" href="{{ asset('globe/css/style.css') }}">
+    <link href="{{ asset('globe/mapStyle.css') }}" rel="stylesheet">
+
 </head>
-<body>
+<body style="background-image:url('{{ asset('globe/space.svg') }}');background-repeat: no-repeat;background-size: cover;">
+
+
+<div style="padding:0px;background:rgba(255,255,255,0.2);display:inline-block;border-radius:5px;margin:20px">
+  <a class="navbar-brand" href="#" style="color:white"><i style="margin-left:8px;" class="fas fa-chevron-left"></i> BACK TO LINKPAN</a>
+</div>
 <div class="container">
     <div class="row">
-
-
         <div id="map">
-            <link href="{{ asset('globe/mapStyle.css') }}" rel="stylesheet">
-            <script src="http://d3js.org/d3.v3.min.js"></script>
+        </div>
+    </div>
+    <div class="row">
+         <section class="user-guide">
+            <div class="user-guide__title">Welcome</div>
+            <div class="user-guide__subtitle">to Globe Pro of <code style="color:#6BA5D6;">LINKPAN</code>.</div><!--<span class="user-guide__close"></span>-->
+            <div class="row">
+                <div class="slider-container">
+                    <div class="slider-turn">
+                        <p><strong>Let me take you for a quick tour.<br>To be able to use this globe!</strong></p>
+                        <p><strong>You can rotate the globe.</strong></p>
+                        <p><strong>You can choose any country you want.</strong></p>
+                        <p><strong>You can see products from any country you clicked on.</strong></p>
+                        <p><strong>If you encounter any issues ensure that you use on of supported browsers:<br> Firefox 46+,Chrome 45+,<br> Safari 9.1+, Opera 38+.</strong></p>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="step"><span></span>
+                    <ul>
+                        <li data-num="1"></li>
+                        <li data-num="2"></li>
+                        <li data-num="3"></li>
+                        <li data-num="4"></li>
+                    </ul>
+                </div>
+                <button class="user-guide__next">Next</button>
+            </div>
+        </section>
+    </div>
+
+    
+</div>
+<button class="user-guide__open">Open</button>
+
+
+
+
+
+
+
+
+ <script src="http://d3js.org/d3.v3.min.js"></script>
             <script src="http://d3js.org/topojson.v1.min.js"></script>
             <script src="http://d3js.org/queue.v1.min.js"></script>
             <script src="{{ asset('globe/metaGlobe2Map2.js') }}"></script>
@@ -218,42 +264,6 @@
 
                 };
             </script>
-
-        </div>
-
-        <!-- end -->
-        <!-- start -->
-        <section class="user-guide">
-            <div class="user-guide__title">Welcome</div>
-            <div class="user-guide__subtitle">to Globe Pro of <code style="color:#6BA5D6;">LINKPAN</code>.</div><!--<span class="user-guide__close"></span>-->
-            <div class="row">
-
-
-                <div class="slider-container">
-                    <div class="slider-turn">
-                        <p><strong>Let me take you for a quick tour.<br>To be able to use this globe!</strong></p>
-                        <p><strong>You can rotate the globe.</strong></p>
-                        <p><strong>You can choose any country you want.</strong></p>
-                        <p><strong>You can see products from any country you clicked on.</strong></p>
-                        <p><strong>If you encounter any issues ensure that you use on of supported browsers:<br> Firefox 46+,Chrome 45+,<br> Safari 9.1+, Opera 38+.</strong></p>
-                    </div>
-                </div>
-            </div>
-            <div class="bottom">
-                <div class="step"><span></span>
-                    <ul>
-                        <li data-num="1"></li>
-                        <li data-num="2"></li>
-                        <li data-num="3"></li>
-                        <li data-num="4"></li>
-                    </ul>
-                </div>
-                <button class="user-guide__next">Next</button>
-            </div>
-        </section>
-    </div>
-</div>
-<button class="user-guide__open">Open</button>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js'></script>
 <script  src="{{ asset('globe/js/index.js') }}"></script>
 </body>
