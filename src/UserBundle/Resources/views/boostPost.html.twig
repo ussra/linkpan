@@ -20,10 +20,10 @@
         {% for post in posts %}
             <tr>
                 <td>{{ post.post_content }}</td>
-                <td>
+                <td> 
                     {% if post.post_boost_type == 'Remove Boost' %}
-                    <div class="input-group">
-                        <button type="submit" style="display:inline" formmethod="post" formaction="{{ path('remove_boost_post',{'post':post.post_id  })}}"  class="btn btn-danger btn-xs removeBoost" title="remove boosting">{{'Boost_remove'|trans}}</button>
+                    <div class="input-group" style="width:180px;">
+                        <button type="submit"  formmethod="post" formaction="{{ path('remove_boost_post',{'post':post.post_id  })}}"  class="btn btn-danger btn-xs removeBoost" title="remove boosting">{{'Boost_remove'|trans}}</button>
                         <button type="submit" formmethod="post" formaction="{{ path('charts',{'post':post.post_id  })}}"  class="btn btn-success btn-xs " title="charts">State </button>
                     </div>
                     {% else %}

@@ -166,8 +166,34 @@ Cost: Cost
 Cost_txt: These advertisements only run for $1.00 a day
 
 
-
-
-
-
 #end business solutions 
+
+#fcc 
+  #detail
+Complaint_Detail: Complaint Detail
+Created_By: Created By
+File: File
+complaints: complaints
+Comment: Comment
+  #end detail
+  #list
+Submit new complaint: Submit new complaint
+There's no complaints to display: There's no complaints to display
+Back to complaints: Back to complaints
+user complainted: user complainted
+  #end list
+  #form
+User to complaint: User to complaint
+There s no users to display: There s no users to display
+select the user: select the user
+Cause: Cause
+Product not received: Product not received
+Wrong_shipped: Wrong product shipped
+Payment_received: Payment received
+Transaction_amount: Transaction amount
+USD: USD
+Upload_supporting_document: Upload supporting document
+Descreption: Descreption
+Submit_Complaint: Submit Complaint
+#end form
+#end fcc

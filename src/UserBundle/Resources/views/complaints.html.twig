@@ -16,12 +16,12 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <form class="form-inline" id="search" action="{{ path('search_complaints') }}" method="post">
-                        <input class="form-control" type="search" placeholder="user complainted" id="filtercomplaint" name="filtercomplaint" required>
+                        <input class="form-control" type="search" placeholder="{{'user complainted'|trans}}" id="filtercomplaint" name="filtercomplaint" required>
                         <a ><button class="btn btn-outline-primary" type="submit"><i class="fa fa-search"></i></button></a>
                     </form>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-right">
-                    <a  class="btn btn-primary" href="{{ path('add_complaint') }}">Submit new complaint</a>
+                    <a  class="btn btn-primary" href="{{ path('add_complaint') }}">{{'Submit new complaint'|trans}}</a>
                 </div>
 
             </div>
@@ -29,7 +29,7 @@
 
                 {% if complaints|length == 0 %}
                 <div class="text-center">
-                    <h3 style="display:inline">There's no complaints to display <a href="{{ path('complaints') }}">Back to complaints</a></h3>
+                    <h3 style="display:inline">{{"There's no complaints to display"|trans}} <a href="{{ path('complaints') }}">{{'Back to complaints'|trans}}</a></h3>
                 </div>
                     
                     {% else %}
@@ -41,7 +41,7 @@
                                         <span style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;display: inline-block;max-width: 100%;">{{ complaint.description }}</span>
                                     </div>
                                     <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin-top:5px"></div>
-                                    <a class="btn btn-info" style="float:right" href="{{ path('complaint_detail',{'complaint': complaint.id}) }}">Details</a>
+                                    <a class="btn btn-info" style="float:right" href="{{ path('complaint_detail',{'complaint': complaint.id}) }}">{{'product_Details'|trans}}</a>
                                 </div>
                             </div>
                         {% endfor %}
