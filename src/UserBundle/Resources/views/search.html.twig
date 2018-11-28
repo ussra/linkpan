@@ -1,7 +1,7 @@
 {% extends "UserBundle::userbase.html.twig" %}
 
 {% block Title %}
-    Search Result
+    {{'Search_Result'|trans}}
 {% endblock %}
 
 {% block pageContent %}
@@ -9,7 +9,7 @@
         <div class="x_panel">
             {% set result = app.session.get('users')  %}
             <div class="x_title">
-                <h2>search results ({{ result|length }}) </h2>
+                <h2>{{'Search_Result'|trans}} ({{ result|length }}) </h2>
 
                 <div class="clearfix"></div>
             </div>
@@ -17,6 +17,7 @@
                 <div class="row"> <!--group rows-->
                     {% if result|length == 0 %}
                         <h4>We couldn't find any   <b>Result</b>  </h4>
+                        <h4>{{'Wecouldn_for'}}<b>Input value</b>  </h4>
                         {% else %}
                             {% for user in result %}
                                 {% if user.user_image is null %}
