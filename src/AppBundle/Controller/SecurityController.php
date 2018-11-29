@@ -24,6 +24,11 @@ class SecurityController extends Controller
      */
     public function logoutAction()
     {
-
+        $currentUser = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $currentUser->setIsActive(false);
+        $em->persist($currentUser);
+        $em->flush();
+        return $this->render('PublicBundle::signin.html.twig');
     }
 }

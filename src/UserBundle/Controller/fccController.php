@@ -66,10 +66,19 @@ class fccController extends Controller
     public function searchcomplaintsAction(Request $request)
     {
         $repo = $this->getDoctrine()->getRepository('UserBundle:Complaint');
-        $complaints = $repo->findBy(array('userToComplaint'=>$request->get('filtercomplaint')));
+        $result = $repo->createQueryBuilder('cmp')
+            ->where("
+                IDENTITY(cmp.userToComplaint) IN 
+                    (SELECT u.id FROM AppBundle:User u WHERE 
+                    CONCAT(u.firstname ,' ', u.lastname) LIKE :filter)
+            ")
+
+            ->setParameter('filter', '%' . $request->get('filtercomplaint') . '%')
+            ->getQuery()
+            ->getResult();
         $session = new Session();
         $session->set('complaint_filter_text',$request->get('filtercomplaint'));
-        $session->set('complaints',$complaints);
+        $session->set('complaints',$result);
         return $this->render('UserBundle::complaints.html.twig');
     }
 
@@ -98,6 +107,9 @@ class fccController extends Controller
             if (!is_null($request->files->get('file')))
             {
                 $dir = __DIR__ . "/../../../web/attachements/fcc";
+                if (!file_exists($dir))
+                    mkdir($dir, 0777, true);
+
                 $file = $request->files->get('file');
                 $files = scandir($dir);
                 $count = count($files)-2;

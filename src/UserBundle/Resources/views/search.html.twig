@@ -16,7 +16,7 @@
             <div class="x_content">
                 <div class="row"> <!--group rows-->
                     {% if result|length == 0 %}
-                        <h4>{{'Wecouldn_for'}}<b>Input value</b>  </h4>
+                        <h4>{{'Wecouldn_for'}}<b>Result</b>  </h4>
                         {% else %}
                             {% for user in result %}
                                 {% if user.user_image is null %}
@@ -40,6 +40,8 @@
                                         </div>
                                     </div>
                                 </div>
+
+
                             {% endfor %}
                     {% endif %}
 

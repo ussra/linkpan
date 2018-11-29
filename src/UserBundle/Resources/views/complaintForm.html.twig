@@ -22,7 +22,7 @@
                         <div>
                             {% set users = app.session.get('all_users') %}
                             <label>{{'User to complaint'|trans}}:</label>
-                            <select class="form-control" name="userlist" id="userlist" {% if users|length  == 0 %}disabled{% endif %}>
+                            <select class="form-control" name="userlist" id="userlist" {% if users|length  == 0 %}disabled{% endif %} required>
                                 <option selected value=''> --{% if users|length  == 0 %}{{'There s no users to display'|trans}}{% else %}{{'select the user'|trans}}{% endif %}  -- </option>
                                 {% for item in users %}
                                     {% if user.id != item.id %}

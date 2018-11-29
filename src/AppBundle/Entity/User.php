@@ -19,6 +19,13 @@ class User implements UserInterface
      */
     protected $id;
 
+
+
+    /**
+     * @ORM\Column(type="boolean", name="isActive")
+     */
+    protected $isActive;
+
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      */
@@ -626,4 +633,23 @@ class User implements UserInterface
     {
         return null;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getisActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * @param mixed $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+
+
 }

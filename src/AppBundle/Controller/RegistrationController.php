@@ -38,6 +38,9 @@ class RegistrationController extends Controller
             $user->setFirstname($request->get('firstname'));
             $user->setLastname($request->get('lastname'));
 
+            //active
+            $user->setIsActive(false);
+
             // Save
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);

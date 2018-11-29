@@ -35,7 +35,7 @@
                                 <br>
                                <p style="word-wrap:break-word"> {{ complaint.description }} <p>
                                 {% if complaint.file is not null %}
-                                    <br> <small  style="word-wrap:break-word;overflow: hidden;text-overflow: ellipsis;display: inline-block;max-width: 100%;">{{'File'|trans}}: <strong><a href="{{ asset('attachements/fcc/') }}{{ complaint.file }}">{{ complaint.file }}</a></strong></small>
+                                    <br> <small  style="word-wrap:break-word;overflow: hidden;text-overflow: ellipsis;display: inline-block;max-width: 100%;">{{'File'|trans}} : <strong><a href="{{ asset('attachements/fcc/') }}{{ complaint.file }}" download><i class="fa fa-download"></i></a></strong></small>
                                 {% endif %}
                             </div>
                         </div>
