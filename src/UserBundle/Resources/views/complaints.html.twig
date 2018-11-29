@@ -6,12 +6,11 @@
 
 
 {% block style %}
-    <link rel="stylesheet" href={{ asset('Userscripts/css/Detail.css') }}>
 {% endblock %}
 
 {% block pageContent %}
     {% set complaints = app.session.get('complaints') %}
-    <div class="x_panel" style="margin-top: 50px">
+    <div class="x_panel" style="margin-top: 70px">
         <div class="container" >
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
@@ -40,7 +39,7 @@
                                     <div style="word-wrap:break-word">
                                         <span style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;display: inline-block;max-width: 100%;">{{ complaint.description }}</span>
                                     </div>
-                                    <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin-top:5px"></div>
+                                    <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin:5px 0 5px 0"></div>
                                     <a class="btn btn-info" style="float:right" href="{{ path('complaint_detail',{'complaint': complaint.id}) }}">{{'product_Details'|trans}}</a>
                                 </div>
                             </div>
