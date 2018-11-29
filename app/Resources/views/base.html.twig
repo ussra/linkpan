@@ -49,7 +49,7 @@
                                         </a>
                                         <ul class="account_selection">
                                             <li><a href="{{ path('signin') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>{{'signin_SIGN_IN'|trans }}</a></li>
-                                            <li><a ><i class="fa fa-user-plus" aria-hidden="true"></i>{{'pub_sign_up'|trans }}</a></li>
+                                            <li><a href="{{ path('signup') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>{{'pub_sign_up'|trans }}</a></li>
                                         </ul>
                                     </li>
                                     <li class="account">
@@ -125,7 +125,7 @@
                     </a>
                     <ul class="menu_selection">
                         <li><a href="{{ path('signin') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign in</a></li>
-                        <li><a ><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                        <li><a hraf="{{ path('signup') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ path('linkpan') }}">{{'pub_home'|trans }}</a></li>
@@ -183,12 +183,12 @@
                             <div class="text-center">
                                 <input type="password" placeholder="{{'pub_confirmpass'|trans }}" class="biginput" id="confirmpassword" name="confirmpassword" pattern=".{3,}" required>
                             </div>
-                            <!--<div class="text-center">
+                            <div class="text-center">
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked disabled>
-                                    <label class="custom-control-label" for="customCheck1" id="checkboxtext">I accept &nbsp;<a  class="checkboxlink"> terms </a>&nbsp;  and &nbsp;<a  class="checkboxlink">&nbsp;privacy</a></label>
+                                    <!--<input type="checkbox" class="custom-control-input" id="customCheck1" checked disabled>-->
+                                    <label class="custom-control-label" for="customCheck1" id="checkboxtext">I accept &nbsp;<a  class="checkboxlink" href="{{ path('terms') }}" style="color:black"> terms </a>&nbsp;  and &nbsp;<a  class="checkboxlink" style="color:black" href="{{ path('privacy') }}">&nbsp;privacy</a></label>
                                 </div>
-                            </div> -->
+                            </div>
                             <div class="text-center">
                                 <a id="signup">
                                     <input type="submit"  class="btn btn-dark" value="SIGN UP" id="btn_signup">
@@ -384,8 +384,8 @@
                     <div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
                         <ul class="footer_nav">
                             <li><a href="">FAQs</a></li>
-                            <li><a href="">{{'pub_Privacy'|trans}}</a></li>
-                            <li><a href="">{{'pub_Terms'|trans}}</a></li>
+                            <li><a href="{{ path('privacy') }}">{{'pub_Privacy'|trans}}</a></li>
+                            <li><a href="{{ path('terms') }}">{{'pub_Terms'|trans}}</a></li>
                         </ul>
                     </div>
                 </div>
