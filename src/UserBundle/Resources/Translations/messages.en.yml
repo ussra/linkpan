@@ -43,7 +43,6 @@ Access: Access
 Public: Public
 Privacy : Private
 Price : Price
-Quantity: Quantity
 Quantity_type: Quantity Type
 Next: Next
 #end pans
@@ -154,8 +153,8 @@ Define_Set_Your : Set Your Price Tag
 Define_Set_Your_txt : How much do i need to invest on this post/pans ?
 Define_Audience : Audience Pick Up
 Define_Audience_txt : Most Relevant to me? I need just those who matter to me the most
-Define_Audience : End Anytime or automatic End 
-Define_Audience_txt : Set end date, pick a number and let the rest settle for a win
+End_Anytime : End Anytime or automatic End 
+End_Anytime_txt : Set end date, pick a number and let the rest settle for a win
 SMART : SMART 
 SMART_S_txt : Does Your Boosted post/Pans meet it required audience? Who needs to see
 SMART_M_txt : Track and see in real time the number of views, reactions taken
@@ -444,4 +443,24 @@ Backpacks: Backpacks
 Wallets: Wallets
 Baby Shoes: Baby Shoes
 Boots: Boots
+Casual Shoes: Casual Shoes
+Children’s Shoes: Children’s Shoes
+Clogs: Clogs
+Dance Shoes: Dance Shoes
+Dress Shoes: Dress Shoes
+Genuine Leather Shoes: Genuine Leather Shoes
+Men’s Shoe: Men’s Shoe
+Other Shoes: Other Shoes
+Sandals: Sandals
+Shoe Materials: Shoe Materials
+Shoe Parts & Accessories: Shoe Parts & Accessories
+Shoe Repairing Equipment: Shoe Repairing Equipment
+Shoes Design Services: Shoes Design Services
+Shoes Processing Services: Shoes Processing Services
+Shoes Stock: Shoes Stock
+Slippers: Slippers
+Special Purpose Shoes: Special Purpose Shoes
+Sports Shoes: Sports Shoes
+Used Shoes: Used Shoes
+Women’s Shoes: Women’s Shoes
 #end categories

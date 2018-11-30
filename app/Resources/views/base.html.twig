@@ -23,7 +23,12 @@
 </head>
 
 <body>
-
+<style>
+.link-hover:hover{
+    text-decoration: none;
+    color: #0056b3 !important
+}
+</style>
 <div class="super_container">
 
     <!-- Header -->
@@ -43,17 +48,17 @@
                                 <ul class="top_nav_menu">
 
                                     <li class="account">
-                                        <a href="#">
+                                        <a class="link-hover"  href="#">
                                             {{'pub_myacc'|trans}}
                                             <i class="fa fa-angle-down"></i>
                                         </a>
                                         <ul class="account_selection">
-                                            <li><a href="{{ path('signin') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>{{'signin_SIGN_IN'|trans }}</a></li>
-                                            <li><a href="{{ path('signup') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>{{'pub_sign_up'|trans }}</a></li>
+                                            <li><a class="link-hover" href="{{ path('signin') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>{{'signin_SIGN_IN'|trans }}</a></li>
+                                            <li><a class="link-hover" href="{{ path('signup') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>{{'pub_sign_up'|trans }}</a></li>
                                         </ul>
                                     </li>
                                     <li class="account">
-                                        <a href="#">
+                                        <a  class="link-hover" href="#">
                                             {{'pub_lang'|trans}}
                                             <i class="fa fa-angle-down"></i>
                                         </a>
@@ -84,10 +89,10 @@
                         </div>
                         <nav class="navbar">
                             <ul class="navbar_menu">
-                                <li><a href="{{ path('linkpan') }}">{{'pub_home'|trans }}</a></li>
-                                <li><a href="">{{'pub_discover'|trans }}</a></li>
-                                <li><a href="">{{'pub_about_us'|trans }}</a></li>
-                                <li><a href="">{{'pub_contact_us'|trans }}</a></li>
+                                <li><a class="link-hover" href="{{ path('linkpan') }}">{{'pub_home'|trans }}</a></li>
+                                <li><a class="link-hover" href="">{{'pub_discover'|trans }}</a></li>
+                                <li><a class="link-hover" href="">{{'pub_about_us'|trans }}</a></li>
+                                <li><a class="link-hover" href="">{{'pub_contact_us'|trans }}</a></li>
                                 {% block search %}
                                     <li>
                                         <form class="form-inline">
@@ -103,7 +108,7 @@
 
                             </ul>
                             <div class="hamburger_container">
-                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                <i  class="fa fa-bars" aria-hidden="true"></i>
                             </div>
                         </nav>
                     </div>
@@ -124,8 +129,8 @@
                         <i class="fa fa-angle-down"></i>
                     </a>
                     <ul class="menu_selection">
-                        <li><a href="{{ path('signin') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>Sign in</a></li>
-                        <li><a hraf="{{ path('signup') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                        <li><a class="link-hover" href="{{ path('signin') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>{{'signin_SIGN_IN'|trans }}</a></li>
+                        <li><a class="link-hover" hraf="{{ path('signup') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>{{'pub_sign_up'|trans }}</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ path('linkpan') }}">{{'pub_home'|trans }}</a></li>
@@ -175,7 +180,7 @@
                                 <input type="text" placeholder="{{'pub_lastname'|trans }}" class="smallinput" id="lastname" name="lastname" required>
                             </div>
                             <div class="text-center">
-                                <input type="email" placeholder="E-mail" class="biginput" id="email" name="email" required>
+                                <input type="email" placeholder="{{'E-mail'|trans}}" class="biginput" id="email" name="email" required>
                             </div>
                             <div class="text-center">
                                 <input type="password" placeholder="{{'password'|trans }}" class="biginput" id="password" pattern=".{3,}" required>
@@ -183,15 +188,15 @@
                             <div class="text-center">
                                 <input type="password" placeholder="{{'pub_confirmpass'|trans }}" class="biginput" id="confirmpassword" name="confirmpassword" pattern=".{3,}" required>
                             </div>
-                            <div class="text-center">
+                           <!-- <div class="text-center">
                                 <div class="custom-control custom-checkbox">
-                                    <!--<input type="checkbox" class="custom-control-input" id="customCheck1" checked disabled>-->
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1" checked disabled>
                                     <label class="custom-control-label" for="customCheck1" id="checkboxtext">I accept &nbsp;<a  class="checkboxlink" href="{{ path('terms') }}" style="color:black"> terms </a>&nbsp;  and &nbsp;<a  class="checkboxlink" style="color:black" href="{{ path('privacy') }}">&nbsp;privacy</a></label>
                                 </div>
-                            </div>
+                            </div>-->
                             <div class="text-center">
                                 <a id="signup">
-                                    <input type="submit"  class="btn btn-dark" value="SIGN UP" id="btn_signup">
+                                    <input type="submit"  class="btn btn-dark" value="{{'pub_sign_up'|trans}}" id="btn_signup">
                                 </a>
                             </div>
                             <div class="text-center">
@@ -212,7 +217,7 @@
                             <div class="col-xl-8 offset-xl-2" >
                             <div class="card" >
                                 <div class="card-body text-center">
-                                    <a href="#" class="btn btn-primary"><i class="fa fa-facebook-square" style="margin-right:5px"></i>{{'pub_orsignupwithfbk'|trans }}</a>
+                                    <a href="#" class="btn btn-primary"><i class="fa fa-facebook-square" style="margin-right:5px"></i>{{'pub_orsignupwithfb'|trans }}</a>
                                 </div>
                             </div>
                             </div>
@@ -363,7 +368,7 @@
                                 <h2>{{'pub_Discover_Membership'|trans }}</h2>
                                 <p style="font-size:2vw; color:black">{{'pub_Discover_Membership_text'|trans }}</p>
                             </div>
-                            <div class="red_button deal_ofthe_week_button"><a href="#">{{'pub_UPGRADE_NOW'|trans }}</a></div>
+                            <div class="red_button deal_ofthe_week_button"><a class="link-hover" href="#">{{'pub_UPGRADE_NOW'|trans }}</a></div>
                         </div>
                     </div>
                 </div>
@@ -383,9 +388,9 @@
                 <div class="col-lg-6">
                     <div class="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
                         <ul class="footer_nav">
-                            <li><a href="">FAQs</a></li>
-                            <li><a href="{{ path('privacy') }}">{{'pub_Privacy'|trans}}</a></li>
-                            <li><a href="{{ path('terms') }}">{{'pub_Terms'|trans}}</a></li>
+                            <li><a class="link-hover" href="">FAQs</a></li>
+                            <li><a class="link-hover" href="{{ path('privacy') }}">{{'pub_Privacy'|trans}}</a></li>
+                            <li><a class="link-hover" href="{{ path('terms') }}">{{'pub_Terms'|trans}}</a></li>
                         </ul>
                     </div>
                 </div>

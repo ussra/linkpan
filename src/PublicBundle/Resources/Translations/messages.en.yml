@@ -24,15 +24,15 @@ pub_search: Search
   #END NAV 
 
   #SIGN UP 
-pub_sign_up_now: SIGN UP NOW !
 pub_GlobalTrading:  Global Trading 
 pub_NetworkingPlatform:  Networking Platform
 pub_firstname:  First name
 pub_lastname:  Last name
+E-mail: E-mail
 pub_confirmpass: Confirm password
 pub_alreadyhaveacc: Already have an account ?
 pub_orsignup: Or Sign up with
-pub_orsignupwithfb: Sign Up with faceboo
+pub_orsignupwithfb: Sign Up with facebook
   #END SIGN UP
 
     #BODY Pans
