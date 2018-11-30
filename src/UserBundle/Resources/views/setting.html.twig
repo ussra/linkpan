@@ -113,9 +113,15 @@
                                 <div class="form-group">
                                     <label style="color:#cb2431;font-size:20px;">{{'Settings_deleacc'|trans}}</label> <br>
                                     <label>{{'Settings_deleacc_txt'|trans}}</label> <br>
-                                    <button type="button" class="btn btn-danger btn-md method" id="" onclick="$('#deleacc').modal('show');">
+                                    <button style="display:none" type="button"  id="clickdeletacc2" onclick="$('#deleacc').modal('show');">
                                         {{'Settings_deleacc'|trans}}
                                     </button>
+                                    <button type="button" class="btn btn-danger btn-md method"  onclick="clickdeletacc()">
+                                        {{'Settings_deleacc'|trans}}
+                                    </button>
+                                    <script>
+                                       
+                                    </script>
                                 </div>
                         </div>
                         <!-- Company Informations -->
@@ -521,6 +527,21 @@
     <!-- Save data -->
     <script src="https://js.stripe.com/v3/"></script>
     <script>
+        // delet acc confirmation:
+         function clickdeletacc(){
+                                                swal({
+                                                title: "Are you sure?",
+                                                text: "Are you sure that you want to delete your account?",
+                                                icon: "warning",
+                                                buttons: ["NO", "YES !"],
+                                                dangerMode: true,
+                                                })
+                                                .then(willDelete => {
+                                                    if (willDelete) {
+                                                        document.getElementById("clickdeletacc2").click();
+                                                    }
+                                                });
+                                        }
         // Create a Stripe client.
         var stripe = Stripe('pk_test_W7BV1CRR2gqWVgH7S2X0JEn8');
 
