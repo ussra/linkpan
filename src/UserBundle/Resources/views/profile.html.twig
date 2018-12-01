@@ -40,16 +40,13 @@
                             {% if userProfile.user_adress is not null %}
                                 <li><i class="fa fa-map-marker user-profile-icon"></i>
                                     {{ userProfile.user_adress }}
-
                                 </li>
                             {% endif %}
 
                             {% if userProfile.user_company_name is not null %}
                                 <li>
                                     <i class="fa fa-briefcase user-profile-icon"></i>
-
                                         {{ userProfile.user_company_name }}
-
                                 </li>
                             {% endif %}
 
@@ -100,20 +97,25 @@
                                 <div class="tab-pane active" id="home-r">
                                     <div class="col-12">
                                         <ul class="list-unstyled msg_list">
-                                            <li>
-                                                <a>
-                                                                    <span class="image">
-                                                                      <img src="scripts/img/userimage.png" alt="img" />
-                                                                    </span>
-                                                    <span>
-                                                                        <span>John Doe</span>
-                                                                        <span class="time">3 mins ago</span>
-                                                                    </span>
-                                                    <span class="message">
-                                                                        Description Description Description Description Description
-                                                                    </span>
-                                                </a>
-                                            </li>
+                                            {% for item in app.session.get('profile_recent_activities') %}
+                                                <li>
+                                                    <a>
+                                                        <!--
+                                                        <span class="image">
+                                                          <img src="scripts/img/userimage.png" alt="img" />
+                                                        </span>
+
+                                                        <span>
+                                                            <span>John Doe</span>
+                                                            <span class="time">3 mins ago</span>
+                                                        </span>
+                                                        -->
+                                                        <span class="message">
+                                                            Description Description Description Description Description
+                                                        </span>
+                                                    </a>
+                                                </li>
+                                            {% endfor %}
                                         </ul>
                                     </div>
                                 </div>

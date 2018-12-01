@@ -118,6 +118,7 @@ class ProfileController extends Controller
             $session->set('user_info',$temp);
 
             $this->getCountFollow($session);
+            $this->recentActivities($session);
             return new JsonResponse($this->generateUrl('profile'));
         }
 
@@ -139,5 +140,33 @@ class ProfileController extends Controller
         );
         if(sizeof($folllowersdata)>0) $followers = sizeof($folllowersdata); else $followers = 0;
         $session->set('followers',$followers);
+    }
+
+
+    private function recentActivities($session){
+        $currentUser = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery('SELECT d FROM UserBundle:ObjectShare d 
+            Where d.user = :currentUser  ORDER BY d.id DESC  ')
+            ->setParameter('currentUser',$currentUser);
+        $result = $query->setMaxResults(5)->getResult();
+        $shares = array();
+        if(sizeof($result)>0)
+        {
+            foreach ($result as $item)
+            {
+                if($item->getType() == 'post')
+                {
+                    $repo = $this->getDoctrine()->getRepository('UserBundle:Post');
+                    $post = $repo->findOneById($item->getObjectId());
+                    if(!is_null($post))
+                        array_push($shares,$post);
+                }
+                else
+                    var_dump('pan');
+            }
+        }
+
+        $session->set('profile_recent_activities',$shares);
     }
 }
