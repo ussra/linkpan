@@ -286,7 +286,7 @@
                                             <tbody>
                                                 {% for value in billing %}
                                                     <tr id="value{{ value.id }}">
-                                                        <th scope="row">{{ value.number }}***********</th>
+                                                        <th scope="row">{{ value.number }}</th>
                                                         <td>{{ value.brand }}</td>
                                                         <td>
                                                             <a onclick="removeCard({{ value.id }})">
@@ -529,19 +529,19 @@
     <script>
         // delet acc confirmation:
          function clickdeletacc(){
-                                                swal({
-                                                title: "Are you sure?",
-                                                text: "Are you sure that you want to delete your account?",
-                                                icon: "warning",
-                                                buttons: ["NO", "YES !"],
-                                                dangerMode: true,
-                                                })
-                                                .then(willDelete => {
-                                                    if (willDelete) {
-                                                        document.getElementById("clickdeletacc2").click();
-                                                    }
-                                                });
-                                        }
+            swal({
+            title: "Are you sure?",
+            text: "Are you sure that you want to delete your account?",
+            icon: "warning",
+            buttons: ["NO", "YES !"],
+            dangerMode: true,
+            })
+            .then(willDelete => {
+                if (willDelete) {
+                    document.getElementById("clickdeletacc2").click();
+                }
+            });
+    }
         // Create a Stripe client.
         var stripe = Stripe('pk_test_W7BV1CRR2gqWVgH7S2X0JEn8');
 
