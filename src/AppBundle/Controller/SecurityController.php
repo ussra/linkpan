@@ -29,6 +29,8 @@ class SecurityController extends Controller
         $currentUser->setIsActive(false);
         $em->persist($currentUser);
         $em->flush();
+        $this->get('security.token_storage')->setToken(null);
+        $this->get('session')->clear();
         return $this->render('PublicBundle::signin.html.twig');
     }
 }

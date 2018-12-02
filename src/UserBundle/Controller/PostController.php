@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use UserBundle\Entity\ObjectShare;
 use UserBundle\Entity\Post;
 use UserBundle\Entity\PostComment;
 use UserBundle\Entity\PostImage;
@@ -29,6 +30,8 @@ class PostController extends Controller
         if (!is_null($request->files->get('post_video')))
         {
             $viddir = __DIR__ . "/../../../web/videos";
+            if (!file_exists($viddir))
+                mkdir($viddir, 0777, true);
             $video = $request->files->get('post_video');
             $files = scandir($viddir);
             $count = count($files)-2;
@@ -45,6 +48,8 @@ class PostController extends Controller
         if(!is_null($images[0]))
         {
             $imgdir = __DIR__ . "/../../../web/images/post";
+            if (!file_exists($imgdir))
+                mkdir($imgdir, 0777, true);
             foreach ($images as $img)
             {
                 $pi = new PostImage();
@@ -125,30 +130,14 @@ class PostController extends Controller
      */
     public function post_shareAction(Request $request)
     {
-        $user = $this->getUser();
-        $prepo = $this->getDoctrine()->getRepository('UserBundle:Post');
-        $post = $prepo->findOneById($request->get('post'));
-        if(sizeof($post) == 1)
-        {
-            $psrepo = $this->getDoctrine()->getRepository('UserBundle:PostShare');
-            $item = $psrepo->findOneBy(
-                array('post'=>$post,'user'=>$user)
-            );
-            if(sizeof($item) == 0)
-            {
-                $postshare = new PostShare();
-                $postshare->setUser($user);
-                $postshare->setPost($post);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($postshare);
-                $em->flush();
-                return new JsonResponse('Done');
-            }
-            else
-                return new JsonResponse('ERR');
-        }
-        else
-            return new JsonResponse('ERR');
+        $objectShare = new ObjectShare();
+        $objectShare->setUser($this->getUser());
+        $objectShare->setType('post');
+        $objectShare->setObjectId($request->get('post'));
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($objectShare);
+        $em->flush();
+        return new JsonResponse('Done');
     }
 
     /**
@@ -172,5 +161,21 @@ class PostController extends Controller
         }
         else
             return new JsonResponse('ERR');
+    }
+
+    /**
+     * @Route("/linkpan/home/delete_post",name="delete_post")
+     */
+    public function delete_postAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Post');
+        $post = $repo->findOneById($request->get('post'));
+        if(!is_null($post))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($post);
+            $em->flush();
+        }
+        return $this->forward('UserBundle:Home:index');
     }
 }
