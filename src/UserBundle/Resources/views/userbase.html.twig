@@ -98,11 +98,11 @@
                                 <li><a href="{{ path('home') }}" data-id="{{ countData }}" id="home_menu"> Home</a></li>
                             </ul>
                             <ul class="nav side-menu">
-                                <li><a> Discover</a></li> <!--onclick="discover()" -->
+                                <li><a href="{{ path('discover') }}"> Discover</a></li> <!--onclick="discover()" -->
                             </ul>
                             {% if app.session.get('membership') == 'dockies' %}
                                 <ul class="nav side-menu">
-                                    <li><a href = {{ path('dockies') }}> Dockies</a></li>
+                                    <li><a > Dockies</a></li>
                                 </ul>
                             {% endif %}
                             <ul class="nav side-menu">
@@ -466,11 +466,10 @@
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                         <li><a href="#share_post" onclick="sharePost({{ item.id }})" title="Send this to friend or post it on your time line">on your timeline</a></li>
-                                                        <li role="separator" class="divider"></li>
-                                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                                        <!--<li role="separator" class="divider"></li>
+                                                        <li><a href="#" class="share_facebook" data-url="https://www.youtube.com/watch?v=mAJeK283j0I"><i class="fa fa-facebook"></i></a></li>
                                                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>                                                        
-                                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                                        
+                                                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
                                                     </ul>
                                                     </div>
                                                     <!--end add share fb twiter googlr plus linkedin -->
@@ -631,7 +630,7 @@
                         <label for="dockiestype">Dockies Type:</label>
                         <select class="form-control" id="dockiestype" name="dockiestype" required>
                             <option value="monthly">monthly</option>
-                            <option value="6 months ">6 months</option>
+                            <option value="6 months">6 months</option>
                             <option value="annually">annually</option>
                         </select>
                     </div>
@@ -679,11 +678,9 @@
                 <h4 class="modal-title">Search </h4>
             </div>
             <div class="modal-body">
-                <form class="form-inline">
-                    <form class="form-inline" method="post" action="{{ path('search') }}">
-                        <input class="form-control searchinput" type="text" placeholder="Search" name="searchinput" id="textinput2" >
-                        <a><button class="btn btn-outline-primary" type="submit" ><i class="fa fa-search"></i></button></a>
-                    </form>
+                <form class="form-inline" method="post" action="{{ path('search') }}">
+                    <input class="form-control searchinput" type="text" placeholder="Search" name="searchinput" required >
+                    <button class="btn btn-outline-primary" type="submit" ><i class="fa fa-search"></i></button>
                 </form>
             </div>
         </div>
@@ -805,6 +802,33 @@
         });
 
     }
+</script>
+
+
+<script>
+    (function(){
+
+        var popupCenter = function(url, title, width, height){
+            var popupWidth = width || 640;
+            var popupHeight = height || 320;
+            var windowLeft = window.screenLeft || window.screenX;
+            var windowTop = window.screenTop || window.screenY;
+            var windowWidth = window.innerWidth || document.documentElement.clientWidth;
+            var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            var popupLeft = windowLeft + windowWidth / 2 - popupWidth / 2 ;
+            var popupTop = windowTop + windowHeight / 2 - popupHeight / 2;
+            var popup = window.open(url, title, 'scrollbars=yes, width=' + popupWidth + ', height=' + popupHeight + ', top=' + popupTop + ', left=' + popupLeft);
+            popup.focus();
+            return true;
+        };
+        // share in facebook
+        document.querySelector('.share_facebook').addEventListener('click', function(e){
+            e.preventDefault();
+            var url = this.getAttribute('data-url');//
+            var shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url) ;
+            popupCenter(shareUrl, "Share in facebook");
+        });
+    })();
 </script>
 
 

@@ -178,4 +178,6 @@ class PostController extends Controller
         }
         return $this->forward('UserBundle:Home:index');
     }
+
+
 }

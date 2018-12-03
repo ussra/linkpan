@@ -284,8 +284,6 @@ class HomeController extends Controller
         $result =  $query->setMaxResults(5)->getResult();
         $posts = $this->Homeresult($result);
         $session->set('Homeposts',$posts);
-
-        //
         return $this->render('UserBundle::userbase.html.twig');
     }
 

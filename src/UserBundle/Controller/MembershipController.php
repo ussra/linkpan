@@ -32,6 +32,7 @@ class MembershipController extends Controller
             {
                 $type = $request->get('dockiestype');
                 $stripeClient = $this->get('flosch.stripe.client');
+
                 $plan = null;
                 if($type == 'monthly')
                     $plan = $stripeClient->subscribeExistingCustomerToPlan($currentUser->getStripeId(), 'plan_Dm6jUqTK31pugh',null);
@@ -39,6 +40,8 @@ class MembershipController extends Controller
                     $plan = $stripeClient->subscribeExistingCustomerToPlan($currentUser->getStripeId(), 'plan_Dm6my4r0YqSCZq',null);
                 if($type == 'annually')
                     $plan = $stripeClient->subscribeExistingCustomerToPlan($currentUser->getStripeId(), 'plan_Dm6jLrBxxv0b4D',null);
+
+
                 if(!is_null($plan))
                 {
                     $membership = new Membership();
