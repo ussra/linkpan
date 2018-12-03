@@ -159,7 +159,10 @@
                                     {% if app.session.get('membership') == 'simple' %}
                                         <li><a onclick="$('#up_modal').modal('show')"><strong>Upgrade Membership</strong></a></li>
                                         {% else %}
-                                            <li><a href="{{ path('downgrade_membership') }}"><small style="color: red;">Downgrade Membership</small></a></li>
+                                            <li>
+                                                <a onclick="clickdowngrade()"> <small style="color: red;">Downgrade Membership</small></a>
+                                                <a style="display:none" id="downgradebtn" href="{{ path('downgrade_membership') }}"><small style="color: red;">Downgrade Membership</small></a>
+                                            </li>
                                     {% endif %}
 
                                     <li><a href="{{ path('boost_posts') }}">Posts</a></li>
@@ -729,6 +732,21 @@
             }
         });
     } //end delet acc confirmation
+
+     function clickdowngrade(){
+        swal({
+        title: "Are you sure?",
+        text: "Are you sure that you want to delete this post ?",
+        icon: "warning",
+        buttons: ["NO", "YES !"],
+        dangerMode: true,
+        })
+        .then(willDelete => {
+            if (willDelete) {
+                document.getElementById("downgradebtn").click();
+            }
+        });
+    } 
 </script>
 <script>
     function settingAccess()
