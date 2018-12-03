@@ -679,8 +679,12 @@
             </div>
             <div class="modal-body">
                 <form class="form-inline" method="post" action="{{ path('search') }}">
-                    <input class="form-control searchinput" type="text" placeholder="Search" name="searchinput" required >
-                    <button class="btn btn-outline-primary" type="submit" ><i class="fa fa-search"></i></button>
+                    <div class="input-group">
+                        <input class="form-control searchinput" type="text" placeholder="Search" name="searchinput" required >
+                        <span class="input-group-btn">
+                            <button class="btn btn-outline-primary" type="submit" ><i class="fa fa-search"></i></button>
+                        </span> 
+                    </div>
                 </form>
             </div>
         </div>
