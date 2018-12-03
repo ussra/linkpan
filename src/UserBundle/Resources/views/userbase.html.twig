@@ -307,9 +307,10 @@
                                                             <i style="color:black" class="fa fa-ellipsis-h"></i>
                                                         </button> 
                                                         <ul class="dropdown-menu dropdown-menu-right">
-                                                            <li><a href="{{ path('delete_post',{'post': item.id }) }}">Delet</a></li>
+                                                            <li style="display:none"><a id="deletpostbtn" href="{{ path('delete_post',{'post': item.id }) }}">Delet</a></li>
+                                                            <li><a href="#" onclick="clickdeletpost()">Delet</a></li>
                                                         </ul> 
-                                                    </div>
+                                                    </div>   
                                             </div>
                                             <!--end delet post -->
                                             <!-- Name / Boosted /Date / Adress -->
@@ -712,6 +713,23 @@
 <script src={{ asset('Userscripts/js/upgradeConfirmation.js') }}></script>
 
 <!-- Setting access -->
+<script>
+    // delet acc confirmation:
+    function clickdeletpost(){
+        swal({
+        title: "Are you sure?",
+        text: "Are you sure that you want to delete this post ?",
+        icon: "warning",
+        buttons: ["NO", "YES !"],
+        dangerMode: true,
+        })
+        .then(willDelete => {
+            if (willDelete) {
+                document.getElementById("deletpostbtn").click();
+            }
+        });
+    } //end delet acc confirmation
+</script>
 <script>
     function settingAccess()
     {
