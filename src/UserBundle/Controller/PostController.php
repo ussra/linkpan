@@ -179,5 +179,19 @@ class PostController extends Controller
         return $this->forward('UserBundle:Home:index');
     }
 
-
+    /**
+     * @Route("/linkpan/home/delete_comment",name="delete_comment")
+     */
+    public function delete_commentAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:PostComment');
+        $comment = $repo->findOneById($request->get('comment'));
+        if(!is_null($comment))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($comment);
+            $em->flush();
+        }
+        return new JsonResponse('Done');
+    }
 }

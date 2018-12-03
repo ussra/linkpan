@@ -26,6 +26,35 @@ class DiscoverController extends Controller
     {
         $query = $em->createQuery(
             '
+                SELECT COUNT(DISTINCT p.id) FROM UserBundle:Pan p
+                WHERE IDENTITY(p.user) = :user
+                AND p.type = :type
+                OR 
+                IDENTITY(p.user) IN (
+                  SELECT IDENTITY(f.userToFollow) FROM UserBundle:Follow f 
+                  WHERE f.user = :user
+                )
+                OR 
+                p.id IN (
+                  SELECT IDENTITY(bp.pan) FROM UserBundle:BoostPan bp
+                ) 
+                AND IDENTITY(p.user) NOT IN (
+                  SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                )
+                AND IDENTITY(p.user) NOT IN (
+                  SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+                ) 
+                
+                ORDER BY p.id DESC
+            '
+        )->setParameter('user', $currentUser->getId())
+            ->setParameter('type', 'Discover');
+        $session->set('DiscoverPans_count',$query->getResult()[0][1]);
+    }
+
+    private function getPans($em,$currentUser,$session){
+        $query = $em->createQuery(
+            '
                 SELECT DISTINCT p.id FROM UserBundle:Pan p
                 WHERE IDENTITY(p.user) = :user
                 AND p.type = :type
@@ -49,6 +78,6 @@ class DiscoverController extends Controller
             '
         )->setParameter('user', $currentUser->getId())
             ->setParameter('type', 'Discover');
-        $session->set('DiscoverPans_count',$query->getResult());
+        $session->set('DiscoverPans',$query->getResult());
     }
 }
