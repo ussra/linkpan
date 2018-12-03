@@ -58,8 +58,10 @@
                                             {% set complaint_reviews = app.session.get('complaint_reviews') %}
                                             <div class="panel-body">
                                                 <form>
-                                                    <textarea class="form-control" placeholder="{{'product_write_comment'|trans}}..." rows="3" style="resize:none" id="complaintcomment"></textarea>
-                                                    <a><button type="button" class="btn btn-info btn-xs pull-right" onclick="commentComplaint({{ complaint.id }})"><h5>{{'Comment'|trans}}</h5></button></a>
+                                                    <div >
+                                                        <textarea class="form-control" placeholder="{{'product_write_comment'|trans}}..." rows="3" style="resize:none" id="complaintcomment"></textarea>
+                                                        <a><button type="button" class="btn btn-info btn-xs pull-right" onclick="commentComplaint({{ complaint.id }})"><h5>{{'Comment'|trans}}</h5></button></a>
+                                                    </div>
                                                 </form>
                                                 <div class="clearfix"></div>
                                                 <hr>
@@ -69,11 +71,11 @@
                                                         <li class="media">
                                                             <a href="#" class="pull-left">
                                                                 {% if comment.user.image is null  %}{% set image = 'default.png' %} {% else %} {% set image = comment.user.image %}{% endif %}
-                                                                <img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle">
+                                                                <img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;">
                                                             </a>
                                                             <div class="">
                                                                 <div class="names">
-                                                                    {{ comment.user.firstname }} {{ comment.user.lastname }}
+                                                                    <b>{{ comment.user.firstname }} {{ comment.user.lastname }}</b>
                                                                 </div>
 
                                                                 <p style="word-wrap:break-word">
@@ -81,7 +83,7 @@
                                                                 </p>
                                                             </div>
                                                         </li>
-
+                                                        <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin:5px 0 5px 0"></div>
                                                     {% endfor %}
                                                 </ul>
                                             </div>
@@ -145,9 +147,9 @@
                             var output = '<li class="media"><a href="#" class="pull-left">'
                             if('{{ user.image }}' == null || '{{ user.image }}' == '')
                                 image = 'default.png'; else image = '{{ user.image }}';
-                            output += '<img src="{{ asset('images/profile/') }}'+image+'"  alt="" class="img-circle"></a><div class="media-body"><div class="names">'
-                            output += '{{ user.firstname }}'.concat(' ').concat('{{ user.lastname }}').concat('</div>')
-                            output += '<p>'.concat($('#complaintcomment').val()).concat('</p></div></li>')
+                            output += '<img src="{{ asset('images/profile/') }}'+image+'"  alt="" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;"></a><div class=""><div class="names">'
+                            output += '<b>{{ user.firstname }}'.concat(' ').concat('{{ user.lastname }}').concat('</b></div>')
+                            output += '<p style="word-wrap:break-word">'.concat($('#complaintcomment').val()).concat('</p></div><div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin:5px 0 5px 0"></div></li>')
 
                             $('#complaint_comments_list').prepend(output);
                             $('#complaintcomment').val('')

@@ -153,14 +153,17 @@ class ProfileController extends Controller
         $shares = array();
         if(sizeof($result)>0)
         {
+            $repo = $this->getDoctrine()->getRepository('UserBundle:Post');
             foreach ($result as $item)
             {
                 if($item->getType() == 'post')
                 {
-                    $repo = $this->getDoctrine()->getRepository('UserBundle:Post');
                     $post = $repo->findOneById($item->getObjectId());
                     if(!is_null($post))
-                        array_push($shares,$post);
+                    {
+                        
+                        array_push($shares,$post);   
+                    }
                 }
                 else
                     var_dump('pan');
