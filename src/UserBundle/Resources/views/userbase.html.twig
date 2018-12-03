@@ -323,7 +323,7 @@
 
                                             <!-- display post content -->
                                             <p class="fb-user-status">
-                                            <div>
+                                            <div style="word-wrap:break-word">
                                                 {{ item.post_content }}
                                             </div>
                                             <br>
@@ -522,7 +522,7 @@
                                                                 </a>
                                                                 <div class="cmt-details">
                                                                     <div><a href="" onclick="view({{ comment.comment_owner_id }})">{{ comment.comment_owner_first_name }} {{ comment.comment_owner_last_name }}</a></div>
-                                                                    <div><span> {{ comment.comment_content }} </span></div>
+                                                                    <div style="word-wrap:break-word"><span> {{ comment.comment_content }} </span></div>
                                                                 </div>
                                                             </li>
                                                         {% endfor %}
