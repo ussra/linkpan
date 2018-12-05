@@ -30,25 +30,30 @@ class DiscoverController extends Controller
     {
         $pans = null;
         $query = $em->createQuery(
-            'SELECT DISTINCT p FROM UserBundle:Pan p
-                WHERE IDENTITY(p.user) = :user
-                AND p.type = :type
-                OR 
-                IDENTITY(p.user) IN (
-                  SELECT IDENTITY(f.userToFollow) FROM UserBundle:Follow f 
-                  WHERE f.user = :user
+            '
+                SELECT DISTINCT p FROM UserBundle:Pan p
+                WHERE p.type = :type 
+                AND (
+                  IDENTITY(p.user) = :user
+                  OR 
+                  IDENTITY(p.user) IN (
+                      SELECT IDENTITY(f.userToFollow) FROM UserBundle:Follow f 
+                      WHERE f.user = :user
+                  )
+                  OR 
+                  p.id IN (
+                    SELECT IDENTITY(bp.pan) FROM UserBundle:BoostPan bp
+                  ) 
                 )
-                OR 
-                p.id IN (
-                  SELECT IDENTITY(bp.pan) FROM UserBundle:BoostPan bp
-                ) 
-                AND IDENTITY(p.user) NOT IN (
-                  SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                AND (
+                  IDENTITY(p.user) NOT IN (
+                    SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                  )
+                  OR 
+                  IDENTITY(p.user) NOT IN (
+                    SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+                  ) 
                 )
-                AND IDENTITY(p.user) NOT IN (
-                  SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
-                ) 
-                
                 ORDER BY p.id DESC
             '
         )->setParameter('user', $currentUser->getId())
@@ -104,24 +109,28 @@ class DiscoverController extends Controller
         $query = $em->createQuery(
             '
                 SELECT COUNT(DISTINCT p.id) FROM UserBundle:Pan p
-                WHERE IDENTITY(p.user) = :user
-                AND p.type = :type
-                OR 
-                IDENTITY(p.user) IN (
-                  SELECT IDENTITY(f.userToFollow) FROM UserBundle:Follow f 
-                  WHERE f.user = :user
+                WHERE p.type = :type 
+                AND (
+                  IDENTITY(p.user) = :user
+                  OR 
+                  IDENTITY(p.user) IN (
+                      SELECT IDENTITY(f.userToFollow) FROM UserBundle:Follow f 
+                      WHERE f.user = :user
+                  )
+                  OR 
+                  p.id IN (
+                    SELECT IDENTITY(bp.pan) FROM UserBundle:BoostPan bp
+                  ) 
                 )
-                OR 
-                p.id IN (
-                  SELECT IDENTITY(bp.pan) FROM UserBundle:BoostPan bp
-                ) 
-                AND IDENTITY(p.user) NOT IN (
-                  SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                AND (
+                  IDENTITY(p.user) NOT IN (
+                    SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                  )
+                  OR 
+                  IDENTITY(p.user) NOT IN (
+                    SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+                  ) 
                 )
-                AND IDENTITY(p.user) NOT IN (
-                  SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
-                ) 
-                
                 ORDER BY p.id DESC
             '
         )->setParameter('user', $currentUser->getId())
@@ -136,24 +145,28 @@ class DiscoverController extends Controller
         {
             $query = $em->createQuery(
                 'SELECT DISTINCT p FROM UserBundle:Pan p
-                WHERE IDENTITY(p.user) = :user
-                AND p.type = :type
-                OR 
-                IDENTITY(p.user) IN (
-                  SELECT IDENTITY(f.userToFollow) FROM UserBundle:Follow f 
-                  WHERE f.user = :user
+                WHERE p.type = :type 
+                AND (
+                  IDENTITY(p.user) = :user
+                  OR 
+                  IDENTITY(p.user) IN (
+                      SELECT IDENTITY(f.userToFollow) FROM UserBundle:Follow f 
+                      WHERE f.user = :user
+                  )
+                  OR 
+                  p.id IN (
+                    SELECT IDENTITY(bp.pan) FROM UserBundle:BoostPan bp
+                  ) 
                 )
-                OR 
-                p.id IN (
-                  SELECT IDENTITY(bp.pan) FROM UserBundle:BoostPan bp
-                ) 
-                AND IDENTITY(p.user) NOT IN (
-                  SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                AND (
+                  IDENTITY(p.user) NOT IN (
+                    SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                  )
+                  OR 
+                  IDENTITY(p.user) NOT IN (
+                    SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+                  ) 
                 )
-                AND IDENTITY(p.user) NOT IN (
-                  SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
-                ) 
-                
                 ORDER BY p.price DESC 
             '
             )->setParameter('user', $currentUser->getId())
@@ -163,24 +176,28 @@ class DiscoverController extends Controller
         {
             $query = $em->createQuery(
                 'SELECT DISTINCT p FROM UserBundle:Pan p
-                WHERE IDENTITY(p.user) = :user
-                AND p.type = :type
-                OR 
-                IDENTITY(p.user) IN (
-                  SELECT IDENTITY(f.userToFollow) FROM UserBundle:Follow f 
-                  WHERE f.user = :user
+                WHERE p.type = :type 
+                AND (
+                  IDENTITY(p.user) = :user
+                  OR 
+                  IDENTITY(p.user) IN (
+                      SELECT IDENTITY(f.userToFollow) FROM UserBundle:Follow f 
+                      WHERE f.user = :user
+                  )
+                  OR 
+                  p.id IN (
+                    SELECT IDENTITY(bp.pan) FROM UserBundle:BoostPan bp
+                  ) 
                 )
-                OR 
-                p.id IN (
-                  SELECT IDENTITY(bp.pan) FROM UserBundle:BoostPan bp
-                ) 
-                AND IDENTITY(p.user) NOT IN (
-                  SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                AND (
+                  IDENTITY(p.user) NOT IN (
+                    SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                  )
+                  OR 
+                  IDENTITY(p.user) NOT IN (
+                    SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+                  ) 
                 )
-                AND IDENTITY(p.user) NOT IN (
-                  SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
-                ) 
-                
                 ORDER BY p.price ASC 
             '
             )->setParameter('user', $currentUser->getId())
@@ -189,24 +206,28 @@ class DiscoverController extends Controller
         if($type == 'New in'){
             $query = $em->createQuery(
                 'SELECT DISTINCT p FROM UserBundle:Pan p
-                WHERE IDENTITY(p.user) = :user
-                AND p.type = :type
-                OR 
-                IDENTITY(p.user) IN (
-                  SELECT IDENTITY(f.userToFollow) FROM UserBundle:Follow f 
-                  WHERE f.user = :user
+                WHERE p.type = :type 
+                AND (
+                  IDENTITY(p.user) = :user
+                  OR 
+                  IDENTITY(p.user) IN (
+                      SELECT IDENTITY(f.userToFollow) FROM UserBundle:Follow f 
+                      WHERE f.user = :user
+                  )
+                  OR 
+                  p.id IN (
+                    SELECT IDENTITY(bp.pan) FROM UserBundle:BoostPan bp
+                  ) 
                 )
-                OR 
-                p.id IN (
-                  SELECT IDENTITY(bp.pan) FROM UserBundle:BoostPan bp
-                ) 
-                AND IDENTITY(p.user) NOT IN (
-                  SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                AND (
+                  IDENTITY(p.user) NOT IN (
+                    SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                  )
+                  OR 
+                  IDENTITY(p.user) NOT IN (
+                    SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+                  ) 
                 )
-                AND IDENTITY(p.user) NOT IN (
-                  SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
-                ) 
-                
                 ORDER BY p.id DESC
             '
             )->setParameter('user', $currentUser->getId())
@@ -220,25 +241,30 @@ class DiscoverController extends Controller
         $query = $em->createQuery(
             '
               SELECT DISTINCT p FROM UserBundle:Pan p
-              WHERE p.type = :type AND p.category = :category
-              AND(
-                IDENTITY(p.user) IN (
-                  SELECT IDENTITY(f.userToFollow) FROM UserBundle:Follow f 
-                  WHERE f.user = :user
+                WHERE p.type = :type 
+                AND p.category = :category
+                AND (
+                  IDENTITY(p.user) = :user
+                  OR 
+                  IDENTITY(p.user) IN (
+                      SELECT IDENTITY(f.userToFollow) FROM UserBundle:Follow f 
+                      WHERE f.user = :user
+                  )
+                  OR 
+                  p.id IN (
+                    SELECT IDENTITY(bp.pan) FROM UserBundle:BoostPan bp
+                  ) 
                 )
-                OR 
-                p.id IN (
-                  SELECT IDENTITY(bp.pan) FROM UserBundle:BoostPan bp
-                ) 
-                OR 
-                IDENTITY(p.user) = :user
-              )
-              AND IDENTITY(p.user) NOT IN (
-                  SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                AND (
+                  IDENTITY(p.user) NOT IN (
+                    SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                  )
+                  OR 
+                  IDENTITY(p.user) NOT IN (
+                    SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+                  ) 
                 )
-              AND IDENTITY(p.user) NOT IN (
-                  SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
-                ) 
+                ORDER BY p.id DESC
             '
         )->setParameter('type', 'Discover')
             ->setParameter('category', $category)
