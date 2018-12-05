@@ -98,7 +98,7 @@
                                 <li><a href="{{ path('home') }}" data-id="{{ countData }}" id="home_menu"> Home</a></li>
                             </ul>
                             <ul class="nav side-menu">
-                                <li><a href="{{ path('discover') }}"> Discover</a></li> <!--onclick="discover()" -->
+                                <li><a href="{{ path('discover',{'type':'discover'}) }}"> Discover</a></li> <!--onclick="discover()" -->
                             </ul>
                             {% if app.session.get('membership') == 'dockies' %}
                                 <ul class="nav side-menu">

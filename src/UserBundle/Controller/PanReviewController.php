@@ -15,7 +15,7 @@ class PanReviewController extends Controller
 {
 
     /**
-     * @Route("/linkpan/discover/product/review",name="review")
+     * @Route("/linkpan/discover/product/review",name="review_pan")
      */
     public function pan_reviewAction(Request $request)
     {

@@ -1,0 +1,188 @@
+{% extends "UserBundle::userbase.html.twig" %}
+
+{% block style %}
+    <link rel="stylesheet" href={{ asset('Userscripts/css/starability-all.css') }}>
+    <!-- Rting -->
+    <link href={{ asset('Userscripts/rating/css/labs.css') }} rel="stylesheet">
+    <!--end Rting -->
+{% endblock %}
+{% block Title %}
+    {% set selected = app.session.get('get_pan') %}
+    {{ selected.pan.name }} - {{ selected.pan.othername }}
+{% endblock %}
+
+{% block pageContent %}
+    {% set selected = app.session.get('get_pan') %}
+
+    <div style="margin-top:20px">
+        <div class="page-title">
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="x_panel">
+                    <div class="x_title">
+                        {{ selected.pan.name }} - {{ selected.pan.othername }}
+                    </div>
+                    <div class="x_content">
+                        <div class="" role="tabpanel" data-example-id="togglable-tabs">
+                            <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
+                                <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">{{'product_Details'|trans}}</a>
+                                </li>
+                                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">{{'product_Recommendations'|trans}}</a>
+                                </li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+                                    <div class="col-md-7 col-sm-7 col-xs-12">
+                                        <div class="product-image">
+                                            <a href="{{ asset('images/pans/') }}{{ selected.pan.image }}" data-max-width="900" data-toggle="lightbox" data-gallery="product-main-img"><img src="{{ asset('images/pans/') }}{{ selected.pan.image }}" id="product-main-img" style="width: 100%;height: 400px;object-fit: cover;" /></a>
+                                            <div class="rating-block">
+                                                <h4>{{'product_Average_rating'|trans}}</h4>
+                                                <h2 class="bold padding-bottom-7" style="display:inline;margin-right: 10px;">{{ selected.average }} <small>/ 5</small></h2><button type="button" class="btn btn-warning btn-sm" aria-label="Left Align"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-5 col-sm-5 col-xs-12" style="border:0px solid #e5e5e5;">
+                                        <h3 class="prod_title">{{ selected.pan.user.firstname }} {{ selected.pan.user.lastname }}</h3>
+                                        <p><b>Descreption: </b> {{ selected.pan.description }} {% if selected.pan.attachement is not null %}, <a href="{{ asset('attachements/pans/') }}{{ selected.pan.attachement }}" download>Attachement</a>{% endif %}</p>
+
+                                        <small><b>Categorie: </b>{{ selected.pan.category }}</small>
+                                        <br/>
+
+                                        <div class="">
+                                            <div class="product_price">
+                                                <h1 class="price">{{ selected.pan.price }} $</h1>
+                                                <br>
+                                            </div>
+                                            <div class="">
+                                                <a href="#" class="btn btn" title="{{'product_share'|trans}}"><i class="fa fa-share"></i></a>
+                                                <a href="#" class="btn btn" title="{{'product_Contact_seller'|trans}}"><i class="fa fa-comments-o"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
+                                    <div class="x_panel">
+                                        <div class="x_content">
+                                            <div>
+                                                <div class="row bootstrap snippets">
+                                                    <div class="col-md-12">
+                                                        <div class="comment-wrapper">
+                                                            <div class="panel panel-info">
+                                                                <div class="panel-heading">
+                                                                    <h4>{{'product_Reviews'|trans}}</h4>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <form>
+                                                                        <div class="input-group">
+                                                                            <input type="text" class="form-control" placeholder="{{'product_write_comment'|trans}}..."  id="panreview">
+                                                                            <span class="input-group-btn">
+                                                                                <a ><button class="btn btn btn-info" type="button" id="review" onclick="panReview({{ selected.pan.id }})">{{'product_Submit_Review'|trans}}</button></a>
+                                                                            </span>
+                                                                        </div>
+                                                                    </form>
+                                                                    <div class="clearfix"></div>
+                                                                    <hr>
+                                                                    <ul class="media-list" id="addcomment">
+                                                                        {% for product in selected.reviews %}
+                                                                            <li class="media">
+                                                                                <a href="#" class="pull-left" onclick="view({{ product.review_owner_id }})">
+                                                                                    {% if product.review_owner_image is null %}{% set review_image = 'default.png' %} {% else %} {% set review_image = product.review_owner_image %} {% endif %}
+                                                                                    <img src="{{ asset('images/profile/') }}{{ review_image }}" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;">
+                                                                                </a>
+                                                                                <div class="media-body">
+                                                                                    <div class="names">
+                                                                                        <b> {{ product.review_owner_first_name }} {{ product.review_owner_last_name }} </b>
+                                                                                        {% if product.review_owner_pan_rating != 'no rating' %}
+                                                                                            <div class="" style="display:inline; margin-left: 15px">
+                                                                                                <div class="pan-stars"  data-score="{{ product.review_owner_pan_rating }}"></div>
+                                                                                            </div>
+                                                                                        {% endif %}
+                                                                                    </div>
+                                                                                    <p>
+                                                                                        {{ product.review_owner_content }}
+                                                                                    </p>
+                                                                                </div>
+                                                                            </li>
+                                                                        {% endfor %}
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- Fix rating script script-->
+    <script src={{ asset('Userscripts/rating/javascripts/labs.js') }}></script>
+    <script src={{ asset('Userscripts/rating/javascripts/jquery.raty.js') }}></script>
+    <script>
+        $('.pan-stars').raty({
+            readOnly: true,
+            score: function() {
+                return $(this).attr('data-score');
+            },
+
+        });
+    </script>
+
+    <!-- Review -->
+    <script>
+        function panReview(pan)
+        {
+            if($('#panreview').val() != '')
+            {
+                $('#panreview').prop('disabled', true);
+                $('#review').prop('disabled',true)
+
+                $.ajax({
+                    url: '{{ path('review_pan') }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'pan': pan,
+                        'review':$('#panreview').val()
+                    },
+                    success:function (data)
+                    {
+                        if(data == 'Done')
+                        {
+                            var output = '<li class="media"><a href="#" class="pull-left">'
+                            var image = '{{ currentimage }}'
+                            output += '<a href="#" class="pull-left"><img src="{{ asset('images/profile/') }}'+image+'" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;"">'
+                            output += '</a><div class="media-body"><div class="names">' + '{{ user.firstname }}' + ' ' + '{{ user.lastname }}'
+                            output += '</div><p>' + $('#panreview').val() + '</p></div><li>'
+
+                            $('#addcomment').prepend(output);
+                        }
+                        else
+                            alert('You cannot set a review now , please try in another time , Thanks !')
+
+
+                        $('#panreview').val('')
+                        $('#panreview').prop('disabled', false)
+                        $('#review').prop('disabled',false)
+
+                    }
+                });
+            }
+        }
+    </script>
+{% endblock %}
+
+{% block privacy  %}
+{% endblock %}
+

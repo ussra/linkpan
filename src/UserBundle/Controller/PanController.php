@@ -38,6 +38,8 @@ class PanController extends Controller
             if(!is_null($request->files->get('uploadattachement')))
             {
                 $attdir = __DIR__ . "/../../../web/attachements/pans";
+                if (!file_exists($attdir))
+                    mkdir($attdir, 0777, true);
                 $attachement = $request->files->get('uploadattachement');
                 $files = scandir($attdir);
                 $count = count($files)-2;
@@ -47,6 +49,8 @@ class PanController extends Controller
             }
 
             $imagdir = __DIR__ . "/../../../web/images/pans";
+            if (!file_exists($imagdir))
+                mkdir($imagdir, 0777, true);
             $image = $request->files->get('uploadimage');
             $files = scandir($imagdir);
             $count = count($files)-2;
