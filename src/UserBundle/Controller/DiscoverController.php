@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
+use UserBundle\Entity\PanLastViewed;
 
 class DiscoverController extends Controller
 {
@@ -233,6 +234,40 @@ class DiscoverController extends Controller
             )->setParameter('user', $currentUser->getId())
                 ->setParameter('type', 'Discover');
         }
+        if($type == 'Last Viewed'){
+            $query = $em->createQuery(
+                'SELECT DISTINCT p FROM UserBundle:Pan p
+                WHERE p.type = :type 
+                AND p.id IN(
+                  SELECT IDENTITY(lv.pan) FROM UserBundle:PanLastViewed lv
+                  WHERE IDENTITY(lv.user) = :user 
+                )
+                AND (
+                  IDENTITY(p.user) = :user
+                  OR 
+                  IDENTITY(p.user) IN (
+                      SELECT IDENTITY(f.userToFollow) FROM UserBundle:Follow f 
+                      WHERE f.user = :user
+                  )
+                  OR 
+                  p.id IN (
+                    SELECT IDENTITY(bp.pan) FROM UserBundle:BoostPan bp
+                  ) 
+                )
+                AND (
+                  IDENTITY(p.user) NOT IN (
+                    SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                  )
+                  OR 
+                  IDENTITY(p.user) NOT IN (
+                    SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+                  ) 
+                )
+                ORDER BY p.id DESC
+            '
+            )->setParameter('user', $currentUser->getId())
+                ->setParameter('type', 'Discover');
+        }
         $pans = $query->getResult();
         return $pans;
     }
@@ -363,6 +398,22 @@ class DiscoverController extends Controller
               'average'=>$average,
               'reviews'=>$reviews
             );
+            // insert in last viewed
+            $currentUser = $this->getUser();
+            $lvrepo = $this->getDoctrine()->getRepository('UserBundle:PanLastViewed');
+            $check = $lvrepo->findOneBy(
+              array('user'=>$currentUser,'pan'=>$pan)
+            );
+            if(is_null($check))
+            {
+                $pLastV  = new PanLastViewed();
+                $pLastV->setUser($currentUser);
+                $pLastV->setPan($pan);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($pLastV);
+                $em->flush();
+            }
+            //
             $session = new Session();
             $session->set('get_pan',$temp);
             return $this->render('UserBundle::product.html.twig');
