@@ -98,7 +98,7 @@
                                 <li><a href="{{ path('home') }}" data-id="{{ countData }}" id="home_menu"> Home</a></li>
                             </ul>
                             <ul class="nav side-menu">
-                                <li><a href="{{ path('discover') }}"> Discover</a></li> <!--onclick="discover()" -->
+                                <li><a href="{{ path('discover',{'type':'discover'}) }}"> Discover</a></li> <!--onclick="discover()" -->
                             </ul>
                             {% if app.session.get('membership') == 'dockies' %}
                                 <ul class="nav side-menu">
@@ -336,7 +336,6 @@
                                                 {% if item.post_video is not null %}
                                                     {% if item.post_images >0 %}
                                                         {% if item.post_images|length == 1 %}<!-- 1 photo+video: -->
-
                                                             <div style="max-width:600px">
                                                                 <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
                                                                     <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
@@ -504,21 +503,22 @@
                                                     {% set comments = item.post_comments %}
                                                     {% if comments|length > 0 %}
                                                         {% for comment in comments[0:3] %}
-                                                            <li>
-                                                            <!--add remove comment -->
-                                                            <div style="display:inline;float:right">
-                                                        
-                                                                <div class="btn-group ">
-                                                                    <button style="    visibility: hidden;"type="button" class="btn btn-primary">Right dropup</button> 
-                                                                    <button type="button" style="background:#f6f6f6;border:0" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 
-                                                                        <i style="color:black" class="fa fa-ellipsis-h"></i>
-                                                                    </button> 
-                                                                    <ul class="dropdown-menu dropdown-menu-right">
-                                                                        <li><a href="#">Delet</a></li>
-                                                                    </ul> 
-                                                                </div>
-                                                            </div>
-                                                            <!--end add remove comment -->
+                                                            <li  id ="comment_{{ comment.comment_id }}">
+                                                                <!--add remove comment -->
+                                                                {% if comment.comment_owner_id == user.id %}
+                                                                    <div style="display:inline;float:right">
+                                                                        <div class="btn-group ">
+                                                                            <button style="    visibility: hidden;"type="button" class="btn btn-primary">Right dropup</button>
+                                                                            <button type="button" style="background:#f6f6f6;border:0" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                                <i style="color:black" class="fa fa-ellipsis-h"></i>
+                                                                            </button>
+                                                                            <ul class="dropdown-menu dropdown-menu-right">
+                                                                                <li><a onclick="DeleteComment({{ comment.comment_id }})">Delet</a></li>
+                                                                            </ul>
+                                                                        </div>
+                                                                    </div>
+                                                                {% endif %}
+                                                                <!--end add remove comment -->
                                                                 <a  class="cmt-thumb">
                                                                     {% if comment.comment_owner_image is null %}{% set commentow_image = 'default.png' %}{% else %}{% set commentow_image = comment.comment_owner_image %} {% endif %}
                                                                     <img src="{{ asset('images/profile/') }}{{ commentow_image }}" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;">
@@ -736,7 +736,7 @@
      function clickdowngrade(){
         swal({
         title: "Are you sure?",
-        text: "Are you sure that you want to delete this post ?",
+        text: "Are you sure that you want to downgrade your membership ?",
         icon: "warning",
         buttons: ["NO", "YES !"],
         dangerMode: true,
@@ -845,35 +845,6 @@
 </script>
 
 
-<script>
-    (function(){
-
-        var popupCenter = function(url, title, width, height){
-            var popupWidth = width || 640;
-            var popupHeight = height || 320;
-            var windowLeft = window.screenLeft || window.screenX;
-            var windowTop = window.screenTop || window.screenY;
-            var windowWidth = window.innerWidth || document.documentElement.clientWidth;
-            var windowHeight = window.innerHeight || document.documentElement.clientHeight;
-            var popupLeft = windowLeft + windowWidth / 2 - popupWidth / 2 ;
-            var popupTop = windowTop + windowHeight / 2 - popupHeight / 2;
-            var popup = window.open(url, title, 'scrollbars=yes, width=' + popupWidth + ', height=' + popupHeight + ', top=' + popupTop + ', left=' + popupLeft);
-            popup.focus();
-            return true;
-        };
-        // share in facebook
-        document.querySelector('.share_facebook').addEventListener('click', function(e){
-            e.preventDefault();
-            var url = this.getAttribute('data-url');//
-            var shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url) ;
-            popupCenter(shareUrl, "Share in facebook");
-        });
-    })();
-</script>
-
-
-
-
 
 {% block privacy  %}
     <!-- news -->
@@ -909,8 +880,6 @@
 
 
 {% block scripts %}
-
-
 
     <!-- display more/less comments -->
     <script>
@@ -948,7 +917,8 @@
                         if(data == 'Done')
                         {
                             // output
-                            var output = '<li><a  class="cmt-thumb">'
+                            var output = '<li>'
+                            output = '<a  class="cmt-thumb"></button>'
                             var image = '{{ currentimage }}'
                             output += '<img src="{{ asset('images/profile/') }}'+image+'" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;margin-right: 20px;"></a>'
                             output += '<div class="cmt-details">'
@@ -1125,10 +1095,6 @@
             $(this).ekkoLightbox();
         });
     </script>
-
-
-
-
     <script>
         $(window).on("navigate", function (event, data) {
             var direction = data.state.direction;
@@ -1138,6 +1104,51 @@
         });
     </script>
 
+    <!--Delete comment -->
+    <script>
+        function DeleteComment(comment)
+        {
+            // confirmation
+            $('#comment_'.concat(comment)).remove();
+            //
+            $.ajax({
+                url: '{{ (path('delete_comment')) }}',
+                type: 'POST',
+                dataType: 'json',
+                data:
+                {
+                    'comment':comment
+                },
+                async: true
+            });
+        }
+    </script>
+    <!-- Share buttons -->
+    <script>
+        (function(){
+
+            var popupCenter = function(url, title, width, height){
+                var popupWidth = width || 640;
+                var popupHeight = height || 320;
+                var windowLeft = window.screenLeft || window.screenX;
+                var windowTop = window.screenTop || window.screenY;
+                var windowWidth = window.innerWidth || document.documentElement.clientWidth;
+                var windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                var popupLeft = windowLeft + windowWidth / 2 - popupWidth / 2 ;
+                var popupTop = windowTop + windowHeight / 2 - popupHeight / 2;
+                var popup = window.open(url, title, 'scrollbars=yes, width=' + popupWidth + ', height=' + popupHeight + ', top=' + popupTop + ', left=' + popupLeft);
+                popup.focus();
+                return true;
+            };
+            // share in facebook
+            /*document.querySelector('.share_facebook').addEventListener('click', function(e){
+                e.preventDefault();
+                var url = this.getAttribute('data-url');//
+                var shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url) ;
+                popupCenter(shareUrl, "Share in facebook");
+            });*/
+        })();
+    </script>
 
 {% endblock %}
 

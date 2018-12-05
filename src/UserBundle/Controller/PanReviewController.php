@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
+use UserBundle\Entity\ObjectShare;
 use UserBundle\Entity\PanReview;
 use UserBundle\Entity\PanShare;
 use UserBundle\Entity\PostShare;
@@ -15,7 +16,7 @@ class PanReviewController extends Controller
 {
 
     /**
-     * @Route("/linkpan/discover/product/review",name="review")
+     * @Route("/linkpan/discover/product/review",name="review_pan")
      */
     public function pan_reviewAction(Request $request)
     {
@@ -41,26 +42,13 @@ class PanReviewController extends Controller
      */
     public function pan_shareAction(Request $request)
     {
-        $repo = $this->getDoctrine()->getRepository('UserBundle:Pan');
-        $pan = $repo->findOneById($request->get('pan'));
-        if(!is_null($pan))
-        {
-            $user = $this->getUser();
-            //check if shared
-            $repo = $this->getDoctrine()->getRepository('UserBundle:PanShare');
-            $ps = $repo->findOneBy(
-              array('pan'=>$pan,'user'=>$user)
-            );
-            if(is_null($ps))
-            {
-                $panShare = new PanShare();
-                $panShare->setPan($pan);
-                $panShare->setUser($user);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($panShare);
-                $em->flush();
-            }
-        }
+        $objectShare = new ObjectShare();
+        $objectShare->setUser($this->getUser());
+        $objectShare->setType('pan');
+        $objectShare->setObjectId($request->get('pan'));
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($objectShare);
+        $em->flush();
         return new JsonResponse('Done');
     }
 }

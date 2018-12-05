@@ -109,7 +109,8 @@ class HomeController extends Controller
                             'comment_owner_image'=>$commentOwner->getImage(),
                             'comment_owner_first_name'=>$commentOwner->getFirstname(),
                             'comment_owner_last_name'=>$commentOwner->getLastname(),
-                            'comment_content'=>$comment->getComment()
+                            'comment_content'=>$comment->getComment(),
+                            'comment_id'=>$comment->getId()
                         );
                         array_push($comments,$temp);
                     }
