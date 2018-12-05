@@ -470,9 +470,9 @@
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                         <li><a href="#share_post" onclick="sharePost({{ item.id }})" title="Send this to friend or post it on your time line">on your timeline</a></li>
-                                                        <!--<li role="separator" class="divider"></li>
+                                                        <li role="separator" class="divider"></li>
                                                         <li><a href="#" class="share_facebook" data-url="https://www.youtube.com/watch?v=mAJeK283j0I"><i class="fa fa-facebook"></i></a></li>
-                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>                                                        
+                                                       <!-- <li><a href="#"><i class="fa fa-twitter"></i></a></li>                                                        
                                                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
                                                     </ul>
                                                     </div>
@@ -864,7 +864,9 @@
         // share in facebook
         document.querySelector('.share_facebook').addEventListener('click', function(e){
             e.preventDefault();
-            var url = this.getAttribute('data-url');//
+           //var url = this.getAttribute('data-url');
+            var url  = "{{ path('linkpan')|escape('js') }}";
+            console.log(url)
             var shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url) ;
             popupCenter(shareUrl, "Share in facebook");
         });
