@@ -1,0 +1,42 @@
+{% extends "UserBundle::userbase.html.twig" %}
+{% block Title %}Dockies{% endblock %}
+{% block style %}
+    <link rel="stylesheet" href="{{ asset('Userscripts/css/Dockies.css') }}">
+    <link rel="stylesheet" href={{ asset('Userscripts/css/starability-all.css') }}>
+    <!-- Rting -->
+    <link href={{ asset('Userscripts/rating/css/labs.css') }} rel="stylesheet">
+{% endblock %}
+
+{% block pageContent %}
+{% endblock %}
+
+
+{% block scripts %}
+    <!-- Fix rating script script-->
+    <script src={{ asset('Userscripts/rating/javascripts/labs.js') }}></script>
+    <script src={{ asset('Userscripts/rating/javascripts/jquery.raty.js') }}></script>
+    <script>
+        $('.pan-stars').raty({
+            readOnly: true,
+            score: function() {
+                return $(this).attr('data-score');
+            },
+
+        });
+        $('.pan-rate').raty({
+            click: function(score, evt)
+            {
+                alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
+                /*$.ajax({
+                    url:'{{ (path('rate_pan')) }}',
+                    type: 'POST',
+                    dataType: 'json',
+                    data:{
+                        'pan': this.id,
+                        'value': score,
+                    }
+                });*/
+            }
+        });
+    </script>
+{% endblock %}
