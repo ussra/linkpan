@@ -378,6 +378,7 @@ class HomeController extends Controller
                   'pan_category'=>$pan->getCategory(),
                   'pan_description'=>$pan->getDescription(),
                   'pan_creation_date'=>$pan->getCreationDate(),
+                  'type'=>$pan->getType(),
                   'pan_boost_type'=>$boostType
                 );
                 array_push($pans,$temp);
