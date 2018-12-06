@@ -57,7 +57,7 @@ class PanController extends Controller
             $name = $count.'_'.$image->getClientOriginalName();
             $image->move($imagdir,$name );
             $pan->setImage($name);
-            if(is_null($request->get('pantype')))
+            if($request->get('pantype') == '')
                 $pan->setType('Discover');
             else
                 $pan->setType($request->get('pantype'));
