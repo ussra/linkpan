@@ -74,14 +74,12 @@
                                                                     <h4>{{'product_Reviews'|trans}}</h4>
                                                                 </div>
                                                                 <div class="panel-body">
-                                                                    <form>
-                                                                        <div class="input-group">
-                                                                            <input type="text" class="form-control" placeholder="{{'product_write_comment'|trans}}..."  id="panreview">
-                                                                            <span class="input-group-btn">
+                                                                    <div class="input-group">
+                                                                        <input type="text" class="form-control" placeholder="{{'product_write_comment'|trans}}..."  id="panreview">
+                                                                        <span class="input-group-btn">
                                                                                 <a ><button class="btn btn btn-info" type="button" id="review" onclick="panReview({{ selected.pan.id }})">{{'product_Submit_Review'|trans}}</button></a>
                                                                             </span>
-                                                                        </div>
-                                                                    </form>
+                                                                    </div>
                                                                     <div class="clearfix"></div>
                                                                     <hr>
                                                                     <ul class="media-list" id="addcomment">
@@ -202,6 +200,8 @@
             });
         }
     </script>
+
+
 {% endblock %}
 
 {% block privacy  %}
