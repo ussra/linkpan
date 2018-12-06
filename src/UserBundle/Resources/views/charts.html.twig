@@ -131,7 +131,7 @@ var ctx2 = document.getElementById("myChart2").getContext('2d');
 var myChart2 = new Chart(ctx2, {
     type: 'pie',
     data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+        
         datasets: [{
             data: [10, 20, 30],
             backgroundColor: [
@@ -154,10 +154,16 @@ var myChart2 = new Chart(ctx2, {
         }],
         
             labels: [
-                'Electronics',
-                'Clothes',
-                'vegetables'
+                '50% Electronics',
+                '20% Clothes',
+                '20% vegetables'
             ],
+    },
+    options: {
+        responsive: true,
+        legend: {
+            position: 'right',
+        }
     },
 });
 </script>

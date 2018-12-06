@@ -31,8 +31,8 @@
                         {% set pans = app.session.get('discover_pans') %}
                         <div class="form-inline">
                             <!-- Sort -->
-                            <form action="{{ path('discover_filter',{'type':'sort'}) }}" method="post">
-                                <select style="margin-top:5px" id="filter" class="CC form-control" name="filter" onchange="this.form.submit()"  required>
+                            <form style="display:inline-block" action="{{ path('discover_filter',{'type':'sort'}) }}" method="post">
+                                <select style="margin-top:5px;" id="filter" class="CC form-control" name="filter" onchange="this.form.submit()"  required>
                                     <option disabled selected value> {{'discover_sortby'|trans}}... </option>
                                     <option  value="New in">{{'discover_New_in'|trans}}</option>
                                     <option  value="Last Viewed">{{'discover_Last_Viewed'|trans}}</option>
@@ -41,7 +41,7 @@
                                 </select>
                             </form>
                             <!-- Category    -->
-                            <form action="{{ path('discover_filter',{'type':'category'}) }}" method="post">
+                            <form style="display:inline-block" action="{{ path('discover_filter',{'type':'category'}) }}" method="post">
                                 <select style="margin-top:5px" name="filter" onchange="this.form.submit()" class="CC form-control"  required >
                                     <option disabled selected value>{{'discover_Display_By_Category'|trans}}</option>
                                     <option value="Default" style="color: red">Default</option>
@@ -1183,7 +1183,7 @@
                                     </div>
                                 {% endfor %}
                                 {% else %}
-                                    <h3>Sorry there s no pans to discover </h3>
+                                    <h3 class="text-center">Sorry there s no pans to discover </h3>
                             {% endif %}
                         </div>
                         {% if count > pans|length %}
