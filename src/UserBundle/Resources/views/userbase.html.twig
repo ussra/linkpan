@@ -504,7 +504,7 @@
                                                     {% if comments|length > 0 %}
                                                         {% for comment in comments[0:3] %}
                                                             <li  id ="comment_{{ comment.comment_id }}">
-                                                                <!--add remove comment -->
+                                                                <!-- remove comment -->
                                                                 {% if comment.comment_owner_id == user.id %}
                                                                     <div style="display:inline;float:right">
                                                                         <div class="btn-group ">
@@ -513,12 +513,13 @@
                                                                                 <i style="color:black" class="fa fa-ellipsis-h"></i>
                                                                             </button>
                                                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                                                <li><a onclick="DeleteComment({{ comment.comment_id }})">Delet</a></li>
+                                                                                <li><a onclick="clickdeletcmnt()">Delet</a></li>
+                                                                                <li style="display:none"><a id="deletcmntbtn" onclick="DeleteComment({{ comment.comment_id }})">Delet</a></li>
                                                                             </ul>
                                                                         </div>
                                                                     </div>
                                                                 {% endif %}
-                                                                <!--end add remove comment -->
+                                                                <!--end remove comment -->
                                                                 <a  class="cmt-thumb">
                                                                     {% if comment.comment_owner_image is null %}{% set commentow_image = 'default.png' %}{% else %}{% set commentow_image = comment.comment_owner_image %} {% endif %}
                                                                     <img src="{{ asset('images/profile/') }}{{ commentow_image }}" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;">
@@ -717,6 +718,21 @@
 
 <!-- Setting access -->
 <script>
+ // delet acc confirmation:
+    function clickdeletcmnt(){
+        swal({
+        title: "Are you sure?",
+        text: "Are you sure that you want to delete this comment ?",
+        icon: "warning",
+        buttons: ["NO", "YES !"],
+        dangerMode: true,
+        })
+        .then(willDelete => {
+            if (willDelete) {
+                document.getElementById("deletcmntbtn").click();
+            }
+        });
+    } //end delet acc confirmation
     // delet acc confirmation:
     function clickdeletpost(){
         swal({
