@@ -1155,7 +1155,7 @@
                         <div class="row">
                             {% if pans is not empty %}
                                 {% for item in pans %}
-                                    <div class="col-md-3">
+                                    <div class="col-md-2 col-xs-6">
                                         <div class="thumbnail">
                                             <div class="image view view-first">
                                                 <img style="width: 100%; display: block;" src="{{ asset('images/pans/') }}{{ item.pan.image }}" alt="{{ item.pan.name }}"/>
@@ -1176,7 +1176,7 @@
                                                         <div class="pan-stars"  data-score="{{ item.rate.value }}"></div>
                                                     {% endif %}
                                                 {% else %}
-                                                    <small>you cannot rate your pan</small>
+                                                    
                                                 {% endif %}
                                             </div>
                                         </div>
