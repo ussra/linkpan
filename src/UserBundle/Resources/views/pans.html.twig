@@ -46,10 +46,15 @@
             <td>{{ pan.pan_description }}</td>
             <td>{{ pan.pan_creation_date }}</td>
             <td>
-                {% if pan.pan_boost_type == 'Remove Boost' %}
-                    <button type="submit" formmethod="post" formaction="{{ path('remove_boost_pan',{'pan':pan.pan_id  }) }}"  class="btn btn-danger btn-xs removeBoost"  title="remove boosting"> remove boosting </button>
+                {% if pan.type == 'Discover' %}
+                        {% if pan.pan_boost_type == 'Remove Boost' %}
+                            <button type="submit" formmethod="post" formaction="{{ path('remove_boost_pan',{'pan':pan.pan_id  }) }}"  class="btn btn-danger btn-xs removeBoost"  title="remove boosting"> remove boosting </button>
+                        {% else %}
+                            <button type="submit" formmethod="post" formaction="{{ path('boost_pan',{'pan':pan.pan_id  }) }}" class="btn btn-default btn-xs boost"  title="Boost" > Boost </button>
+                        {% endif %}
+
                     {% else %}
-                        <button type="submit" formmethod="post" formaction="{{ path('boost_pan',{'pan':pan.pan_id  }) }}" class="btn btn-default btn-xs boost"  title="Boost" > Boost </button>
+                        <small>You cannot boost dockies pans</small>
                 {% endif %}
             </td>
         </tr>
