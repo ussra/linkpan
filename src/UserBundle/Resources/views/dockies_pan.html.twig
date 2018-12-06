@@ -1,0 +1,189 @@
+{% extends "UserBundle::userbase.html.twig" %}
+
+{% block style %}
+    <link rel="stylesheet" href={{ asset('Userscripts/css/starability-all.css') }}>
+    <!-- Rting -->
+    <link href="{{ asset('Userscripts/rating/css/labs.css') }}" rel="stylesheet">
+    <!--end Rting -->
+    <link rel="stylesheet" href="{{ asset('Userscripts/css/Detail.css') }}">
+{% endblock %}
+{% block Title %}
+    Product name
+{% endblock %}
+
+{% block pageContent %}
+    <div class="x_panel" style="margin-top: 50px">
+        <div class="container" >
+            <div class="row">
+                <button type="button" class="btn btn-primary" style=" float:right"><a href="{{ path('dockies',{'type':'dockies'}) }}" style="text-decoration:none;color:white;">Back</a></button>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="my-list">
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <img src="scripts/img/album.jpg" class="img-responsive" width="800" height="500"/>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                            <h3 id="bigtitle">Twicecoaster: Lane 2</h3>
+                            <div id="Detail">
+                                Twice is a South Korean girl group formed by JYP Entertainment through the 2015 reality show Sixteen. The group is composed of nine members: Nayeon, Jeongyeon, Momo, Sana, Jihyo, Mina, Dahyun, Chaeyoung, and Tzuyu.
+                            </div>
+                            <div id="categries">
+                                <h4>Supporting documents :</h4> <i class="fa fa-file"></i> <a href="#">guid.pdf</a>
+                            </div>
+                            <div id="categries">
+                                <h4>Category :</h4> Music, Poster, CD , DVD
+                            </div>
+                            <span class="pull-left">500$</span>
+                            <span class="pull-right">Quntity : 7</span>
+                            <div class="offer">
+                                <div class="pan-stars"  data-score="4"></div>
+                            </div>
+                            <a href="#" class="btn btn-info" style="float:right"><i class="fa fa-share"></i></a>
+                            <div>
+                                <a href="#" class="btn btn-info">contact seller</a>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                    <div> <!-- row 2-->
+                        <div class="row bootstrap snippets">
+                            <div class="col-md-12">
+                                <div class="comment-wrapper">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h4>Reviews</h4>
+                                        </div>
+                                        <div class="panel-body">
+                                            <form>
+                                                <div class="row"> <!-- row 1-->
+                                                    <h4> Rate this product :</h4>
+                                                    <h2>
+                                                        <div class="pan-rate" id="idpan" data-score="0"></div>
+                                                    </h2>
+                                                </div> <!--end row-->
+                                                <textarea class="form-control" placeholder="write a comment..." rows="3"></textarea>
+                                                <button type="submit" class="btn btn-info btn-xs pull-right"><h5>Submit Review</h5></button>
+                                            </form>
+                                            <div class="clearfix"></div>
+                                            <hr>
+                                            <ul class="media-list">
+                                                <li class="media">
+                                                    <a href="#" class="pull-left">
+                                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <div class="names">
+                                                            MartinoMont
+                                                            <div class="" style="display:inline; margin-left: 15px">
+                                                                <span class="fa fa-star-o" data-rating="1"></span>
+                                                                <span class="fa fa-star-o" data-rating="2"></span>
+                                                                <span class="fa fa-star-o" data-rating="3"></span>
+                                                                <span class="fa fa-star-o" data-rating="4"></span>
+                                                                <span class="fa fa-star-o" data-rating="5"></span>
+                                                                <input type="hidden" name="whatever1" class="rating-value" value="2.56">
+                                                            </div>
+                                                        </div>
+                                                        <div><small class="time"> 30 min ago</small></div>
+
+                                                        <p>
+                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                            Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                                <li class="media">
+                                                    <a href="#" class="pull-left">
+                                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <div class="names">
+                                                            MartinoMont
+                                                            <div class="" style="display:inline; margin-left: 15px">
+                                                                <span class="fa fa-star-o" data-rating="1"></span>
+                                                                <span class="fa fa-star-o" data-rating="2"></span>
+                                                                <span class="fa fa-star-o" data-rating="3"></span>
+                                                                <span class="fa fa-star-o" data-rating="4"></span>
+                                                                <span class="fa fa-star-o" data-rating="5"></span>
+                                                                <input type="hidden" name="whatever1" class="rating-value" value="2.56">
+                                                            </div>
+                                                        </div>
+                                                        <div><small class="time"> 30 min ago</small></div>
+
+                                                        <p>
+                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                            Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                                <li class="media">
+                                                    <a href="#" class="pull-left">
+                                                        <img src="https://bootdey.com/img/Content/user_1.jpg" alt="" class="img-circle">
+                                                    </a>
+                                                    <div class="media-body">
+                                                        <div class="names">
+                                                            MartinoMont
+                                                            <div class="" style="display:inline; margin-left: 15px">
+                                                                <span class="fa fa-star-o" data-rating="1"></span>
+                                                                <span class="fa fa-star-o" data-rating="2"></span>
+                                                                <span class="fa fa-star-o" data-rating="3"></span>
+                                                                <span class="fa fa-star-o" data-rating="4"></span>
+                                                                <span class="fa fa-star-o" data-rating="5"></span>
+                                                                <input type="hidden" name="whatever1" class="rating-value" value="2.56">
+                                                            </div>
+                                                        </div>
+                                                        <div><small class="time"> 30 min ago</small></div>
+
+                                                        <p>
+                                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                                            Lorem ipsum dolor sit amet, <a href="#">#consecteturadipiscing </a>.
+                                                        </p>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <div style="float:right; color: black"> <!--load-->
+                                                <a href="#">Load more</a>
+                                            </div><!--end --load-->
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div> <!--end row-->
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    <!-- Fix rating script script-->
+    <script src={{ asset('Userscripts/rating/javascripts/labs.js') }}></script>
+    <script src={{ asset('Userscripts/rating/javascripts/jquery.raty.js') }}></script>
+    <script>
+        $('.pan-stars').raty({
+            readOnly: true,
+            score: function() {
+                return $(this).attr('data-score');
+            },
+
+        });
+
+        $('.pan-rate').raty({
+            click: function(score, evt)
+            {
+               alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
+            }
+        });
+    </script>
+{% endblock %}

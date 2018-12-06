@@ -319,7 +319,7 @@ class DiscoverController extends Controller
         $currentUser = $this->getUser();
         $session = new Session();
 
-        if($filterType == 'sort') // Last viewed
+        if($filterType == 'sort')
             $result = $this->FilterQuery($em,$currentUser,$filter);
 
         if($filterType == 'category')
