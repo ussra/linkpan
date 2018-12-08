@@ -15,7 +15,7 @@
 
 
 <div style="padding:0px;background:rgba(255,255,255,0.2);display:inline-block;border-radius:5px;margin:20px">
-  <a class="navbar-brand" href="#" style="color:white"><i style="margin-left:8px;" class="fas fa-chevron-left"></i> BACK TO LINKPAN</a>
+  <a class="navbar-brand" href="{{ path('home') }}"  style="color:white" ><i style="margin-left:8px;" class="fas fa-chevron-left"></i>BACK TO LINKPAN</a>
 </div>
 <div class="container">
     <div class="row">
@@ -227,20 +227,23 @@
 
 
                             // search action
-
-                            //alert(countryById[d.id]);
-
                             var r = confirm("Discover pans of ".concat(countryById[d.id]).concat(" ?"));
                             if (r == true) {
-                                alert('Under construction')
+                                $.ajax({
+                                    url: '{{ path('filter_by_country') }}',
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data: {
+                                        'country': countryById[d.id]
+                                    },
+                                    success:function(data){
+                                        if(data == 'NULL')
+                                            alert('There s no pans to discover in '+ countryById[d.id])
+                                        else
+                                            window.location.href = data
+                                    }
+                                });
                             }
-
-                            //
-
-
-
-
-
 
                         });
                     if (ortho === true)
