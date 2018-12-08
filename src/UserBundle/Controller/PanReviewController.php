@@ -33,15 +33,7 @@ class PanReviewController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($pr);
             $em->flush();
-            // Get rating
-            $Ratingrepo = $this->getDoctrine()->getRepository('UserBundle:PanRating');
-            $obj = $Ratingrepo->findOneBy(
-                array('pan'=>$pan,'user'=>$this->getUser())
-            );
-            if(is_null($obj))
-                return new JsonResponse('Done');
-            else
-                return new JsonResponse($obj->getRate());
+            return new JsonResponse($pr->getId());
         }
         else
             return new JsonResponse('ERR');
@@ -61,5 +53,22 @@ class PanReviewController extends Controller
         $em->persist($objectShare);
         $em->flush();
         return new JsonResponse('Done');
+    }
+
+
+    /**
+     * @Route("/linkpan/discover/product/review/delete",name="discover_review_delete")
+     */
+    public function discover_review_deleteAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:PanReview');
+        $review = $repo->findOneById($request->get('review'));
+        if(!is_null($review))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($review);
+            $em->flush();
+        }
+        return new JsonResponse('Deleted');
     }
 }

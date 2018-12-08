@@ -38,6 +38,7 @@ class ProfileController extends Controller
         $blockResult = $query->getResult();
         if(!empty($blockResult)){
             echo '<script language="javascript">alert("You cannot follow this user !")</script>';
+            //return new JsonResponse('BLOCK');
         }
         else
         {

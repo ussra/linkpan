@@ -84,15 +84,19 @@
                                                                     <hr>
                                                                     <ul class="media-list" id="addcomment">
                                                                         {% for product in selected.reviews %}
-                                                                            <li class="media">
-                                                                                <a href="#" class="pull-left" onclick="view({{ product.review_owner_id }})">
+                                                                            <li class="media" id="{{ product.review_id }}">
+                                                                                <a href="{{ path('search_profile',{'user': product.review_owner_id }) }}"class="pull-left">
                                                                                     {% if product.review_owner_image is null %}{% set review_image = 'default.png' %} {% else %} {% set review_image = product.review_owner_image %} {% endif %}
                                                                                     <img src="{{ asset('images/profile/') }}{{ review_image }}" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;">
                                                                                 </a>
                                                                                 <div class="media-body">
-                                                                                    <div style="display:inline;float:right">
-                                                                                        <i class="fa fa-trash"></i>
-                                                                                    </div>
+                                                                                    {% if user.id == product.review_owner_id %}
+                                                                                        <a onclick="deleteReview({{ product.review_id }})">
+                                                                                            <div style="display:inline;float:right">
+                                                                                                <i class="fa fa-trash"></i>
+                                                                                            </div>
+                                                                                        </a>
+                                                                                    {% endif %}
                                                                                     <div class="names">
                                                                                         <b> {{ product.review_owner_first_name }} {{ product.review_owner_last_name }} </b>
                                                                                         {% if product.review_owner_pan_rating != 'no rating' %}
@@ -106,7 +110,7 @@
                                                                                     </p>
                                                                                 </div>
                                                                             </li>
-                                                                            <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin:5px 0 5px 0"></div>
+                                                                            <div class="{{ product.review_id }}" style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin:5px 0 5px 0"></div>
                                                                         {% endfor %}
                                                                     </ul>
                                                                 </div>
@@ -159,18 +163,18 @@
                     },
                     success:function (data)
                     {
-                        if(data === 'Done' || data > 0)
+                        if(data > 0)
                         {
-                            var output = '<li class="media"><a href="#" class="pull-left">'
+                            var output = '<li class="media" id = "'+data+'" >'
+                            output += '<a href="{{ path('search_profile',{'user': user.id }) }}" class="pull-left" >'
                             var image = '{{ currentimage }}'
-                            output += '<a href="#" class="pull-left"><img src="{{ asset('images/profile/') }}'+image+'" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;"">'
-                            output += '</a><div class="media-body"><div class="names">' + '{{ user.firstname }}' + ' ' + '{{ user.lastname }}'
-                            if(data % 1 === 0 && data > 0){
-                                output += '<div class="" style="display:inline; margin-left: 15px">'
-                                output += '<div class="pan-stars"  data-score="'+data+'"></div></div>'
-                            }
-                            output += '</div><p>' + $('#panreview').val() + '</p></div><li>'
-
+                            output += '<img src="{{ asset('images/profile/') }}'+image+'" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;""></a>'
+                            output += '<div class="media-body"><a onclick="deleteReview('+data+')"><div style="display:inline;float:right">'
+                            output += '<i class="fa fa-trash"></i></div></a>'
+                            output += '<div class="names">'
+                            output += '<b>'+ '{{ user.firstname }}'+ ' ' +'{{ user.lastname }}'+'</b>'
+                            output += '</div><p>'+ $('#panreview').val() + '</p></div></li>'
+                            output += '<div class ="'+data+'" style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin:5px 0 5px 0"></div>'
                             $('#addcomment').prepend(output);
                         }
                         else
@@ -202,6 +206,33 @@
         }
     </script>
 
+    <!-- Delete Review -->
+    <script>
+        function deleteReview(review)
+        {
+            swal({
+                title: "Are you sure?",
+                text: "Are you sure that you want to delete this review ?",
+                icon: "warning",
+                buttons: ["NO", "YES !"],
+                dangerMode: true,
+            })
+            .then(willDelete => {
+                if (willDelete) {
+                    $('#'.concat(review)).remove();
+                    $('.'.concat(review)).remove();
+                    $.ajax({
+                        url: '{{ path('discover_review_delete') }}',
+                        type: 'POST',
+                        dataType: 'json',
+                        data: {
+                            'review': review
+                        }
+                    });
+                }
+            });
+        }
+    </script>
 
 {% endblock %}
 

@@ -14,7 +14,6 @@
 
 {% block pageContent %}
     {% set details = app.session.get('pan_details') %}
-    {{ dump(details) }}
     <div class="x_panel" style="margin-top: 50px">
         <div class="container" >
             <div class="row">
@@ -86,7 +85,41 @@
                                             <div class="clearfix"></div>
                                             <hr>
                                             <ul class="media-list" id="addcomment">
-
+                                                {% if details.reviews is not empty %}
+                                                    {% for item in details.reviews %}
+                                                        <li class="media" id="{{ details.pan.id }}">
+                                                            <a href="#" class="pull-left">
+                                                                {% if item.review.user.image is null %}
+                                                                    {% set image = 'default.png' %}
+                                                                    {% else %}
+                                                                        {% set image = item.review.user.image %}
+                                                                {% endif %}
+                                                                <img src="{{ asset('images/profile/') }}{{ image }}"  class="img-circle">
+                                                            </a>
+                                                            <div class="media-body">
+                                                                {% if user.id == item.review.user.id %}
+                                                                    <a onclick="deleteReview({{ details.pan.id }})">
+                                                                        <div style="display:inline;float:right">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </div>
+                                                                    </a>
+                                                                {% endif %}
+                                                                <div class="names">
+                                                                    {{ item.review.user.firstname }} {{ item.review.user.lastname }}
+                                                                    {% if item.rate.rate > 0 %}
+                                                                        <div style="display:inline; margin-left: 15px">
+                                                                            <div class="pan-stars"  data-score="{{ item.rate.rate }}" ></div>
+                                                                        </div>
+                                                                    {% endif %}
+                                                                </div>
+                                                                <div><small class="time"> {{ item.review.creationDate|date('m-d-Y h:m') }}</small></div>
+                                                                <p>
+                                                                    {{ item.review.review }}
+                                                                </p>
+                                                            </div>
+                                                        </li>
+                                                    {% endfor %}
+                                                {% endif %}
                                             </ul>
                                         </div>
                                     </div>
@@ -149,10 +182,12 @@
                    {
                        if(data == 'Done' || data >= 0)
                        {
-                           var output = '<li class="media"><a class="pull-left">'
+                           var output = '<li class="media" id = "'+data+'" ><a class="pull-left">'
                            var image = '{{ currentimage }}'
                            output += '<img src="{{ asset('images/profile/') }}'+image+'" alt="" class="img-circle"></a>'
-                           output += '<div class="media-body"><div class="names">'
+                           output += '<div class="media-body">'
+                           output += '<a onclick="deleteReview('+data+')"><div style="display:inline;float:right"><i class="fa fa-trash"></i></div></a>'
+                           output += '<div class="names">'
                            output += '{{ user.firstname }}' + ' ' + '{{ user.lastname }}'
                            if(data > 0)
                            {
@@ -172,6 +207,35 @@
                });
            }
        }
+    </script>
+
+
+    <!-- Delete Review -->
+    <script>
+        function deleteReview(review)
+        {
+            swal({
+                title: "Are you sure?",
+                text: "Are you sure that you want to delete this review ?",
+                icon: "warning",
+                buttons: ["NO", "YES !"],
+                dangerMode: true,
+            })
+                .then(willDelete => {
+                    if (willDelete) {
+                        $('#'.concat(review)).remove();
+                        $('.'.concat(review)).remove();
+                        $.ajax({
+                            url: '{{ path('discover_review_delete') }}',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                'review': review
+                            }
+                        });
+                    }
+                });
+        }
     </script>
 {% endblock %}
 

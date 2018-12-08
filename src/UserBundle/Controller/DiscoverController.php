@@ -382,6 +382,7 @@ class DiscoverController extends Controller
                     if(!is_null($ownerRate)) $rate = $ownerRate->getRate(); else $rate = 'no rating';
                     //
                     $rtemp = array(
+                        'review_id'=>$rev->getId(),
                         'review_owner_id'=>$reviewOwner->getId(),
                         'review_owner_first_name'=>$reviewOwner->getFirstname(),
                         'review_owner_last_name'=>$reviewOwner->getLastname(),

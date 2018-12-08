@@ -241,6 +241,21 @@ class DockiesController extends Controller
             }
             else
                 $rating ='rate';
+            //Get Reviews
+            $revrepo = $this->getDoctrine()->getRepository('UserBundle:PanReview');
+            $reviews = $revrepo->findBy(
+              array('pan'=>$pan)
+            );
+            $reviewsData = array();
+            foreach ($reviews as $review)
+            {
+                $rate = $ratingrepo->findOneBy(array('user'=>$review->getUser()));
+                $temp = array(
+                  'review'=>$review,
+                  'rate'=>$rate
+                );
+                array_push($reviewsData,$temp);
+            }
             //
             $temp = array(
               'pan'=>$pan,
@@ -248,7 +263,8 @@ class DockiesController extends Controller
                   'average'=>$average,
                   'type'=>$rating,
                   'value'=>$ratingvalue
-              )
+              ),
+              'reviews'=>$reviewsData
             );
             $session = new Session();
             $session->set('pan_details',$temp);
