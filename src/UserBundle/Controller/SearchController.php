@@ -53,6 +53,7 @@ class SearchController extends Controller
             }
         }
         $session = new Session();
+        $session->set('user_filter',$request->get('searchinput'));
         $session->set('users',$users);
         return $this->render('UserBundle::search.html.twig');
     }

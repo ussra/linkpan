@@ -77,8 +77,8 @@
                                                                     <div class="input-group">
                                                                         <input type="text" class="form-control" placeholder="{{'product_write_comment'|trans}}..."  id="panreview">
                                                                         <span class="input-group-btn">
-                                                                                <a ><button class="btn btn btn-info" type="button" id="review" onclick="panReview({{ selected.pan.id }})">{{'product_Submit_Review'|trans}}</button></a>
-                                                                            </span>
+                                                                            <a ><button class="btn btn btn-info" type="button" id="review" onclick="panReview({{ selected.pan.id }})">{{'product_Submit_Review'|trans}}</button></a>
+                                                                        </span>
                                                                     </div>
                                                                     <div class="clearfix"></div>
                                                                     <hr>
@@ -90,11 +90,9 @@
                                                                                     <img src="{{ asset('images/profile/') }}{{ review_image }}" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;">
                                                                                 </a>
                                                                                 <div class="media-body">
-                                                                                <!--************ -->
                                                                                     <div style="display:inline;float:right">
                                                                                         <i class="fa fa-trash"></i>
                                                                                     </div>
-                                                                                <!--************ -->
                                                                                     <div class="names">
                                                                                         <b> {{ product.review_owner_first_name }} {{ product.review_owner_last_name }} </b>
                                                                                         {% if product.review_owner_pan_rating != 'no rating' %}
@@ -161,12 +159,16 @@
                     },
                     success:function (data)
                     {
-                        if(data == 'Done')
+                        if(data === 'Done' || data > 0)
                         {
                             var output = '<li class="media"><a href="#" class="pull-left">'
                             var image = '{{ currentimage }}'
                             output += '<a href="#" class="pull-left"><img src="{{ asset('images/profile/') }}'+image+'" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;"">'
                             output += '</a><div class="media-body"><div class="names">' + '{{ user.firstname }}' + ' ' + '{{ user.lastname }}'
+                            if(data % 1 === 0 && data > 0){
+                                output += '<div class="" style="display:inline; margin-left: 15px">'
+                                output += '<div class="pan-stars"  data-score="'+data+'"></div></div>'
+                            }
                             output += '</div><p>' + $('#panreview').val() + '</p></div><li>'
 
                             $('#addcomment').prepend(output);

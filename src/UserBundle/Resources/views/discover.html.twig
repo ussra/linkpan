@@ -5,8 +5,7 @@
     <link rel="stylesheet" href={{ asset('Userscripts/css/Discover.css') }}>
     <link rel="stylesheet" href={{ asset('Userscripts/css/starability-all.css') }}>
     <!-- Rting -->
-    <link href={{ asset('Userscripts/rating/css/labs.css') }} rel="stylesheet">
-
+    <link href="{{ asset('Userscripts/rating/css/labs.css') }}" rel="stylesheet">
     <!--end Rting -->
 {% endblock %}
 
@@ -1220,8 +1219,6 @@
         $('.pan-rate').raty({
             click: function(score, evt)
             {
-                //alert('ID: ' + this.id + "\nscore: " + score + "\nevent: " + evt);
-                //rate
                 $.ajax({
                     url:'{{ (path('rate_pan')) }}',
                     type: 'POST',
@@ -1231,11 +1228,9 @@
                         'value': score,
                     }
                 });
-
             }
         });
     </script>
-
     <!-- Filter -->
     <script>
         //By options
@@ -1255,6 +1250,4 @@
             });
         }
     </script>
-
-
 {% endblock %}

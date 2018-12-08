@@ -212,6 +212,46 @@ class DockiesController extends Controller
         $pan = $panRepo->findOneById($request->get('pan'));
         if(!is_null($pan))
         {
+            $currentUser = $this->getUser();
+            $ratingrepo = $this->getDoctrine()->getRepository('UserBundle:PanRating');
+            // AVERAGE
+            $rating = $ratingrepo->findBy(
+                array('pan'=>$pan)
+            );
+            $average = 0;
+            if(sizeof($rating)>0)
+            {
+                foreach ($rating as $val)
+                {
+                    $average += $val->getRate();
+                }
+                $average = $average / sizeof($rating);
+                if($average > 5)
+                    $average = 5;
+            }
+            //User rating
+            $ratingvalue = 0;
+            $rt  = $ratingrepo->findOneBy(
+                array('user'=>$currentUser,'pan'=>$pan)
+            );
+            if(!is_null($rt))
+            {
+                $rating = 'fixed';
+                $ratingvalue = $rt->getRate();
+            }
+            else
+                $rating ='rate';
+            //
+            $temp = array(
+              'pan'=>$pan,
+              'rating'=>array(
+                  'average'=>$average,
+                  'type'=>$rating,
+                  'value'=>$ratingvalue
+              )
+            );
+            $session = new Session();
+            $session->set('pan_details',$temp);
             return $this->render('UserBundle::dockies_pan.html.twig');
         }
         else

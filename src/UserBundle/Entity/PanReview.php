@@ -29,6 +29,13 @@ class PanReview
     private $review;
 
     /**
+     * @var string $creationDate
+     *
+     * @ORM\Column(name="creationDate", type="text", nullable=true)
+     */
+    private $creationDate;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User")
      * @ORM\JoinColumn(nullable=false, onDelete="CASCADE")
      */
@@ -107,6 +114,23 @@ class PanReview
     {
         $this->pan = $pan;
     }
+
+    /**
+     * @return string
+     */
+    public function getCreationDate()
+    {
+        return $this->creationDate;
+    }
+
+    /**
+     * @param string $creationDate
+     */
+    public function setCreationDate($creationDate)
+    {
+        $this->creationDate = $creationDate;
+    }
+
 
 
 }

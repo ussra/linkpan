@@ -28,12 +28,23 @@ class PanReviewController extends Controller
             $pr->setPan($pan);
             $pr->setUser($this->getUser());
             $pr->setReview($request->get('review'));
+            $date = date("m/d/Y h:i:s ", time());
+            $pr->setCreationDate($date);
             $em = $this->getDoctrine()->getManager();
             $em->persist($pr);
             $em->flush();
-
+            // Get rating
+            $Ratingrepo = $this->getDoctrine()->getRepository('UserBundle:PanRating');
+            $obj = $Ratingrepo->findOneBy(
+                array('pan'=>$pan,'user'=>$this->getUser())
+            );
+            if(is_null($obj))
+                return new JsonResponse('Done');
+            else
+                return new JsonResponse($obj->getRate());
         }
-        return new JsonResponse('Done');
+        else
+            return new JsonResponse('ERR');
 
     }
 

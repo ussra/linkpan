@@ -8,13 +8,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use UserBundle\Entity\Follow;
 use Symfony\Component\HttpFoundation\Request;
-
+use Symfony\Component\HttpFoundation\Session\Session;
 class FollowController extends Controller
 {
-
-
-
-
 
     /**
      * @Route("/linkpan/follow",name="follow")
@@ -66,8 +62,15 @@ class FollowController extends Controller
                 $em->flush();
             }
         }
-
-        return $this->forward('UserBundle:Profile:searchprofile',array('user'=>$request->get('unfollow')));
+        if($request->get('type') == 'search')
+        {
+            $session = new Session();
+            return $this->forward('UserBundle:Search:search',array('searchinput'=>$session->get('user_filter')));
+        }
+        else
+        {
+            return $this->forward('UserBundle:Profile:searchprofile',array('user'=>$request->get('unfollow')));
+        }
     }
 
 
