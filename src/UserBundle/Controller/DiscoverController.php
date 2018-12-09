@@ -23,6 +23,7 @@ class DiscoverController extends Controller
         $pans = $this->Query($em,$currentUser,$request->get('type'));
         $this->getPans($currentUser,$session,$pans);
         $this->getPansCount($em,$currentUser,$session);
+        $session->set('filters',1);
         return $this->render('UserBundle::discover.html.twig');
     }
 
@@ -104,6 +105,7 @@ class DiscoverController extends Controller
             }
         }
         $session->set('DiscoverPans',$result);
+
     }
     private function getPansCount($em,$currentUser,$session)
     {
@@ -332,7 +334,7 @@ class DiscoverController extends Controller
 
 
         $this->getPans($currentUser,$session,$result);
-
+        $session->set('filters',1);
         return $this->render('UserBundle::discover.html.twig');
     }
 
