@@ -68,22 +68,28 @@
 
                                                 <ul class="media-list" id="complaint_comments_list">
                                                     {% for comment in complaint_reviews %}
-                                                        <li class="media">
-                                                            <a href="#" class="pull-left">
+                                                        <li class="media" id="{{ comment.id  }}">
+                                                            <a  class="pull-left">
                                                                 {% if comment.user.image is null  %}{% set image = 'default.png' %} {% else %} {% set image = comment.user.image %}{% endif %}
                                                                 <img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;">
                                                             </a>
-                                                            <div class="">
+                                                            <div class="media-body">
+                                                                {% if user.id == comment.user.id %}
+                                                                    <a onclick="deleteReview({{ comment.id }})">
+                                                                        <div style="display:inline;float:right">
+                                                                            <i class="fa fa-trash"></i>
+                                                                        </div>
+                                                                    </a>
+                                                                {% endif %}
                                                                 <div class="names">
                                                                     <b>{{ comment.user.firstname }} {{ comment.user.lastname }}</b>
                                                                 </div>
-
                                                                 <p style="word-wrap:break-word">
                                                                     {{ comment.review }}
                                                                 </p>
                                                             </div>
                                                         </li>
-                                                        <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin:5px 0 5px 0"></div>
+                                                        <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin:5px 0 5px 0" class="{{ comment.id  }}"></div>
                                                     {% endfor %}
                                                 </ul>
                                             </div>
@@ -144,12 +150,14 @@
                         else
                         {
                             //add comment
-                            var output = '<li class="media"><a href="#" class="pull-left">'
+                            var output = '<li class="media" id = "'+data+'"><a href="#" class="pull-left">'
                             if('{{ user.image }}' == null || '{{ user.image }}' == '')
                                 image = 'default.png'; else image = '{{ user.image }}';
-                            output += '<img src="{{ asset('images/profile/') }}'+image+'"  alt="" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;"></a><div class=""><div class="names">'
-                            output += '<b>{{ user.firstname }}'.concat(' ').concat('{{ user.lastname }}').concat('</b></div>')
-                            output += '<p style="word-wrap:break-word">'.concat($('#complaintcomment').val()).concat('</p></div><div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin:5px 0 5px 0"></div></li>')
+                            output += '<img src="{{ asset('images/profile/') }}'+image+'"  alt="" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;"></a><div class="media-body">'
+                            output += '<a onclick="deleteReview('+data+')"><div style="display:inline;float:right">';
+                            output += '<i class="fa fa-trash"></i></div></a>';
+                            output += '<div class="names"><b>{{ user.firstname }}'.concat(' ').concat('{{ user.lastname }}').concat('</b></div>')
+                            output += '<p style="word-wrap:break-word">'.concat($('#complaintcomment').val()).concat('</p></div><div class="'+data+'" style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin:5px 0 5px 0"></div></li>')
 
                             $('#complaint_comments_list').prepend(output);
                             $('#complaintcomment').val('')
@@ -160,6 +168,34 @@
                     }
                 });
             }
+        }
+    </script>
+
+    <!-- Delete review -->
+    <script>
+        function deleteReview(review)
+        {
+            swal({
+                title: "Are you sure?",
+                text: "Are you sure that you want to delete this comment ?",
+                icon: "warning",
+                buttons: ["NO", "YES !"],
+                dangerMode: true,
+            })
+                .then(willDelete => {
+                    if (willDelete) {
+                        $('#'.concat(review)).remove();
+                        $('.'.concat(review)).remove();
+                        $.ajax({
+                            url: '{{ path('complaint_delete_comment') }}',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: {
+                                'review': review
+                            }
+                        });
+                    }
+                });
         }
     </script>
 {% endblock %}

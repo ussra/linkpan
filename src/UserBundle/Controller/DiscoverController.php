@@ -174,6 +174,7 @@ class DiscoverController extends Controller
             '
             )->setParameter('user', $currentUser->getId())
                 ->setParameter('type', 'Discover');
+
         }
         if($type == 'Lowest Price')
         {
@@ -235,6 +236,7 @@ class DiscoverController extends Controller
             '
             )->setParameter('user', $currentUser->getId())
                 ->setParameter('type', 'Discover');
+
         }
         if($type == 'Last Viewed'){
             $query = $em->createQuery(
@@ -332,9 +334,8 @@ class DiscoverController extends Controller
                 $result = $this->FilterCategory($em,$currentUser,$filter);
         }
 
-
-        $this->getPans($currentUser,$session,$result);
         $session->set('filters',1);
+        $this->getPans($currentUser,$session,$result);
         return $this->render('UserBundle::discover.html.twig');
     }
 

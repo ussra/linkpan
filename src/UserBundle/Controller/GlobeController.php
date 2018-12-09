@@ -82,9 +82,7 @@ class GlobeController extends Controller
             }
             $session->set('DiscoverPans',$result);
             $session->set('DiscoverPans_count',0);
-            //
-            $session->set('filters',0);
-            //
+            $session->set('filters',1);
             return new JsonResponse($this->generateUrl('globe_pro_discover'));
         }
         else
