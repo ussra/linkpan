@@ -36,8 +36,10 @@ class ProfileController extends Controller
         )->setParameter('currentUser', $currentUser->getId())
         ->setParameter('otherUser', $user);
         $blockResult = $query->getResult();
-        if(!empty($blockResult))
-            return new JsonResponse('BLOCK');
+        if(!empty($blockResult)){
+            echo '<script language="javascript">alert("You cannot follow this user !")</script>';
+            //return new JsonResponse('BLOCK');
+        }
         else
         {
             // check follow
@@ -119,7 +121,8 @@ class ProfileController extends Controller
 
             $this->getCountFollow($session);
             $this->recentActivities($session);
-            return new JsonResponse($this->generateUrl('profile'));
+            //return new JsonResponse($this->generateUrl('profile'));
+            return $this->render('UserBundle::profile.html.twig');
         }
 
     }
@@ -165,8 +168,6 @@ class ProfileController extends Controller
                         array_push($shares,$post);   
                     }
                 }
-                else
-                    var_dump('pan');
             }
         }
 

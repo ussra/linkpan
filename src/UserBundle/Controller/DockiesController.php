@@ -95,7 +95,183 @@ class DockiesController extends Controller
                 
             '
         )->setParameter('user', $currentUser->getId())
-            ->setParameter('type', 'Discover');
+            ->setParameter('type', 'Dockies');
         $session->set('DockiesPans_count',intval($query->getResult()[0][1]));
+    }
+
+    /**
+     * @Route("/linkpan/dockies/filter",name="dockies_filter")
+     */
+    public function filterDiscoverAction(Request $request)
+    {
+        $filterType = $request->get('type');
+        $filter = $request->get('filter');
+        $em = $this->getDoctrine()->getManager();
+        $currentUser = $this->getUser();
+        $session = new Session();
+        if($filterType == 'sort')
+            $result = $this->FilterQuery($em,$currentUser,$filter);
+        if($filterType == 'category')
+        {
+            if($filter == 'Default')
+                $result = $this->FilterQuery($em,$currentUser,'New in');
+            else
+                $result = $this->FilterCategory($em,$currentUser,$filter);
+        }
+
+        $this->getPans($currentUser,$session,$result);
+        return $this->render('UserBundle::dockies.html.twig');
+    }
+
+    ///FILETERS
+    private function FilterQuery($em,$currentUser,$type)
+    {
+        $pans = null;
+        if($type == 'New in'){
+            $query = $em->createQuery(
+                'SELECT DISTINCT p FROM UserBundle:Pan p
+                WHERE  p.type = :type
+                AND IDENTITY(p.user) NOT IN (
+                  SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                )
+                AND IDENTITY(p.user) NOT IN (
+                  SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+                ) 
+                
+                ORDER BY p.id DESC
+            '
+            )->setParameter('user', $currentUser->getId())
+                ->setParameter('type', 'Dockies');
+        }
+        if($type == 'Highest Price')
+        {
+            $query = $em->createQuery(
+                'SELECT DISTINCT p FROM UserBundle:Pan p
+                WHERE  p.type = :type
+                AND IDENTITY(p.user) NOT IN (
+                  SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                )
+                AND IDENTITY(p.user) NOT IN (
+                  SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+                ) 
+                
+                ORDER BY p.price DESC
+            '
+            )->setParameter('user', $currentUser->getId())
+                ->setParameter('type', 'Dockies');
+        }
+        if($type == 'Lowest Price')
+        {
+            $query = $em->createQuery(
+                'SELECT DISTINCT p FROM UserBundle:Pan p
+                WHERE  p.type = :type
+                AND IDENTITY(p.user) NOT IN (
+                  SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                )
+                AND IDENTITY(p.user) NOT IN (
+                  SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+                ) 
+                
+                ORDER BY p.price ASC 
+            '
+            )->setParameter('user', $currentUser->getId())
+                ->setParameter('type', 'Dockies');
+        }
+
+        $pans = $query->getResult();
+        return $pans;
+    }
+    private function FilterCategory($em,$currentUser,$category){
+        $pans = null;
+        $query = $em->createQuery(
+            '
+              SELECT DISTINCT p FROM UserBundle:Pan p
+                WHERE  p.type = :type AND p.category = :category
+                AND IDENTITY(p.user) NOT IN (
+                  SELECT IDENTITY(b.userToBlock) FROM UserBundle:Block b WHERE b.user = :user
+                )
+                AND IDENTITY(p.user) NOT IN (
+                  SELECT IDENTITY(b2.user) FROM UserBundle:Block b2 WHERE b2.userToBlock = :user
+                ) 
+                
+                ORDER BY p.id DESC
+            '
+        )->setParameter('type', 'Dockies')
+            ->setParameter('category', $category)
+            ->setParameter('user', $currentUser->getId());
+        $pans = $query->getResult();
+        return $pans;
+    }
+
+    /**
+     * @Route("/linkpan/dockies/pan",name="dockies_pan")
+     */
+    public function dockies_panAction(Request $request)
+    {
+        $panRepo = $this->getDoctrine()->getRepository('UserBundle:Pan');
+        $pan = $panRepo->findOneById($request->get('pan'));
+        if(!is_null($pan))
+        {
+            $currentUser = $this->getUser();
+            $ratingrepo = $this->getDoctrine()->getRepository('UserBundle:PanRating');
+            // AVERAGE
+            $rating = $ratingrepo->findBy(
+                array('pan'=>$pan)
+            );
+            $average = 0;
+            if(sizeof($rating)>0)
+            {
+                foreach ($rating as $val)
+                {
+                    $average += $val->getRate();
+                }
+                $average = $average / sizeof($rating);
+                if($average > 5)
+                    $average = 5;
+            }
+            //User rating
+            $ratingvalue = 0;
+            $rt  = $ratingrepo->findOneBy(
+                array('user'=>$currentUser,'pan'=>$pan)
+            );
+            if(!is_null($rt))
+            {
+                $rating = 'fixed';
+                $ratingvalue = $rt->getRate();
+            }
+            else
+                $rating ='rate';
+            //Get Reviews
+            $revrepo = $this->getDoctrine()->getRepository('UserBundle:PanReview');
+            $reviews = $revrepo->findBy(
+              array('pan'=>$pan)
+            );
+            $reviewsData = array();
+            foreach ($reviews as $review)
+            {
+                $rate = $ratingrepo->findOneBy(array('user'=>$review->getUser()));
+                $temp = array(
+                  'review'=>$review,
+                  'rate'=>$rate
+                );
+                array_push($reviewsData,$temp);
+            }
+            //
+            $temp = array(
+              'pan'=>$pan,
+              'rating'=>array(
+                  'average'=>$average,
+                  'type'=>$rating,
+                  'value'=>$ratingvalue
+              ),
+              'reviews'=>$reviewsData
+            );
+            $session = new Session();
+            $session->set('pan_details',$temp);
+            return $this->render('UserBundle::dockies_pan.html.twig');
+        }
+        else
+            return $this->forward('UserBundle:Discover:discover');
+
     }
 }

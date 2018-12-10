@@ -175,7 +175,7 @@ class fccController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($complaintReview);
             $em->flush();
-            return new JsonResponse('Done');
+            return new JsonResponse($complaintReview->getId());
         }
     }
 
@@ -197,5 +197,21 @@ class fccController extends Controller
         {
             echo '<script language="javascript">alert("You cannot delete this complaint now , please try again");this.reload();</script>';
         }
+    }
+
+    /**
+     * @Route("{_locale}/linkpan/complaints/complaint_detail/complaint_delete_comment",name="complaint_delete_comment")
+     */
+    public function complaintdeletecommentAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:ComplaintReview');
+        $review = $repo->findOneById($request->get('review'));
+        if(!is_null($review))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($review);
+            $em->flush();
+        }
+        return new JsonResponse('DELETED');
     }
 }

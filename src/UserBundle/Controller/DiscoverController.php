@@ -23,6 +23,7 @@ class DiscoverController extends Controller
         $pans = $this->Query($em,$currentUser,$request->get('type'));
         $this->getPans($currentUser,$session,$pans);
         $this->getPansCount($em,$currentUser,$session);
+        $session->set('filters',1);
         return $this->render('UserBundle::discover.html.twig');
     }
 
@@ -104,6 +105,7 @@ class DiscoverController extends Controller
             }
         }
         $session->set('DiscoverPans',$result);
+
     }
     private function getPansCount($em,$currentUser,$session)
     {
@@ -172,6 +174,7 @@ class DiscoverController extends Controller
             '
             )->setParameter('user', $currentUser->getId())
                 ->setParameter('type', 'Discover');
+
         }
         if($type == 'Lowest Price')
         {
@@ -233,6 +236,7 @@ class DiscoverController extends Controller
             '
             )->setParameter('user', $currentUser->getId())
                 ->setParameter('type', 'Discover');
+
         }
         if($type == 'Last Viewed'){
             $query = $em->createQuery(
@@ -319,7 +323,7 @@ class DiscoverController extends Controller
         $currentUser = $this->getUser();
         $session = new Session();
 
-        if($filterType == 'sort') // Last viewed
+        if($filterType == 'sort')
             $result = $this->FilterQuery($em,$currentUser,$filter);
 
         if($filterType == 'category')
@@ -330,9 +334,8 @@ class DiscoverController extends Controller
                 $result = $this->FilterCategory($em,$currentUser,$filter);
         }
 
-
+        $session->set('filters',1);
         $this->getPans($currentUser,$session,$result);
-
         return $this->render('UserBundle::discover.html.twig');
     }
 
@@ -382,6 +385,7 @@ class DiscoverController extends Controller
                     if(!is_null($ownerRate)) $rate = $ownerRate->getRate(); else $rate = 'no rating';
                     //
                     $rtemp = array(
+                        'review_id'=>$rev->getId(),
                         'review_owner_id'=>$reviewOwner->getId(),
                         'review_owner_first_name'=>$reviewOwner->getFirstname(),
                         'review_owner_last_name'=>$reviewOwner->getLastname(),

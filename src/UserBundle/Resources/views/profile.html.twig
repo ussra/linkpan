@@ -63,9 +63,9 @@
                         </ul>
                         {% if user.id != userProfile.user_id %}
                             {% if userProfile.follow_result == 'follow' %}
-                                <button type="button" class="btn btn-default btn-xs follow" title="follow" onclick="follow({{ userProfile.user_id }})" > <i class="fa fa-plus"></i> </button>
+                                <a href="{{ path('follow',{'tofollow': userProfile.user_id }) }}"><button type="button" class="btn btn-default btn-xs follow" title="follow"  > <i class="fa fa-plus"></i> </button></a>
                                 {% else %}
-                                    <button type="button" class="btn btn-danger btn-xs" title="unfollow" onclick="unfollow({{ userProfile.user_id }})"> <i class="fa fa-minus"></i> </button>
+                                    <a href="{{ path('unfollow',{'unfollow': userProfile.user_id,'type':'profile' }) }}"><button type="button" class="btn btn-danger btn-xs" title="unfollow" > <i class="fa fa-minus"></i> </button></a>
                             {% endif %}
 
 
