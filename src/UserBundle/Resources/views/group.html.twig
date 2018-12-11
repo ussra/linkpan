@@ -1,4 +1,10 @@
 {% extends "UserBundle::userbase.html.twig" %}
+
+{% block style %}
+    <link href={{ asset('Userscripts/js/photos/ekko-lightbox.css') }} rel="stylesheet">
+    <script src={{ asset('Userscripts/js/photos/ekko-lightbox.js') }}></script>
+{% endblock %}
+
 {% block Title %}
     {% set view_group = app.session.get('view_group') %}
     {{ view_group.group.name }}
@@ -6,26 +12,27 @@
 
 {% block pageContent %}
     {% set view_group = app.session.get('view_group') %}
+    {{ dump(view_group) }}
     <div style="margin-top:80px">
         <div class="container bootstrap snippet">
             <div style="float: right;margin-top: 5px">
                 <a ><button type="button" class="btn btn-sm" onclick="$('#configModal').modal('show')"><i class="fa fa-cog"></i></button></a>
             </div>
             <div class="panel profile-info">
-                <form enctype="multipart/form-data" id="postingroup" method="post" action="{{ path('save_post',{'group': view_group.group.id } ) }}">
-
-                    <textarea class="form-control input-lg p-text-area" rows="2" placeholder="Post in  group  name" name="content" id="content" style="resize:none" required></textarea>
+                <form id="postform" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="{{ path('save_post',{'group': view_group.group.id } ) }}">
+                    <textarea class="form-control input-lg p-text-area" rows="4" placeholder="What's in your mind today?" name="post_description" id="description" required></textarea>
                     <div id="cover">
                         <div class="gallery"></div>
                         <div id="add_photo"><i class="fa fa-plus" aria-hidden="true"></i></div>
                     </div>
+
                     <div id="post_line"></div>
 
                     <div id="up_area"> <!-- upload -->
                         <div style="display:inline-block;">
                             <div class="form-inline">
-                                <img src="{{ asset('Userscripts/img//upimg.svg') }}" width="20px" height="20px" style="display:inline" onclick="document.getElementById('gallery-photo-add').click();">
-                                <input type="file" name="uploadimage[]" id="gallery-photo-add" style="display:none" accept="image/*" multiple>
+                                <img src="{{ asset('Userscripts/img/upimg.svg') }}" width="20px" height="20px" style="display:inline" onclick="document.getElementById('gallery-photo-add').click();">
+                                <input type="file"  name="uploadimage[]"  id="gallery-photo-add" style="display:none" accept="image/*" multiple>
                                 <h9 id="upload_title">Photo</h9>
                             </div>
                         </div>
@@ -39,7 +46,9 @@
                         </div>
                         <!--Video -->
                     </div><!--end upload -->
-                    <button type="submit" class="btn btn-info" style="float:right;margin:10px" id="postGroup">Post</button>
+
+                    <button type="submit" class="btn btn-info" id="postpan" >Post</button>
+
                 </form>
             </div>
 
@@ -73,7 +82,7 @@
 
                             <div class="fb-user-details">
                                 <h3><a href="#" class="#" onclick="view({{ item.post.user.id }})">{{ item.post.user.firstname }} {{ item.post.user.lastname  }}</a> {% if item.post.user.companyName  is not null %} <small> {{ item.post.user.companyName  }}</small> {% endif %}</h3>
-                                <p>{{ item.post.creationDate }} {% if item.post.user.adress is not null %} <small>in</small> {{ item.post.user.adress}} {% endif %}</p>
+                                <p>{{ item.post.creationDate|date("m-d-Y h:m") }} {% if item.post.user.adress is not null %} <small>in</small> {{ item.post.user.adress}} {% endif %}</p>
                             </div>
                         </div>
                     </div>
@@ -211,6 +220,79 @@
                 async: true
             });
         }
+    </script>
+
+    <!-- media -->
+    <script>
+
+
+        $(function() {
+            // Multiple images preview in browser
+            var imagesPreview = function(input, placeToInsertImagePreview) {
+                $("#cover").css({});
+                if (input.files) {
+                    var filesAmount = input.files.length;
+
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+
+                        reader.onload = function(event) {
+                            $($.parseHTML('<img>')).attr({src:event.target.result,style:"width:50px;height:50px;object-fit:cover;border-radius:5px;margin:5px; display: inline-block"}).appendTo(placeToInsertImagePreview);
+                        }
+
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                }
+
+            };
+
+            $('#gallery-photo-add').on('change', function() {
+                imagesPreview(this, 'div.gallery');
+            });
+        });
+
+
+        // Video
+        var video = null;
+        function readVideoURL(input) {
+            if (input.files && input.files[0]) {
+
+                var reader = new FileReader();
+                var filename = $('#post_video').val().split('\\').pop();
+
+                reader.onload = function (e) {
+                    $("#upload_Video_title").text(filename)
+                };
+
+
+                reader.readAsDataURL(input.files[0]);
+                //
+                video = input.files[0]
+
+            }
+        }
+    </script>
+    <script src="{{ asset('Userscripts/js/video/plyr.js') }}"></script>
+    <script>
+        //const player = new Plyr('.Vidoe_Player');
+        const players = Array.from(document.querySelectorAll('.Vidoe_Player')).map(p => new Plyr(p));
+
+    </script>
+
+    <script src="{{ asset('Userscripts/js/photos/ekko-lightbox.js') }}"></script>
+    <script>
+        $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+    </script>
+    <script>
+        $(window).on("navigate", function (event, data) {
+            var direction = data.state.direction;
+            if (direction == 'back') {
+                alert('back')
+            }
+        });
     </script>
 {% endblock %}
 
