@@ -45,21 +45,18 @@
                                     </div>
                                     
                             <div class="row" id="filterRow"> <!--group rows-->
+                                {% set filter_result = app.session.get('groups_filter') %}
                                 <div id="firstresult">
                                     {% if app.session.get('filter_text') is not empty %}
                                     <div class="col-md-12">
-                                        <h5> "<strong>{{ app.session.get('filter_text') }}</strong>" Search Results :   </h5>
+                                        <h5> "<strong>{{ app.session.get('filter_text') }}</strong>" Search Results : {%if filter_result is  empty %} <small>nothing to display</small>{%endif%}   </h5>
                                     </div>
                                         {% else %}
                                             <div class="text-center"><h5>Try to discover groups ..</h5></div>
                                     {% endif %}
-                                        {% set filter_result = app.session.get('groups_filter') %}
+                                        
 
-                                        {% if filter_result is empty %}
-                                         <div class="col-md-12">
-                                            <small>nothing to display</small>
-                                        </div>
-                                            {% else %}
+                                        {% if filter_result is not empty %}
                                                 {% for item in filter_result %}
                                                     <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
                                                         <div style="border:2px solid #E6E9ED;border-radius:5px;padding:5px;">
