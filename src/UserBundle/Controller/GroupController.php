@@ -24,6 +24,29 @@ class GroupController extends Controller
         );
         return $groups;
     }
+
+    function pendingInvites($currentUser)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            '
+                SELECT gr FROM UserBundle:GroupRequest gr 
+                WHERE IDENTITY(gr.group) IN (
+                  SELECT g.id FROM UserBundle:Groupe g WHERE 
+                  IDENTITY(g.user) = :currentUser 
+                )
+            '
+        )->setParameter('currentUser', $currentUser->getId());
+        return $query->getResult();
+    }
+
+    function yourGroups($currentUser)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:GroupJoin');
+        return $repo->findBy(
+          array('user'=>$currentUser)
+        );
+    }
     /**
      * @Route("{_locale}/linkpan/groups",name="groups")
      */
@@ -34,7 +57,11 @@ class GroupController extends Controller
         //Get groups that user manage
         $groupsManage = $this->groupsManage($currentUser);
         $session->set('GroupsManage',$groupsManage);
-        //
+        //Get pending invites
+        $session->set('pendingInvites',$this->pendingInvites($currentUser));
+        //Group Join
+        $session->set('yourgroups',$this->yourGroups($currentUser));
+
         return $this->render('UserBundle::groups.html.twig');
     }
 
@@ -452,5 +479,67 @@ class GroupController extends Controller
             $em->flush();
         }
         return $this->forward('UserBundle:Group:viewgroup',array('group'=>$request->get('group')));
+    }
+
+    /**
+     * @Route("{_locale}/linkpan/groups/clear",name="clear")
+     */
+    public function clearAction(Request $request)
+    {
+        $session = new Session();
+        $session->set('filter_text',null);
+        $session->set('groups_filter',null);
+        return $this->forward('UserBundle:Group:groups');
+    }
+
+    /**
+     * @Route("{_locale}/linkpan/groups/invitations/accept",name="accept_invitation")
+     */
+    public function acceptInvitationAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:GroupRequest');
+        $request = $repo->findOneById($request->get('invitation'));
+        if(!is_null($request))
+        {
+            $userrepo = $this->getDoctrine()->getRepository('AppBundle:User');
+            $user = $userrepo->findOneById($request->getUser());
+            $grprepo = $this->getDoctrine()->getRepository('UserBundle:Groupe');
+            $group = $grprepo->findOneById($request->getGroup());
+            if(!is_null($user) && !is_null($grprepo)){
+                $em = $this->getDoctrine()->getManager();
+                $gj = new GroupJoin();
+                $gj->setUser($user);
+                $gj->setGroup($group);
+                $em->persist($gj);
+                $em->remove($request);
+                $em->flush();
+            }
+            else
+                echo '<script language="javascript">alert("You cannot Accept this request now!")</script>';
+        }
+        else
+            echo '<script language="javascript">alert("You cannot Accept this request now!")</script>';
+
+        return $this->forward('UserBundle:Group:groups');
+    }
+
+
+    /**
+     * @Route("{_locale}/linkpan/groups/invitations/decline",name="decline_invitation")
+     */
+    public function declineInvitationAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:GroupRequest');
+        $request = $repo->findOneById($request->get('invitation'));
+        if(!is_null($request))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($request);
+            $em->flush();
+        }
+        else
+            echo '<script language="javascript">alert("You cannot Decline this request now!")</script>';
+
+        return $this->forward('UserBundle:Group:groups');
     }
 }

@@ -37,8 +37,8 @@
                                             <div class="input-group">
                                                 <input class="form-control"  type="search" placeholder="Search" aria-label="Search" name="filtergroup" id="filtergroup" required>
                                                 <span class="input-group-btn">
-                                                <button class="btn btn-outline-primary" type="submit"><i class="fa fa-search"></i></button>
-                                                <button class="btn btn-outline-primary" >clear</button>
+                                                    <button class="btn btn-outline-primary" type="submit"><i class="fa fa-search"></i></button>
+                                                    <a href="{{ path('clear') }}"><button class="btn btn-outline-primary" type="button">clear</button></a>
                                                 </span>
                                             </div>
                                         </form>
@@ -46,7 +46,7 @@
                                     
                             <div class="row" id="filterRow"> <!--group rows-->
                                 <div id="firstresult">
-                                    {% if app.session.get('filter_text') is not empty %}
+                                    {% if app.session.get('filter_text') is not empty and app.session.get('filter_text') is not null  %}
                                     <div class="col-md-12">
                                         <h5> "<strong>{{ app.session.get('filter_text') }}</strong>" Search Results :   </h5>
                                     </div>
@@ -55,11 +55,7 @@
                                     {% endif %}
                                         {% set filter_result = app.session.get('groups_filter') %}
 
-                                        {% if filter_result is empty %}
-                                         <div class="col-md-12">
-                                            <small>nothing to display</small>
-                                        </div>
-                                            {% else %}
+                                        {% if filter_result is not empty or filter_result is not null  %}
                                                 {% for item in filter_result %}
                                                     <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6">
                                                         <div style="border:2px solid #E6E9ED;border-radius:5px;padding:5px;">
@@ -82,7 +78,7 @@
                                                                                     {% endif %}
                                                                                     {% if item.joinType == 'join' %}
                                                                                         <div>
-                                                                                            <a class="btn btn-danger" href="{{ path('exit_group',{'group':item.group.id}) }}"  title="exit group" onclick="exitGroup({{ item.group.id }})" ><i class="fa fa-sign-out"></i></a>
+                                                                                            <a class="btn btn-danger" href="{{ path('exit_group',{'group':item.group.id}) }}"  title="exit group"  ><i class="fa fa-sign-out"></i></a>
                                                                                         </div>
                                                                                     {% endif %}
                                                                             {% endif %}
@@ -117,11 +113,11 @@
                                                     </div>
 
                                                 </div>
-                                            </div>
+                                                </div>
                                             </div>
                                         {% endfor %}
                                     {% else %}
-                                        <h3>You are not currently managing any group</h3>
+                                        <div class="text-center"><h5>You are not currently managing any group</h5></div>
                                 {% endif %}
                             </div>
                         </div>
@@ -129,13 +125,55 @@
                         <!-- -->
                         <div class="tab-pane " id="pending">
                             <div class="row" style="margin-top: 8%;margin-left: 3%">
-
+                                {% set invites = app.session.get('pendingInvites') %}
+                                {% if invites is empty %}
+                                    <div class="text-center"><h5>Currently there s no invites to manage</h5></div>
+                                    {% else %}
+                                        {% for item in invites  %}
+                                            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6" >
+                                                <div style="border:2px solid #E6E9ED;border-radius:5px;padding:5px;"><div>
+                                                        {% if item.user.image is null or item.user.image is empty %} {% set image = 'default.png' %} {% else %} {% set image =  item.user.image  %} {% endif %}
+                                                        <img src="{{ asset('images/profile/') }}{{ image }}" class="img-responsive"  style="object-fit:cover;width:150px; height:100px;border-radius:3px;"/>
+                                                        <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin-top:5px"></div>
+                                                        <h4>{{ item.user.firstname }} {{ item.user.lastname }}</h4>
+                                                        <div class="text-right">
+                                                            <div class="btn-group">
+                                                                <a  class="btn btn-danger"  href="{{ path('decline_invitation',{'invitation':item.id}) }}"  title="Decline invitation"><i class="fa fa-times"></i></a>
+                                                                <a class="btn btn-success" href="{{ path('accept_invitation',{'invitation':item.id}) }}" title="Accept invitation"><i class="fa fa-check"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                {% endif %}
                             </div>
                         </div>
 
                         <!-- -->
                         <div class="tab-pane " id="yourgroups">
                             <div class="row">
+                                {% set yourgroups = app.session.get('yourgroups') %}
+                                {% if yourgroups is not null and yourgroups is not empty  %}
+                                        {% for group in yourgroups %}
+                                            <div class="col-lg-2 col-md-4 col-sm-4 col-xs-6" >
+                                                <div style="border:2px solid #E6E9ED;border-radius:5px;padding:5px;"><div>
+                                                        <img src="{{ asset('images/group/') }}{{ group.group.image }}" class="img-responsive"  style="object-fit:cover;width:150px; height:100px;border-radius:3px;"/>
+                                                        <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin-top:5px"></div>
+                                                        <h4>{{ group.group.name }}</h4>
+                                                        <div class="text-right">
+                                                            <div class="btn-group">
+                                                                <a href="{{ path('view_group',{'group':group.group.id}) }}" class="btn btn-primary" title="View Group"><i class="fa fa-eye"></i></a>
+                                                                <a class="btn btn-danger" href="{{ path('exit_group',{'group':group.group.id}) }}"  title="exit group"  ><i class="fa fa-sign-out"></i></a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <div class="text-center"><h5>Currently you are not joignin any group</h5></div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
