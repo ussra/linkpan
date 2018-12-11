@@ -109,7 +109,7 @@
                                 <li><a href="{{ path('globe') }}"  > Globe Pro</a></li>
                             </ul>
                             <ul class="nav side-menu">
-                                <li><a > Groups</a></li>
+                                <li><a href="{{ path('groups') }}"> Groups</a></li>
                             </ul>
                             <ul class="nav side-menu">
                                 <li><a href="{{ path('complaints') }}" > FCC</a></li>
@@ -319,7 +319,7 @@
                                             <!-- Name / Boosted /Date / Adress -->
                                             <div class="fb-user-details">
                                                 <h3><a href="#" class="#" onclick="view({{ item.owner_id }})">{{ item.owner_first_name }} {{ item.owner_last_name }}</a> {% if item.owner_company_name is not null %} <small> {{ item.owner_company_name }}</small> {% endif %}</h3>
-                                                <p>{% if item.post_boosted == 'boosted' %}<strong style="color:black">BOOSTED</strong></strong> | {% endif %} {{ item.post_creation_date }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
+                                                <p>{% if item.post_boosted == 'boosted' %}<strong style="color:black">BOOSTED</strong></strong> | {% endif %} {{ item.post_creation_date | date('m-d-Y H:m') }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
                                             </div>
                                            
 
@@ -462,7 +462,7 @@
                                                     {% endif %}
                                                     <span></span>
                                                     <!--<a href="#share_post" onclick="sharePost({ item.id }})" title="Send this to friend or post it on your time line"><i class="fa fa-share fa-lg"></i></a> -->
-                                                <!--add share fb twiter googlr plus linkedin -->
+                                                <!--add share fb twiter google plus linkedin -->
                                                 <div class="btn-group">
                                                     <button type="button" style="border:0" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                         <i class="fa fa-share fa-lg"></i>
@@ -475,7 +475,7 @@
                                                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
                                                     </ul>
                                                     </div>
-                                                    <!--end add share fb twiter googlr plus linkedin -->
+                                                    <!--end add share fb twiter google plus linkedin -->
                                                 </div>
                                             </div>
 
@@ -535,7 +535,21 @@
                                                             <a id="morelink{{ item.id }}" href="#more_comments" onclick="morecomments({{ item.id }});return false;">more comments</a>
                                                             <div id="more{{ item.id }}" style="display: none;">
                                                                 {% for comment in comments[4:comments|length] %}
-                                                                    <li>
+                                                                    <li id ="comment_{{ comment.comment_id }}">
+                                                                        {% if comment.comment_owner_id == user.id %}
+                                                                            <div style="display:inline;float:right">
+                                                                                <div class="btn-group ">
+                                                                                    <button style="    visibility: hidden;"type="button" class="btn btn-primary">Right dropup</button>
+                                                                                    <button type="button" style="background:#f6f6f6;border:0" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                                                        <i style="color:black" class="fa fa-ellipsis-h"></i>
+                                                                                    </button>
+                                                                                    <ul class="dropdown-menu dropdown-menu-right">
+                                                                                        <li><a onclick="clickdeletcmnt()">Delet</a></li>
+                                                                                        <li style="display:none"><a id="deletcmntbtn" onclick="DeleteComment({{ comment.comment_id }})">Delet</a></li>
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </div>
+                                                                        {% endif %}
                                                                         <a  class="cmt-thumb">
                                                                             {% if comment.comment_owner_image is null %}{% set commentow_image = 'default.png' %}{% else %}{% set commentow_image = comment.comment_owner_image %} {% endif %}
                                                                             <img src="{{ asset('images/profile/') }}{{ commentow_image }}" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;">
@@ -718,7 +732,7 @@
 
 <!-- Setting access -->
 <script>
- // delet acc confirmation:
+ // delete acc confirmation:
     function clickdeletcmnt(){
         swal({
         title: "Are you sure?",
@@ -961,11 +975,17 @@
                     async: true,
                     success: function (data)
                     {
-                        if(data == 'Done')
+                        if(data > 0)
                         {
                             // output
-                            var output = '<li>'
-                            output = '<a  class="cmt-thumb"></button>'
+                            var output = '<li id="comment_'+data+'">';
+                            output += '<div style="display:inline;float:right"><div class="btn-group ">';
+                            output += '<button style="visibility: hidden;"type="button" class="btn btn-primary">Right dropup</button>';
+                            output += '<button type="button" style="background:#f6f6f6;border:0" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i style="color:black" class="fa fa-ellipsis-h"></i></button><ul class="dropdown-menu dropdown-menu-right">'
+                            output += '<li><a onclick="clickdeletcmnt()">Delet</a></li>'
+                            output += '<li style="display:none"><a id="deletcmntbtn" onclick="DeleteComment('+data+')">Delet</a></li>'
+                            output += '<a  class="cmt-thumb"></button>'
+                            output += '</ul></div></div>'
                             var image = '{{ currentimage }}'
                             output += '<img src="{{ asset('images/profile/') }}'+image+'" class="img-circle" style="width: 50px;height: 50px;object-fit: cover;margin-right: 20px;"></a>'
                             output += '<div class="cmt-details">'
@@ -975,8 +995,13 @@
                             output += '</div></li>'; //
                             $('#commentslist'.concat(post)).prepend(output);
                             $('#contentComment'.concat(post)).val('')
-                            $('#contentComment'.concat(post)).prop('disabled', false);
                         }
+                        else
+                            alert('Soryy you cannot comment this post now , please try in another time')
+
+
+
+                        $('#contentComment'.concat(post)).prop('disabled', false);
                     }
                 });
             }
@@ -1188,21 +1213,17 @@
                 return true;
             };
             // share in facebook
-            /*document.querySelector('.share_facebook').addEventListener('click', function(e){
+            document.querySelector('.share_facebook').addEventListener('click', function(e){
                 e.preventDefault();
                 var url = this.getAttribute('data-url');//
+                console.log(url)
                 var shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(url) ;
                 popupCenter(shareUrl, "Share in facebook");
-            });*/
+            });
         })();
     </script>
 
 {% endblock %}
-
-
-
-
-
 
 </body>
 </html>
