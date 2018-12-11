@@ -157,7 +157,7 @@ class PostController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($pc);
             $em->flush();
-            return new JsonResponse('Done');
+            return new JsonResponse($pc->getId());
         }
         else
             return new JsonResponse('ERR');
