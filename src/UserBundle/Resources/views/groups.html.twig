@@ -82,7 +82,8 @@
                                                                                     {% endif %}
                                                                                     {% if item.joinType == 'join' %}
                                                                                         <div>
-                                                                                            <a class="btn btn-danger" href="{{ path('exit_group',{'group':item.group.id}) }}"  title="exit group" onclick="exitGroup({{ item.group.id }})" ><i class="fa fa-sign-out"></i></a>
+                                                                                            <a class="btn btn-danger" onclick="exit_groupbtn()"  title="exit group"><i class="fa fa-sign-out"></i></a>
+                                                                                            <a style="display:none" class="btn btn-danger" id="exit_groupbtn1" href="{{ path('exit_group',{'group':item.group.id}) }}"  title="exit group" onclick="exitGroup({{ item.group.id }})" ><i class="fa fa-sign-out"></i></a>
                                                                                         </div>
                                                                                     {% endif %}
                                                                             {% endif %}
@@ -111,8 +112,9 @@
                                                     <!--<div class=""><h5>72000 Member</h5></div>-->
                                                     <div class="text-right">
                                                         <div class="btn-group">
-                                                        <a href="{{ path('delete_group',{'group':group.id}) }}" class="btn btn-danger"  title="Delete Group"><i class="fa fa-times"></i></a>
-                                                        <a href="{{ path('view_group',{'group':group.id}) }}" class="btn btn-primary" title="View Group"><i class="fa fa-eye"></i></a>
+                                                            <a  class="btn btn-danger" onclick="clickdeletmygroup()" title="Delete Group"><i class="fa fa-times"></i></a>
+                                                            <a style="display:none" id="deletmygrp" href="{{ path('delete_group',{'group':group.id}) }}" class="btn btn-danger"  title="Delete Group"><i class="fa fa-times"></i></a>
+                                                            <a href="{{ path('view_group',{'group':group.id}) }}" class="btn btn-primary" title="View Group"><i class="fa fa-eye"></i></a>
                                                         </div>
                                                     </div>
 
@@ -204,7 +206,39 @@
         </div>
     </div>
 
+<script>
 
+// delete acc confirmation:
+    function exit_groupbtn(){
+        swal({
+        title: "Are you sure?",
+        text: "Are you sure that you want to exit this group ?",
+        icon: "warning",
+        buttons: ["NO", "YES !"],
+        dangerMode: true,
+        })
+        .then(willDelete => {
+            if (willDelete) {
+                document.getElementById("exit_groupbtn1").click();
+            }
+        });
+    } //end delet acc confirmation
+// delete acc confirmation:
+    function clickdeletmygroup(){
+        swal({
+        title: "Are you sure?",
+        text: "Are you sure that you want to delete this group ?",
+        icon: "warning",
+        buttons: ["NO", "YES !"],
+        dangerMode: true,
+        })
+        .then(willDelete => {
+            if (willDelete) {
+                document.getElementById("deletmygrp").click();
+            }
+        });
+    } //end delet acc confirmation 
+</script>
 
 {% endblock %}
 
