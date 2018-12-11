@@ -1143,9 +1143,9 @@
                                 </optgroup>
                             </select>
                         </form>
-                        <form  style="display:inline-block;float:right" method="post" action="{{ path('dockies_filter',{'type':'sort'}) }}" >
+                        <!--<form  style="display:inline-block;float:right" method="post" action="{{ path('dockies_filter',{'type':'sort'}) }}" >
                             <input class="form-control" type="text" placeholder="Search"/>
-                        </form>
+                        </form>-->
                     </div> <!-- end from inline-->
                 </div><!--end x_title -->
                     
@@ -1170,7 +1170,7 @@
                                                     <div class="pan-stars"  data-score="{{ item.rate.value }}"></div>
                                                 {% endif %}
                                             {% else %}
-                                                <div class="pan-stars" id="{{ item.pan.id }}" data-score="0" title="You can't rate your pan"></div>
+                                                <small>You can't rate your pan</small>
                                             {% endif %}
                                         </div>
                                         <a  class="btn btn-info" style="float:right" href="{{ path('dockies_pan',{'pan':item.pan.id}) }}">Detail</a>
