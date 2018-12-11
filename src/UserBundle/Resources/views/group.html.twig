@@ -12,7 +12,6 @@
 
 {% block pageContent %}
     {% set view_group = app.session.get('view_group') %}
-    {{ dump(view_group) }}
     <div style="margin-top:80px">
         <div class="container bootstrap snippet">
             <div style="float: right;margin-top: 5px">
@@ -20,7 +19,7 @@
             </div>
             <div class="panel profile-info">
                 <form id="postform" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="{{ path('save_post',{'group': view_group.group.id } ) }}">
-                    <textarea class="form-control input-lg p-text-area" rows="4" placeholder="What's in your mind today?" name="post_description" id="description" required></textarea>
+                    <textarea style="border:none" class="form-control input-lg p-text-area" rows="2" placeholder="What's in your mind today?" name="post_description" id="description" required></textarea>
                     <div id="cover">
                         <div class="gallery"></div>
                         <div id="add_photo"><i class="fa fa-plus" aria-hidden="true"></i></div>
