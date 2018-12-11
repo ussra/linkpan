@@ -23,7 +23,8 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="my-list">
                         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                            <img src="{{ asset('images/pans/') }}{{ details.pan.image }}" class="img-responsive" width="800" height="500"/>
+                            
+                            <a  href="{{ asset('images/pans/') }}{{ details.pan.image }}" data-max-width="1000" data-toggle="lightbox" data-gallery="dockiesmainimg1"> <img src="{{ asset('images/pans/') }}{{ details.pan.image }}" id="dockiesmainimg1" class="img-responsive" style="width: 100%;height: 600px;object-fit: cover;"></a>
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                             <h3 id="bigtitle">{{ details.pan.name }} <small>- {{ details.pan.othername }}</small></h3>
@@ -36,7 +37,7 @@
                                 </div>
                             {% endif %}
                             <div id="categries">
-                                <h4>Category :</h4> {{ details.pan.category }}
+                                <h4 style="display:inline" >Category :</h4> {{ details.pan.category }}
                             </div>
                             <span class="pull-left">{{ details.pan.price }} $</span>
                             <span class="pull-right">Quntity : {{ details.pan.quentity }} </span>
@@ -71,13 +72,18 @@
                                             <form>
                                                 {% if user.id != details.pan.user.id %}
                                                     <div class="row">
-                                                        <h4> Your rate :</h4>
+                                                        <h4 style="display:inline-block"> Your rate: &nbsp; </h4>
                                                         {% if details.rating.type == "rate" %}
+                                                        <div style="display:inline-block">
                                                             <div class="pan-rate" id="{{ details.pan.id }}" data-score="0"></div>
+                                                        </div>
                                                             {% else %}
-                                                                <div class="pan-stars"  data-score="{{ details.rating.value }}"></div>
+                                                                <div style="display:inline-block">
+                                                                    <div class="pan-stars"  data-score="{{ details.rating.value }}"></div>
+                                                                </div>
                                                         {% endif %}
                                                     </div>
+                                                    </br>
                                                 {% endif %}
                                                 <textarea class="form-control" placeholder="write a comment..." rows="3" id="panreview"></textarea>
                                                 <button type="button" class="btn btn-info btn-xs pull-right" onclick="setreview({{ details.pan.id }})" id="review"><h5>Submit Review</h5></button>
@@ -87,6 +93,11 @@
                                             <ul class="media-list" id="addcomment">
                                                 {% if details.reviews is not empty %}
                                                     {% for item in details.reviews %}
+                                                                {% if item.rate.rate > 0 %}
+                                                                    <div style="display:inline-block;">
+                                                                        <div class="pan-stars" id="{{ details.pan.id }}"  data-score="{{ item.rate.rate }}" ></div>
+                                                                    </div>
+                                                                {% endif %}
                                                         <li class="media" id="{{ details.pan.id }}">
                                                             <a href="#" class="pull-left">
                                                                 {% if item.review.user.image is null %}
@@ -97,6 +108,11 @@
                                                                 <img src="{{ asset('images/profile/') }}{{ image }}"  class="img-circle">
                                                             </a>
                                                             <div class="media-body">
+                                                                <div style="display:inline-block;" class="names">
+                                                                    {{ item.review.user.firstname }} {{ item.review.user.lastname }}
+                                                                </div>
+                                                                
+                                                            
                                                                 {% if user.id == item.review.user.id %}
                                                                     <a onclick="deleteReview({{ details.pan.id }})">
                                                                         <div style="display:inline;float:right">
@@ -104,14 +120,6 @@
                                                                         </div>
                                                                     </a>
                                                                 {% endif %}
-                                                                <div class="names">
-                                                                    {{ item.review.user.firstname }} {{ item.review.user.lastname }}
-                                                                    {% if item.rate.rate > 0 %}
-                                                                        <div style="display:inline; margin-left: 15px">
-                                                                            <div class="pan-stars"  data-score="{{ item.rate.rate }}" ></div>
-                                                                        </div>
-                                                                    {% endif %}
-                                                                </div>
                                                                 <div><small class="time"> {{ item.review.creationDate|date('m-d-Y h:m') }}</small></div>
                                                                 <p>
                                                                     {{ item.review.review }}

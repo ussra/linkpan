@@ -23,8 +23,10 @@
                             </div>
                         {% endif %}
                         {% if app.request.get('0') is defined and app.request.get('0') == 'authMessage' %}
-                            <div class="alert alert-danger">
-                                <small>{{ 'signin_Invalid_login'|trans }}</small>
+                            <div  class="col-8 offset-2">
+                                <div class="alert alert-danger">
+                                    <small>{{ 'signin_Invalid_login'|trans }}</small>
+                                </div>
                             </div>
                         {% endif %}
                         <div class="text-center">
