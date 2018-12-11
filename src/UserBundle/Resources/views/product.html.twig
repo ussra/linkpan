@@ -5,6 +5,8 @@
     <!-- Rting -->
     <link href={{ asset('Userscripts/rating/css/labs.css') }} rel="stylesheet">
     <!--end Rting -->
+     <!-- Photos -->
+        <link href={{ asset('Userscripts/js/photos/ekko-lightbox.css') }} rel="stylesheet">
 {% endblock %}
 {% block Title %}
     {% set selected = app.session.get('get_pan') %}
@@ -35,7 +37,7 @@
                                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
                                     <div class="col-md-7 col-sm-7 col-xs-12">
                                         <div class="product-image">
-                                            <a href="{{ asset('images/pans/') }}{{ selected.pan.image }}" data-max-width="900" data-toggle="lightbox" data-gallery="product-main-img"><img src="{{ asset('images/pans/') }}{{ selected.pan.image }}" id="product-main-img" style="width: 100%;height: 400px;object-fit: cover;" /></a>
+                                            <a href="{{ asset('images/pans/') }}{{ selected.pan.image }}" data-max-width="900" data-toggle="lightbox" data-gallery="product-main-img2"> <img src="{{ asset('images/pans/') }}{{ selected.pan.image }}" id="product-main-img2" style="width: 100%;height: 400px;object-fit: cover;"/></a>
                                             <div class="rating-block">
                                                 <h4>{{'product_Average_rating'|trans}}</h4>
                                                 <h2 class="bold padding-bottom-7" style="display:inline;margin-right: 10px;">{{ selected.average }} <small>/ 5</small></h2><button type="button" class="btn btn-warning btn-sm" aria-label="Left Align"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></button>
@@ -132,6 +134,9 @@
 {% endblock %}
 
 {% block scripts %}
+<!-- photos -->
+        <script src={{ asset('Userscripts/js/photos/ekko-lightbox.js') }}></script>
+
     <!-- Fix rating script script-->
     <script src={{ asset('Userscripts/rating/javascripts/labs.js') }}></script>
     <script src={{ asset('Userscripts/rating/javascripts/jquery.raty.js') }}></script>
