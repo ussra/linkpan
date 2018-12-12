@@ -1170,22 +1170,22 @@
                                                     <div class="pan-stars"  data-score="{{ item.rate.value }}"></div>
                                                 {% endif %}
                                             {% else %}
-                                                <small>You can't rate your pan</small>
+                                                <small>{{'You can’t rate your pan'|trans}}</small>
                                             {% endif %}
                                         </div>
-                                        <a  class="btn btn-info" style="float:right" href="{{ path('dockies_pan',{'pan':item.pan.id}) }}">Detail</a>
+                                        <a  class="btn btn-info" style="float:right" href="{{ path('dockies_pan',{'pan':item.pan.id}) }}">{{'Detail'|trans}}</a>
                                     </div>
                                 </div>
                             {% endfor %}
                             {% else %}
-                                <h3 class="text-center">Sorry there s no pans to discover </h3>
+                                <h3 class="text-center">{{'Sorry there s no pans to discover'|trans}}</h3>
                         {% endif %}
                     </div><!--end row -->
                 </div><!--end x_content -->
                 {% if count > result|length %}
                     <div class="row">
                         <div class="text-center">
-                            <a href="{{ path('dockies',{'type':'dockies_all'}) }}">Load All</a>
+                            <a href="{{ path('dockies',{'type':'dockies_all'}) }}">{{'Load All'|trans}}</a>
                         </div>
                     </div>
                 {% endif %}
