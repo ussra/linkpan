@@ -11,19 +11,22 @@
     <link href="{{ asset('globe/mapStyle.css') }}" rel="stylesheet">
 
 </head>
-<body style="background-image:url('{{ asset('globe/space.svg') }}');background-repeat: no-repeat;background-size: cover;">
+<body style="background-image:url('{{ asset('globe/space.svg') }}');background-repeat: no-repeat;background-size: cover;height:100vh">
 
 
-<div style="padding:0px;background:rgba(255,255,255,0.2);display:inline-block;border-radius:5px;margin:20px">
-  <a class="navbar-brand" href="{{ path('home') }}"  style="color:white" ><i style="margin-left:8px;" class="fas fa-chevron-left"></i>BACK TO LINKPAN</a>
-</div>
+
 <div class="container">
     <div class="row">
         <div id="map">
         </div>
     </div>
     <div class="row">
+        
+        
          <section class="user-guide">
+            <div >
+            <a  href="{{ path('home') }}"  style="color:#373942" ><i style="margin:0 8px 0 8px;" class="fas fa-chevron-left"></i>BACK TO LINKPAN</a>
+            </div>
             <div class="user-guide__title">Welcome</div>
             <div class="user-guide__subtitle">to Globe Pro of <code style="color:#6BA5D6;">LINKPAN</code>.</div><!--<span class="user-guide__close"></span>-->
             <div class="row">
@@ -222,27 +225,40 @@
 
                             g.selectAll(".focused").classed("focused", false);
                             d3.select(this).classed("focused", focused = d);
-                            infoLabel.text(countryById[d.id])
-                                .style("display", "inline");
+                            infoLabel.text(countryById[d.id]).style("display", "inline");
 
                             // search action
-                            var r = confirm("Discover pans of ".concat(countryById[d.id]).concat(" ?"));
-                            if (r == true) {
-                                $.ajax({
-                                    url: '{{ path('filter_by_country') }}',
-                                    type: 'POST',
-                                    dataType: 'json',
-                                    data: {
-                                        'country': countryById[d.id]
-                                    },
-                                    success:function(data){
-                                        if(data == 'NULL')
-                                            alert('There s no pans to discover in '+ countryById[d.id])
-                                        else
-                                            window.location.href = data
+                            var r = "Discover pans of ".concat(countryById[d.id]).concat(" ?");
+                            swal({
+                                text: r,
+                                buttons: ["NO", "YES !"],
+                                })
+                                .then(willDelete => {
+                                    if (willDelete) {
+                                            $.ajax({
+                                                url: '{{ path('filter_by_country') }}',
+                                                type: 'POST',
+                                                dataType: 'json',
+                                                data: {
+                                                    'country': countryById[d.id]
+                                                },
+                                                success:function(data){
+                                                    if(data == 'NULL')
+                                                        alert('There s no pans to discover in '+ countryById[d.id])
+                                                    else
+                                                        window.location.href = data
+                                                }
+                                            });
+                                        
+                                    
+                                    
+                                    
                                     }
+                                    
                                 });
-                            }
+
+                            
+                            
 
                         });
                     if (ortho === true)
@@ -268,5 +284,7 @@
             </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js'></script>
 <script  src="{{ asset('globe/js/index.js') }}"></script>
+<!-- Sweet alert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>

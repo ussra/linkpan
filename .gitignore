@@ -15,6 +15,6 @@
 !var/SymfonyRequirements.php
 
 .idea/workspace.xml
-web/images/group/6_Desert.jpg
-web/images/group/7_Chrysanthemum.jpg
-web/images/group/5_Desert.jpg
+web/images/group/*
+web/images/pans/*
+

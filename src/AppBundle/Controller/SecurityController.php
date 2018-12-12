@@ -24,13 +24,13 @@ class SecurityController extends Controller
      */
     public function logoutAction()
     {
-        /*$currentUser = $this->getUser();
+        $currentUser = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $currentUser->setIsActive(false);
         $em->persist($currentUser);
         $em->flush();
         $this->get('security.token_storage')->setToken(null);
         $this->get('session')->clear();
-        return $this->render('PublicBundle::signin.html.twig');*/
+        return $this->render('PublicBundle::signin.html.twig');
     }
 }
