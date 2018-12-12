@@ -603,11 +603,11 @@
                    {{'DOCKIES PRIME - 2018'|trans}} 
                 </div>
                 <div class="pull-left">
-                   <!-- <a style="margin-right:10px;" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'}))}}"><img class="img-fluid" src={{ asset('scripts/img/flags/usa.png') }} width="25" width="25"></a>
-                    <a style="margin-right:10px;" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'}))}}"><img class="img-fluid" src={{ asset('scripts/img/flags/fr.png') }} width="25" width="25"></a>
-                    <a style="margin-right:10px;" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'sp'}))}}"><img class="img-fluid" src={{ asset('scripts/img/flags/sp.png') }}  width="25" width="25"></a>
-                    <a style="margin-right:10px;" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'ma'}))}}"><img class="img-fluid" src={{ asset('scripts/img/flags/ma.png') }} width="25" width="25"></a>
-                </div> -->
+                   
+                    <a style="margin-right:10px;" href="{{path('translation',{'_locale':'en'})}}"><img class="img-fluid" src={{ asset('scripts/img/flags/usa.png') }} width="25" width="25"></a>
+                    <a style="margin-right:10px;" href="{{path('translation',{'_locale':'fr'})}}"><img class="img-fluid" src={{ asset('scripts/img/flags/fr.png') }} width="25" width="25"></a>
+
+                </div> 
                 <div class="clearfix"></div>
             </footer>
             <!-- /footer content -->
