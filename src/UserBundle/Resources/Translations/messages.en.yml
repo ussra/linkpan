@@ -55,7 +55,7 @@ Soryy you cannot comment this post now , please try in another time: Soryy you c
 Please , set a comment: Please , set a comment
 Post shared on your profile !: Post shared on your profile !
 sorry you cannot like the post , you can try another time: sorry you cannot like the post , you can try another time
-back: back
+Back: Back
 Your browser does not support the video tag.: Your browser does not support the video tag.
 DOCKIES PRIME - 2018: DOCKIES PRIME - 2018
 #end home
@@ -75,6 +75,19 @@ discover_you_cannot_rate: you cannot rate your pan
 discover_Theres_nopans: Currently , There s no pans to display !
 #end discover
 
+#discover
+You can't rate your pan: You can't rate your pan
+Detail: Detail
+Sorry there s no pans to discover: Sorry there s no pans to discover
+Load All: Load All
+Supporting document: Supporting document
+Quntity: Quntity
+There is no average rating yet: There is no average rating yet
+contact seller: contact seller
+Reviews: Reviews
+Your rate: Your rate
+#end discover
+
 #end Product
 product_Details: Details
 product_Recommendations: Recommendations
@@ -84,6 +97,8 @@ product_share: share
 product_Contact_seller: Contact seller
 product_write_comment: write a comment
 product_Submit_Review: Submit Review
+You cannot set a review now , please try in another time , Thanks !: You cannot set a review now , please try in another time , Thanks !
+Are you sure that you want to delete this review ?: Are you sure that you want to delete this review ?
 #end Product
 
 #pans
