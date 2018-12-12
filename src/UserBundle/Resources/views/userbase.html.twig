@@ -47,9 +47,8 @@
     {% endblock %}
 </head>
 
-<body class="nav-md" style="background:white">
+<body class="nav-md" style="background:white"  >
 {% set user = app.user %}
-
 
 
 {% if user is not null  %}
@@ -611,7 +610,7 @@
         </div>
     </div>
 
-{% else %}
+    {% else %}
     <div class="container body">
         <div class="main_container">
             <!-- page content -->
@@ -880,6 +879,7 @@
     if ( window.history.replaceState ) {
         window.history.replaceState( null, null, window.location.href );
     }
+
 </script>
 
 
