@@ -86,7 +86,7 @@
                                                     </br>
                                                 {% endif %}
                                                 <textarea class="form-control" placeholder="{{'write a comment...'|trans}}" rows="3" id="panreview"></textarea>
-                                                <button type="button" class="btn btn-info btn-xs pull-right" onclick="setreview({{ details.pan.id }})" id="review"><h5>{{'product_Submit_Review'|trans}}</h5></button>
+                                                <button type="button" class="btn btn-info btn-xs pull-right" onclick="setreview({{ details.pan.id }},{{ details.rating.value }})" id="review"><h5>{{'product_Submit_Review'|trans}}</h5></button>
                                             </form>
                                             <div class="clearfix"></div>
                                             <hr>
@@ -173,7 +173,7 @@
     </script>
     <!-- review -->
     <script>
-       function setreview(pan){
+       function setreview(pan,rate){
            if($('#panreview').val() != '')
            {
                $('#panreview').prop('disabled', true);
@@ -188,21 +188,27 @@
                    },
                    success:function (data)
                    {
-                       if(data == 'Done' || data >= 0)
+                       if(data!= 'ERR')
                        {
-                           var output = '<li class="media" id = "'+data+'" ><a class="pull-left">'
-                           var image = '{{ currentimage }}'
-                           output += '<img src="{{ asset('images/profile/') }}'+image+'" alt="" class="img-circle"></a>'
-                           output += '<div class="media-body">'
-                           output += '<a onclick="deleteReview('+data+')"><div style="display:inline;float:right"><i class="fa fa-trash"></i></div></a>'
-                           output += '<div class="names">'
-                           output += '{{ user.firstname }}' + ' ' + '{{ user.lastname }}'
-                           if(data > 0)
+                           var output = '';
+                           if(rate > 0)
                            {
-                               output += '<div class="pan-stars"  data-score="'+data+'"></div>'
+                               alert(rate);
+                                output += ' <div style="display:inline-block;"><div class="pan-stars"  data-score="'+rate+'"></div></div>';
+                                 
                            }
-                           output +=  '</div></div>'
-                           output += '<p>'+$('#panreview').val()+'</p></div></li>'
+                           
+                            output += '<li class="media" id = "'+data+'" ><a class="pull-left">';
+                           var image = '{{ currentimage }}';
+                           output += '<img src="{{ asset('images/profile/') }}'+image+'" alt="" class="img-circle"></a>';
+                           output += '<div class="media-body">';
+                           output += '<a onclick="deleteReview('+data+')"><div style="display:inline;float:right"><i class="fa fa-trash"></i></div></a>';
+                           output += '<div class="names">';
+                           output += '{{ user.firstname }}' + ' ' + '{{ user.lastname }}';
+                           
+                           output +=  '</div></div>';
+                           
+                           output += '<p>'+$('#panreview').val()+'</p></div></li>';
                            $('#addcomment').prepend(output);
                        }
                        else
@@ -211,6 +217,13 @@
                        $('#panreview').val('')
                        $('#panreview').prop('disabled', false)
                        $('#review').prop('disabled',false)
+                        $('.pan-stars').raty({ 
+                                    readOnly: true,
+                                    score: function() {
+                                    return $(this).attr('data-score');
+                                    },
+                                    
+                                    });  
                    }
                });
            }
@@ -231,6 +244,7 @@
             })
                 .then(willDelete => {
                     if (willDelete) {
+
                         $('#'.concat(review)).remove();
                         $('.'.concat(review)).remove();
                         $.ajax({
