@@ -24,9 +24,7 @@
                         <div class="gallery"></div>
                         <div id="add_photo"><i class="fa fa-plus" aria-hidden="true"></i></div>
                     </div>
-
                     <div id="post_line"></div>
-
                     <div id="up_area"> <!-- upload -->
                         <div style="display:inline-block;">
                             <div class="form-inline">
@@ -62,9 +60,9 @@
                                 {% if item.post.user.image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.post.user.image  %}{% endif %}
                                 <a><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
                             </div>
-
                             <!--add remove post -->
-                            {% if user.id == item.post.user.id %}
+                            {% if  item.post.user.id == user.id or view_group.group.user.id == user.id  %}
+                                <!--add remove post -->
                                 <div style="display:inline;float:right">
                                     <!-- Single button -->
                                     <div class="btn-group ">
@@ -73,16 +71,13 @@
                                             <i style="color:black" class="fa fa-ellipsis-h"></i>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="{{ path('delete_post',{'post':item.post.id,'group':view_group.group.id}) }}">Delet</a></li>
+                                            <li ><a id="deletpostbtn" href="{{ path('delete_group_post',{'post': item.post.id,'group': view_group.group.id }) }}">Delet</a></li>
+
                                         </ul>
                                     </div>
                                 </div>
                             {% endif %}
 
-                            <div class="fb-user-details">
-                                <h3><a href="#" class="#" onclick="view({{ item.post.user.id }})">{{ item.post.user.firstname }} {{ item.post.user.lastname  }}</a> {% if item.post.user.companyName  is not null %} <small> {{ item.post.user.companyName  }}</small> {% endif %}</h3>
-                                <p>{{ item.post.creationDate|date("m-d-Y h:m") }} {% if item.post.user.adress is not null %} <small>in</small> {{ item.post.user.adress}} {% endif %}</p>
-                            </div>
                         </div>
                     </div>
                 {% endfor %}

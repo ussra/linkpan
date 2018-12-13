@@ -300,20 +300,22 @@
                                                 {% if item.owner_image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.owner_image  %}{% endif %}
                                                 <a onclick="view({{ item.owner_id }})"><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
                                             </div>
-                                             <!--add remove post -->
-                                            <div style="display:inline;float:right">
-                                             <!-- Single button -->
-                                                    <div class="btn-group ">
-                                                        <button style="    visibility: hidden;"type="button" class="btn btn-primary">Right dropup</button> 
-                                                        <button type="button" style="background:white;border:0" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> 
-                                                            <i style="color:black" class="fa fa-ellipsis-h"></i>
-                                                        </button> 
-                                                        <ul class="dropdown-menu dropdown-menu-right">
-                                                            <li style="display:none"><a id="deletpostbtn" href="{{ path('delete_post',{'post': item.id }) }}">Delet</a></li>
-                                                            <li><a href="#" onclick="clickdeletpost()">{{'Delet'|trans}}</a></li>
-                                                        </ul> 
-                                                    </div>   
-                                            </div>
+                                             {% if user.id == item.owner_id %}
+                                                 <!--add remove post -->
+                                                 <div style="display:inline;float:right">
+                                                     <!-- Single button -->
+                                                     <div class="btn-group ">
+                                                         <button style="    visibility: hidden;"type="button" class="btn btn-primary">Right dropup</button>
+                                                         <button type="button" style="background:white;border:0" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                                             <i style="color:black" class="fa fa-ellipsis-h"></i>
+                                                         </button>
+                                                         <ul class="dropdown-menu dropdown-menu-right">
+                                                             <li style="display:none"><a id="deletpostbtn" href="{{ path('delete_post',{'post': item.id }) }}">Delet</a></li>
+                                                             <li><a href="#" onclick="clickdeletpost()">{{'Delet'|trans}}</a></li>
+                                                         </ul>
+                                                     </div>
+                                                 </div>
+                                             {% endif %}
                                             <!--end delet post -->
                                             <!-- Name / Boosted /Date / Adress -->
                                             <div class="fb-user-details">

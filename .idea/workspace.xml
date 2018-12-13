@@ -4,9 +4,7 @@
     <list default="true" id="485b6df8-cd1d-419e-a911-7f9228242476" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/UserBundle/Controller/GroupController.php" afterPath="$PROJECT_DIR$/src/UserBundle/Controller/GroupController.php" />
-      <change beforePath="$PROJECT_DIR$/src/UserBundle/Resources/Translations/messages.en.yml" afterPath="$PROJECT_DIR$/src/UserBundle/Resources/Translations/messages.en.yml" />
       <change beforePath="$PROJECT_DIR$/src/UserBundle/Resources/views/group.html.twig" afterPath="$PROJECT_DIR$/src/UserBundle/Resources/views/group.html.twig" />
-      <change beforePath="$PROJECT_DIR$/src/UserBundle/Resources/views/groups.html.twig" afterPath="$PROJECT_DIR$/src/UserBundle/Resources/views/groups.html.twig" />
       <change beforePath="$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig" afterPath="$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -67,12 +65,27 @@
       <file leaf-file-name="group.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/group.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2178">
-              <caret line="191" column="86" lean-forward="false" selection-start-line="191" selection-start-column="86" selection-end-line="191" selection-end-column="86" />
+            <state relative-caret-position="301">
+              <caret line="73" column="154" lean-forward="false" selection-start-line="73" selection-start-column="154" selection-end-line="73" selection-end-column="154" />
               <folding>
-                <element signature="e#3014#5672#0#Twig" expanded="false" />
-                <element signature="e#12698#15480#0#Twig" expanded="false" />
+                <element signature="e#3139#3164#0#HTML" expanded="true" />
+                <element signature="e#3313#3335#0#HTML" expanded="true" />
+                <element signature="e#3608#3659#0#HTML" expanded="true" />
+                <element signature="e#3952#3986#0#HTML" expanded="true" />
+                <element signature="e#5295#12243#0#HTML" expanded="false" />
+                <element signature="e#12346#13248#0#HTML" expanded="false" />
+                <element signature="e#13319#14255#0#HTML" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="157">
+              <caret line="104" column="36" lean-forward="false" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="36" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -80,8 +93,8 @@
       <file leaf-file-name="GroupController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/GroupController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="396" column="57" lean-forward="false" selection-start-line="396" selection-start-column="50" selection-end-line="396" selection-end-column="57" />
+            <state relative-caret-position="312">
+              <caret line="480" column="71" lean-forward="false" selection-start-line="480" selection-start-column="66" selection-end-line="480" selection-end-column="71" />
               <folding>
                 <element signature="e#529#756#0#PHP" expanded="false" />
                 <element signature="e#1543#2070#0#PHP" expanded="false" />
@@ -89,31 +102,36 @@
                 <element signature="e#11606#13326#0#PHP" expanded="false" />
                 <element signature="e#11785#11934#0#PHP" expanded="false" />
                 <element signature="e#12058#12570#0#PHP" expanded="false" />
-                <element signature="e#15497#15596#0#PHP" expanded="false" />
-                <element signature="e#15601#16411#0#PHP" expanded="false" />
-                <element signature="e#16418#16513#0#PHP" expanded="false" />
-                <element signature="e#16518#16992#0#PHP" expanded="false" />
-                <element signature="e#16998#17070#0#PHP" expanded="false" />
-                <element signature="e#17075#17312#0#PHP" expanded="false" />
-                <element signature="e#17420#18625#0#PHP" expanded="false" />
-                <element signature="e#18632#18731#0#PHP" expanded="false" />
-                <element signature="e#18736#19296#0#PHP" expanded="false" />
-                <element signature="e#19610#20540#0#PHP" expanded="false" />
-                <marker date="1544664190012" expanded="true" signature="921:1140" ph="SELECT gr FR... UserBundle" />
-                <marker date="1544664190012" expanded="true" signature="4632:5019" ph="SELECT DISTI... UserBundle" />
-                <marker date="1544664190012" expanded="true" signature="11839:11902" ph="SELECT gj FR... UserBundle" />
-                <marker date="1544664190012" expanded="true" signature="12093:12538" ph="SELECT DISTI... UserBundle" />
+                <element signature="e#15506#15605#0#PHP" expanded="false" />
+                <element signature="e#15610#16420#0#PHP" expanded="false" />
+                <element signature="e#17013#17085#0#PHP" expanded="false" />
+                <element signature="e#17090#17327#0#PHP" expanded="false" />
+                <element signature="e#17435#18640#0#PHP" expanded="false" />
+                <element signature="e#18647#18746#0#PHP" expanded="false" />
+                <element signature="e#18751#19311#0#PHP" expanded="false" />
+                <element signature="e#19625#20555#0#PHP" expanded="false" />
+                <marker date="1544665441642" expanded="true" signature="921:1140" ph="SELECT gr FR... UserBundle" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Groupe.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/Groupe.php">
+      <file leaf-file-name="userbase.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="132" column="34" lean-forward="false" selection-start-line="132" selection-start-column="20" selection-end-line="132" selection-end-column="34" />
-              <folding />
+            <state relative-caret-position="292">
+              <caret line="326" column="72" lean-forward="false" selection-start-line="326" selection-start-column="72" selection-end-line="326" selection-end-column="72" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#div#5;n#div#0;n#div#2;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+                <element signature="e#59131#59960#0#Twig" expanded="false" />
+                <marker date="1544666164966" expanded="true" signature="61251:61277" ph="..." />
+                <marker date="1544666164966" expanded="true" signature="61360:61379" ph="..." />
+                <marker date="1544666164966" expanded="true" signature="61510:61537" ph="..." />
+                <marker date="1544666164966" expanded="true" signature="61654:61665" ph="..." />
+                <marker date="1544666164966" expanded="true" signature="61904:61916" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -129,11 +147,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>profile</find>
-      <find>var</find>
-      <find>forwa</find>
-      <find>follow</find>
-      <find>could</find>
       <find>swal</find>
       <find>dump</find>
       <find>under</find>
@@ -159,6 +172,11 @@
       <find>mkdi</find>
       <find>view_g</find>
       <find>GroupPost</find>
+      <find>post</find>
+      <find>delete</find>
+      <find>adress</find>
+      <find>compa</find>
+      <find>you cannot access</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -213,11 +231,11 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/setting.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Controller/SettingController.php" />
-        <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/Translations/messages.en.yml" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/groups.html.twig" />
-        <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/group.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Controller/GroupController.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/group.html.twig" />
       </list>
     </option>
   </component>
@@ -311,13 +329,13 @@
               <item name="linkpan" type="b2602c69:ProjectViewProjectNode" />
               <item name="linkpan" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="UserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="linkpan" type="b2602c69:ProjectViewProjectNode" />
               <item name="linkpan" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="UserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Entity" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
@@ -412,12 +430,12 @@
       <workItem from="1544478201163" duration="580000" />
       <workItem from="1544510523558" duration="1538000" />
       <workItem from="1544641506617" duration="7102000" />
-      <workItem from="1544659014366" duration="4482000" />
+      <workItem from="1544659014366" duration="7252000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="487267000" />
+    <option name="totallyTimeSpent" value="490037000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1384" height="738" extended-state="6" />
@@ -476,14 +494,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/PublicBundle/Resources/views/privacy.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="275" column="26" lean-forward="false" selection-start-line="275" selection-start-column="26" selection-end-line="275" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PublicBundle/Resources/views/faq.html.twig" />
     <entry file="file://$PROJECT_DIR$/app/config/services.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-312">
@@ -668,13 +678,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/GlobeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="84" column="39" lean-forward="false" selection-start-line="84" selection-start-column="39" selection-end-line="84" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/DiscoverController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
@@ -796,23 +799,8 @@
         <state relative-caret-position="1379">
           <caret line="237" column="84" lean-forward="false" selection-start-line="237" selection-start-column="73" selection-end-line="237" selection-end-column="84" />
           <folding>
-            <element signature="e#18761#19181#0#HTML" expanded="false" />
-            <element signature="e#19279#19697#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="250" column="143" lean-forward="false" selection-start-line="250" selection-start-column="114" selection-end-line="250" selection-end-column="143" />
-          <folding>
-            <element signature="e#58501#59330#0#Twig" expanded="false" />
-            <marker date="1544661251482" expanded="true" signature="60621:60647" ph="..." />
-            <marker date="1544661251482" expanded="true" signature="60730:60749" ph="..." />
-            <marker date="1544661251482" expanded="true" signature="60880:60907" ph="..." />
-            <marker date="1544661251482" expanded="true" signature="61024:61035" ph="..." />
-            <marker date="1544661251482" expanded="true" signature="61274:61286" ph="..." />
+            <element signature="e#19341#19761#0#HTML" expanded="false" />
+            <element signature="e#19859#20277#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -825,10 +813,54 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/GlobeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="84" column="39" lean-forward="false" selection-start-line="84" selection-start-column="39" selection-end-line="84" selection-end-column="39" />
+          <folding>
+            <marker date="1544364169080" expanded="true" signature="861:1398" ph="SELECT DISTI... UserBundle" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/GroupPost.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="42" column="13" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="104" column="36" lean-forward="false" selection-start-line="104" selection-start-column="25" selection-end-line="104" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="326" column="72" lean-forward="false" selection-start-line="326" selection-start-column="72" selection-end-line="326" selection-end-column="72" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#1;n#div#0;n#div#2;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#div#5;n#div#0;n#div#2;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
+            <element signature="e#59131#59960#0#Twig" expanded="false" />
+            <marker date="1544666164966" expanded="true" signature="61251:61277" ph="..." />
+            <marker date="1544666164966" expanded="true" signature="61360:61379" ph="..." />
+            <marker date="1544666164966" expanded="true" signature="61510:61537" ph="..." />
+            <marker date="1544666164966" expanded="true" signature="61654:61665" ph="..." />
+            <marker date="1544666164966" expanded="true" signature="61904:61916" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/GroupController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="396" column="57" lean-forward="false" selection-start-line="396" selection-start-column="50" selection-end-line="396" selection-end-column="57" />
+        <state relative-caret-position="312">
+          <caret line="480" column="71" lean-forward="false" selection-start-line="480" selection-start-column="66" selection-end-line="480" selection-end-column="71" />
           <folding>
             <element signature="e#529#756#0#PHP" expanded="false" />
             <element signature="e#1543#2070#0#PHP" expanded="false" />
@@ -836,31 +868,31 @@
             <element signature="e#11606#13326#0#PHP" expanded="false" />
             <element signature="e#11785#11934#0#PHP" expanded="false" />
             <element signature="e#12058#12570#0#PHP" expanded="false" />
-            <element signature="e#15497#15596#0#PHP" expanded="false" />
-            <element signature="e#15601#16411#0#PHP" expanded="false" />
-            <element signature="e#16418#16513#0#PHP" expanded="false" />
-            <element signature="e#16518#16992#0#PHP" expanded="false" />
-            <element signature="e#16998#17070#0#PHP" expanded="false" />
-            <element signature="e#17075#17312#0#PHP" expanded="false" />
-            <element signature="e#17420#18625#0#PHP" expanded="false" />
-            <element signature="e#18632#18731#0#PHP" expanded="false" />
-            <element signature="e#18736#19296#0#PHP" expanded="false" />
-            <element signature="e#19610#20540#0#PHP" expanded="false" />
-            <marker date="1544664190012" expanded="true" signature="921:1140" ph="SELECT gr FR... UserBundle" />
-            <marker date="1544664190012" expanded="true" signature="4632:5019" ph="SELECT DISTI... UserBundle" />
-            <marker date="1544664190012" expanded="true" signature="11839:11902" ph="SELECT gj FR... UserBundle" />
-            <marker date="1544664190012" expanded="true" signature="12093:12538" ph="SELECT DISTI... UserBundle" />
+            <element signature="e#15506#15605#0#PHP" expanded="false" />
+            <element signature="e#15610#16420#0#PHP" expanded="false" />
+            <element signature="e#17013#17085#0#PHP" expanded="false" />
+            <element signature="e#17090#17327#0#PHP" expanded="false" />
+            <element signature="e#17435#18640#0#PHP" expanded="false" />
+            <element signature="e#18647#18746#0#PHP" expanded="false" />
+            <element signature="e#18751#19311#0#PHP" expanded="false" />
+            <element signature="e#19625#20555#0#PHP" expanded="false" />
+            <marker date="1544665441642" expanded="true" signature="921:1140" ph="SELECT gr FR... UserBundle" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/group.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2178">
-          <caret line="191" column="86" lean-forward="false" selection-start-line="191" selection-start-column="86" selection-end-line="191" selection-end-column="86" />
+        <state relative-caret-position="301">
+          <caret line="73" column="154" lean-forward="false" selection-start-line="73" selection-start-column="154" selection-end-line="73" selection-end-column="154" />
           <folding>
-            <element signature="e#3014#5672#0#Twig" expanded="false" />
-            <element signature="e#12698#15480#0#Twig" expanded="false" />
+            <element signature="e#3139#3164#0#HTML" expanded="true" />
+            <element signature="e#3313#3335#0#HTML" expanded="true" />
+            <element signature="e#3608#3659#0#HTML" expanded="true" />
+            <element signature="e#3952#3986#0#HTML" expanded="true" />
+            <element signature="e#5295#12243#0#HTML" expanded="false" />
+            <element signature="e#12346#13248#0#HTML" expanded="false" />
+            <element signature="e#13319#14255#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>

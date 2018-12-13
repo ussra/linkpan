@@ -394,7 +394,7 @@ class GroupController extends Controller
         if(!is_null($group))
         {
             $groupPost = new GroupPost();
-            $groupPost->setContent($request->get('content'));
+            $groupPost->setContent($request->get('post_description'));
             $date = date("m/d/Y h:i:s ", time());
             $groupPost->setCreationDate($date);
             $groupPost->setUser($this->getUser());
@@ -466,7 +466,7 @@ class GroupController extends Controller
 
 
     /**
-     * @Route("{_locale}/linkpan/groups/view_group/delete_post",name="delete_post")
+     * @Route("{_locale}/linkpan/groups/view_group/delete_post",name="delete_group_post")
      */
     public function delete_postAction(Request $request)
     {
