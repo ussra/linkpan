@@ -229,7 +229,7 @@ class HomeController extends Controller
 
 
     /**
-     * @Route("/linkpan/home",name="home")
+     * @Route("{_locale}/linkpan/home",name="home")
      */
     public function indexAction()
     {
@@ -345,7 +345,7 @@ class HomeController extends Controller
 
 
     /**
-     * @Route("/linkpan/pans",name="pans")
+     * @Route("{_locale}/linkpan/pans",name="pans")
      */
     public function pansAction()
     {
