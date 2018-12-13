@@ -178,15 +178,20 @@
                                 </table>
                             </div>
                             <div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="config-tab">
-                                <div class="form-group">
-                                        <input type="file"  class="form-control">
-                                </div>
-                                <div class="form-group">
-                                        <input type="text" placeholder="name" value="" class="form-control" >                
-                                </div>
-                                <div class="form-group">
-                                        <textarea  placeholder="Descreption"  class="form-control"></textarea>
-                                </div>
+                                <form action="{{ path('configuration',{'group': view_group.group.id }) }}" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <input type="file" name="image"  class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="text" name="name"  placeholder="Change name" value="{{ view_group.group.name }}" class="form-control" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <textarea  placeholder="Update Descreption" name="description"  class="form-control" required>{{ view_group.group.description }}</textarea>
+                                    </div>
+                                    <div class="form-group pull-right">
+                                        <button type="submit" class="btn btn-success" ><i class="fa fa-check"></i></button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

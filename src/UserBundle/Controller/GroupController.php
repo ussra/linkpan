@@ -542,4 +542,40 @@ class GroupController extends Controller
 
         return $this->forward('UserBundle:Group:groups');
     }
+
+
+    /**
+     * @Route("{_locale}/linkpan/groups/view_group/configuration",name="configuration")
+     */
+    public function configurationAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Groupe');
+        $group = $repo->findOneById($request->get('group'));
+        if(!is_null($group))
+        {
+            if(!is_null($request->files->get('image')))
+            {
+                $attdir = __DIR__ . "/../../../web/images/group";
+                if (!file_exists($attdir))
+                    mkdir($attdir, 0777, true);
+
+                $image = $request->files->get('image');
+                $files = scandir($attdir);
+                $count = count($files)-2;
+                $name = $count.'_'.$image->getClientOriginalName();
+                $image->move($attdir,$name );
+                $group->setImage($name);
+            }
+
+            $group->setName($request->get('name'));
+            $group->setDescription($request->get('description'));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($group);
+            $em->flush();
+        }
+        else
+            echo '<script language="javascript">alert(" Sorry , you cannot Update this group")</script>';
+
+        return $this->forward('UserBundle:Group:viewgroup',array('group'=>$group->getId()));
+    }
 }
