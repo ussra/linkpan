@@ -15,8 +15,9 @@
     <div style="margin-top:80px">
         <div class="container bootstrap snippet">
             <div style="float: right;margin-top: 5px">
+                <a ><button type="button" class="btn btn-success btn-sm"><i class="fa fa-comments"></i></button></a>
                 <a ><button type="button" class="btn btn-sm" onclick="$('#configModal').modal('show')"><i class="fa fa-cog"></i></button></a>
-            </div>
+          </div>
             <div class="panel profile-info">
                 <form id="postform" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="{{ path('save_post',{'group': view_group.group.id } ) }}">
                     <textarea style="border:none" class="form-control input-lg p-text-area" rows="2" placeholder="What's in your mind today?" name="post_description" id="description" required></textarea>
@@ -71,8 +72,8 @@
                                             <i style="color:black" class="fa fa-ellipsis-h"></i>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li ><a id="deletpostbtn" href="{{ path('delete_group_post',{'post': item.post.id,'group': view_group.group.id }) }}">Delet</a></li>
-
+                                            <li id="deletpostbtn" style="display:none" ><a href="{{ path('delete_group_post',{'post': item.post.id,'group': view_group.group.id }) }}"></a></li>
+                                            <li><a href="#" onclick"deletpostfunc()">Delet</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -204,9 +205,24 @@
 
 {% block scripts %}
     <script>
+        function deletpostfunc(){
+            alert('ff');
+            swal({
+            title: "Are you sure?",
+            text: "Are you sure that you want to exit delet this post ?",
+            icon: "warning",
+            buttons: ["NO", "YES !"],
+            dangerMode: true,
+            })
+            .then(willDelete => {
+                if (willDelete) {
+                    document.getElementById("deletpostbtn").click();
+                }
+            });
+        }
+
         function removeMember (group,user)
         {
-
         swal({
             title: "Are you sure?",
             text: "Are you sure that you want to remove this member ?",
