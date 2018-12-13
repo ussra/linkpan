@@ -426,7 +426,6 @@
     </div>
 
 
-
     <!--Add Billing modal -->
     <div id="methodModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -524,24 +523,27 @@
 {% endblock pageContent %}
 
 {% block scripts %}
+    <!--delete account-->
+    <script>
+        // delet acc confirmation:
+        function clickdeletacc(){
+            swal({
+                title: "Are you sure?",
+                text: "Are you sure that you want to delete your account?",
+                icon: "warning",
+                buttons: ["NO", "YES !"],
+                dangerMode: true,
+            })
+                .then(willDelete => {
+                    if (willDelete) {
+                        document.getElementById("clickdeletacc2").click();
+                    }
+                });
+        } //end delet acc confirmation
+    </script>
     <!-- Save data -->
     <script src="https://js.stripe.com/v3/"></script>
     <script>
-        // delet acc confirmation:
-         function clickdeletacc(){
-            swal({
-            title: "Are you sure?",
-            text: "Are you sure that you want to delete your account?",
-            icon: "warning",
-            buttons: ["NO", "YES !"],
-            dangerMode: true,
-            })
-            .then(willDelete => {
-                if (willDelete) {
-                    document.getElementById("clickdeletacc2").click();
-                }
-            });
-        } //end delet acc confirmation
         // Create a Stripe client.
         var stripe = Stripe('pk_test_W7BV1CRR2gqWVgH7S2X0JEn8');
 

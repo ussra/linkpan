@@ -317,7 +317,6 @@ class SettingController extends Controller
     }
 
 
-
     /**
      * @Route("{_locale}/linkpan/setting/delete_account",name="delete_account")
      */
