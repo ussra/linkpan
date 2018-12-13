@@ -206,18 +206,34 @@
     <script>
         function removeMember (group,user)
         {
-            $('#retirer'.concat(user)).remove();
-            $.ajax({
-                url:'{{ (path('remove_member')) }}',
-                type: 'POST',
-                dataType: 'json',
-                data:
-                    {
-                        'group':group,
-                        'user':user
-                    },
-                async: true
-            });
+
+        swal({
+            title: "Are you sure?",
+            text: "Are you sure that you want to remove this member ?",
+            icon: "warning",
+            buttons: ["NO", "YES !"],
+            dangerMode: true,
+            })
+            .then(willDelete => {
+                if (willDelete) {
+                    //**********
+                    $('#retirer'.concat(user)).remove();
+                    $.ajax({
+                        url:'{{ (path('remove_member')) }}',
+                        type: 'POST',
+                        dataType: 'json',
+                        data:
+                            {
+                                'group':group,
+                                'user':user
+                            },
+                        async: true
+                    });
+                    //******
+                }
+        });
+            
+            
         }
     </script>
 

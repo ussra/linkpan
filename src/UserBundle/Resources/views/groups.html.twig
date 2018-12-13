@@ -165,7 +165,8 @@
                                                         <div class="text-right">
                                                             <div class="btn-group">
                                                                 <a href="{{ path('view_group',{'group':group.group.id}) }}" class="btn btn-primary" title="View Group"><i class="fa fa-eye"></i></a>
-                                                                <a class="btn btn-danger" href="{{ path('exit_group',{'group':group.group.id}) }}"  title="exit group"  ><i class="fa fa-sign-out"></i></a>
+                                                                <a class="btn btn-danger" onclick="exit_group()"  title="exit group"  ><i class="fa fa-sign-out"></i></a>
+                                                                <a style="display:none" id="exitgrpbtn" href="{{ path('exit_group',{'group':group.group.id}) }}" ></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -253,6 +254,21 @@
 
 {% block scripts  %}
     <script>
+// delete acc confirmation:
+    function exit_group(){
+        swal({
+        title: "Are you sure?",
+        text: "Are you sure that you want to exit this group ?",
+        icon: "warning",
+        buttons: ["NO", "YES !"],
+        dangerMode: true,
+        })
+        .then(willDelete => {
+            if (willDelete) {
+                document.getElementById("exitgrpbtn").click();
+            }
+        });
+    } //end delet acc confirmation
 
 // delete acc confirmation:
     function exit_groupbtn(){
