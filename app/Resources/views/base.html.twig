@@ -63,10 +63,10 @@
                                             <i class="fa fa-angle-down"></i>
                                         </a>
                                         <ul class="account_selection">
-                                            <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'}))}}"><img class="img-fluid" src={{ asset('scripts/img/flags/usa.png') }} width="30" width="30"></a></li>
-                                            <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'}))}}"><img class="img-fluid" src={{ asset('scripts/img/flags/fr.png') }} width="30" width="30"></a></li>
-                                            <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'sp'}))}}"><img class="img-fluid" src={{ asset('scripts/img/flags/sp.png') }}  width="30" width="30"></a></li>
-                                            <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'ma'}))}}"><img class="img-fluid" src={{ asset('scripts/img/flags/ma.png') }} width="30" width="30"></a></li>
+                                            <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'}))}}"><img class="img-fluid" src={{ asset('scripts/img/flags/usa.png') }} width="30" width="30"> English </a></li>
+                                            <li><a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'}))}}"><img class="img-fluid" src={{ asset('scripts/img/flags/fr.png') }} width="30" width="30"> Francais</a></li>
+                                            <!--<li><a href="{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'sp'}))}}"><img class="img-fluid" src={ asset('scripts/img/flags/sp.png') }}  width="30" width="30"></a></li>
+                                            <li><a href="{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'ma'}))}}"><img class="img-fluid" src={ asset('scripts/img/flags/ma.png') }} width="30" width="30"></a></li> -->
                                         </ul>
                                     </li>
                                 </ul>
@@ -203,12 +203,12 @@
                                 <span style="color: white">{{'pub_alreadyhaveacc'|trans }}</span> &nbsp;<a  class="checkboxlink"> {{'signin_SIGN_IN'|trans }} </a>
                             </div>
                         </form>
-                         <!-- ******************** -->
+                         <!-- ******************** 
                         <br>
                         <div class="text-center">
                         <div style="border-bottom:5px solid white;width:60px;display:inline-block;border-radius:5px"></div> 
 
-                            <div style="color:white;display:inline-block;padding:10px">{{'pub_orsignup'|trans }} </div>
+                            <div style="color:white;display:inline-block;padding:10px">{'pub_orsignup'|trans }} </div>
 
                         <div style="border-bottom:5px solid white;width:60px;display:inline-block;border-radius:5px"></div>
                         </div>
@@ -217,12 +217,12 @@
                             <div class="col-xl-8 offset-xl-2" >
                             <div class="card" >
                                 <div class="card-body text-center">
-                                    <a href="#" class="btn btn-primary"><i class="fa fa-facebook-square" style="margin-right:5px"></i>{{'pub_orsignupwithfb'|trans }}</a>
+                                    <a href="#" class="btn btn-primary"><i class="fa fa-facebook-square" style="margin-right:5px"></i>{'pub_orsignupwithfb'|trans }}</a>
                                 </div>
                             </div>
                             </div>
                         </div>
-                    <!-- ****************** -->
+                    ****************** -->
                     </div>
                     <div class="col-1">
 
