@@ -243,8 +243,6 @@
 
             <div class="right_col" role="main">
                 {% block pageContent %}
-
-
                     <div style="margin-top:80px">
                         <div class="container bootstrap snippet">
                             <div class="panel profile-info">
@@ -322,7 +320,7 @@
                                                 <h3><a href="#" class="#" onclick="view({{ item.owner_id }})">{{ item.owner_first_name }} {{ item.owner_last_name }}</a> {% if item.owner_company_name is not null %} <small> {{ item.owner_company_name }}</small> {% endif %}</h3>
                                                 <p>{% if item.post_boosted == 'boosted' %}<strong style="color:black">{{'BOOSTED'|trans}}</strong></strong> | {% endif %} {{ item.post_creation_date | date('m-d-Y H:m') }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
                                             </div>
-                                           
+
 
                                             <div class="clearfix"></div>
 
@@ -340,7 +338,7 @@
                                                             <div style="max-width:600px">
                                                                 <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
                                                                     <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                        {{'Your browser does not support the video tag.'|trans}} 
+                                                                        {{'Your browser does not support the video tag.'|trans}}
                                                                 </video>
                                                             </div>
                                                             <div>
@@ -352,7 +350,7 @@
                                                             <div style="max-width:600px">
                                                                 <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
                                                                     <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                     {{'Your browser does not support the video tag.'|trans}} 
+                                                                     {{'Your browser does not support the video tag.'|trans}}
                                                                 </video>
                                                             </div>
 
@@ -368,7 +366,7 @@
                                                             <div style="max-width:600px">
                                                                 <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
                                                                     <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                    {{'Your browser does not support the video tag.'|trans}} 
+                                                                    {{'Your browser does not support the video tag.'|trans}}
                                                                 </video>
                                                             </div>
 
@@ -402,7 +400,7 @@
                                                             <div style="max-width:600px">
                                                                 <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
                                                                     <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                    {{'Your browser does not support the video tag.'|trans}} 
+                                                                    {{'Your browser does not support the video tag.'|trans}}
                                                                 </video>
                                                             </div>
                                                         {% endif %}
@@ -472,7 +470,7 @@
                                                         <li><a href="#share_post" onclick="sharePost({{ item.id }})" title="Send this to friend or post it on your time line">{{'on your timeline'|trans}}</a></li>
                                                         <li role="separator" class="divider"></li>
                                                         <li><a href="#" class="share_facebook" data-url="https://www.youtube.com/watch?v=mAJeK283j0I"><i class="fa fa-facebook"></i></a></li>
-                                                       <!-- <li><a href="#"><i class="fa fa-twitter"></i></a></li>                                                        
+                                                       <!-- <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
                                                     </ul>
                                                     </div>
