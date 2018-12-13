@@ -528,10 +528,10 @@
         // delet acc confirmation:
         function clickdeletacc(){
             swal({
-                title: "Are you sure?",
-                text: "Are you sure that you want to delete your account?",
+                title: "{{'Are you sure?'|trans}}",
+                text: "{{'Are you sure that you want to delete your account?'|trans}}",
                 icon: "warning",
-                buttons: ["NO", "YES !"],
+                buttons: ["{{'NO'|trans}}", "{{'YES !'|trans}}"],
                 dangerMode: true,
             })
                 .then(willDelete => {
@@ -598,7 +598,7 @@
                 } else {
                     // Send the token to your server.
                     //stripeTokenHandler(result.token);
-                    alert('Please , wait a moment to verify your card informations')
+                    swal('{{"Please , wait a moment to verify your card informations"|trans}}')
                     $.ajax({
                         url: '{{ (path('billing')) }}',
                         type: 'POST',
@@ -611,11 +611,11 @@
                         success: function (data)
                         {
                             if(data == 'ERR')
-                                alert('Sorry we cannot insert this card , please retry again')
+                                swal('{{"Sorry we cannot insert this card , please retry again"|trans}}')
                             else
                             {
                                 if(data == 'exist')
-                                    alert('This card already exist !')
+                                    swal('{{"This card already exist !"|trans}}')
                                 else
                                     window.location.href = data
                             }
@@ -648,12 +648,12 @@
                     {
                         if(data =='ERR')
                         {
-                            alert('Sorry , we cannot remove this card , please retry again')
+                            swal('{{"Sorry , we cannot remove this card , please retry again"|trans}}')
                             $('.removecard').prop('disabled',false)
                         }
                         else
                         {
-                            alert('Card deleted')
+                            swal('{{"Card deleted"|trans}}')
                             window.location.href = data
                         }
                     }
@@ -689,7 +689,7 @@
         function invite()
         {
             if($('#inviteemail').val() == '')
-                alert('please set your email !')
+                swal('{{"please set your email !"|trans}}')
             else
                 $('#inviteModal').modal('show')
         }
@@ -697,12 +697,12 @@
         function sendInvit()
         {
             if($('#invitepassword').val() == '')
-                alert('please set your email s password')
+                swal('{{"please set your email s password"|trans}}')
             else
             {
                // send mails
                //
-                alert('we will invite your contacts to join linkpan , Thanks !')
+                swal('{{"we will invite your contacts to join linkpan , Thanks !"|trans}}')
                 $('#invitepassword').val('')
                 $('#inviteemail').val('')
                 $('#inviteModal').modal('hide');
