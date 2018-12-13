@@ -6,7 +6,9 @@ parameters:
     database_user: root
     database_password: null
     mailer_transport: smtp
-    mailer_host: 127.0.0.1
-    mailer_user: null
-    mailer_password: null
+    mailer_host: smtp.gmail.com
+    mailer_user: omarerrabaany@gmail.com
+    mailer_password: fairytail4ever
+    mailer_port: 465
+    mailer_encryption: ssl
     secret: d8ad9c66ef0cafb5a798b062ca8c6128bd50bf02

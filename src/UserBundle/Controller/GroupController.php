@@ -391,7 +391,7 @@ class GroupController extends Controller
         $repo = $this->getDoctrine()->getRepository('UserBundle:Groupe');
         $group = $repo->findOneById($request->get('group'));
 
-        if(!is_null($group))
+        if(!is_null($group) && $request->get('post_description') != '')
         {
             $groupPost = new GroupPost();
             $groupPost->setContent($request->get('post_description'));

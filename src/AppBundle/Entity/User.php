@@ -200,6 +200,33 @@ class User implements UserInterface
      */
     private $linkedin;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="token", type="text", nullable=false)
+     */
+    private $token;
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+
+
+
     /**
      * @return string
      */
