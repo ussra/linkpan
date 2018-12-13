@@ -63,7 +63,7 @@
                                                                 <div >
                                                                     <img src="{{ asset('images/group/') }}{{ item.group.image }} "class="img-responsive img" style="object-fit:cover;width:150px; height:100px;border-radius:3px;"/>
                                                                     <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin-top:5px"></div>
-                                                                    <a {% if item.joinType == 'join' or item.group.user.id == user.id %} href="{{ path('view_group',{'group':item.group.id}) }}" {% endif %}><h4>{{ item.group.name }}</h4></a>
+                                                                    <a {% if item.joinType == 'join' or item.group.user.id == user.id %} href="{{ path('view_group',{'group':item.group.id}) }}" {% endif %}><h4  style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;display: inline-block;max-width: 100%;">{{ item.group.name }}</h4></a>
                                                                     <div class=" text-right">
                                                                         <div class="btn-group">
                                                                             {% if item.group.user.id != user.id %}
@@ -104,7 +104,7 @@
                                                 <div style="border:2px solid #E6E9ED;border-radius:5px;padding:5px;"><div>
                                                     <img src="{{ asset('images/group/') }}{{ group.image }}" class="img-responsive"  style="object-fit:cover;width:150px; height:100px;border-radius:3px;"/>
                                                      <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin-top:5px"></div>
-                                                    <h4>{{ group.name }}</h4>
+                                                    <h4  style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;display: inline-block;max-width: 100%;">{{ group.name }}</h4>
                                                     <!--<div class=""><h5>72000 Member</h5></div>-->
                                                     <div class="text-right">
                                                         <div class="btn-group">
@@ -136,7 +136,7 @@
                                                         {% if item.user.image is null or item.user.image is empty %} {% set image = 'default.png' %} {% else %} {% set image =  item.user.image  %} {% endif %}
                                                         <img src="{{ asset('images/profile/') }}{{ image }}" class="img-responsive"  style="object-fit:cover;width:150px; height:100px;border-radius:3px;"/>
                                                         <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin-top:5px"></div>
-                                                        <h4>{{ item.user.firstname }} {{ item.user.lastname }}</h4>
+                                                        <h4  style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;display: inline-block;max-width: 100%;">{{ item.user.firstname }} {{ item.user.lastname }}</h4>
                                                         <div class="text-right">
                                                             <div class="btn-group">
                                                                 <a  class="btn btn-danger"  href="{{ path('decline_invitation',{'invitation':item.id}) }}"  title="Decline invitation"><i class="fa fa-times"></i></a>
@@ -161,7 +161,7 @@
                                                 <div style="border:2px solid #E6E9ED;border-radius:5px;padding:5px;"><div>
                                                         <img src="{{ asset('images/group/') }}{{ group.group.image }}" class="img-responsive"  style="object-fit:cover;width:150px; height:100px;border-radius:3px;"/>
                                                         <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin-top:5px"></div>
-                                                        <h4>{{ group.group.name }}</h4>
+                                                        <h4  style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;display: inline-block;max-width: 100%;">{{ group.group.name }}</h4>
                                                         <div class="text-right">
                                                             <div class="btn-group">
                                                                 <a href="{{ path('view_group',{'group':group.group.id}) }}" class="btn btn-primary" title="View Group"><i class="fa fa-eye"></i></a>
