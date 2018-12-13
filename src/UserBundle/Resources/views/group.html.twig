@@ -53,35 +53,6 @@
 
             <!-- Posts -->
             {% if view_group.posts|length > 0 %}
-                {% for item in view_group.posts %}
-                    <div class="panel" style="margin-top: 2.5%;">
-                        <div class="panel-body">
-                            <!-- Image -->
-                            <div class="fb-user-thumb" style="display:inline">
-                                {% if item.post.user.image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.post.user.image  %}{% endif %}
-                                <a><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
-                            </div>
-                            <!--add remove post -->
-                            {% if  item.post.user.id == user.id or view_group.group.user.id == user.id  %}
-                                <!--add remove post -->
-                                <div style="display:inline;float:right">
-                                    <!-- Single button -->
-                                    <div class="btn-group ">
-                                        <button style="    visibility: hidden;"type="button" class="btn btn-primary">Right dropup</button>
-                                        <button type="button" style="background:white;border:0" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                            <i style="color:black" class="fa fa-ellipsis-h"></i>
-                                        </button>
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li id="deletpostbtn" style="display:none" ><a href="{{ path('delete_group_post',{'post': item.post.id,'group': view_group.group.id }) }}"></a></li>
-                                            <li><a href="#" onclick"deletpostfunc()">Delet</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            {% endif %}
-
-                        </div>
-                    </div>
-                {% endfor %}
                 {% else %}
                     <h3>Sorry there's no posts to display now !</h3>
             {% endif %}
