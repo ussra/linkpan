@@ -79,7 +79,7 @@ class RegistrationController extends Controller
 
 
     /**
-     * @Route("/active_account", name="active_account")
+     * @Route("{_locale}/active_account", name="active_account")
      */
     public function activeAction(Request $request)
     {
