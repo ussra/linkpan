@@ -61,7 +61,7 @@
                             <!-- Image -->
                             <div class="fb-user-thumb" style="display:inline">
                                 {% if item.owner.image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.owner.image  %}{% endif %}
-                                <a onclick="view({{ item.owner.id}})"><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
+                                <a><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
                             </div>
                             {% if user.id == item.owner.id %}
                                 <!--add remove post -->
@@ -81,7 +81,7 @@
                             <!--end delet post -->
                             <!-- Name / Boosted /Date / Adress -->
                             <div class="fb-user-details">
-                                <h3><a href="#" class="#" onclick="view({{ item.owner.id}})">{{ item.owner.firstname }} {{ item.owner.lastname }}</a> {% if item.owner.companyName is not null %} <small> {{ item.owner.companyName }}</small> {% endif %}</h3>
+                                <h3><a>{{ item.owner.firstname }} {{ item.owner.lastname }}</a> {% if item.owner.companyName is not null %} <small> {{ item.owner.companyName }}</small> {% endif %}</h3>
                                 <p> {{ item.post.creationDate }} {% if item.owner.adress is not null %} <small>in</small> {{ item.owner.adress }} {% endif %}</p>
                             </div>
                             <div class="clearfix"></div>

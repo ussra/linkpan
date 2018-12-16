@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="485b6df8-cd1d-419e-a911-7f9228242476" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/UserBundle/Controller/GroupController.php" afterPath="$PROJECT_DIR$/src/UserBundle/Controller/GroupController.php" />
-      <change beforePath="$PROJECT_DIR$/src/UserBundle/Controller/PostController.php" afterPath="$PROJECT_DIR$/src/UserBundle/Controller/PostController.php" />
       <change beforePath="$PROJECT_DIR$/src/UserBundle/Resources/views/group.html.twig" afterPath="$PROJECT_DIR$/src/UserBundle/Resources/views/group.html.twig" />
-      <change beforePath="$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig" afterPath="$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
     <ignored path="$PROJECT_DIR$/vendor/doctrine/annotations/" />
@@ -66,7 +63,7 @@
         <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/PostController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="381">
-              <caret line="198" column="5" lean-forward="true" selection-start-line="184" selection-start-column="4" selection-end-line="198" selection-end-column="5" />
+              <caret line="198" column="5" lean-forward="false" selection-start-line="184" selection-start-column="4" selection-end-line="198" selection-end-column="5" />
               <folding>
                 <element signature="e#569#2486#0#PHP" expanded="false" />
                 <element signature="e#963#1491#0#PHP" expanded="false" />
@@ -82,7 +79,7 @@
         <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1">
-              <caret line="1194" column="8" lean-forward="true" selection-start-line="1194" selection-start-column="8" selection-end-line="1209" selection-end-column="9" />
+              <caret line="1194" column="8" lean-forward="false" selection-start-line="1194" selection-start-column="8" selection-end-line="1209" selection-end-column="9" />
               <folding>
                 <element signature="n#div#5;n#div#0;n#div#2;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
                 <element signature="n#style#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#div#7;n#div#0;n#div#2;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -159,36 +156,41 @@
       <file leaf-file-name="group.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/group.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="746" column="46" lean-forward="false" selection-start-line="746" selection-start-column="32" selection-end-line="746" selection-end-column="46" />
+            <state relative-caret-position="95">
+              <caret line="63" column="34" lean-forward="false" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
               <folding>
                 <element signature="e#707#1027#0#HTML" expanded="false" />
                 <element signature="e#1040#3244#0#HTML" expanded="false" />
-                <element signature="e#4027#5193#0#Twig" expanded="false" />
-                <element signature="e#6285#15778#0#HTML" expanded="false" />
-                <element signature="e#7685#9022#0#Twig" expanded="false" />
-                <element signature="e#17242#18591#0#Twig" expanded="false" />
-                <element signature="e#17396#17677#0#HTML" expanded="false" />
-                <element signature="e#19130#19154#0#HTML" expanded="true" />
-                <element signature="e#19430#19454#0#HTML" expanded="true" />
-                <element signature="e#22733#26336#0#Twig" expanded="false" />
-                <element signature="e#23026#23048#0#HTML" expanded="true" />
-                <element signature="e#23199#26001#0#HTML" expanded="false" />
-                <element signature="e#23372#24902#0#Twig" expanded="false" />
-                <element signature="e#27806#35166#0#HTML" expanded="false" />
-                <element signature="e#35208#36665#0#HTML" expanded="false" />
-                <element signature="e#36690#38194#0#HTML" expanded="false" />
-                <element signature="e#38271#38448#0#HTML" expanded="false" />
-                <element signature="e#38536#38720#0#HTML" expanded="false" />
-                <element signature="e#38725#38950#0#HTML" expanded="false" />
-                <element signature="e#38985#41487#0#HTML" expanded="false" />
-                <element signature="e#39041#40278#0#HTML" expanded="false" />
-                <element signature="e#39466#40266#0#HTML" expanded="false" />
-                <element signature="e#39837#40234#0#HTML" expanded="false" />
-                <element signature="e#40330#41473#0#HTML" expanded="false" />
-                <element signature="e#41512#41939#0#HTML" expanded="false" />
-                <element signature="e#42018#44933#0#HTML" expanded="false" />
-                <element signature="e#44982#45297#0#HTML" expanded="false" />
+                <element signature="e#3992#5158#0#Twig" expanded="false" />
+                <element signature="e#6196#15689#0#HTML" expanded="false" />
+                <element signature="e#7596#8933#0#Twig" expanded="false" />
+                <element signature="e#17153#18502#0#Twig" expanded="false" />
+                <element signature="e#17307#17588#0#HTML" expanded="false" />
+                <element signature="e#19041#19065#0#HTML" expanded="true" />
+                <element signature="e#19341#19365#0#HTML" expanded="true" />
+                <element signature="e#22644#26247#0#Twig" expanded="false" />
+                <element signature="e#22937#22959#0#HTML" expanded="true" />
+                <element signature="e#23110#25912#0#HTML" expanded="false" />
+                <element signature="e#23283#24813#0#Twig" expanded="false" />
+                <element signature="e#27717#35077#0#HTML" expanded="false" />
+                <element signature="e#35119#36576#0#HTML" expanded="false" />
+                <element signature="e#36601#38105#0#HTML" expanded="false" />
+                <element signature="e#38182#38359#0#HTML" expanded="false" />
+                <element signature="e#38447#38631#0#HTML" expanded="false" />
+                <element signature="e#38636#38861#0#HTML" expanded="false" />
+                <element signature="e#38896#41398#0#HTML" expanded="false" />
+                <element signature="e#38952#40189#0#HTML" expanded="false" />
+                <element signature="e#39377#40177#0#HTML" expanded="false" />
+                <element signature="e#39748#40145#0#HTML" expanded="false" />
+                <element signature="e#40241#41384#0#HTML" expanded="false" />
+                <element signature="e#41423#41850#0#HTML" expanded="false" />
+                <element signature="e#41929#44844#0#HTML" expanded="false" />
+                <element signature="e#44893#45208#0#HTML" expanded="false" />
+                <marker date="1544975754407" expanded="true" signature="42762:42788" ph="..." />
+                <marker date="1544975754407" expanded="true" signature="42871:42890" ph="..." />
+                <marker date="1544975754407" expanded="true" signature="43021:43048" ph="..." />
+                <marker date="1544975754407" expanded="true" signature="43165:43176" ph="..." />
+                <marker date="1544975754407" expanded="true" signature="43415:43427" ph="..." />
               </folding>
             </state>
           </provider>
@@ -292,8 +294,8 @@
         <option value="$PROJECT_DIR$/src/UserBundle/Controller/PostController.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Entity/GroupPostComment.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig" />
-        <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/group.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Controller/GroupController.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/group.html.twig" />
       </list>
     </option>
   </component>
@@ -350,7 +352,7 @@
       <path value="$PROJECT_DIR$/vendor/flosch/stripe-bundle" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="524" />
     <option name="width" value="683" />
     <option name="height" value="728" />
@@ -498,15 +500,15 @@
       <workItem from="1544659014366" duration="7276000" />
       <workItem from="1544730116233" duration="9109000" />
       <workItem from="1544816130405" duration="2876000" />
-      <workItem from="1544950849035" duration="15820000" />
+      <workItem from="1544950849035" duration="16273000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="517866000" />
+    <option name="totallyTimeSpent" value="518319000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1384" height="738" extended-state="6" />
+    <frame x="-9" y="-9" width="1384" height="738" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24388379" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -916,7 +918,7 @@
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1">
-          <caret line="1194" column="8" lean-forward="true" selection-start-line="1194" selection-start-column="8" selection-end-line="1209" selection-end-column="9" />
+          <caret line="1194" column="8" lean-forward="false" selection-start-line="1194" selection-start-column="8" selection-end-line="1209" selection-end-column="9" />
           <folding>
             <element signature="n#div#5;n#div#0;n#div#2;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
             <element signature="n#style#0;n#li#1;n#ul#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#div#7;n#div#0;n#div#2;n#div#0;n#div#0;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -936,7 +938,7 @@
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/PostController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="381">
-          <caret line="198" column="5" lean-forward="true" selection-start-line="184" selection-start-column="4" selection-end-line="198" selection-end-column="5" />
+          <caret line="198" column="5" lean-forward="false" selection-start-line="184" selection-start-column="4" selection-end-line="198" selection-end-column="5" />
           <folding>
             <element signature="e#569#2486#0#PHP" expanded="false" />
             <element signature="e#963#1491#0#PHP" expanded="false" />
@@ -1001,36 +1003,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/group.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="746" column="46" lean-forward="false" selection-start-line="746" selection-start-column="32" selection-end-line="746" selection-end-column="46" />
+        <state relative-caret-position="95">
+          <caret line="63" column="34" lean-forward="false" selection-start-line="63" selection-start-column="34" selection-end-line="63" selection-end-column="34" />
           <folding>
             <element signature="e#707#1027#0#HTML" expanded="false" />
             <element signature="e#1040#3244#0#HTML" expanded="false" />
-            <element signature="e#4027#5193#0#Twig" expanded="false" />
-            <element signature="e#6285#15778#0#HTML" expanded="false" />
-            <element signature="e#7685#9022#0#Twig" expanded="false" />
-            <element signature="e#17242#18591#0#Twig" expanded="false" />
-            <element signature="e#17396#17677#0#HTML" expanded="false" />
-            <element signature="e#19130#19154#0#HTML" expanded="true" />
-            <element signature="e#19430#19454#0#HTML" expanded="true" />
-            <element signature="e#22733#26336#0#Twig" expanded="false" />
-            <element signature="e#23026#23048#0#HTML" expanded="true" />
-            <element signature="e#23199#26001#0#HTML" expanded="false" />
-            <element signature="e#23372#24902#0#Twig" expanded="false" />
-            <element signature="e#27806#35166#0#HTML" expanded="false" />
-            <element signature="e#35208#36665#0#HTML" expanded="false" />
-            <element signature="e#36690#38194#0#HTML" expanded="false" />
-            <element signature="e#38271#38448#0#HTML" expanded="false" />
-            <element signature="e#38536#38720#0#HTML" expanded="false" />
-            <element signature="e#38725#38950#0#HTML" expanded="false" />
-            <element signature="e#38985#41487#0#HTML" expanded="false" />
-            <element signature="e#39041#40278#0#HTML" expanded="false" />
-            <element signature="e#39466#40266#0#HTML" expanded="false" />
-            <element signature="e#39837#40234#0#HTML" expanded="false" />
-            <element signature="e#40330#41473#0#HTML" expanded="false" />
-            <element signature="e#41512#41939#0#HTML" expanded="false" />
-            <element signature="e#42018#44933#0#HTML" expanded="false" />
-            <element signature="e#44982#45297#0#HTML" expanded="false" />
+            <element signature="e#3992#5158#0#Twig" expanded="false" />
+            <element signature="e#6196#15689#0#HTML" expanded="false" />
+            <element signature="e#7596#8933#0#Twig" expanded="false" />
+            <element signature="e#17153#18502#0#Twig" expanded="false" />
+            <element signature="e#17307#17588#0#HTML" expanded="false" />
+            <element signature="e#19041#19065#0#HTML" expanded="true" />
+            <element signature="e#19341#19365#0#HTML" expanded="true" />
+            <element signature="e#22644#26247#0#Twig" expanded="false" />
+            <element signature="e#22937#22959#0#HTML" expanded="true" />
+            <element signature="e#23110#25912#0#HTML" expanded="false" />
+            <element signature="e#23283#24813#0#Twig" expanded="false" />
+            <element signature="e#27717#35077#0#HTML" expanded="false" />
+            <element signature="e#35119#36576#0#HTML" expanded="false" />
+            <element signature="e#36601#38105#0#HTML" expanded="false" />
+            <element signature="e#38182#38359#0#HTML" expanded="false" />
+            <element signature="e#38447#38631#0#HTML" expanded="false" />
+            <element signature="e#38636#38861#0#HTML" expanded="false" />
+            <element signature="e#38896#41398#0#HTML" expanded="false" />
+            <element signature="e#38952#40189#0#HTML" expanded="false" />
+            <element signature="e#39377#40177#0#HTML" expanded="false" />
+            <element signature="e#39748#40145#0#HTML" expanded="false" />
+            <element signature="e#40241#41384#0#HTML" expanded="false" />
+            <element signature="e#41423#41850#0#HTML" expanded="false" />
+            <element signature="e#41929#44844#0#HTML" expanded="false" />
+            <element signature="e#44893#45208#0#HTML" expanded="false" />
+            <marker date="1544975754407" expanded="true" signature="42762:42788" ph="..." />
+            <marker date="1544975754407" expanded="true" signature="42871:42890" ph="..." />
+            <marker date="1544975754407" expanded="true" signature="43021:43048" ph="..." />
+            <marker date="1544975754407" expanded="true" signature="43165:43176" ph="..." />
+            <marker date="1544975754407" expanded="true" signature="43415:43427" ph="..." />
           </folding>
         </state>
       </provider>
