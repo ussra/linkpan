@@ -302,9 +302,11 @@ class GroupController extends Controller
 
     private function getPostsData($result)
     {
+        $currentUser = $this->getUser();
         $posts = array();
         $imagesrepo = $this->getDoctrine()->getRepository('UserBundle:GroupPostImage');
         $userrepo = $this->getDoctrine()->getRepository('AppBundle:User');
+        $likerepo = $this->getDoctrine()->getRepository('UserBundle:GroupPostLike');
         foreach ($result as $post)
         {
             // find images
@@ -319,11 +321,17 @@ class GroupController extends Controller
                     array_push($images,$img->getImage());
                 }
             }
+            // Get if liked or not by current user
+            $liked = $likerepo->findOneBy(
+                array('user'=>$currentUser,'groupPost'=>$post)
+            );
+            if(is_null($liked)) $like = 'like'; else $like = 'dislike';
+            //
             $temp = array(
               'images'=>$images ,
               'owner'=>$post->getUser(),
               'post'=>$post,
-
+              'like_type'=>$like
             );
             array_push($posts,$temp);
         }
