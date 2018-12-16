@@ -24,12 +24,12 @@
                     {% if post.post_boost_type == 'Remove Boost' %}
                     <div class="input-group" style="width:180px;">
                         <button type="submit"  formmethod="post" formaction="{{ path('remove_boost_post',{'post':post.post_id  })}}"  class="btn btn-danger btn-xs removeBoost" title="remove boosting">{{'Boost_remove'|trans}}</button>
-                        <button type="submit" formmethod="post" formaction="{{ path('charts',{'post':post.post_id  })}}"  class="btn btn-success btn-xs " title="charts">State </button>
+
                     </div>
                     {% else %}
-                        <button type="button" class="btn btn-primary btn-xs" onclick="$('#boostbtn').modal('show');">
+                        <!--<button type="button" class="btn btn-primary btn-xs" onclick="$('#boostbtn').modal('show');">
                             Boost
-                        </button>
+                        </button>-->
                         <button type="submit" formmethod="post" formaction="{{ path('boost_post',{'post':post.post_id  })}}"  class="btn btn-default btn-xs boost" title="Boost">{{'Boost'|trans}}  </button>
 
                     {% endif %}
@@ -37,7 +37,7 @@
             </tr>
         {% endfor %}
     {% endif %}
-        <!--Add Billing modal -->
+
     <div id="boostbtn" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
