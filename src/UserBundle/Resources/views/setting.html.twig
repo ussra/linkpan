@@ -434,7 +434,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">{{'Settings_Add_Billing'|trans}}</h4>
+                    <h4 class="modal-title">{{'Settings_Add_Billing'|trans}} <img class="img-responsive" id="pleaswaitbialinf" style="width:50px;display:inline;display:none" src="{{ asset('Userscripts/img/loadin.gif') }}"></h4>
                 </div>
                 <div class="modal-body">
                     <div class="panel panel-default credit-card-box">
@@ -599,6 +599,8 @@
                     // Send the token to your server.
                     //stripeTokenHandler(result.token);
                     swal('{{"Please , wait a moment to verify your card informations"|trans}}')
+                    $('#pleaswaitbialinf').css("display","inline")
+                    // wait please
                     $.ajax({
                         url: '{{ (path('billing')) }}',
                         type: 'POST',
@@ -610,6 +612,7 @@
                         async: true,
                         success: function (data)
                         {
+                            $('#pleaswaitbialinf').css("display","none")
                             if(data == 'ERR')
                                 swal('{{"Sorry we cannot insert this card , please retry again"|trans}}')
                             else
