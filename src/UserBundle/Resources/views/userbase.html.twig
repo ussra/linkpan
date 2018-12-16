@@ -296,7 +296,7 @@
                                             <!-- Image -->
                                             <div class="fb-user-thumb" style="display:inline">
                                                 {% if item.owner_image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.owner_image  %}{% endif %}
-                                                <a onclick="view({{ item.owner_id }})"><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
+                                                <a href="{{ path('search_profile',{'user':user.id}) }}"><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
                                             </div>
                                              {% if user.id == item.owner_id %}
                                                  <!--add remove post -->
@@ -317,8 +317,8 @@
                                             <!--end delet post -->
                                             <!-- Name / Boosted /Date / Adress -->
                                             <div class="fb-user-details">
-                                                <h3><a href="#" class="#" onclick="view({{ item.owner_id }})">{{ item.owner_first_name }} {{ item.owner_last_name }}</a> {% if item.owner_company_name is not null %} <small> {{ item.owner_company_name }}</small> {% endif %}</h3>
-                                                <p>{% if item.post_boosted == 'boosted' %}<strong style="color:black">{{'BOOSTED'|trans}}</strong></strong> | {% endif %} {{ item.post_creation_date | date('m-d-Y H:m') }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
+                                                <h3><a class="#" href="{{ path('search_profile',{'user':user.id}) }}">{{ item.owner_first_name }} {{ item.owner_last_name }}</a> {% if item.owner_company_name is not null %} <small> {{ item.owner_company_name }}</small> {% endif %}</h3>
+                                                <p>{% if item.post_boosted == 'boosted' %}<strong style="color:black">{{'BOOSTED'|trans}}</strong></strong> | {% endif %} {{ item.post_creation_date  }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
                                             </div>
 
 
@@ -326,50 +326,103 @@
 
                                             <!-- display post content -->
                                             <p class="fb-user-status">
-                                            <div style="word-wrap:break-word">
-                                                {{ item.post_content }}
-                                            </div>
-                                            <br>
-                                            <!-- images + video -->
-                                            <div class="parent" style="max-width: 650px;">
-                                                {% if item.post_video is not null %}
-                                                    {% if item.post_images >0 %}
-                                                        {% if item.post_images|length == 1 %}<!-- 1 photo+video: -->
-                                                            <div style="max-width:600px">
-                                                                <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
-                                                                    <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
+                                                <div style="word-wrap:break-word">
+                                                    {{ item.post_content }}
+                                                </div>
+                                                <br>
+                                                <!-- images + video -->
+                                                <div class="parent" style="max-width: 650px;">
+                                                    {% if item.post_video is not null %}
+                                                        {% if item.post_images >0 %}
+                                                            {% if item.post_images|length == 1 %}<!-- 1 photo+video: -->
+                                                                <div style="max-width:600px">
+                                                                    <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                        <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
+                                                                            {{'Your browser does not support the video tag.'|trans}}
+                                                                    </video>
+                                                                </div>
+                                                                <div>
+                                                                    <a  href="{{ asset('images/post/') }}{{ item.post_images|first }}" data-max-width="600" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ item.post_images|first }}" id="post_img" class="post-1img-video img-responsive"></a>
+                                                                </div>
+                                                            {% endif %}<!--end 1 photo+video: -->
+
+                                                            {% if item.post_images|length == 2 or item.post_images|length == 3   %}<!--end 2 or 3 photo+video -->
+                                                                <div style="max-width:600px">
+                                                                    <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                        <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
+                                                                         {{'Your browser does not support the video tag.'|trans}}
+                                                                    </video>
+                                                                </div>
+
+                                                                <div>
+                                                                    {% for img in item.post_images %}
+                                                                        <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.post_images|length == 2 %}class="img-responsive post-2img-video" {% else %}class="post-3img-video-fixed img-responsive"{% endif %}></a>
+                                                                    {% endfor %}
+                                                                </div>
+
+                                                            {% endif %}<!--end 2 or 3 photo+video -->
+
+                                                            {% if item.post_images|length > 3 %}<!--more than 3 photo+video: -->
+                                                                <div style="max-width:600px">
+                                                                    <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                        <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
                                                                         {{'Your browser does not support the video tag.'|trans}}
-                                                                </video>
-                                                            </div>
+                                                                    </video>
+                                                                </div>
+
+                                                                <div>
+                                                                    {% for img in item.post_images[0:2]  %}
+                                                                        <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
+                                                                    {% endfor %}
+
+                                                                    <a  href="{{ asset('images/post/') }}{{ item.post_images[2] }}" data-toggle="lightbox"  data-gallery="{{ item.id }}">
+                                                                        <div class="post-3imgvid-wrapblack">
+
+                                                                            <img src="{{ asset('images/post/') }}{{ item.post_images[2] }}"  class="post-3imgvid-blackimg img-responsive">
+
+                                                                            <div class="post-3imgvid-count">
+                                                                                +{{ item.post_images|length - 2 }}
+                                                                            </div>
+                                                                        </div>
+                                                                    </a>
+
+                                                                    <!-- elements not showing, use data-remote -->
+                                                                    {% for img in item.post_images[3:item.post_images|length] %}
+                                                                        <div data-toggle="lightbox" data-gallery="{{ item.id }}" data-remote="{{ asset('images/post/') }}{{ img }}" ></div>
+                                                                    {% endfor %}
+
+
+                                                                </div>
+
+                                                            {% endif %}<!--end more than 3 photo+video: -->
+
+                                                            {% if item.post_images|length == 0  %}
+                                                                <div style="max-width:600px">
+                                                                    <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                        <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
+                                                                        {{'Your browser does not support the video tag.'|trans}}
+                                                                    </video>
+                                                                </div>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endif %}
+
+                                                    {% if item.post_video is null %}
+                                                        {% if item.post_images|length == 1  %}<!--1 photo -->
                                                             <div>
-                                                                <a  href="{{ asset('images/post/') }}{{ item.post_images|first }}" data-max-width="600" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ item.post_images|first }}" id="post_img" class="post-1img-video img-responsive"></a>
+                                                                <a  href="{{ asset('images/post/') }}{{ item.post_images|first }}" data-max-width="1000" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ item.post_images|first }}" id="post_img" class="post-1img img-responsive"></a>
                                                             </div>
-                                                        {% endif %}<!--end 1 photo+video: -->
+                                                        {% endif %}<!--end 1 photo-->
 
-                                                        {% if item.post_images|length == 2 or item.post_images|length == 3   %}<!--end 2 or 3 photo+video -->
-                                                            <div style="max-width:600px">
-                                                                <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
-                                                                    <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                     {{'Your browser does not support the video tag.'|trans}}
-                                                                </video>
-                                                            </div>
-
+                                                        {% if item.post_images|length == 2 or item.post_images|length == 3   %}<!--2 or 3 photo -->
                                                             <div>
                                                                 {% for img in item.post_images %}
-                                                                    <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.post_images|length == 2 %}class="img-responsive post-2img-video" {% else %}class="post-3img-video-fixed img-responsive"{% endif %}></a>
+                                                                    <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.post_images|length == 2 %}class="img-responsive post-2-img" {% else %}class="post-3-img img-responsive"{% endif %}></a>
                                                                 {% endfor %}
                                                             </div>
+                                                        {% endif %}<!--end 2 or 3 photo -->
 
-                                                        {% endif %}<!--end 2 or 3 photo+video -->
-
-                                                        {% if item.post_images|length > 3 %}<!--more than 3 photo+video: -->
-                                                            <div style="max-width:600px">
-                                                                <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
-                                                                    <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                    {{'Your browser does not support the video tag.'|trans}}
-                                                                </video>
-                                                            </div>
-
+                                                        {% if item.post_images|length > 3   %} <!--more than 3 photo -->
                                                             <div>
                                                                 {% for img in item.post_images[0:2]  %}
                                                                     <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
@@ -385,69 +438,16 @@
                                                                         </div>
                                                                     </div>
                                                                 </a>
-
                                                                 <!-- elements not showing, use data-remote -->
                                                                 {% for img in item.post_images[3:item.post_images|length] %}
                                                                     <div data-toggle="lightbox" data-gallery="{{ item.id }}" data-remote="{{ asset('images/post/') }}{{ img }}" ></div>
                                                                 {% endfor %}
-
-
                                                             </div>
-
-                                                        {% endif %}<!--end more than 3 photo+video: -->
-
-                                                        {% if item.post_images|length == 0  %}
-                                                            <div style="max-width:600px">
-                                                                <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
-                                                                    <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                    {{'Your browser does not support the video tag.'|trans}}
-                                                                </video>
-                                                            </div>
-                                                        {% endif %}
+                                                        {% endif %}<!--more than 3 photo -->
                                                     {% endif %}
-                                                {% endif %}
-
-                                                {% if item.post_video is null %}
-                                                    {% if item.post_images|length == 1  %}<!--1 photo -->
-                                                        <div>
-                                                            <a  href="{{ asset('images/post/') }}{{ item.post_images|first }}" data-max-width="1000" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ item.post_images|first }}" id="post_img" class="post-1img img-responsive"></a>
-                                                        </div>
-                                                    {% endif %}<!--end 1 photo-->
-
-                                                    {% if item.post_images|length == 2 or item.post_images|length == 3   %}<!--2 or 3 photo -->
-                                                        <div>
-                                                            {% for img in item.post_images %}
-                                                                <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.post_images|length == 2 %}class="img-responsive post-2-img" {% else %}class="post-3-img img-responsive"{% endif %}></a>
-                                                            {% endfor %}
-                                                        </div>
-                                                    {% endif %}<!--end 2 or 3 photo -->
-
-                                                    {% if item.post_images|length > 3   %} <!--more than 3 photo -->
-                                                        <div>
-                                                            {% for img in item.post_images[0:2]  %}
-                                                                <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
-                                                            {% endfor %}
-
-                                                            <a  href="{{ asset('images/post/') }}{{ item.post_images[2] }}" data-toggle="lightbox"  data-gallery="{{ item.id }}">
-                                                                <div class="post-3imgvid-wrapblack">
-
-                                                                    <img src="{{ asset('images/post/') }}{{ item.post_images[2] }}"  class="post-3imgvid-blackimg img-responsive">
-
-                                                                    <div class="post-3imgvid-count">
-                                                                        +{{ item.post_images|length - 2 }}
-                                                                    </div>
-                                                                </div>
-                                                            </a>
-                                                            <!-- elements not showing, use data-remote -->
-                                                            {% for img in item.post_images[3:item.post_images|length] %}
-                                                                <div data-toggle="lightbox" data-gallery="{{ item.id }}" data-remote="{{ asset('images/post/') }}{{ img }}" ></div>
-                                                            {% endfor %}
-                                                        </div>
-                                                    {% endif %}<!--more than 3 photo -->
-                                                {% endif %}
 
 
-                                            </div>
+                                                </div>
                                             </p>
                                             <!-- actions -->
                                             <div class="fb-status-container fb-border">
@@ -469,8 +469,8 @@
                                                     <ul class="dropdown-menu">
                                                         <li><a href="#share_post" onclick="sharePost({{ item.id }})" title="Send this to friend or post it on your time line">{{'on your timeline'|trans}}</a></li>
                                                         <li role="separator" class="divider"></li>
-                                                        <li><a href="#" class="share_facebook" data-url="https://www.youtube.com/watch?v=mAJeK283j0I"><i class="fa fa-facebook"></i></a></li>
-                                                       <!-- <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                        <!--<li><a href="#" class="share_facebook" data-url="https://www.youtube.com/watch?v=mAJeK283j0I"><i class="fa fa-facebook"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
                                                     </ul>
                                                     </div>

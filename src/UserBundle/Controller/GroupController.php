@@ -11,8 +11,11 @@ use UserBundle\Entity\Groupe;
 use Symfony\Component\HttpFoundation\Session\Session;
 use UserBundle\Entity\GroupJoin;
 use UserBundle\Entity\GroupPost;
+use UserBundle\Entity\GroupPostComment;
 use UserBundle\Entity\GroupPostImage;
+use UserBundle\Entity\GroupPostLike;
 use UserBundle\Entity\GroupRequest;
+use UserBundle\Entity\ObjectShare;
 
 class GroupController extends Controller
 {
@@ -302,9 +305,13 @@ class GroupController extends Controller
 
     private function getPostsData($result)
     {
+        $currentUser = $this->getUser();
         $posts = array();
         $imagesrepo = $this->getDoctrine()->getRepository('UserBundle:GroupPostImage');
         $userrepo = $this->getDoctrine()->getRepository('AppBundle:User');
+        $likerepo = $this->getDoctrine()->getRepository('UserBundle:GroupPostLike');
+        $commentrepo = $this->getDoctrine()->getRepository('UserBundle:GroupPostComment');
+        $em = $this->getDoctrine()->getManager();
         foreach ($result as $post)
         {
             // find images
@@ -319,11 +326,32 @@ class GroupController extends Controller
                     array_push($images,$img->getImage());
                 }
             }
+            // Get if liked or not by current user
+            $liked = $likerepo->findOneBy(
+                array('user'=>$currentUser,'groupPost'=>$post)
+            );
+            if(is_null($liked)) $like = 'like'; else $like = 'dislike';
+            //Get count likes
+            $query = $em->createQuery(
+                'SELECT l
+                     FROM UserBundle:GroupPostLike l 
+                     WHERE l.groupPost = :post
+                     AND  l.user != :user'
+            )->setParameter('post', $post)
+                ->setParameter('user', $currentUser);
+            $likes = $query->getResult();
+            // Get post comments
+            $comments = array();
+            $commresult = $commentrepo->findBy(
+                array('groupPost'=>$post)
+            );
             $temp = array(
               'images'=>$images ,
               'owner'=>$post->getUser(),
               'post'=>$post,
-
+              'like_type'=>$like,
+              'likes'=>sizeof($likes),
+              'comments'=>$commresult
             );
             array_push($posts,$temp);
         }
@@ -577,5 +605,119 @@ class GroupController extends Controller
             echo '<script language="javascript">alert(" Sorry , you cannot Update this group")</script>';
 
         return $this->forward('UserBundle:Group:viewgroup',array('group'=>$group->getId()));
+    }
+
+
+    /**
+     * @Route("/linkpan/home/group_post_like",name="group_post_like")
+     */
+    public function group_post_likeAction(Request $request)
+    {
+        $user = $this->getUser();
+        $prepo = $this->getDoctrine()->getRepository('UserBundle:GroupPost');
+        $post = $prepo->findOneById($request->get('post'));
+        if(sizeof($post) == 1)
+        {
+            $plrepo = $this->getDoctrine()->getRepository('UserBundle:GroupPostLike');
+            $item = $plrepo->findOneBy(
+                array('groupPost'=>$post,'user'=>$user)
+            );
+            if(sizeof($item) == 0)
+            {
+                $groupPostLike = new GroupPostLike();
+                $groupPostLike->setUser($user);
+                $groupPostLike->setGroupPost($post);
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($groupPostLike);
+                $em->flush();
+                return new JsonResponse('Done');
+            }
+            else
+                return new JsonResponse('ERR');
+        }
+        else
+            return new JsonResponse('ERR');
+    }
+
+    /**
+     * @Route("/linkpan/home/group_post_dislike",name="group_post_dislike")
+     */
+    public function post_dislikeAction(Request $request)
+    {
+        $user = $this->getUser();
+        $prepo = $this->getDoctrine()->getRepository('UserBundle:GroupPost');
+        $post = $prepo->findOneById($request->get('post'));
+        if(sizeof($post) == 1)
+        {
+            $plrepo = $this->getDoctrine()->getRepository('UserBundle:GroupPostLike');
+            $item = $plrepo->findOneBy(
+                array('groupPost'=>$post,'user'=>$user)
+            );
+            if(sizeof($item) == 1)
+            {
+                $em = $this->getDoctrine()->getManager();
+                $em->remove($item);
+                $em->flush();
+                return new JsonResponse('Done');
+            }
+            else
+                return new JsonResponse('ERR');
+        }
+        else
+            return new JsonResponse('ERR');
+    }
+
+    /**
+     * @Route("/linkpan/home/group_post_share",name="group_post_share")
+     */
+    public function post_shareAction(Request $request)
+    {
+        $objectShare = new ObjectShare();
+        $objectShare->setUser($this->getUser());
+        $objectShare->setType('groupPost');
+        $objectShare->setObjectId($request->get('post'));
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($objectShare);
+        $em->flush();
+        return new JsonResponse('Done');
+    }
+
+    /**
+     * @Route("/linkpan/home/group_post_comment",name="group_post_comment")
+     */
+    public function post_commentAction(Request $request)
+    {
+        $user = $this->getUser();
+        $prepo = $this->getDoctrine()->getRepository('UserBundle:GroupPost');
+        $post = $prepo->findOneById($request->get('post'));
+        if(sizeof($post) == 1)
+        {
+            $pc = new GroupPostComment();
+            $pc->setGroupPost($post);
+            $pc->setUser($user);
+            $pc->setComment($request->get('comment'));
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($pc);
+            $em->flush();
+            return new JsonResponse($pc->getId());
+        }
+        else
+            return new JsonResponse('ERR');
+    }
+
+    /**
+     * @Route("/linkpan/home/delete_comment",name="delete_comment")
+     */
+    public function delete_commentAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:GroupPostComment');
+        $comment = $repo->findOneById($request->get('comment'));
+        if(!is_null($comment))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($comment);
+            $em->flush();
+        }
+        return new JsonResponse('Done');
     }
 }
