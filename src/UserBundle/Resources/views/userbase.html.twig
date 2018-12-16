@@ -318,7 +318,7 @@
                                             <!-- Name / Boosted /Date / Adress -->
                                             <div class="fb-user-details">
                                                 <h3><a class="#" href="{{ path('search_profile',{'user':user.id}) }}">{{ item.owner_first_name }} {{ item.owner_last_name }}</a> {% if item.owner_company_name is not null %} <small> {{ item.owner_company_name }}</small> {% endif %}</h3>
-                                                <p>{% if item.post_boosted == 'boosted' %}<strong style="color:black">{{'BOOSTED'|trans}}</strong></strong> | {% endif %} {{ item.post_creation_date | date('m-d-Y H:m') }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
+                                                <p>{% if item.post_boosted == 'boosted' %}<strong style="color:black">{{'BOOSTED'|trans}}</strong></strong> | {% endif %} {{ item.post_creation_date  }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
                                             </div>
 
 
@@ -469,8 +469,8 @@
                                                     <ul class="dropdown-menu">
                                                         <li><a href="#share_post" onclick="sharePost({{ item.id }})" title="Send this to friend or post it on your time line">{{'on your timeline'|trans}}</a></li>
                                                         <li role="separator" class="divider"></li>
-                                                        <li><a href="#" class="share_facebook" data-url="https://www.youtube.com/watch?v=mAJeK283j0I"><i class="fa fa-facebook"></i></a></li>
-                                                       <!-- <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                                        <!--<li><a href="#" class="share_facebook" data-url="https://www.youtube.com/watch?v=mAJeK283j0I"><i class="fa fa-facebook"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                                         <li><a href="#"><i class="fa fa-linkedin"></i></a></li>-->
                                                     </ul>
                                                     </div>

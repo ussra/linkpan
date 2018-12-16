@@ -21,46 +21,49 @@ class PostController extends Controller
      */
     public function home_postAction(Request $request)
     {
-        $post = new Post();
-        $post->setContent($request->get('post_description'));
-        $date = date("m/d/Y h:i:s ", time());
-        $post->setCreationDate($date);
-        $post->setUser($this->getUser());
-        // set video
-        if (!is_null($request->files->get('post_video')))
+        if(!empty($request->get('post_description')))
         {
-            $viddir = __DIR__ . "/../../../web/videos";
-            if (!file_exists($viddir))
-                mkdir($viddir, 0777, true);
-            $video = $request->files->get('post_video');
-            $files = scandir($viddir);
-            $count = count($files)-2;
-            $name = $count.'_'.$video->getClientOriginalName();
-            $video->move($viddir,$name );
-            $post->setVideo($name);
-        }
-        //
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($post);
-        $em->flush();
-        // save images
-        $images = $request->files->get('uploadimage');
-        if(!is_null($images[0]))
-        {
-            $imgdir = __DIR__ . "/../../../web/images/post";
-            if (!file_exists($imgdir))
-                mkdir($imgdir, 0777, true);
-            foreach ($images as $img)
+            $post = new Post();
+            $post->setContent($request->get('post_description'));
+            $date = date("m/d/Y h:i:s ", time());
+            $post->setCreationDate($date);
+            $post->setUser($this->getUser());
+            // set video
+            if (!is_null($request->files->get('post_video')))
             {
-                $pi = new PostImage();
-                $pi->setPost($post);
-                $files = scandir($imgdir);
+                $viddir = __DIR__ . "/../../../web/videos";
+                if (!file_exists($viddir))
+                    mkdir($viddir, 0777, true);
+                $video = $request->files->get('post_video');
+                $files = scandir($viddir);
                 $count = count($files)-2;
-                $name = $count.'_'.$img->getClientOriginalName();
-                $img->move($imgdir,$name );
-                $pi->setImage($name);
-                $em->persist($pi);
-                $em->flush();
+                $name = $count.'_'.$video->getClientOriginalName();
+                $video->move($viddir,$name );
+                $post->setVideo($name);
+            }
+            //
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($post);
+            $em->flush();
+            // save images
+            $images = $request->files->get('uploadimage');
+            if(!is_null($images[0]))
+            {
+                $imgdir = __DIR__ . "/../../../web/images/post";
+                if (!file_exists($imgdir))
+                    mkdir($imgdir, 0777, true);
+                foreach ($images as $img)
+                {
+                    $pi = new PostImage();
+                    $pi->setPost($post);
+                    $files = scandir($imgdir);
+                    $count = count($files)-2;
+                    $name = $count.'_'.$img->getClientOriginalName();
+                    $img->move($imgdir,$name );
+                    $pi->setImage($name);
+                    $em->persist($pi);
+                    $em->flush();
+                }
             }
         }
         return $this->forward('UserBundle:Home:index');
