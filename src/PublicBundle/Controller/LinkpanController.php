@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class LinkpanController extends Controller
 {
     /**
-     * @Route("/linkpan",name="linkpan")
+     * @Route("{_locale}/linkpan",name="linkpan")
      */
     public function indexAction()
     {
@@ -16,7 +16,7 @@ class LinkpanController extends Controller
     }
 
     /**
-     * @Route("/linkpan/signin",name="signin")
+     * @Route("{_locale}/linkpan/signin",name="signin")
      */
     public function signinAction()
     {
@@ -24,7 +24,7 @@ class LinkpanController extends Controller
     }
 
     /**
-     * @Route("/linkpan/signup",name="signup")
+     * @Route("{_locale}/linkpan/signup",name="signup")
      */
     public function signupAction()
     {
@@ -32,7 +32,7 @@ class LinkpanController extends Controller
     }
 
     /**
-     * @Route("/linkpan/terms",name="terms")
+     * @Route("{_locale}/linkpan/terms",name="terms")
      */
     public function termsAction()
     {
@@ -40,7 +40,7 @@ class LinkpanController extends Controller
     }
 
     /**
-     * @Route("/linkpan/privacy",name="privacy")
+     * @Route("{_locale}/linkpan/privacy",name="privacy")
      */
     public function privacyAction()
     {
