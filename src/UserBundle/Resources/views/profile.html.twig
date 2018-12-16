@@ -70,7 +70,8 @@
 
 
                             <button type="button" class="btn btn-success btn-xs" title="contact" > <i class="fa fa-comments-o"></i> </button>
-                            <button type="button" class="btn btn-danger btn-xs" title="block" onclick="block({{ userProfile.user_id }})" > <i class="fa fa-ban"></i> </button>
+                            <a href="{{ (path('block',{'Toblock':userProfile.user_id})) }}"><button type="button" class="btn btn-danger btn-xs" title="block"> <i class="fa fa-ban"></i> </button></a>
+
                         {% endif %}
                     </div>
 

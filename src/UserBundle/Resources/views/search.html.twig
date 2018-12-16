@@ -35,7 +35,7 @@
                                                 {% else %}
                                                     <a href="{{ path('unfollow',{'unfollow': user.user_id ,'type':'search'}) }}"><button type="button"  class="btn btn-danger btn-xs" title="unfollow"> <i class="fa fa-minus"></i> </button></a>
                                             {% endif %}
-                                            <button type="button" class="btn btn-primary btn-xs" title="view profil" onclick="view({{ user.user_id }})"> <i class="fa fa-eye"></i> </button>
+                                            <a href="{{ path('search_profile',{'user':user.user_id}) }}"><button type="button" class="btn btn-primary btn-xs" title="view profil" > <i class="fa fa-eye"></i> </button></a>
                                             <button type="button" class="btn btn-success btn-xs" title="contact" > <i class="fa fa-comments-o"></i> </button>
                                         </div>
                                     </div>
