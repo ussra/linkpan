@@ -154,7 +154,7 @@
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                    <li><a onclick="view({{ user.id }})">{{'Profile'|trans}} </a></li>
+                                    <li><a href="{{ path('search_profile',{'user':user.id}) }}">{{'Profile'|trans}} </a></li>
                                     {% if app.session.get('membership') == 'simple' %}
                                         <li><a onclick="$('#up_modal').modal('show')"><strong>{{'Upgrade Membership'|trans}}</strong></a></li>
                                         {% else %}
@@ -917,7 +917,34 @@
     })();
 </script>
 
-
+<!-- Full screen -->
+<script>
+    function full()
+    {
+        if (!document.fullscreenElement &&    // alternative standard method
+            !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {  // current working methods
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) {
+                document.documentElement.msRequestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+            }
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            }
+        }
+    }
+</script>
 
 
 
@@ -1236,6 +1263,8 @@
             });
         })();
     </script>
+
+
 
 {% endblock %}
 

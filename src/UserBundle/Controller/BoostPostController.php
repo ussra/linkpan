@@ -28,7 +28,7 @@ class BoostPostController extends Controller
             if(is_null($boost))
             {
                 //check user s billing
-                if(is_null($currentUser->getStripeId()))
+                if(empty($currentUser->getStripeId()))
                 {
                     echo '<script language="javascript">alert("please first you must set your billing method")</script>';
                     return $this->forward('UserBundle:Home:boost_posts');

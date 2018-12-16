@@ -98,21 +98,12 @@
                                 <div class="tab-pane active" id="home-r">
                                     <div class="col-12">
                                         <ul class="list-unstyled msg_list">
+                                            {{dump(app.session.get('profile_recent_activities'))}}
                                             {% for item in app.session.get('profile_recent_activities') %}
                                                 <li>
                                                     <a>
-                                                        <!--
-                                                        <span class="image">
-                                                          <img src="scripts/img/userimage.png" alt="img" />
-                                                        </span>
-
-                                                        <span>
-                                                            <span>John Doe</span>
-                                                            <span class="time">3 mins ago</span>
-                                                        </span>
-                                                        -->
                                                         <span class="message">
-                                                            Description Description Description Description Description
+                                                            Description
                                                         </span>
                                                     </a>
                                                 </li>
@@ -173,12 +164,9 @@
                         </div>
                     </div>
                 </div>
-                
 
             </div>
-            <!-- Posts and pans-->
-               {{dump(app.session.get('profile_recent_activities'))}}
-            <!--end Posts and pans-->
+
         </div>
 
     </div>
