@@ -16,7 +16,7 @@ class MembershipController extends Controller
     public function changemembershipAction(Request $request)
     {
         $currentUser = $this->getUser();
-        if(is_null($currentUser->getStripeId()))
+        if(is_null($currentUser->getStripeId()) || $currentUser->getStripeId() == '')
         {
             echo '<script language="javascript">alert("please first you must set your billing method")</script>';
             return $this->forward('UserBundle:Home:index');
@@ -41,7 +41,6 @@ class MembershipController extends Controller
                 if($type == 'annually')
                     $plan = $stripeClient->subscribeExistingCustomerToPlan($currentUser->getStripeId(), 'plan_Dm6jLrBxxv0b4D',null);
 
-
                 if(!is_null($plan))
                 {
                     $membership = new Membership();
@@ -58,6 +57,7 @@ class MembershipController extends Controller
                     echo '<script language="javascript">alert("Can you try another time , Thank you")</script>';
                     return $this->forward('UserBundle:Home:index');
                 }
+
             }
             else
             {
