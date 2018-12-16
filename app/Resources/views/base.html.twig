@@ -63,8 +63,8 @@
                                             <i class="fa fa-angle-down"></i>
                                         </a>
                                         <ul class="account_selection">
-                                            <li><a ><img class="img-fluid" src={{ asset('scripts/img/flags/usa.png') }} width="30" width="30"> English </a></li>
-                                            <li><a ><img class="img-fluid" src={{ asset('scripts/img/flags/fr.png') }} width="30" width="30"> Francais</a></li>
+                                            <li><a  href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'}))}}"><img class="img-fluid" src={{ asset('scripts/img/flags/usa.png') }}  width="30" width="30"> English </a></li>
+                                            <li><a  href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'}))}}"><img class="img-fluid" src={{ asset('scripts/img/flags/fr.png') }} width="30" width="30"> Francais</a></li>
                                             <!--<li><a href="{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'sp'}))}}"><img class="img-fluid" src={ asset('scripts/img/flags/sp.png') }}  width="30" width="30"></a></li>
                                             <li><a href="{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'ma'}))}}"><img class="img-fluid" src={ asset('scripts/img/flags/ma.png') }} width="30" width="30"></a></li> -->
                                         </ul>
