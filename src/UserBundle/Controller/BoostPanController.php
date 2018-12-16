@@ -23,7 +23,7 @@ class BoostPanController extends Controller
             $boost = $boostrepo->findOneBy(
                 array('pan'=>$pan)
             );
-            if(is_null($boost))
+            if(empty($boost))
             {
                 if(is_null($currentUser->getStripeId()))
                 {

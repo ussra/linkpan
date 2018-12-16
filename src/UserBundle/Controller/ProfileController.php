@@ -152,20 +152,62 @@ class ProfileController extends Controller
         $query = $em->createQuery('SELECT d FROM UserBundle:ObjectShare d 
             Where d.user = :currentUser  ORDER BY d.id DESC  ')
             ->setParameter('currentUser',$currentUser);
-        $result = $query->setMaxResults(5)->getResult();
+        $result = $query->getResult();
         $shares = array();
         if(sizeof($result)>0)
         {
             $repo = $this->getDoctrine()->getRepository('UserBundle:Post');
+            $panRepo = $this->getDoctrine()->getRepository('UserBundle:Pan');
+            $groupPostRepo = $this->getDoctrine()->getRepository('UserBundle:GroupPost');
+            $imageRepo = $this->getDoctrine()->getRepository('UserBundle:PostImage');
+            $GroupimageRepo = $this->getDoctrine()->getRepository('UserBundle:GroupPostImage');
             foreach ($result as $item)
             {
                 if($item->getType() == 'post')
                 {
                     $post = $repo->findOneById($item->getObjectId());
+
                     if(!is_null($post))
                     {
-                        
-                        array_push($shares,$post);   
+                        $images = $imageRepo->findBy(
+                            array('post'=>$post)
+                        );
+                        $temp = array(
+                            'type'=> 'post',
+                            'post'=> $post,
+                            'images'=>$images
+                        );
+                        array_push($shares,$temp);
+                    }
+                }
+                if($item->getType() == 'pan')
+                {
+                    $pan = $panRepo->findOneById($item->getObjectId());
+
+                    if(!is_null($pan))
+                    {
+                        $temp = array(
+                            'type'=> 'pan',
+                            'pan'=>$pan
+                        );
+                        array_push($shares,$temp);
+                    }
+                }
+                else
+                {
+                    $post = $groupPostRepo->findOneById($item->getObjectId());
+
+                    if(!is_null($post))
+                    {
+                        $images = $GroupimageRepo->findBy(
+                            array('groupPost'=>$post)
+                        );
+                        $temp = array(
+                            'type'=> 'Group post',
+                            'post'=>$post,
+                            'images'=>$images
+                        );
+                        array_push($shares,$temp);
                     }
                 }
             }

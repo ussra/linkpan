@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use UserBundle\Entity\ObjectShare;
 use UserBundle\Entity\Pan;
 
 use UserBundle\Entity\PanReview;
@@ -106,25 +107,14 @@ class PanController extends Controller
      */
     public function share_panAction(Request $request)
     {
-        $repo = $this->getDoctrine()->getRepository(Pan::class);
-        $pan = $repo->findOneById($request->get('pan'));
-        if($pan)
-        {
-            $currentUser = $this->getUser();
-            $psrepo = $this->getDoctrine()->getRepository('UserBundle:PanShare');
-            $item = $psrepo->findOneBy(
-                array('pan'=>$pan,'user'=>$currentUser)
-            );
-            if(sizeof($item) == 0)
-            {
-                $panShare = new PanShare();
-                $panShare->setPan($pan);
-                $panShare->setUser($currentUser);
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($panShare);
-                $em->flush();
-            }
-        }
+        $currentUser = $this->getUser();
+        $objectShare = new ObjectShare();
+        $objectShare->setUser($currentUser);
+        $objectShare->setType('pan');
+        $objectShare->setObjectId($request->get('pan'));
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($objectShare);
+        $em->flush();
         return new JsonResponse('Pass');
     }
 
