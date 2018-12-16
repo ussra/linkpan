@@ -207,7 +207,7 @@ class SettingController extends Controller
         $user = $this->getUser();
         $stripeClient = $this->get('flosch.stripe.client');
         $customer = null;
-        if(is_null($user->getStripeId()))
+        if(empty($user->getStripeId()))
         {
             $customer = $stripeClient->createCustomer(null, $user->getEmail());
             $user->setStripeId($customer->id);
@@ -258,27 +258,33 @@ class SettingController extends Controller
         $userBillings  = $repo->findBy(
             array('user'=>$user)
         );
-        if(sizeof($userBillings)<= 1)
+        if(sizeof($userBillings)== 0)
         {
             return new JsonResponse('ERR');
         }
         else
         {
-            $stripeClient = $this->get('flosch.stripe.client');
-            $customer = $stripeClient->retrieveCustomer($user->getStripeId());
-            $repo = $this->getDoctrine()->getRepository('UserBundle:Billing');
-            $billing = $repo->findOneById($request->get('billingid'));
-            if(!is_null($billing))
+            if(sizeof($userBillings) > 1)
             {
-                $em = $this->getDoctrine()->getManager();
-                $customer->sources->retrieve($billing->getCardId())->delete();
-                $em->remove($billing);
-                $em->flush();
-                $this->getBilling($user);
-                return new JsonResponse($this->generateUrl('setting'));
+                $stripeClient = $this->get('flosch.stripe.client');
+                $customer = $stripeClient->retrieveCustomer($user->getStripeId());
+                $repo = $this->getDoctrine()->getRepository('UserBundle:Billing');
+                $billing = $repo->findOneById($request->get('billingid'));
+                if(!is_null($billing))
+                {
+                    $em = $this->getDoctrine()->getManager();
+                    //
+                    $customer->sources->retrieve($billing->getCardId())->delete();
+                    $em->remove($billing);
+                    $em->flush();
+                    $this->getBilling($user);
+                    return new JsonResponse($this->generateUrl('setting'));
+                }
+                else
+                    return new JsonResponse('ERR');
             }
             else
-                return new JsonResponse('ERR');
+                return new JsonResponse('COUNT');
         }
     }
 

@@ -653,8 +653,16 @@
                         }
                         else
                         {
-                            alert('Card deleted')
-                            window.location.href = data
+                            if(data == 'COUNT')
+                            {
+                                alert('Dear '.concat('{{ user.lastname|upper }}').concat(' , This is the only billing method you have set we can not delete it'))
+                                $('.removecard').prop('disabled',false)
+                            }
+                            else
+                            {
+                                alert('Card deleted')
+                                window.location.href = data
+                            }
                         }
                     }
                 });
