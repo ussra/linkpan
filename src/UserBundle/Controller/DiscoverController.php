@@ -13,7 +13,7 @@ class DiscoverController extends Controller
 {
 
     /**
-     * @Route("/linkpan/discover",name="discover")
+     * @Route("{_locale}/linkpan/discover",name="discover")
      */
     public function discoverAction(Request $request)
     {
@@ -313,7 +313,7 @@ class DiscoverController extends Controller
     }
 
     /**
-     * @Route("/linkpan/discover/filter",name="discover_filter")
+     * @Route("{_locale}/linkpan/discover/filter",name="discover_filter")
      */
     public function filterDiscoverAction(Request $request)
     {
@@ -341,7 +341,7 @@ class DiscoverController extends Controller
 
 
     /**
-     * @Route("/linkpan/discover/discover/pan",name="discover_pan")
+     * @Route("{_locale}/linkpan/discover/discover/pan",name="discover_pan")
      */
     public function discover_panAction(Request $request)
     {

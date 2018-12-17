@@ -25,7 +25,7 @@
         
          <section class="user-guide">
             <div >
-            <a  href="{{ path('home') }}"  style="color:#373942" ><i style="margin:0 8px 0 8px;" class="fas fa-chevron-left"></i>{{''|trans}}BACK TO LINKPAN</a>
+            <a  href="{{ path('home') }}"  style="color:#373942" ><i style="margin:0 8px 0 8px;" class="fas fa-chevron-left"></i>{{'BACK TO LINKPAN'|trans}}</a>
             </div>
             <div class="user-guide__title">{{'Welcome'|trans}}</div>
             <div class="user-guide__subtitle">{{'to Globe Pro of'|trans}} <code style="color:#6BA5D6;">LINKPAN</code>.</div><!--<span class="user-guide__close"></span>-->
@@ -36,7 +36,7 @@
                         <p><strong>{{'You can rotate the globe.'|trans}}</strong></p>
                         <p><strong>{{'You can choose any country you want.'|trans}}</strong></p>
                         <p><strong>{{'You can see products from any country you clicked on.'|trans}}</strong></p>
-                        <p><strong>{{'If you encounter any issues ensure that you use on of supported browsers'|trans}}:<br> {{''|trans}}Firefox 46+,Chrome 45+,<br>{{''|trans}} Safari 9.1+, Opera 38+.</strong></p>
+                        <p><strong>{{'If you encounter any issues ensure that you use on of supported browsers'|trans}}:<br> {{'Firefox 46+,Chrome 45+,'|trans}}<br>{{'Safari 9.1+, Opera 38+.'|trans}} </strong></p>
                     </div>
                 </div>
             </div>
@@ -228,10 +228,10 @@
                             infoLabel.text(countryById[d.id]).style("display", "inline");
 
                             // search action
-                            var r = "Discover pans of ".concat(countryById[d.id]).concat(" ?");
+                            var r = "{{'Discover pans of'|trans}} ".concat(countryById[d.id]).concat(" ?");
                             swal({
                                 text: r,
-                                buttons: ["NO", "YES !"],
+                                title: "{{'Are you sure?'|trans}}",
                                 })
                                 .then(willDelete => {
                                     if (willDelete) {
@@ -244,7 +244,7 @@
                                                 },
                                                 success:function(data){
                                                     if(data == 'NULL')
-                                                        alert('There s no pans to discover in '+ countryById[d.id])
+                                                        alert('{{"There s no pans to discover in"|trans}}'+ countryById[d.id])
                                                     else
                                                         window.location.href = data
                                                 }

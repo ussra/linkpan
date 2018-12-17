@@ -24,12 +24,13 @@
                                     {% else %}
                                         {% set image = user.user_image %}
                                 {% endif %}
-                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center" >
-                                    <div class="bord">
-                                        <img src="{{ asset('images/profile/') }}{{ image }}" width="100" height="100"/>
-                                        <h4>{{ user.user_first_name }} {{ user.user_last_name }}</h4>
-                                        <div class=""><h5>{{ user.user_company_name }}</h5></div>
-                                        <div>
+                                <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6 text-left" >
+                                    <div style="border:2px solid #E6E9ED;border-radius:5px;padding:5px;">
+                                        <img src="{{ asset('images/profile/') }}{{ image }}" style="object-fit:cover;width:100%;border-radius:3px;"/>
+                                        <h4 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100%;">{{ user.user_first_name }} {{ user.user_last_name }}</h4>
+                                        <div style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100%;"><span>{{'Company name'|trans}}: {{ user.user_company_name }}</span></div>
+                                        <div style="border-bottom:2px solid #E6E9ED;border-radius:5px;margin:10px 0 10px 0"></div>
+                                        <div class="text-right">
                                             {% if user.user_type_follow == 'follow' %}
                                                 <a href="{{ path('follow',{'tofollow': user.user_id }) }}"><button type="button" class="btn btn-default btn-xs" title="follow"> <i class="fa fa-plus"></i> </button></a>
                                                 {% else %}

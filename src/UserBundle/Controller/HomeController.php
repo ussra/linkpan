@@ -236,7 +236,6 @@ class HomeController extends Controller
         $session = new Session();
         $currentUser = $this->getUser();
         $em = $this->getDoctrine()->getManager();
-        $currentUser->setIsActive(true);
         $em->persist($currentUser);
         $em->flush();
         // Membership

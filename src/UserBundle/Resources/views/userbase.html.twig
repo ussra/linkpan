@@ -242,7 +242,9 @@
             <!-- page content -->
 
             <div class="right_col" role="main">
+                
                 {% block pageContent %}
+                   
                     <div style="margin-top:80px">
                         <div class="container bootstrap snippet">
                             <div class="panel profile-info">
@@ -287,6 +289,12 @@
                                     </button>
                                 </a>
                             </div>
+
+                             {%if user.isActive == false %}
+                                <div class="alert alert-danger text-center">
+                                    <b style="color:white;font-size:1.2em">{{'You must activate your account'|trans}}</b> 
+                                </div>
+                            {% endif %}
 
                             {% set data = app.session.get('Homeposts') %}
                             {% if  data|length > 0 %}
@@ -456,8 +464,8 @@
                                                         <a href="#like" id="like{{ item.id }}" onclick="like({{ item.id }},{{ item.likes_count }})" title="like this" style="background-color: transparent !important;"><i class="fa fa-thumbs-o-up" ></i></a>
                                                         <a href="#dislike" id="dislike{{ item.id }}" onclick="dislike({{ item.id }},{{ item.likes_count }})" title="Dislike this" style="background-color: transparent !important; display: none;" ><i class="fa fa-thumbs-up" ></i></a>
                                                     {% else %}
-                                                        <a href="#dislike" id="dislike{{ item.id }}" title="Dislike this" onclick="dislike({{ item.id }},{{ item.likes_count }})" style="background-color: transparent !important;"><i class="fa fa-thumbs-up" ></i></a>
-                                                        <a href="#like" id="like{{ item.id }}" title="Like this" onclick="like({{ item.id }},{{ item.likes_count }})"  style="background-color: transparent !important; display: none;"><i class="fa fa-thumbs-o-up" ></i></a>
+                                                        <a href="#dislike" id="dislike{{ item.id }}" title="{{'Dislike this'|trans}}" onclick="dislike({{ item.id }},{{ item.likes_count }})" style="background-color: transparent !important;"><i class="fa fa-thumbs-up" ></i></a>
+                                                        <a href="#like" id="like{{ item.id }}" title="{{'like this'|trans}}" onclick="like({{ item.id }},{{ item.likes_count }})"  style="background-color: transparent !important; display: none;"><i class="fa fa-thumbs-o-up" ></i></a>
                                                     {% endif %}
                                                     <span></span>
                                                     <!--<a href="#share_post" onclick="sharePost({ item.id }})" title="Send this to friend or post it on your time line"><i class="fa fa-share fa-lg"></i></a> -->
@@ -467,7 +475,7 @@
                                                         <i class="fa fa-share fa-lg"></i>
                                                     </button>
                                                     <ul class="dropdown-menu">
-                                                        <li><a href="#share_post" onclick="sharePost({{ item.id }})" title="Send this to friend or post it on your time line">{{'on your timeline'|trans}}</a></li>
+                                                        <li><a href="#share_post" onclick="sharePost({{ item.id }})" title="{{'Send this to friend or post it on your time line'|trans}}">{{'on your timeline'|trans}}</a></li>
                                                         <li role="separator" class="divider"></li>
                                                         <!--<li><a href="#" class="share_facebook" data-url="https://www.youtube.com/watch?v=mAJeK283j0I"><i class="fa fa-facebook"></i></a></li>
                                                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -587,7 +595,7 @@
 
                             {% if countData > data|length %}
                                 <div style="text-align: center;margin-top: 15%">
-                                    <a href="{{ path('more_posts') }}" title="get more posts">
+                                    <a href="{{ path('more_posts') }}" title="{{'get more posts'|trans}}">
                                         <button type="button" class="btn btn-round btn-default btn-xs"><i class="fa fa-arrow-down"></i></button>
                                     </a>
                                 </div>

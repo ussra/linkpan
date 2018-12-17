@@ -531,7 +531,7 @@
                 title: "{{'Are you sure?'|trans}}",
                 text: "{{'Are you sure that you want to delete your account?'|trans}}",
                 icon: "warning",
-                buttons: ["{{'NO'|trans}}", "{{'YES !'|trans}}"],
+                buttons: ["{{'NO !'|trans}}", "{{'YES !'|trans}}"],
                 dangerMode: true,
             })
                 .then(willDelete => {
@@ -658,7 +658,7 @@
                         {
                             if(data == 'COUNT')
                             {
-                                alert('Dear '.concat('{{ user.lastname|upper }}').concat(' , This is the only billing method you have set we can not delete it'))
+                                swal('Dear '.concat('{{ user.lastname|upper }}').concat(' , This is the only billing method you have set we can not delete it'))
                                 $('.removecard').prop('disabled',false)
                             }
                             else
