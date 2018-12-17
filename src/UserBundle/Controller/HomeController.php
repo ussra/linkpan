@@ -288,6 +288,28 @@ class HomeController extends Controller
         return $this->render('UserBundle::userbase.html.twig');
     }
 
+
+    /**
+     * @Route("{_locale}/linkpan/home/post",name="discover_post")
+     */
+    public function postAction(Request $request)
+    {
+        $session = new Session();
+        $currentUser = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery(
+            'SELECT DISTINCT p 
+            FROM UserBundle:Post p 
+            WHERE p.id = :post
+            '
+        )->setParameter('post',$request->get('post'));
+        $result =  $query->setMaxResults(1)->getResult();
+        $posts = $this->Homeresult($result);
+        $session->set('Homeposts',$posts);
+        $session->set('Homeposts_count',0);
+        return $this->render('UserBundle::userbase.html.twig');
+    }
+
     /**
      * @Route("/linkpan/setting",name="setting")
      */

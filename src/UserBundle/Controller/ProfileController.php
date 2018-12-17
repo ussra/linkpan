@@ -174,7 +174,7 @@ class ProfileController extends Controller
                         );
                         $temp = array(
                             'type'=> 'post',
-                            'post'=> $post,
+                            'object'=> $post,
                             'images'=>$images
                         );
                         array_push($shares,$temp);
@@ -188,7 +188,7 @@ class ProfileController extends Controller
                     {
                         $temp = array(
                             'type'=> 'pan',
-                            'pan'=>$pan
+                            'object'=>$pan
                         );
                         array_push($shares,$temp);
                     }
@@ -204,7 +204,7 @@ class ProfileController extends Controller
                         );
                         $temp = array(
                             'type'=> 'Group post',
-                            'post'=>$post,
+                            'object'=>$post,
                             'images'=>$images
                         );
                         array_push($shares,$temp);
