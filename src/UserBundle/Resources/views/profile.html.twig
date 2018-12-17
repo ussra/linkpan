@@ -98,16 +98,7 @@
                                 <div class="tab-pane active" id="home-r">
                                     <div class="col-12">
                                         <ul class="list-unstyled msg_list">
-                                            {{dump(app.session.get('profile_recent_activities'))}}
-                                            {% for item in app.session.get('profile_recent_activities') %}
-                                                <li>
-                                                    <a>
-                                                        <span class="message">
-                                                            Description
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            {% endfor %}
+
                                         </ul>
                                     </div>
                                 </div>
@@ -173,173 +164,76 @@
                                 <li class="active">
                                     <a href="#poststab" data-toggle="tab">Posts</a>
                                 </li>
-                                <li>
-                                    <a href="#panstab" data-toggle="tab">Pans</a>
-                                </li>
                             </ul>
                             <!--end Nav tabs -->
 
                              <!-- Tab content -->
                              <div class="tab-content">
-                                <!--*************** Posts ***************-->
                                 <div class="tab-pane active" id="poststab">
-                                    {% for item in app.session.get('profile_recent_activities') %}
-                                       {% if item.type == 'post' || item.type == 'groupPost' %}
-                                             <div class="panel" style="margin-top: 2.5%;">
-                                            <div class="panel-body">
-                                                <!-- Image -->
-                                                <div class="fb-user-thumb" style="display:inline">
-                                                    {% if item.post. is null %} {% set image = 'default.png' %} {% else %} {% set image = item.owner_image  %}{% endif %}
-                                                    <a href="{{ path('search_profile',{'user':user.id}) }}"><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
-                                                </div>
-                                               
-                                                <div class="fb-user-details">
-                                                    <h3><a class="#" href="{{ path('search_profile',{'user':user.id}) }}">{{ item.owner_first_name }} {{ item.owner_last_name }}</a> {% if item.owner_company_name is not null %} <small> {{ item.owner_company_name }}</small> {% endif %}</h3>
-                                                    <p>{% if item.post_boosted == 'boosted' %}<strong style="color:black">{{'BOOSTED'|trans}}</strong></strong> | {% endif %} {{ item.post_creation_date  }} {% if item.owner_adress is not null %} <small>in</small> {{ item.owner_adress }} {% endif %}</p>
-                                                </div>
+                                    <ul class="list-unstyled msg_list">
+                                        {% for item in app.session.get('profile_recent_activities') %}
+                                        {% if item.type == 'post' or item.type == 'Group post' %}
+                                            <li id="object_{{ item.object.id }}">
+                                                <i>Shared a post : </i>
+                                                <a href="{{ path('discover_post',{'post':item.object.id}) }}">
+                                                    <span class="message">
+                                                        <div class="panel" style="margin-top: 2.5%;">
+                                                           <div class="panel-body">
+                                                               <!-- Image -->
+                                                               <div class="fb-user-thumb" style="display:inline">
+                                                                   {% if item.object.user.image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.object.user.image  %}{% endif %}
+                                                                   <a><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
+                                                               </div>
+                                                               <div class="fb-user-details">
+                                                                   <h3><a class="#">{{ item.object.user.firstname }} {{ item.object.user.lastname }}</a> </h3>
+                                                               </div>
+                                                               <div class="clearfix"></div>
 
+                                                               <!-- display post content -->
+                                                               <p class="fb-user-status">
+                                                                   <div style="word-wrap:break-word">
+                                                                       {{ item.object.content }} <small>
+                                                                   </div>
+                                                                   <br>
+                                                               </p>
+                                                           </div>
+                                                        </div>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        {% if item.type == 'pan' %}
+                                            <li id= "object_{{ item.object.id }}">
+                                                <i>Shared a pan : </i>
+                                                <a href = "{{ path('discover_pan',{'pan': item.object.id }) }}">
+                                                    <span class="message">
+                                                        <div class="panel" style="margin-top: 2.5%;">
+                                                           <div class="panel-body">
+                                                               <!-- If you want to display image of the pan use :
+                                                                  item.object.image
+                                                               -->
+                                                               <div class="fb-user-details">
+                                                                   <h3><a class="#">{{ item.object.name }} {{ item.object.othername }}</a> </h3>
+                                                               </div>
+                                                               <div class="clearfix"></div>
 
-                                                <div class="clearfix"></div>
-
-                                                <!-- display post content -->
-                                                <p class="fb-user-status">
-                                                    <div style="word-wrap:break-word">
-                                                        {{ item.post_content }}
-                                                    </div>
-                                                    <br>
-                                                    <!-- images + video -->
-                                                    <div class="parent" style="max-width: 650px;">
-                                                        {% if item.post_video is not null %}
-                                                            {% if item.post_images >0 %}
-                                                                {% if item.post_images|length == 1 %}<!-- 1 photo+video: -->
-                                                                    <div style="max-width:600px">
-                                                                        <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
-                                                                            <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                                {{'Your browser does not support the video tag.'|trans}}
-                                                                        </video>
-                                                                    </div>
-                                                                    <div>
-                                                                        <a  href="{{ asset('images/post/') }}{{ item.post_images|first }}" data-max-width="600" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ item.post_images|first }}" id="post_img" class="post-1img-video img-responsive"></a>
-                                                                    </div>
-                                                                {% endif %}<!--end 1 photo+video: -->
-
-                                                                {% if item.post_images|length == 2 or item.post_images|length == 3   %}<!--end 2 or 3 photo+video -->
-                                                                    <div style="max-width:600px">
-                                                                        <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
-                                                                            <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                            {{'Your browser does not support the video tag.'|trans}}
-                                                                        </video>
-                                                                    </div>
-
-                                                                    <div>
-                                                                        {% for img in item.post_images %}
-                                                                            <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.post_images|length == 2 %}class="img-responsive post-2img-video" {% else %}class="post-3img-video-fixed img-responsive"{% endif %}></a>
-                                                                        {% endfor %}
-                                                                    </div>
-
-                                                                {% endif %}<!--end 2 or 3 photo+video -->
-
-                                                                {% if item.post_images|length > 3 %}<!--more than 3 photo+video: -->
-                                                                    <div style="max-width:600px">
-                                                                        <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
-                                                                            <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                            {{'Your browser does not support the video tag.'|trans}}
-                                                                        </video>
-                                                                    </div>
-
-                                                                    <div>
-                                                                        {% for img in item.post_images[0:2]  %}
-                                                                            <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
-                                                                        {% endfor %}
-
-                                                                        <a  href="{{ asset('images/post/') }}{{ item.post_images[2] }}" data-toggle="lightbox"  data-gallery="{{ item.id }}">
-                                                                            <div class="post-3imgvid-wrapblack">
-
-                                                                                <img src="{{ asset('images/post/') }}{{ item.post_images[2] }}"  class="post-3imgvid-blackimg img-responsive">
-
-                                                                                <div class="post-3imgvid-count">
-                                                                                    +{{ item.post_images|length - 2 }}
-                                                                                </div>
-                                                                            </div>
-                                                                        </a>
-
-                                                                        <!-- elements not showing, use data-remote -->
-                                                                        {% for img in item.post_images[3:item.post_images|length] %}
-                                                                            <div data-toggle="lightbox" data-gallery="{{ item.id }}" data-remote="{{ asset('images/post/') }}{{ img }}" ></div>
-                                                                        {% endfor %}
-
-
-                                                                    </div>
-
-                                                                {% endif %}<!--end more than 3 photo+video: -->
-
-                                                                {% if item.post_images|length == 0  %}
-                                                                    <div style="max-width:600px">
-                                                                        <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
-                                                                            <source src="{{ asset('videos/') }}{{ item.post_video }}" type="video/mp4">
-                                                                            {{'Your browser does not support the video tag.'|trans}}
-                                                                        </video>
-                                                                    </div>
-                                                                {% endif %}
-                                                            {% endif %}
-                                                        {% endif %}
-
-                                                        {% if item.post_video is null %}
-                                                            {% if item.post_images|length == 1  %}<!--1 photo -->
-                                                                <div>
-                                                                    <a  href="{{ asset('images/post/') }}{{ item.post_images|first }}" data-max-width="1000" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ item.post_images|first }}" id="post_img" class="post-1img img-responsive"></a>
-                                                                </div>
-                                                            {% endif %}<!--end 1 photo-->
-
-                                                            {% if item.post_images|length == 2 or item.post_images|length == 3   %}<!--2 or 3 photo -->
-                                                                <div>
-                                                                    {% for img in item.post_images %}
-                                                                        <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.post_images|length == 2 %}class="img-responsive post-2-img" {% else %}class="post-3-img img-responsive"{% endif %}></a>
-                                                                    {% endfor %}
-                                                                </div>
-                                                            {% endif %}<!--end 2 or 3 photo -->
-
-                                                            {% if item.post_images|length > 3   %} <!--more than 3 photo -->
-                                                                <div>
-                                                                    {% for img in item.post_images[0:2]  %}
-                                                                        <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
-                                                                    {% endfor %}
-
-                                                                    <a  href="{{ asset('images/post/') }}{{ item.post_images[2] }}" data-toggle="lightbox"  data-gallery="{{ item.id }}">
-                                                                        <div class="post-3imgvid-wrapblack">
-
-                                                                            <img src="{{ asset('images/post/') }}{{ item.post_images[2] }}"  class="post-3imgvid-blackimg img-responsive">
-
-                                                                            <div class="post-3imgvid-count">
-                                                                                +{{ item.post_images|length - 2 }}
-                                                                            </div>
-                                                                        </div>
-                                                                    </a>
-                                                                    <!-- elements not showing, use data-remote -->
-                                                                    {% for img in item.post_images[3:item.post_images|length] %}
-                                                                        <div data-toggle="lightbox" data-gallery="{{ item.id }}" data-remote="{{ asset('images/post/') }}{{ img }}" ></div>
-                                                                    {% endfor %}
-                                                                </div>
-                                                            {% endif %}<!--more than 3 photo -->
-                                                        {% endif %}
-
-
-                                                    </div>
-                                                </p>
-                                            </div>
-                                        </div>
-                                       {% endif %}
-                                       {% if item.type == 'pan' %}
-                                       {% endif %}
+                                                               <!-- display post content -->
+                                                               <p class="fb-user-status">
+                                                                   <div style="word-wrap:break-word">
+                                                                     <small>{{ item.object.description }} </small>
+                                                                   </div>
+                                                                   <br>
+                                                               </p>
+                                                           </div>
+                                                        </div>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
                                     {% endfor %}
+                                    </ul>
                                 </div>
-                                <!--***************end Posts ***************-->
 
-                                <!--*************** Pans ***************-->
-                                <div class="tab-pane" id="panstab">
-                                    Pans
-                                </div>
-                                <!--***************end Pans ***************-->
                             </div>
                             <!--end Tab content -->
                         </div>
@@ -374,6 +268,7 @@
             });
         }
     </script>
+
 {% endblock %}
 
 

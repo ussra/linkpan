@@ -120,10 +120,10 @@ class ProfileController extends Controller
             $session->set('user_info',$temp);
 
             $this->getCountFollow($session);
-            $this->recentActivities($session);
-            //return new JsonResponse($this->generateUrl('profile'));
-            return $this->render('UserBundle::profile.html.twig');
+            $this->recentActivities($session,$user);
+
         }
+        return $this->render('UserBundle::profile.html.twig');
 
     }
 
@@ -146,12 +146,12 @@ class ProfileController extends Controller
     }
 
 
-    private function recentActivities($session){
+    private function recentActivities($session,$user){
         $currentUser = $this->getUser();
         $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery('SELECT d FROM UserBundle:ObjectShare d 
             Where d.user = :currentUser  ORDER BY d.id DESC  ')
-            ->setParameter('currentUser',$currentUser);
+            ->setParameter('currentUser',$user);
         $result = $query->getResult();
         $shares = array();
         if(sizeof($result)>0)
@@ -174,7 +174,7 @@ class ProfileController extends Controller
                         );
                         $temp = array(
                             'type'=> 'post',
-                            'post'=> $post,
+                            'object'=> $post,
                             'images'=>$images
                         );
                         array_push($shares,$temp);
@@ -188,7 +188,7 @@ class ProfileController extends Controller
                     {
                         $temp = array(
                             'type'=> 'pan',
-                            'pan'=>$pan
+                            'object'=>$pan
                         );
                         array_push($shares,$temp);
                     }
@@ -204,7 +204,7 @@ class ProfileController extends Controller
                         );
                         $temp = array(
                             'type'=> 'Group post',
-                            'post'=>$post,
+                            'object'=>$post,
                             'images'=>$images
                         );
                         array_push($shares,$temp);
@@ -214,5 +214,24 @@ class ProfileController extends Controller
         }
 
         $session->set('profile_recent_activities',$shares);
+    }
+
+
+
+    /**
+     * @Route("/linkpan/search_profile/delete_recent_activity",name="delete_recent_activity")
+     */
+    public function delete_recent_activityAction(Request $request)
+    {
+        //object
+        $repo = $this->getDoctrine()->getRepository('UserBundle:ObjectShare');
+        $object = $repo->findOneById($request->get('object'));
+        if(!is_null($object))
+        {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($object);
+            $em->flush();
+        }
+        return new JsonResponse('DONE');
     }
 }

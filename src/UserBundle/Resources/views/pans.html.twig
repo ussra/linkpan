@@ -47,6 +47,7 @@
             <td>
                 {% if pan.type == 'Discover' %}
                         {% if pan.pan_boost_type == 'Remove Boost' %}
+                            <!--<button type="submit" formmethod="post" formaction="{{ path('charts',{'post':pan.pan_id  })}}"  class="btn btn-success btn-xs " title="charts">State </button>-->
                             <button type="submit" formmethod="post" formaction="{{ path('remove_boost_pan',{'pan':pan.pan_id  }) }}"  class="btn btn-danger btn-xs removeBoost"  title="remove boosting"> remove boosting </button>
                         {% else %}
                             <button type="submit" formmethod="post" formaction="{{ path('boost_pan',{'pan':pan.pan_id  }) }}" class="btn btn-default btn-xs boost"  title="Boost" > Boost </button>
