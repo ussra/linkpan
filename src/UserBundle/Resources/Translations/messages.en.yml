@@ -124,6 +124,7 @@ Privacy : Private
 Price : Price
 Quantity_type: Quantity Type
 Next: Next
+please , choose the item to delete: please , choose the item to delete
 #end pans
 
 
@@ -199,7 +200,15 @@ Settings_Set_password : Set  password
 Password : Password
 Settings_deleacc: Delete your account
 Settings_deleacc_txt: Once you delete your account, there is no going back. Please be certain.
-
+Are you sure that you want to delete your account?: Are you sure that you want to delete your account?
+Please , wait a moment to verify your card informations: Please , wait a moment to verify your card informations
+Sorry we cannot insert this card , please retry again: Sorry we cannot insert this card , please retry again
+This card already exist !: This card already exist !
+Sorry , we cannot remove this card , please retry again: Sorry , we cannot remove this card , please retry again
+Card deleted: Card deleted
+please set your email !: please set your email !
+please set your email s password: please set your email s password
+we will invite your contacts to join linkpan , Thanks !: we will invite your contacts to join linkpan , Thanks !
 #end settings
 
 #BoostPost
@@ -241,9 +250,20 @@ SMART_R_txt : Assurance not only to you, but to the partners and audience who se
 SMART_T_txt : Limit your track records, are yo within the scope of achievable outcome ?
 Cost: Cost
 Cost_txt: These advertisements only run for $1.00 a day
-
-
 #end business solutions 
+
+#globe
+Welcome: 
+to Globe Pro of: to Globe Pro of
+Let me take you for a quick tour.: Let me take you for a quick tour.
+To be able to use this globe!: To be able to use this globe!
+You can rotate the globe.: You can rotate the globe.
+You can choose any country you want.: You can choose any country you want.
+You can see products from any country you clicked on.: You can see products from any country you clicked on.
+If you encounter any issues ensure that you use on of supported browsers: If you encounter any issues ensure that you use on of supported browsers
+Open: Open
+
+#end globe
 
 #fcc 
   #detail
@@ -551,3 +571,4 @@ SuspenTimepieces, Jewelry, Eyewearders: SuspenTimepieces, Jewelry, Eyewearders
 SuspAuto & Transportationenders: SuspAuto & Transportationenders
 TruLuggage, Bags & Casesck: TruLuggage, Bags & Casesck
 #end categories
+#NOT COMPLETED YET *********************************************************************************

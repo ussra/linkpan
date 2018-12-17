@@ -453,7 +453,7 @@
                                             <div class="fb-status-container fb-border">
                                                 <div class="fb-time-action">
                                                     {% if item.post_like_type == 'like' %}
-                                                        <a href="#like" id="like{{ item.id }}" onclick="like({{ item.id }},{{ item.likes_count }})" title="Like this" style="background-color: transparent !important;"><i class="fa fa-thumbs-o-up" ></i></a>
+                                                        <a href="#like" id="like{{ item.id }}" onclick="like({{ item.id }},{{ item.likes_count }})" title="like this" style="background-color: transparent !important;"><i class="fa fa-thumbs-o-up" ></i></a>
                                                         <a href="#dislike" id="dislike{{ item.id }}" onclick="dislike({{ item.id }},{{ item.likes_count }})" title="Dislike this" style="background-color: transparent !important; display: none;" ><i class="fa fa-thumbs-up" ></i></a>
                                                     {% else %}
                                                         <a href="#dislike" id="dislike{{ item.id }}" title="Dislike this" onclick="dislike({{ item.id }},{{ item.likes_count }})" style="background-color: transparent !important;"><i class="fa fa-thumbs-up" ></i></a>
@@ -485,7 +485,7 @@
                                                     {% if item.post_like_type == 'dislike' %}
                                                         <div id="youitem{{ item.id }}" style="display: inline;"><b style="display: inline;">  {{'You'|trans}}</b> {% if item.likes_count == 0 %}<small style="display: inline;">{{'like this'|trans}}</small>{% endif %} </div>
                                                     {% else %}
-                                                        <div id="youitem{{ item.id }}" style="display: none;"><b style="display: inline;"> {{'You'|trans}}</b> {% if item.likes_count == 0 %}<small style="display: inline;">{{' like this'|trans}}</small>{% endif %} </div>
+                                                        <div id="youitem{{ item.id }}" style="display: none;"><b style="display: inline;"> {{'You'|trans}}</b> {% if item.likes_count == 0 %}<small style="display: inline;">{{'like this'|trans}}</small>{% endif %} </div>
                                                     {% endif %}
 
                                                     {% if item.likes_count > 1 %}
@@ -1212,7 +1212,7 @@
         $(window).on("navigate", function (event, data) {
             var direction = data.state.direction;
             if (direction == 'back') {
-                swal('{{"back"|trans}}')
+                swal('{{"Back"|trans}}')
             }
         });
     </script>

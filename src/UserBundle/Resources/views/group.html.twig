@@ -73,7 +73,8 @@
                                             <i style="color:black" class="fa fa-ellipsis-h"></i>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a id="deletpostbtn" href="{{ path('delete_post',{'post': item.post.id }) }}">Delet</a></li>
+                                            <li style="display:none"><a id="deletpostbtn" href="{{ path('delete_post',{'post': item.post.id }) }}">Delet</a></li>
+                                            <li><a onclick="deletpostfunc()" href="{{ path('delete_post',{'post': item.post.id }) }}">Delet</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -335,7 +336,7 @@
                     </div>
                 {% endfor %}
             {% else %}
-                <h3>Sorry there's no posts to display now !</h3>
+                <h3 class="text-center">Sorry there's no posts to display now !</h3>
             {% endif %}
         </div>
     </div>
@@ -453,9 +454,23 @@
 
 
 {% block scripts %}
-    <script>
+    <script> 
+    function clickdeletcmnt(){
+            swal({
+            title: "Are you sure?",
+            text: "Are you sure that you want to exit delet this comment ?",
+            icon: "warning",
+            buttons: ["NO", "YES !"],
+            dangerMode: true,
+            })
+            .then(willDelete => {
+                if (willDelete) {
+                    document.getElementById("deletcmntbtn").click();
+                }
+            });
+        }
+
         function deletpostfunc(){
-            alert('ff');
             swal({
             title: "Are you sure?",
             text: "Are you sure that you want to exit delet this post ?",
