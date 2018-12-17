@@ -4,14 +4,32 @@ namespace PublicBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class LinkpanController extends Controller
 {
+
+    private function GetNewpans(){
+        $em = $this->getDoctrine()->getManager();
+        $session = new Session();
+        $query = $em->createQuery(
+            '
+                SELECT DISTINCT p FROM UserBundle:Pan p
+                WHERE p.type = :type 
+                ORDER BY p.id DESC
+            '
+        )->setParameter('type', 'Discover');
+        $pans = $query->setMaxResults(6)->getResult();
+        $session->set('DiscoverPans',$pans);
+    }
     /**
      * @Route("{_locale}/linkpan",name="linkpan")
      */
     public function indexAction()
     {
+        // get pans
+        $this->GetNewpans();
+        //
         return $this->render('::base.html.twig');
     }
 

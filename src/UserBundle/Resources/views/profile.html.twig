@@ -98,7 +98,6 @@
                                 <div class="tab-pane active" id="home-r">
                                     <div class="col-12">
                                         <ul class="list-unstyled msg_list">
-                                            {{dump(app.session.get('profile_recent_activities'))}}
 
                                         </ul>
                                     </div>
@@ -171,39 +170,40 @@
                              <!-- Tab content -->
                              <div class="tab-content">
                                 <div class="tab-pane active" id="poststab">
-                                    {% for item in app.session.get('profile_recent_activities') %}
+                                    <ul class="list-unstyled msg_list">
+                                        {% for item in app.session.get('profile_recent_activities') %}
                                         {% if item.type == 'post' or item.type == 'Group post' %}
-                                            <li>
+                                            <li id="object_{{ item.object.id }}">
                                                 <i>Shared a post : </i>
                                                 <a href="{{ path('discover_post',{'post':item.object.id}) }}">
-                                                            <span class="message">
-                                                                <div class="panel" style="margin-top: 2.5%;">
-                                                                   <div class="panel-body">
-                                                                       <!-- Image -->
-                                                                       <div class="fb-user-thumb" style="display:inline">
-                                                                           {% if item.object.user.image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.object.user.image  %}{% endif %}
-                                                                           <a><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
-                                                                       </div>
-                                                                       <div class="fb-user-details">
-                                                                           <h3><a class="#">{{ item.object.user.firstname }} {{ item.object.user.lastname }}</a> </h3>
-                                                                       </div>
-                                                                       <div class="clearfix"></div>
+                                                    <span class="message">
+                                                        <div class="panel" style="margin-top: 2.5%;">
+                                                           <div class="panel-body">
+                                                               <!-- Image -->
+                                                               <div class="fb-user-thumb" style="display:inline">
+                                                                   {% if item.object.user.image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.object.user.image  %}{% endif %}
+                                                                   <a><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
+                                                               </div>
+                                                               <div class="fb-user-details">
+                                                                   <h3><a class="#">{{ item.object.user.firstname }} {{ item.object.user.lastname }}</a> </h3>
+                                                               </div>
+                                                               <div class="clearfix"></div>
 
-                                                                       <!-- display post content -->
-                                                                       <p class="fb-user-status">
-                                                                           <div style="word-wrap:break-word">
-                                                                               {{ item.object.content }} <small>
-                                                                           </div>
-                                                                           <br>
-                                                                       </p>
+                                                               <!-- display post content -->
+                                                               <p class="fb-user-status">
+                                                                   <div style="word-wrap:break-word">
+                                                                       {{ item.object.content }} <small>
                                                                    </div>
-                                                                </div>
-                                                            </span>
+                                                                   <br>
+                                                               </p>
+                                                           </div>
+                                                        </div>
+                                                    </span>
                                                 </a>
                                             </li>
                                         {% endif %}
                                         {% if item.type == 'pan' %}
-                                            <li>
+                                            <li id= "object_{{ item.object.id }}">
                                                 <i>Shared a pan : </i>
                                                 <a href = "{{ path('discover_pan',{'pan': item.object.id }) }}">
                                                     <span class="message">
@@ -220,7 +220,7 @@
                                                                <!-- display post content -->
                                                                <p class="fb-user-status">
                                                                    <div style="word-wrap:break-word">
-                                                                       {{ item.object.description }} <small>
+                                                                     <small>{{ item.object.description }} </small>
                                                                    </div>
                                                                    <br>
                                                                </p>
@@ -231,6 +231,7 @@
                                             </li>
                                         {% endif %}
                                     {% endfor %}
+                                    </ul>
                                 </div>
 
                             </div>
@@ -267,6 +268,7 @@
             });
         }
     </script>
+
 {% endblock %}
 
 

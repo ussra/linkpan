@@ -200,7 +200,7 @@
                                 </a>
                             </div>
                             <div class="text-center">
-                                <span style="color: white">{{'pub_alreadyhaveacc'|trans }}</span> &nbsp;<a  class="checkboxlink"> {{'signin_SIGN_IN'|trans }} </a>
+                                <span style="color: white">{{'pub_alreadyhaveacc'|trans }}</span> &nbsp;<a  class="checkboxlink" href="{{ path('signin') }}"> {{'signin_SIGN_IN'|trans }} </a>
                             </div>
                         </form>
                          <!-- ******************** 
@@ -239,42 +239,42 @@
                     <div class="col-md-4">
                         <div class="banner_item align-items-center" style="background-image:url({{ asset('scripts/img/agriculture.jpg') }})">
                             <div class="banner_category">
-                                <a>{{'pub_AGRICULTURE'|trans }}</a>
+                                <a href="{{ path('signup') }}">{{'pub_AGRICULTURE'|trans }}</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="banner_item align-items-center" style="background-image:url({{ asset('scripts/img/banner_2.jpg') }})">
                             <div class="banner_category">
-                                <a>{{'pub_ACCESSOIRIES'|trans }}</a>
+                                <a href="{{ path('signup') }}">{{'pub_ACCESSOIRIES'|trans }}</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="banner_item align-items-center" style="background-image:url({{ asset('scripts/img/electronics.jpg') }})">
                             <div class="banner_category">
-                                <a>{{'pub_ELECTRONICS'|trans }}</a>
+                                <a href="{{ path('signup') }}">{{'pub_ELECTRONICS'|trans }}</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="banner_item align-items-center" style="background-image:url({{ asset('scripts/img/construction.jpg') }})">
                             <div class="banner_category">
-                                <a>{{'pub_TOOLS'|trans }}</a>
+                                <a  href="{{ path('signup') }}">{{'pub_TOOLS'|trans }}</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="banner_item align-items-center" style="background-image:url({{ asset('scripts/img/chemicals.jpg') }})">
                             <div class="banner_category">
-                                <a>{{'pub_CHEMICALAS'|trans }}</a>
+                                <a  href="{{ path('signup') }}">{{'pub_CHEMICALAS'|trans }}</a>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="banner_item align-items-center">
                             <div class="banner_category">
-                                <a>{{'pub_DISCOVER_MORE'|trans }}</a>
+                                <a href="{{ path('signup') }}">{{'pub_DISCOVER_MORE'|trans }}</a>
                             </div>
                         </div>
                     </div>
@@ -283,7 +283,7 @@
         </div>
 
         <!-- New Arrivals -->
-
+        {{ dump(app.session.get('DiscoverPans')) }}
         <div class="new_arrivals">
             <div class="container">
                 <div class="row">
@@ -294,58 +294,26 @@
                     </div>
                 </div>
                 <div class="row align-items-center">
-                    <div class="col text-center">
-                        <div class="new_arrivals_sorting">
-                            <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
-                                <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">{{'all'|trans }}</li>
-                                <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".agriculture">{{'pub_AGRICULTURE'|trans }}</li>
-                                <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".accessories">{{'pub_ACCESSOIRIES'|trans }}</li>
-                                <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".electro">{{'pub_ELECTRONICS'|trans }}</li>
-                            </ul>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
-                            <a href="">
-                                <div class="product-item electro">
-                                    <div class="product discount product_filter">
+                            {% for item in app.session.get('DiscoverPans') %}
+                                <div class="product-item agriculture">
+                                    <div class="product product_filter">
                                         <div class="product_image">
-                                            <img src={{ asset('scripts/img/fujifilm.jpg') }} width="10">
+                                            <img src="{{ asset('images/pans/') }}{{ item.image }}" >
                                         </div>
-                                        <div class="favorite favorite_left"></div>
-                                        <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
                                         <div class="product_info">
-                                            <h6 class="product_name">
-                                                <a href="">Fujifilm X100T 16 MP Digital Camera (Silver)</a>
-                                            </h6>
-
-                                            <div class="product_price">$520.00<span>$590.00</span></div>
+                                            <h6 class="product_name"><a href="single.html">{{ item.name|upper }} , {{ item.description }}</a></h6>
+                                            <div class="product_price">${{ item.price }}</div>
                                         </div>
                                     </div>
-                                    <div class="red_button add_to_cart_button"><a href="#" onclick="return false;">{{'pub_Details'|trans }}</a></div>
+                                    <div class="red_button add_to_cart_button"><a href="#">{{'pub_Details'|trans }}</a></div>
                                 </div>
-                            </a>
 
-                            <!-- Product 2 -->
-
-                            <div class="product-item agriculture">
-                                <div class="product product_filter">
-                                    <div class="product_image">
-                                        <img src={{ asset('scripts/img/fujifilm.jpg') }} alt="">
-                                    </div>
-                                    <div class="favorite"></div>
-                                    <div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>
-                                    <div class="product_info">
-                                        <h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
-                                        <div class="product_price">$610.00</div>
-                                    </div>
-                                </div>
-                                <div class="red_button add_to_cart_button"><a href="#">{{'pub_Details'|trans }}</a></div>
-                            </div>
-
-
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
