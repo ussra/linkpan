@@ -1,0 +1,82 @@
+                        <!--************************ post and pans ************************-->
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <!-- Nav tabs -->
+                            <div> Recent Activity </div>
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#poststab" data-toggle="tab">Posts</a>
+                                </li>
+                            </ul>
+                            <!--end Nav tabs -->
+
+                             <!-- Tab content -->
+                             <div class="tab-content">
+                                <div class="tab-pane active" id="poststab">
+                                    <ul class="list-unstyled msg_list">
+                                        {% for item in app.session.get('profile_recent_activities') %}
+                                        {% if item.type == 'post' or item.type == 'Group post' %}
+                                            <li id="object_{{ item.object.id }}">
+                                                <i>Shared a post : </i>
+                                                <a href="{{ path('discover_post',{'post':item.object.id}) }}">
+                                                    <span class="message">
+                                                        <div class="panel" style="margin-top: 2.5%;">
+                                                           <div class="panel-body">
+                                                               <!-- Image -->
+                                                               <div class="fb-user-thumb" style="display:inline">
+                                                                   {% if item.object.user.image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.object.user.image  %}{% endif %}
+                                                                   <a><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
+                                                               </div>
+                                                               <div class="fb-user-details">
+                                                                   <h3><a class="#">{{ item.object.user.firstname }} {{ item.object.user.lastname }}</a> </h3>
+                                                               </div>
+                                                               <div class="clearfix"></div>
+
+                                                               <!-- display post content -->
+                                                               <p class="fb-user-status">
+                                                                   <div style="word-wrap:break-word">
+                                                                       {{ item.object.content }} <small>
+                                                                   </div>
+                                                                   <br>
+                                                               </p>
+                                                           </div>
+                                                        </div>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                        {% if item.type == 'pan' %}
+                                            <li id= "object_{{ item.object.id }}">
+                                                <i>Shared a pan : </i>
+                                                <a href = "{{ path('discover_pan',{'pan': item.object.id }) }}">
+                                                    <span class="message">
+                                                        <div class="panel" style="margin-top: 2.5%;">
+                                                           <div class="panel-body">
+                                                               <!-- If you want to display image of the pan use :
+                                                                  item.object.image
+                                                               -->
+                                                               <div class="fb-user-details">
+                                                                   <h3><a class="#">{{ item.object.name }} {{ item.object.othername }}</a> </h3>
+                                                               </div>
+                                                               <div class="clearfix"></div>
+
+                                                               <!-- display post content -->
+                                                               <p class="fb-user-status">
+                                                                   <div style="word-wrap:break-word">
+                                                                     <small>{{ item.object.description }} </small>
+                                                                   </div>
+                                                                   <br>
+                                                               </p>
+                                                           </div>
+                                                        </div>
+                                                    </span>
+                                                </a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+
+                            </div>
+                            <!--end Tab content -->
+                        </div>
+                        <!--************************ end post and pans ************************-->

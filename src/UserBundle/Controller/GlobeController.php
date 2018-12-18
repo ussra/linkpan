@@ -11,14 +11,14 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class GlobeController extends Controller
 {
     /**
-     * @Route("/linkpan/globe/discover",name="globe_pro_discover")
+     * @Route("{_locale}/linkpan/globe/discover",name="globe_pro_discover")
      */
     public function globe_pro_discoverAction(Request $request)
     {
         return $this->render('UserBundle::discover.html.twig');
     }
     /**
-     * @Route("/linkpan/globe/filter",name="filter_by_country")
+     * @Route("{_locale}/linkpan/globe/filter",name="filter_by_country")
      */
     public function filterByCountryAction(Request $request)
     {

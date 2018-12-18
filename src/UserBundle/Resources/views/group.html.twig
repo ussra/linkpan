@@ -15,16 +15,66 @@
 {% block pageContent %}
     {% set view_group = app.session.get('view_group') %}
 
+<style>
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
 
+label {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 50px;
+	height: 30px;
+	background: grey;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+
+label:after {
+	content: '';
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+
+input:checked + label {
+	background: rgb(26, 187, 156);
+}
+
+input:checked + label:after {
+	left: calc(100% - 5px);
+	transform: translateX(-100%);
+}
+
+label:active:after {
+	width: 30px;
+}
+
+// centering
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+</style>
     <div style="margin-top:80px">
         <div class="container bootstrap snippet">
             <div style="float: right;margin-top: 5px">
-                <a ><button type="button" class="btn btn-success btn-sm"><i class="fa fa-comments"  title="Join the Group Chat"></i></button></a>
+                <a ><button type="button" class="btn btn-success btn-sm"><i class="fa fa-comments"  title="{{'Join the Group Chat'|trans}}"></i></button></a>
                 <a ><button type="button" class="btn btn-sm" onclick="$('#configModal').modal('show')"><i class="fa fa-cog"></i></button></a>
             </div>
             <div class="panel profile-info">
                 <form id="postform" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data" method="post" action="{{ path('save_post',{'group': view_group.group.id } ) }}">
-                    <textarea style="border:none" class="form-control input-lg p-text-area" rows="2" placeholder="What's in your mind today?" name="post_description" id="description" required></textarea>
+                    <textarea style="border:none" class="form-control input-lg p-text-area" rows="2" placeholder="{{'What’s in your mind today?'|trans}}" name="post_description" id="description" required></textarea>
                     <div id="cover">
                         <div class="gallery"></div>
                         <div id="add_photo"><i class="fa fa-plus" aria-hidden="true"></i></div>
@@ -35,7 +85,7 @@
                             <div class="form-inline">
                                 <img src="{{ asset('Userscripts/img/upimg.svg') }}" width="20px" height="20px" style="display:inline" onclick="document.getElementById('gallery-photo-add').click();">
                                 <input type="file"  name="uploadimage[]"  id="gallery-photo-add" style="display:none" accept="image/*" multiple>
-                                <h9 id="upload_title">Photo</h9>
+                                <h9 id="upload_title">{{'Photo'|trans}}</h9>
                             </div>
                         </div>
                         <!--Video -->
@@ -43,13 +93,13 @@
                             <div class="form-inline">
                                 <img src="{{ asset('Userscripts/img//upvideo.svg') }}" id="video_prev" width="20px" height="20px" onclick="document.getElementById('post_video').click();">
                                 <input type="file" id="post_video" name="post_video"  onchange="readVideoURL(this);"  accept="video/mp4" style="display:none;">
-                                <h9 id="upload_Video_title">Video</h9>
+                                <h9 id="upload_Video_title">{{'Video'|trans}}</h9>
                             </div>
                         </div>
                         <!--Video -->
                     </div><!--end upload -->
 
-                    <button type="submit" class="btn btn-info" id="postpan" >Post</button>
+                    <button type="submit" class="btn btn-info" id="postpan">{{'Post'|trans}}</button>
 
                 </form>
             </div>
@@ -74,7 +124,7 @@
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right">
                                             <li style="display:none"><a id="deletpostbtn" href="{{ path('delete_post',{'post': item.post.id }) }}">Delet</a></li>
-                                            <li><a onclick="deletpostfunc()" href="{{ path('delete_post',{'post': item.post.id }) }}">Delet</a></li>
+                                            <li><a onclick="deletpostfunc()" href="{{ path('delete_post',{'post': item.post.id }) }}">{{'Delet'|trans}}</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -220,8 +270,8 @@
                                         <a href="#like" id="like{{ item.post.id }}" onclick="like({{ item.post.id }},item.likes)" title="Like this" style="background-color: transparent !important;"><i class="fa fa-thumbs-o-up" ></i></a>
                                         <a href="#dislike" id="dislike{{ item.post.id }}" onclick="dislike({{ item.post.id }},item.likes)" title="Dislike this" style="background-color: transparent !important; display: none;" ><i class="fa fa-thumbs-up" ></i></a>
                                     {% else %}
-                                        <a href="#dislike" id="dislike{{ item.post.id }}" title="Dislike this" onclick="dislike({{ item.post.id }},item.likes)" style="background-color: transparent !important;"><i class="fa fa-thumbs-up" ></i></a>
-                                        <a href="#like" id="like{{ item.post.id }}" title="Like this" onclick="like({{ item.post.id }},item.likes)"  style="background-color: transparent !important; display: none;"><i class="fa fa-thumbs-o-up" ></i></a>
+                                        <a href="#dislike" id="dislike{{ item.post.id }}" title="{{'Dislike this'|trans}}" onclick="dislike({{ item.post.id }},item.likes)" style="background-color: transparent !important;"><i class="fa fa-thumbs-up" ></i></a>
+                                        <a href="#like" id="like{{ item.post.id }}" title="{{'like this'|trans}}" onclick="like({{ item.post.id }},item.likes)"  style="background-color: transparent !important; display: none;"><i class="fa fa-thumbs-o-up" ></i></a>
                                     {% endif %}
                                     <span></span>
                                     {% if view_group.group.privacy == 'public' %}
@@ -230,7 +280,7 @@
                                                 <i class="fa fa-share fa-lg"></i>
                                             </button>
                                             <ul class="dropdown-menu">
-                                                <li><a href="#share_post" onclick="sharePost({{ item.post.id }})" title="Send this to friend or post it on your time line">{{'on your timeline'|trans}}</a></li>
+                                                <li><a href="#share_post" onclick="sharePost({{ item.post.id }})" title="{{'end this to friend or post it on your time line'|trans}}S">{{'on your timeline'|trans}}</a></li>
                                                 <!--<li role="separator" class="divider"></li>
                                                 <li><a href="#" class="share_facebook" data-url="https://www.youtube.com/watch?v=mAJeK283j0I"><i class="fa fa-facebook"></i></a></li>
                                                  <li><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -247,7 +297,7 @@
                                     {% if item.like_type == 'dislike' %}
                                         <div id="youitem{{ item.post.id }}" style="display: inline;"><b style="display: inline;">  {{'You'|trans}}</b> {% if item.likes == 0 %}<small style="display: inline;">{{'like this'|trans}}</small>{% endif %} </div>
                                     {% else %}
-                                        <div id="youitem{{ item.post.id }}" style="display: none;"><b style="display: inline;"> {{'You'|trans}}</b> {% if item.likes == 0 %}<small style="display: inline;">{{' like this'|trans}}</small>{% endif %} </div>
+                                        <div id="youitem{{ item.post.id }}" style="display: none;"><b style="display: inline;"> {{'You'|trans}}</b> {% if item.likes == 0 %}<small style="display: inline;">{{'like this'|trans}}</small>{% endif %} </div>
                                     {% endif %}
                                 </div>
 
@@ -325,7 +375,7 @@
                                             <spana  class="input-group-btn">
                                                 <img src="{{ asset('images/profile/') }}{{ currentimage }}" alt="{{ user.firstname }}{{ user.lastname }}" class="img-circle" style="width: 45px;height: 45px;object-fit: cover">
                                             </spana>
-                                            <textarea class="form-control" placeholder="{{'Write a comment...'|trans}}" name="" id="contentComment{{ item.post.id }}" style="resize:none;border-radius: 30px;margin-left: 5px;"></textarea>
+                                            <textarea class="form-control" placeholder="{{'write a comment...'|trans}}" name="" id="contentComment{{ item.post.id }}" style="resize:none;border-radius: 30px;margin-left: 5px;"></textarea>
                                         </div>
                                         <button type="button" class="btn btn-primary" style="float: right;border-radius: 30px" onclick="postComment({{ item.post.id }})">{{'Comment'|trans}}</button>
                                         <br><br>
@@ -336,7 +386,7 @@
                     </div>
                 {% endfor %}
             {% else %}
-                <h3 class="text-center">Sorry there's no posts to display now !</h3>
+                <h3 class="text-center">{{'Sorry there’s no posts to display now !'|trans}}</h3>
             {% endif %}
         </div>
     </div>
@@ -353,28 +403,28 @@
                     <div class="modal-body">
                         <div class="" role="tabpanel" data-example-id="togglable-tabs">
                             <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                                <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">About</a>
+                                <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">{{'About'|trans}}</a>
                                 </li>
-                                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Members ({{ view_group.members|length }})</a>
+                                <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">{{'Members'|trans}} ({{ view_group.members|length }})</a>
                                 </li>
                                 {% if view_group.group.user.id == user.id %}
-                                    <li role="presentation" class=""><a href="#tab_content3" role="tab" id="config-tab" data-toggle="tab" aria-expanded="false">Configuration</a>
+                                    <li role="presentation" class=""><a href="#tab_content3" role="tab" id="config-tab" data-toggle="tab" aria-expanded="false">{{'Configuration'|trans}}</a>
                                     </li>
                                 {% endif %}
                             </ul>
                             <div id="myTabContent" class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
                                     <ul class="list-unstyled timeline">
-                                        <li>
+                                     <li>
                                             <div class="block">
                                                 <div class="tags">
                                                     <a href="" class="tag">
-                                                        <span>Created By</span>
+                                                        <span>{{'Private'|trans}}</span>
                                                     </a>
                                                 </div>
                                                 <div class="block_content">
                                                     <div class="byline">
-                                                        <span>on  {{ view_group.group.creationDate }} </span> by {{ view_group.group.user.lastname }} {{ view_group.group.user.firstname }} <a> <!--(<strong>ACE MEMBER</strong>)--></a>
+                                                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
                                                     </div>
                                                     </p>
                                                 </div>
@@ -384,7 +434,22 @@
                                             <div class="block">
                                                 <div class="tags">
                                                     <a href="" class="tag">
-                                                        <span>Description</span>
+                                                        <span>{{'Created By'|trans}}</span>
+                                                    </a>
+                                                </div>
+                                                <div class="block_content">
+                                                    <div class="byline">
+                                                        <span> {{'on,'|trans}}   {{ view_group.group.creationDate }} </span> ,{{'by'|trans}}  {{ view_group.group.user.lastname }} {{ view_group.group.user.firstname }} <a> <!--(<strong>ACE MEMBER</strong>)--></a>
+                                                    </div>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="block">
+                                                <div class="tags">
+                                                    <a href="" class="tag">
+                                                        <span>{{'Description'|trans}}</span>
                                                     </a>
                                                 </div>
                                                 <div class="block_content">
@@ -416,7 +481,7 @@
                                                     <td>{{ item.user.firstname }} {{ item.user.lastname }}</td>
                                                     <td>
                                                         {% if view_group.group.user.id == user.id %}
-                                                            <button type="button" class="btn btn-round btn-danger btn-xs remove" title="remove from group" onclick="removeMember({{ view_group.group.id }},{{ item.user.id }})"><i class="fa fa-minus"></i></button>
+                                                            <button type="button" class="btn btn-round btn-danger btn-xs remove" title="{{'remove from group'|trans}}" onclick="removeMember({{ view_group.group.id }},{{ item.user.id }})"><i class="fa fa-minus"></i></button>
                                                         {% endif %}
                                                     </td>
                                                 </tr>
@@ -430,10 +495,10 @@
                                             <input type="file" name="image"  class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="name"  placeholder="Change name" value="{{ view_group.group.name }}" class="form-control" required>
+                                            <input type="text" name="name"  placeholder="{{'Change name'|trans}}" value="{{ view_group.group.name }}" class="form-control" required>
                                         </div>
                                         <div class="form-group">
-                                            <textarea  placeholder="Update Descreption" name="description"  class="form-control" required>{{ view_group.group.description }}</textarea>
+                                            <textarea  placeholder="{{'Update Descreption'|trans}}" name="description"  class="form-control" required>{{ view_group.group.description }}</textarea>
                                         </div>
                                         <div class="form-group pull-right">
                                             <button type="submit" class="btn btn-success" ><i class="fa fa-check"></i></button>
@@ -444,7 +509,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{'close'|trans}}</button>
                     </div>
                 </div>
 
@@ -457,10 +522,10 @@
     <script> 
     function clickdeletcmnt(){
             swal({
-            title: "Are you sure?",
-            text: "Are you sure that you want to exit delet this comment ?",
+            title: "{{'Are you sure?'|trans}}",
+            text: "{{'Are you sure that you want to exit delet this comment ?'|trans}}",
             icon: "warning",
-            buttons: ["NO", "YES !"],
+            buttons: ["{{'NO !'|trans}}", "{{'YES !'|trans}}"],
             dangerMode: true,
             })
             .then(willDelete => {
@@ -472,10 +537,10 @@
 
         function deletpostfunc(){
             swal({
-            title: "Are you sure?",
-            text: "Are you sure that you want to exit delet this post ?",
+            title: "{{'Are you sure?'|trans}}",
+            text: "{{'Are you sure that you want to exit delet this post ?'|trans}}",
             icon: "warning",
-            buttons: ["NO", "YES !"],
+            buttons: ["{{'NO !'|trans}}", "{{'YES !'|trans}}"],
             dangerMode: true,
             })
             .then(willDelete => {
@@ -488,10 +553,10 @@
         function removeMember (group,user)
         {
         swal({
-            title: "Are you sure?",
-            text: "Are you sure that you want to remove this member ?",
+            title: "{{'Are you sure?'|trans}}",
+            text: "{{'Are you sure that you want to remove this member ?'|trans}}",
             icon: "warning",
-            buttons: ["NO", "YES !"],
+            buttons: ["{{'NO !'|trans}}", "{{'YES !'|trans}}"],
             dangerMode: true,
             })
             .then(willDelete => {
