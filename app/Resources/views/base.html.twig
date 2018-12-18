@@ -54,7 +54,7 @@
                                         </a>
                                         <ul class="account_selection">
                                             <li><a class="link-hover" href="{{ path('signin') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>{{'signin_SIGN_IN'|trans }}</a></li>
-                                            <li><a class="link-hover" href="{{ path('signup') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>{{'pub_sign_up'|trans }}</a></li>
+                                            <li><a class="link-hover"><i class="fa fa-user-plus" aria-hidden="true"></i>{{'pub_sign_up'|trans }}</a></li>
                                         </ul>
                                     </li>
                                     <li class="account">
@@ -233,7 +233,7 @@
         </div>
         <!-- Banner -->
 
-        <div class="banner" style="margin-top: 10%">
+        <!--<div class="banner" style="margin-top: 10%">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
@@ -280,11 +280,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <!-- New Arrivals -->
-        {{ dump(app.session.get('DiscoverPans')) }}
-        <div class="new_arrivals">
+        
+        <!--<div class="new_arrivals">
             <div class="container">
                 <div class="row">
                     <div class="col text-center">
@@ -318,11 +318,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
 
         <!-- Deal of the week -->
 
-        <div class="deal_ofthe_week">
+       <!-- <div class="deal_ofthe_week">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
@@ -341,7 +341,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>-->
     {% endblock %}
 
     <!-- Newsletter -->

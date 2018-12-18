@@ -27,7 +27,7 @@ Delet: Delet
 BOOSTED: BOOSTED
 on your timeline: on your timeline
 You: You
-like this:  like this
+like this: like this
 and: and
 more comments: more comments
 less comments: less comments
@@ -42,7 +42,7 @@ annually: annually
 Upgrade: Upgrade
 Password: Password
 Confirm: Confirm
-Write a comment...: Write a comment...
+write a comment...: Write a comment...
 Are you sure?: Are you sure ?
 Are you sure that you want to delete this comment ?: Are you sure that you want to delete this comment ?
 YES !: YES !
@@ -76,7 +76,7 @@ discover_Theres_nopans: Currently , There s no pans to display !
 #end discover
 
 #discover
-You can't rate your pan: You can't rate your pan
+You can’t rate your pan: You can’t rate your pan
 Detail: Detail
 Sorry there s no pans to discover: Sorry there s no pans to discover
 Load All: Load All
@@ -253,7 +253,7 @@ Cost_txt: These advertisements only run for $1.00 a day
 #end business solutions 
 
 #globe
-Welcome: 
+Welcome: Welcome
 to Globe Pro of: to Globe Pro of
 Let me take you for a quick tour.: Let me take you for a quick tour.
 To be able to use this globe!: To be able to use this globe!
@@ -572,3 +572,50 @@ SuspAuto & Transportationenders: SuspAuto & Transportationenders
 TruLuggage, Bags & Casesck: TruLuggage, Bags & Casesck
 #end categories
 #NOT COMPLETED YET *********************************************************************************
+
+#Groups
+clear: clear
+Search Results: Search Results
+Opss looks like there’s no results.: Opss looks like there’s no results.
+Try to discover groups ..: Try to discover groups ..
+join group: join group
+Cancel join request: Cancel join request
+exit group: exit group
+Delete Group: Delete Group
+View Group: View Group
+You are not currently managing any group: You are not currently managing any group
+Currently there s no invites to manage: Currently there s no invites to manage
+View Group: View Group
+exit group: exit group
+Decline invitation: Decline invitation
+Accept invitation: Accept invitation
+Currently you are not joignin any group: Currently you are not joignin any group
+Are you sure that you want to exit this group ?: Are you sure that you want to exit this group ?
+Are you sure that you want to delete this group ?: Are you sure that you want to delete this group ?
+About: About
+Members: Members
+Configuration: Configuration
+Created By: Created By
+on, : on,
+by: by
+remove from group: remove from group
+Change name: Change name
+Update Descreption: Update Descreption
+Are you sure that you want to exit delet this comment ?: Are you sure that you want to exit delet this comment ?
+Are you sure that you want to remove this member ?: Are you sure that you want to remove this member ?
+Are you sure that you want to exit delet this post ?: Are you sure that you want to exit delet this post ?
+Join the Group Chat: Join the Group Chat
+Dislike this: Dislike this
+end this to friend or post it on your time line: end this to friend or post it on your time line
+Send this to friend or post it on your time line: Send this to friend or post it on your time line
+get more posts: get more posts
+Please , try again: Please , try again
+BACK TO LINKPAN: BACK TO LINKPAN
+Firefox 46+,Chrome 45+,: Firefox 46+,Chrome 45+,
+Safari 9.1+, Opera 38+.: Safari 9.1+, Opera 38+.
+Company name: Company name
+Are you sure that you want to block this user ?: Are you sure that you want to block this user ?
+Discover pans of: Discover pans of
+There s no pans to discover in: There s no pans to discover in 
+Private: Private
+You must activate your account: You must activate your account
