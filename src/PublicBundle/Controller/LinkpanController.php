@@ -64,4 +64,13 @@ class LinkpanController extends Controller
     {
         return $this->render('PublicBundle::privacy.html.twig');
     }
+
+
+    /**
+     * @Route("{_locale}/linkpan/terms",name="faqs")
+     */
+    public function faqsAction()
+    {
+        return $this->render('PublicBundle::faqs.html.twig');
+    }
 }
