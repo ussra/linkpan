@@ -5,160 +5,278 @@
 {% endblock %}
 
 {% block pageContent %}
+
+<style>
+#hidebtn{
+    display:none
+}
+@media (max-width: 575.98px) { 
+    #hidebtn{
+    display:block}
+}
+@media (max-width: 767.98px) { 
+     #hidebtn{
+    display:block}
+}
+ }
+</style>
     <div style="margin-top:50px">
         <div class="x_panel">
             <div class="x_title">
                 <div class="clearfix"></div>
             </div>
-            <div class="x_content">
+            <div class="x_content"><!-- x_content -->
+
                 {% set userProfile  = app.session.get('user_info') %}
-                <!-- User Informations -->
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 profile_left">
-                    <div class="profile_img">
-                        <div class="container" >
-                            {% if userProfile.user_image == '' %}
-                                {% set profileImage = 'default.png' %}
-                                {% else %}
-                                    {% set profileImage = userProfile.user_image %}
-                            {% endif %}
-                            <!-- Current avatar -->
-                            {% if userProfile.user_membership == 'dockies' %}
-                                <img class=" img-circle" src="{{ asset('images/profile/') }}{{ profileImage }}" id="img-main" height="200px" width="200px" style="position:absolute;">
-                                <img class=" img-circle" src="{{ asset('Userscripts/img/Ace/Border.png') }}" id="im-cover" height="200px" width="200px" style="position:relative;">
-                                {% else %}
-                                    <img class=" img-circle" src="{{ asset('images/profile/') }}{{ profileImage }}" id="img-main" height="200px" width="200px" style="position:static;">
-                                    <img class=" img-circle" src="{{ asset('Userscripts/img/Ace/Border.png') }}" id="im-cover" height="200px" width="200px" style="position:relative;display: none;">
-                            {% endif %}
-
-                        </div>
-                    </div>
-                    <div id="infos" class="row">
-                        <div class="text-left">
-                            <h3>{{ userProfile.user_first_name }} {{ userProfile.user_last_name }}</h3>
-                        </div>
-                        <ul class="list-unstyled user_data">
-                            {% if userProfile.user_adress is not null %}
-                                <li><i class="fa fa-map-marker user-profile-icon"></i>
-                                    {{ userProfile.user_adress }}
-                                </li>
-                            {% endif %}
-
-                            {% if userProfile.user_company_name is not null %}
-                                <li>
-                                    <i class="fa fa-briefcase user-profile-icon"></i>
-                                        {{ userProfile.user_company_name }}
-                                </li>
-                            {% endif %}
-
-                            {% if userProfile.user_website is not null %}
-                                <li class="m-top-xs">
-                                    <i class="fa fa-external-link user-profile-icon"></i>
-                                        <a href="{{ userProfile.user_website }}" target="_blank">userProfile.user_website</a>
-                                </li>
-                            {% endif %}
-                            <li>
-                                <i class="fa fa-envelope-o user-profile-icon"></i>
-                                {{ userProfile.user_email }}
-                            </li>
-                        </ul>
-                        {% if user.id != userProfile.user_id %}
-                            {% if userProfile.follow_result == 'follow' %}
-                                <a href="{{ path('follow',{'tofollow': userProfile.user_id }) }}"><button type="button" class="btn btn-default btn-xs follow" title="follow"  > <i class="fa fa-plus"></i> </button></a>
-                                {% else %}
-                                    <a href="{{ path('unfollow',{'unfollow': userProfile.user_id,'type':'profile' }) }}"><button type="button" class="btn btn-danger btn-xs" title="unfollow" > <i class="fa fa-minus"></i> </button></a>
-                            {% endif %}
-
-
-                            <button type="button" class="btn btn-success btn-xs" title="contact" > <i class="fa fa-comments-o"></i> </button>
-                            <a href="{{ (path('block',{'Toblock':userProfile.user_id})) }}"><button type="button" class="btn btn-danger btn-xs" title="block"> <i class="fa fa-ban"></i> </button></a>
-
-                        {% endif %}
-                    </div>
-
-                </div>
-                <!-- -->
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                    <div class="x_content" style="margin-left: 5%;">
-                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                            <!-- required for floating -->
-                            <!-- Nav tabs -->
-                            <ul class="nav nav-tabs tabs-right">
-                                <!--<li class="active"><a href="#home-r"  data-toggle="tab">Recent Activity</a>
-                                </li>-->
-                                <li><a href="#profile-r" data-toggle="tab">Followers</a>
-                                </li>
-                                <li><a href="#messages-r" data-toggle="tab">Following</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                            <!--******************* Tab panes *******************-->
-                            <div class="tab-content">
-                                <!--<div class="tab-pane active" id="home-r">
-                                    <div class="col-12">
-                                        <ul class="list-unstyled msg_list">
-
-                                        </ul>
-                                    </div>
-                                </div>-->
-
-                                <div class="tab-pane" id="profile-r">
-                                    <div class="row"> <!--group rows-->
-                                        {% if userProfile.followers is not empty %}
-                                            <h4><small>Followers : </small> {{ userProfile.followers|length }} </h4>
-                                            {% for follower in userProfile.followers %}
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center" >
-                                                    <div class="bord">
-                                                        {% if follower.follower_image is null %}
-                                                            {% set followerImage = 'default.png' %}
-                                                            {% else %}
-                                                                {% set followerImage = follower.follower_image%}
-                                                        {% endif %}
-                                                        <img src="{{ asset('images/profile/') }}{{ followerImage }}" width="100 " height="100"/>
-                                                        <h4>{{ follower.follower_first_name }} {{ follower.follower_last_name }}</h4>
-                                                        <div class=""><h5>{{ follower.follower_company_name }}</h5></div>
-                                                    </div>
-                                                </div>
-                                            {% endfor %}
-
-                                            {% else %}
-                                                <h4>No followers</h4>
-                                        {% endif %}
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="messages-r">
-                                    <div class="row"> <!--group rows-->
-                                        {% if userProfile.following is not empty %}
-                                            <h4><small>Followings : </small> {{ userProfile.following|length }} </h4>
-                                            {% for follower in userProfile.following %}
-                                                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 text-center" >
-                                                    <div class="bord">
-                                                        {% if follower.follower_image is null %}
-                                                            {% set followerImage = 'default.png' %}
-                                                        {% else %}
-                                                            {% set followerImage = follower.follower_image%}
-                                                        {% endif %}
-                                                        <img src="{{ asset('images/profile/') }}{{ followerImage }}" width="100 " height="100"/>
-                                                        <h4>{{ follower.follower_first_name }} {{ follower.follower_last_name }}</h4>
-                                                        <div class=""><h5>{{ follower.follower_company_name }}</h5></div>
-                                                    </div>
-                                                </div>
-                                            {% endfor %}
-
+                <!-- User Informations and followes-->
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <!--*************************** User Informations ***************************-->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="profile_img">
+                                <div class="container">
+                                    {% if userProfile.user_image == '' %}
+                                        {% set profileImage = 'default.png' %}
                                         {% else %}
-                                            <h4>No followings</h4>
-                                        {% endif %}
-                                    </div>
+                                            {% set profileImage = userProfile.user_image %}
+                                    {% endif %}
+                                    <!-- Current avatar -->
+                                    {% if userProfile.user_membership == 'dockies' %}
+                                        <img class=" img-circle" src="{{ asset('images/profile/') }}{{ profileImage }}" id="img-main" height="200px" width="200px" style="position:absolute;">
+                                        <img class=" img-circle" src="{{ asset('Userscripts/img/Ace/Border.png') }}" id="im-cover" height="200px" width="200px" style="position:relative;">
+                                        {% else %}
+                                            <img class=" img-circle" src="{{ asset('images/profile/') }}{{ profileImage }}" id="img-main" height="200px" width="200px" style="position:static;">
+                                            <img class=" img-circle" src="{{ asset('Userscripts/img/Ace/Border.png') }}" id="im-cover" height="200px" width="200px" style="position:relative;display: none;">
+                                    {% endif %}
+
                                 </div>
+                            </div>
+                            <div id="infos" class="row">
+                                <div class="text-left">
+                                    <h3>{{ userProfile.user_first_name }} {{ userProfile.user_last_name }}</h3>
+                                </div>
+                                <ul class="list-unstyled user_data">
+                                    {% if userProfile.user_adress is not null %}
+                                        <li><i class="fa fa-map-marker user-profile-icon"></i>
+                                            {{ userProfile.user_adress }}
+                                        </li>
+                                    {% endif %}
+
+                                    {% if userProfile.user_company_name is not null %}
+                                        <li>
+                                            <i class="fa fa-briefcase user-profile-icon"></i>
+                                                {{ userProfile.user_company_name }}
+                                        </li>
+                                    {% endif %}
+
+                                    {% if userProfile.user_website is not null %}
+                                        <li class="m-top-xs">
+                                            <i class="fa fa-external-link user-profile-icon"></i>
+                                                <a href="{{ userProfile.user_website }}" target="_blank">userProfile.user_website</a>
+                                        </li>
+                                    {% endif %}
+                                    <li>
+                                        <i class="fa fa-envelope-o user-profile-icon"></i>
+                                        {{ userProfile.user_email }}
+                                    </li>
+                                </ul>
+                                {% if user.id != userProfile.user_id %}
+                                    {% if userProfile.follow_result == 'follow' %}
+                                        <a href="{{ path('follow',{'tofollow': userProfile.user_id }) }}"><button type="button" class="btn btn-default btn-xs follow" title="follow"  > <i class="fa fa-plus"></i> </button></a>
+                                        {% else %}
+                                            <a href="{{ path('unfollow',{'unfollow': userProfile.user_id,'type':'profile' }) }}"><button type="button" class="btn btn-danger btn-xs" title="unfollow" > <i class="fa fa-minus"></i> </button></a>
+                                    {% endif %}
+
+
+                                    <button type="button" class="btn btn-success btn-xs" title="contact" > <i class="fa fa-comments-o"></i> </button>
+                                    <a href="{{ (path('block',{'Toblock':userProfile.user_id})) }}"><button type="button" class="btn btn-danger btn-xs" title="block"> <i class="fa fa-ban"></i> </button></a>
+
+                                {% endif %}
                             </div>
                         </div>
                     </div>
+                    <!--************************** end User Informations ***************************-->
+
+                     <!--*************************** User Followers and following ***************************-->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <!--followers ...  -->
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs">
+                                        <!--<li class="active"><a href="#home-r"  data-toggle="tab">Recent Activity</a>
+                                        </li>-->
+                                        <li><a href="#profile-r" data-toggle="tab">Followers</a>
+                                        </li>
+                                        <li><a href="#messages-r" data-toggle="tab">Following</a>
+                                        </li>
+                                    </ul>
+                                    <!-- End Nav tabs -->
+
+                                    <!--******************* Tab panes *******************-->
+                                    <div class="tab-content">
+                                        <!--<div class="tab-pane active" id="home-r">
+                                            <div class="col-12">
+                                                <ul class="list-unstyled msg_list">
+
+                                                </ul>
+                                            </div>
+                                        </div>-->
+                                        <!--********* followers Tab ******-->
+                                        <div class="tab-pane" id="profile-r">
+                                                {% if userProfile.followers is not empty %}
+                                                    <div style="padding-top:5px">
+                                                        <h4><small>Followers : </small> {{ userProfile.followers|length }} </h4>
+                                                        <div style="display:inline;float:right">
+                                                            <button  class="btn btn-info btn-sm" onclick="$('#profile-r').removeClass('active');" id="hidebtn">Hide</button>
+                                                        </div>
+                                                    </div>
+                                                    {% for follower in userProfile.followers %}
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                {% if follower.follower_image is null %}
+                                                                    {% set followerImage = 'default.png' %}
+                                                                    {% else %}
+                                                                        {% set followerImage = follower.follower_image%}
+                                                                {% endif %}
+                                                                <div class="row" style="border:2px solid #E6E9ED;border-radius:5px;padding:3px;margin-bottom:5px;">
+                                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0px">
+                                                                        <img src="{{ asset('images/profile/') }}{{ followerImage }}" style="object-fit:cover;width:70px;height:70px;border-radius:3px;"/>
+                                                                    </div>
+                                                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-left" style="padding:0px">
+                                                                        <span style="display:inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100%;font-size:1.5em">{{ follower.follower_first_name }} {{ follower.follower_last_name }}</span><br>
+                                                                        <div style="display:inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100%;">{{"Company name"|trans}}: {{ follower.follower_company_name }}</div>
+                                                                    </div> 
+                                                                </div>
+                                                        </div>
+                                                    {% endfor %}
+                                                    <button onclick="" is="hidebtn">Hide</button>
+                                                    {% else %}
+                                                        <h4>No followers</h4>
+                                                {% endif %}
+                                        </div>
+                                        <!--*********end followers Tab ******-->
+
+                                        <!--********* following Tab ******-->
+                                        <div class="tab-pane" id="messages-r">
+                                            
+                                                {% if userProfile.following is not empty %}
+                                                    <div style="padding-top:5px">
+                                                        <h4 style="display:inline"><small style="display:inline">Followings : </small> {{ userProfile.following|length }} </h4>
+                                                        <div style="display:inline;float:right">
+                                                            <button  class="btn btn-info btn-sm" onclick="$('#messages-r').removeClass('active');" id="hidebtn">Hide</button>
+                                                        </div>
+                                                    </div>
+                                                    {% for follower in userProfile.following %}
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                {% if follower.follower_image is null %}
+                                                                    {% set followerImage = 'default.png' %}
+                                                                {% else %}
+                                                                    {% set followerImage = follower.follower_image%}
+                                                                {% endif %}
+                                                               <!-- <img src="{ asset('images/profile/') }}{ followerImage }}" style="object-fit:cover;width:60px;height:60px;border-radius:3px;display:inline-block"/>
+                                                            
+                                                                <div style="display:inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 70%;">{ follower.follower_first_name }} { follower.follower_last_name }}</div>
+                                                                <div style="display:inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 70%;">{"Company name"|trans}}: { follower.follower_company_name }}</div> -->
+                                                                <div class="row" style="border:2px solid #E6E9ED;border-radius:5px;padding:3px;margin-bottom:5px;">
+                                                                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" style="padding:0px">
+                                                                        <img src="{{ asset('images/profile/') }}{{ followerImage }}" style="object-fit:cover;width:70px;height:70px;border-radius:3px;"/>
+                                                                    </div>
+                                                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 text-left" style="padding:0px">
+                                                                        <span style="display:inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100%;font-size:1.5em">{{follower.follower_first_name }} {{ follower.follower_last_name }}</span>
+                                                                        <div style="display:inline-block;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100%;">{{"Company name"|trans}} {{ follower.follower_company_name }}</div>
+                                                                    </div> 
+                                                                </div>
+                                                        </div>
+                                                        
+                                                    {% endfor %}
+                                                {% else %}
+                                                    <h4>No followings</h4>
+                                                {% endif %}
+                                            
+                                        </div>
+                                        <!--********* following Tab ******-->
+                                    </div>
+                            <!--edn followers ... -->
+                        </div>
+                    </div>
+                    <!--************************** end User Followers and following ***************************-->
                 </div>
+                <!--end User Informations and followes-->
+
+                <!--************   POsts and Pans **************-->
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                        <!-- Tab content -->
+                       
+                            <ul class="list-unstyled msg_list" style="background:#f7f7f7;padding-top:15px;">
+                           <!-- {dump(app.session.get('profile_recent_activities'))}} -->
+                                {% for item in app.session.get('profile_recent_activities') %}
+                                {% if item.type == 'post' or item.type == 'Group post' %}
+                                    <li id="object_{{ item.object.id }}" style="background:none">
+                                            <span style="width:100%">
+                                                <div class="panel">
+                                                    <div class="panel-body">
+                                                        <!-- Image -->
+                                                        <div style="margin-bottom:3px;display:inline;"><span style="font-size:1.5em">{{ userProfile.user_first_name }} {{ userProfile.user_last_name }}</span><a href="{{ path('discover_post',{'post':item.object.id}) }}"> Shared a post: </a></div>
+                                                        <div style="display:inline;float:right"><i class="fa fa-trash"></i></div>
+                                                        <br><br>
+                                                        <div class="fb-user-thumb" style="display:inline">
+                                                            {% if item.object.user.image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.object.user.image  %}{% endif %}
+                                                            <a><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;display:block"></a>
+                                                        </div>
+                                                        <div class="fb-user-details">
+                                                            <a style="padding: 0 !important;" class="#"><span style="font-size:20px;">{{ item.object.user.firstname }} {{ item.object.user.lastname }}</span>  <span style="font-size:15px;display:block">{{ item.object.creationDate  }}</span></a>
+                                                            
+                                                        </div>
+                                                        <!-- display post content -->
+                                                        <p class="fb-user-status">
+                                                            <div style="word-wrap:break-word">
+                                                                {{ item.object.content }} 
+                                                            </div>
+                                                            <br>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </span>
+                                        
+                                    </li>
+                                {% endif %}
+                                {% if item.type == 'pan' %}
+                                    <li id= "object_{{ item.object.id }}">
+                                        <a href = "{{ path('discover_pan',{'pan': item.object.id }) }}"></a>
+                                            <span style="width:100%">
+                                                <div class="panel">
+                                                    <div class="panel-body">
+                                                        <!-- If you want to display image of the pan use :
+                                                            item.object.image
+                                                        -->
+                                                        <div style="margin-bottom:3px;display:inline;"><span style="font-size:1.5em">{{ userProfile.user_first_name }} {{ userProfile.user_last_name }}</span> Shared a pan: </div>
+                                                        <div style="display:inline;float:right"><i class="fa fa-trash"></i></div>
+                                                        <div class="fb-user-details">
+                                                            <h3><a style="padding: 0 !important;" class="#">{{ item.object.name }} {{ item.object.othername }}</a> </h3>
+                                                        </div>
+                                                        <!-- display post content -->
+                                                        <div style="word-wrap:break-word">
+                                                            <b>Descreption:</b> {{ item.object.description }}<br>
+                                                            <b>Price:</b> {{ item.object.price }}$
+                                                        </div><br>
+                                                        <div>
+                                                            <img src="{{ asset('images/pans/') }}{{ item.object.image }}"  class="img-responsive" style="width: 300px;height: 200px;object-fit: cover;border-radius:5px">
+                                                        </div>
+                                                       
+                                                    </div>
+                                                </div>
+                                            </span>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                            </ul>
+                       
+                    <!--end Tab content -->
+                </div>
+                <!--************ end POsts and Pans **************-->
+               
 
 
-
-            </div>
+            </div><!-- end x_content -->
 
         </div>
 
