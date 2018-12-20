@@ -11,7 +11,7 @@ signin_withfb: Sign in with facebook
 #END SIGN IN
 
 #HOME PUBLIC
-  #NAV 
+
 pub_myacc: My Account
 pub_lang: language
 pub_sign_up: SIGN UP
@@ -35,7 +35,7 @@ pub_orsignup: Or Sign up with
 pub_orsignupwithfb: Sign Up with facebook
   #END SIGN UP
 
-    #BODY Pans
+#BODY Pans
 pub_AGRICULTURE: AGRICULTURE
 pub_ACCESSOIRIES: ACCESSOIRIES
 pub_ELECTRONICS: ELECTRONICS
@@ -49,10 +49,11 @@ pub_Discover_Membership: Discover ACE Membership
 pub_Discover_Membership_text: You get global posting, Ace Logo And Dockies Prime. Dockies prime takes your business to a 100X option to getting deals become transcations.
 pub_UPGRADE_NOW: UPGRADE NOW
 
+#END BODY Pans
 
-    #END BODY Pans
-
-    #footer
+#footer
 pub_Privacy: Privacy
 pub_Terms: Terms 
-    #END footer
+#END footer
+
+#words that not in fr file

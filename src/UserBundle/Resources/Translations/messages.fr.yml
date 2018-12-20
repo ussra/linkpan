@@ -225,351 +225,402 @@ Display_Ads: Annonces d'affichage
 Display_Ads_txt:  Atteignez vos partenaires cibles dans un contexte privilégié grâce à votre plateforme d'achat disciplinée préférée.
 Why_Linkpan: Pourquoi Linkpan Afficher les annonces?
 Maximum_Viability: Viabilité maximale
-Maximum_Viability_txt:  You are the master of your fate, the numbers don't lie
-Maximum_Real_Time: Real Time Reporting
-Maximum_Real_txt:  views are traceable and actions matter most to you
-Maximum_Easy: Easy To Understand and track spending 
-Maximum_Easy_txt: It can't get any easier than this
-Maximum_Trust: Trust and reliability
-Maximum_Trust_txt: We deliver, you reap the benefits, easy right? 
-Maximum_Howto: How to buy Linkpan Display Ads ?
 
-Define_Goal : Define Your Goal 
-Define_Goal_txt : Set Your Plan, and target those that matter most to you
-Define_Set_Your : Set Your Price Tag
-Define_Set_Your_txt : How much do i need to invest on this post/pans ?
-Define_Audience : Audience Pick Up
-Define_Audience_txt : Most Relevant to me? I need just those who matter to me the most
-End_Anytime : End Anytime or automatic End 
-End_Anytime_txt : Set end date, pick a number and let the rest settle for a win
-SMART : SMART 
-SMART_S_txt : Does Your Boosted post/Pans meet it required audience? Who needs to see
-SMART_M_txt : Track and see in real time the number of views, reactions taken
-SMART_A_txt : What do I need to do to get more or should I just track my audience
-SMART_R_txt : Assurance not only to you, but to the partners and audience who see my booted post/pans
-SMART_T_txt : Limit your track records, are yo within the scope of achievable outcome ?
-Cost: Cost
-Cost_txt: These advertisements only run for $1.00 a day
+
+#
+Maximum_Viability_txt: Vous êtes le maître de votre destin, les chiffres ne mentent pas
+Maximum_Real_Time: rapports en temps réel
+Maximum_Real_txt: les vues sont traçables et les actions comptent le plus pour vous
+Maximum_Easy: Facile à comprendre et à suivre les dépenses 
+Maximum_Easy_txt: Ça ne peut pas être plus facile que ça
+Maximum_Trust: Confiance et fiabilité
+Maximum_Trust_txt: Nous livrons, vous récoltez les avantages, facile non? 
+Maximum_Howto: Comment acheter Linkpan Afficher les annonces?
+
+Define_Goal : Définir votre objectif 
+Define_Goal_txt : Définissez votre plan et ciblez ceux qui comptent le plus pour vous
+Define_Set_Your : Définissez votre prix
+Define_Set_Your_txt : Combien dois-je investir sur ce poste/pans ?
+Define_Audience : Audience ramasser
+Define_Audience_txt : Plus pertinent pour moi? J'ai besoin de ceux qui comptent le plus pour moi
+End_Anytime : Fin à tout moment ou fin automatique 
+End_Anytime_txt : Fixer la date de fin, choisir un numéro et laisser le reste se contenter d'une victoire
+SMART : INTELLIGENT 
+SMART_S_txt : Est-ce que votre poste / pan boostés répond aux attentes du public? Qui a besoin de voir
+SMART_M_txt : Suivre et voir en temps réel le nombre de points de vue, les réactions prises
+SMART_A_txt : Que dois-je faire pour obtenir plus ou dois-je simplement suivre mon public?
+SMART_R_txt : Assurance non seulement pour vous, mais aussi pour les partenaires et le public qui voit post/pan bootés
+SMART_T_txt : Limitez vos antécédents, êtes-vous à la portée d'un résultat réalisable?
+Cost: Coût
+Cost_txt: Ces publicités ne coûtent que 1,00 $ par jour
 #end business solutions 
 
 #globe
 Welcome: 
-to Globe Pro of: to Globe Pro of
-Let me take you for a quick tour.: Let me take you for a quick tour.
-To be able to use this globe!: To be able to use this globe!
-You can rotate the globe.: You can rotate the globe.
-You can choose any country you want.: You can choose any country you want.
-You can see products from any country you clicked on.: You can see products from any country you clicked on.
-If you encounter any issues ensure that you use on of supported browsers: If you encounter any issues ensure that you use on of supported browsers
-Open: Open
+to Globe Pro of: au Globe pro de
+Let me take you for a quick tour.: Laissez-moi vous emmener pour un tour rapide.
+To be able to use this globe!: Pour pouvoir utiliser ce globe!
+You can rotate the globe.: Vous pouvez faire pivoter le globe.
+You can choose any country you want.: Vous pouvez choisir le pays de votre choix.
+You can see products from any country you clicked on.: Vous pouvez voir les produits de tous les pays sur lesquels vous avez cliqué.
+If you encounter any issues ensure that you use on of supported browsers: Si vous rencontrez des problèmes, assurez-vous que vous utilisez l'un des navigateurs pris en charge.
+Open: Ouvrir
 
 #end globe
 
 #fcc 
   #detail
-Complaint_Detail: Complaint Detail
-Created_By: Created By
-File: File
-complaints: complaints
+Complaint_Detail: Détail de la plainte
+Created_By: Créé par
+File: Fichier
+complaints: plaintes
 Comment: Comment
   #end detail
   #list
-Submit new complaint: Submit new complaint
-There's no complaints to display: There's no complaints to display
-Back to complaints: Back to complaints
-user complainted: user complainted
+Submit new complaint: Soumettre une nouvelle plainte
+There's no complaints to display: Il n'y a pas de plaintes à afficher
+Back to complaints: Retour aux plaintes
+user complainted: utilisateur se plaint
   #end list
   #form
-User to complaint: User to complaint
-There s no users to display: There s no users to display
-select the user: select the user
+User to complaint: Utilisateur à se plaindre
+There s no users to display: Aucun utilisateur à afficher
+select the user: sélectionner l'utilisateur
 Cause: Cause
-Product not received: Product not received
-Wrong_shipped: Wrong product shipped
-Payment_received: Payment received
-Transaction_amount: Transaction amount
+Product not received: Produit non reçu
+Wrong_shipped: Mauvais produit expédié
+Payment_received: Paiement reçu
+Transaction_amount: Montant de la transaction
 USD: USD
-Upload_supporting_document: Upload supporting document
-Descreption: Descreption
-Submit_Complaint: Submit Complaint
+Upload_supporting_document: Télécharger le document justificatif
+Descreption: La description
+Submit_Complaint: Soumettre plainte
 #end form
 #end fcc
 
 #search
-Search_Result: Search Results
-Results: Results
-Wecouldn_for: We couldn't find anything for 
+Search_Result: Résultats de la recherche
+Results: Résultats
+Wecouldn_for: Nous n'avons rien pu trouver pour 
 #end search
 
 #categories
-select a category: select a category
+select a category: choisissez une catégorie
 Agriculture: Agriculture
-Agricultural Growing Media: Agricultural Growing Media
-Agricultural Waste: Agricultural Waste
-Animal Products: Animal Products
-Beans: Beans
-Cocoa Beans: Cocoa Beans
-Coffee Beans: Coffee Beans
-Farm Machinery & Equipment: Farm Machinery & Equipment
-Feed: Feed
-Fresh Seafood: Fresh Seafood
+Agricultural Growing Media: Milieu de croissance agricole
+Agricultural Waste: Déchets agricoles
+Animal Products: Produits animaux
+Beans: Des haricots
+Cocoa Beans: Les fèves de cacao
+Coffee Beans: Grains de café
+Farm Machinery & Equipment: Machines et équipement agricoles
+Feed: Alimentation
+Fresh Seafood: Fruits de mer frais
 Fruit: Fruit
 Grain: Grain
-Herbal Cigars & Cigarettes: Herbal Cigars & Cigarettes
-Mushrooms & Truffles: Mushrooms & Truffles
-Nuts & Kernels: Nuts & Kernels
-Organic Produce: Organic Produce
-Ornamental Plants: Ornamental Plants
-Other Agriculture Products: Other Agriculture Products
-Plant & Animal Oil: Plant & Animal Oil
-Plant Seeds & Bulbs: Plant Seeds & Bulbs
-Timber Raw Materials: Timber Raw Materials
-Vegetables: Vegetables
-Alcoholic Beverage: Alcoholic Beverage
-Baby Food: Baby Food
-Baked Goods: Baked Goods
-Bean Products: Bean Products
-Canned Food: Canned Food
-Coffee: Coffee
-Confectionery: Confectionery
-Dairy: Dairy
-Drinking Water: Drinking Water
-Egg & Egg Products: Egg & Egg Products
-Food Ingredients: Food Ingredients
-Fruit Products: Fruit Products
-Grain Products: Grain Products
-Honey Products: Honey Products
-Instant Food: Instant Food
-Meat & Poultry: Meat & Poultry
-Other Food & Beverage: Other Food & Beverage
-Seafood: Seafood
-Slimming Food: Slimming Food
-Snack Food: Snack Food
-Soft Drinks: Soft Drinks
-Tea: Tea
-Apparel: Apparel
-Apparel Design Services: Apparel Design Services
-Apparel Stock: Apparel Stock
-Boy’s Clothing: Boy’s Clothing
-Children’s Clothing: Children’s Clothing
-Coats: Coats
-Costumes: Costumes
-Dresses: Dresses
-Ethnic Clothing: Ethnic Clothing
-Garment Accessories: Garment Accessories
-Girls’ Clothing: Girls’ Clothing
-Hoodies & Sweatshirts: Hoodies & Sweatshirts
-Hosiery: Hosiery
-Infant & Toddlers Clothing: Infant & Toddlers Clothing
-Jackets: Jackets
+Herbal Cigars & Cigarettes: Cigares et cigarettes aux herbes
+Mushrooms & Truffles: Champignons et Truffes
+Nuts & Kernels: Noix et Cerneaux
+Organic Produce: Produits biologiques
+Ornamental Plants: Plantes d'ornement
+Other Agriculture Products: Autres produits agricoles
+Plant & Animal Oil: Huile végétale et animale
+Plant Seeds & Bulbs: Graines et bulbes de plantes
+Timber Raw Materials: Matières premières de bois
+Vegetables: Des légumes
+Alcoholic Beverage: Boisson alcoolisée
+Baby Food: Nourriture pour bébés
+Baked Goods: Produits de boulangerie
+Bean Products: Produits de haricots
+Canned Food: Nourriture en conserve
+Coffee: café
+Confectionery: Confiserie
+Dairy: Laitier
+Drinking Water: Boire de l'eau
+Egg & Egg Products: Œufs et produits à base d'œufs
+Food Ingredients: Ingrédients alimentaires
+Fruit Products: Produits de fruits
+Grain Products: Produits céréaliers
+Honey Products: Produits de miel
+Instant Food: Nourriture instantanée
+Meat & Poultry: Viande de volaille
+Other Food & Beverage: Autres aliments et boissons
+Seafood: Fruit de mer
+Slimming Food: Minceur alimentaire
+Snack Food: snack
+Soft Drinks: Boissons non alcoolisées
+Tea: thé
+Apparel: Vêtements
+Apparel Design Services: Services de conception de vêtements
+Apparel Stock: Stock de vêtements
+Boy’s Clothing: Vêtements pour garçons
+Children’s Clothing: Vêtements pour enfants
+Coats: Manteaux
+Costumes: Les costumes
+Dresses: Les robes
+Ethnic Clothing: Vêtements ethniques
+Garment Accessories: Accessoires de vêtement
+Girls’ Clothing: Vêtements pour filles
+Hoodies & Sweatshirts: Sweats à capuche et sweatshirts
+Hosiery: Bonneterie
+Infant & Toddlers Clothing: Vêtements pour bébés et tout-petits
+Jackets: Vestes
 Jeans: Jeans
-Ladies’ Blouses & Tops: Ladies’ Blouses & Tops
+Ladies’ Blouses & Tops: Chemisiers et hauts pour femmes
 Mannequins: Mannequins
-Maternity Clothing: Maternity Clothing
-Men’s Clothing: Men’s Clothing
-Men’s Shirts: Men’s Shirts
-Organic Cotton Clothing: Organic Cotton Clothing
-Other Apparel: Other Apparel
-Pants & Trousers: Pants & Trousers
-Plus Size Clothing: Plus Size Clothing
-Sewing Supplies: Sewing Supplies
-Shorts: Shorts
-Skirts: Skirts
-Sleepwear: Sleepwear
-Sportswear: Sportswear
-Stage & Dance Wear: Stage & Dance Wear
-Sweaters: Sweaters
-Tag Guns: Tag Guns
-T-Shirts: T-Shirts
-Tank Tops: Tank Tops
-Underwear: Underwear
-Uniforms: Uniforms
-Used Clothes: Used Clothes
-Vests & Waistcoats: Vests & Waistcoats
-Wedding Apparel & Accessories: Wedding Apparel & Accessories
-omen’s Clothing: omen’s Clothing
-Workwear: Workwear
-Apparel,Textiles & Accessories: Apparel,Textiles & Accessories
-Textile & Leather Product: Textile & Leather Product
-Down & Feather: Down & Feather
-Fabric: Fabric
-Fiber: Fiber
-Fur: Fur
-Grey Fabric: Grey Fabric
-Home Textile: Home Textile
-Leather: Leather
-Leather Product: Leather Product
-Other Textiles & Leather Products: Other Textiles & Leather Products
-Textile Accessories: Textile Accessories
-Textile Processing: Textile Processing
-Textile Stock: Textile Stock
-Thread: Thread
-Yarn: Yarn
-100% Cotton Fabric: 100% Cotton Fabric
-100% Polyester Fabric: 100% Polyester Fabric
-Bedding Set: Bedding Set
-Towel: Towel
-Chair Cover: Chair Cover
-Genuine Leather: Genuine Leather
-Fashion Accessories: Fashion Accessories
-Belt Accessories: Belt Accessories
-Bely: Bely
-Fashion Accessories Design Services: Fashion Accessories Design Services
-Fashion Accessories Processing Services: Fashion Accessories Processing Services
-Fashion Accessories Stock: Fashion Accessories Stock
-Gloves & Mittens: Gloves & Mittens
-Headwear: Headwear
-Neckwear: Neckwear
-Scarf, Hat & Glove Sets: Scarf, Hat & Glove Sets
-Hats & Caps: Hats & Caps
-Scarves & Shawls: Scarves & Shawls
-Hair Accessories: Hair Accessories
-Genuine Leather Belts: Genuine Leather Belts
-Leather Gloves & Mittens: Leather Gloves & Mittens
-Ties & Accessories: Ties & Accessories
-Belt Buckles: Belt Buckles
-PU Belts: PU Belts
-Belt Chains: Belt Chains
-Metal Belts: Metal Belts
-Suspenders: Suspenders
-Timepieces, Jewelry, Eyewear: Timepieces, Jewelry, Eyewear
-Eyewear: Eyewear
-Jewelry: Jewelry
-Watches: Watches
-Eyeglasses Frames: Eyeglasses Frames
-Sunglasses: Sunglasses
-Sports Eyewear: Sports Eyewear
-Body Jewelry: Body Jewelry
-Bracelets & Bangles: Bracelets & Bangles
-Brooches: Brooches
-Cuff Links & Tie Clips: Cuff Links & Tie Clips
-Earrings: Earrings
-Jewelry Boxes: Jewelry Boxes
-Jewelry Sets: Jewelry Sets
-Jewelry Tools & Equipment: Jewelry Tools & Equipment
-Loose Beads: Loose Beads
-Loose Gemstone: Loose Gemstone
-Necklaces: Necklaces
-Pendants & Charms: Pendants & Charms
-Rings: Rings
-Wristwatches: Wristwatches
-Auto & Transportation: Auto & Transportation
-Automobiles & Motorcycles: Automobiles & Motorcycles
-Air Intakes: Air Intakes
+Maternity Clothing: Vêtements de maternité
+Men’s Clothing: Vêtements pour hommes
+Men’s Shirts: Chemises pour hommes
+Organic Cotton Clothing: Vêtements en coton biologique
+Other Apparel: Autres vêtements
+Pants & Trousers: Pantalons et Pantalons
+Plus Size Clothing: Vêtements grande taille
+Sewing Supplies: Matériel de couture
+Shorts: Short
+Skirts: Jupes
+Sleepwear: Vêtements de nuit
+Sportswear: Vêtements de sport
+Stage & Dance Wear: Vêtements de scène et de danse
+Sweaters: Chandails
+Tag Guns: Sweaters
+T-Shirts: T-shirts
+Tank Tops: Débardeurs
+Underwear: Sous-vêtements
+Uniforms: Uniformes
+Used Clothes: Vêtements déjà portés
+Vests & Waistcoats: Gilets & Gilets
+Wedding Apparel & Accessories: Vêtements de mariage et accessoires
+omen’s Clothing: Vêtements pour femmes
+Workwear: Vêtements de travail
+Apparel,Textiles & Accessories: Vêtements, textiles et accessoires
+Textile & Leather Product: Produit textile et cuir
+Down & Feather: Duvet
+Fabric: en tissu
+Fiber: Fibre
+Fur: Fourrure
+Grey Fabric: Tissu gris
+Home Textile: Textile de maison
+Leather: Cuir
+Leather Product: Produit en cuir
+Other Textiles & Leather Products: Autres textiles et produits en cuir
+Textile Accessories: Accessoires Textiles
+Textile Processing: Traitement textile
+Textile Stock: Stock de textile
+Thread: Filet
+Yarn: Fil
+100% Cotton Fabric: 100% coton
+100% Polyester Fabric: Tissu 100% Polyester
+Bedding Set: Literie
+Towel: Serviette
+Chair Cover: Housse de chaise
+Genuine Leather: Cuir véritable
+Fashion Accessories: Accessoires de mode
+Belt Accessories: Accessoires de ceinture
+Belt: ceinture
+Fashion Accessories Design Services: Services de conception d'accessoires de mode
+Fashion Accessories Processing Services: Services de traitement d'accessoires de mode
+Fashion Accessories Stock: Stock d'accessoires de mode
+Gloves & Mittens: Gants et Mitaines
+Headwear: Couvre-chef
+Neckwear: Cravates
+Scarf, Hat & Glove Sets: Ensembles écharpe, bonnet et gant
+Hats & Caps: Chapeaux et Casquettes
+Scarves & Shawls: Foulards et Châles
+Hair Accessories: Accessoires pour cheveux
+Genuine Leather Belts: Ceintures en cuir véritable
+Leather Gloves & Mittens: Gants et mitaines en cuir
+Ties & Accessories: Cravates & Accessoires
+Belt Buckles: Boucles de ceinture
+PU Belts: Ceintures de plutonium
+Belt Chains: Chaînes de ceinture
+Metal Belts: Ceintures Métalliques
+Suspenders: Bretelles
+Timepieces, Jewelry, Eyewear: Montres, bijoux, lunettes
+Eyewear: Lunettes
+Jewelry: Bijoux
+Watches: Les montres
+Eyeglasses Frames: Montures de lunettes
+Sunglasses: lunettes de soleil
+Sports Eyewear: Lunettes de sport
+Body Jewelry: Bijoux de corps
+Bracelets & Bangles: Bracelets & Bracelets
+Brooches: Broches
+Cuff Links & Tie Clips: Boutons de manchette et pinces à cravate
+Earrings: boucles d'oreilles
+Jewelry Boxes: Boîtes à bijoux
+Jewelry Sets: Ensembles de bijoux
+Jewelry Tools & Equipment: Bijoux Outils & Equipement
+Loose Beads: Perles En Vrac
+Loose Gemstone: Pierre précieuse en vrac
+Necklaces: Colliers
+Pendants & Charms: Pendentifs & Charms
+Rings: Anneaux
+Wristwatches: Montres-bracelets
+Auto & Transportation: Auto et transport
+Automobiles & Motorcycles: Automobiles et motos
+Air Intakes: Entrées d'air
 ATV: ATV
-ATV Parts: ATV Parts
-Auto Chassis Parts: Auto Chassis Parts
-Auto Clutch: Auto Clutch
-Auto Electrical System: Auto Electrical System
-Auto Electronics: Auto Electronics
-Auto Engine: Auto Engine
-Auto Ignition System: Auto Ignition System
-Auto Steering System: Auto Steering System
-Automobiles: Automobiles
-Axles: Axles
-Body Parts: Body Parts
-Brake System: Brake System
-Car Care & Cleaning: Car Care & Cleaning
-Cooling System: Cooling System
-Crank Mechanism: Crank Mechanism
-Exhaust System: Exhaust System
-Exterior Accessories: Exterior Accessories
-Fuel System: Fuel System
-Interior Accessories: Interior Accessories
-Lubrication System: Lubrication System
-Motorcycle Accessories: Motorcycle Accessories
-Motorcycle Parts: Motorcycle Parts
-Motorcycles: Motorcycles
-Other Auto Parts: Other Auto Parts
-Suspension System: Suspension System
+ATV Parts: Pièces de VTT
+Auto Chassis Parts: Pièces de châssis auto
+Auto Clutch: Embrayage automatique
+Auto Electrical System: Système électrique automatique
+Auto Electronics: Électronique automatique
+Auto Engine: Moteur automatique
+Auto Ignition System: Système d'allumage automatique
+Auto Steering System: Système de pilotage automatique
+Automobiles: Les automobiles
+Axles: Essieux
+Body Parts: Parties du corps
+Brake System: Système de freinage
+Car Care & Cleaning: Entretien et nettoyage de voiture
+Cooling System: Système de refroidissement
+Crank Mechanism: Mécanisme à manivelle
+Exhaust System: Système d'échappement
+Exterior Accessories: Accessoires extérieurs
+Fuel System: Système de carburant
+Interior Accessories: Accessoires intérieurs
+Lubrication System: Système de lubrification
+Motorcycle Accessories: Accessoires moto
+Motorcycle Parts: Pièces de moto
+Motorcycles: motocyclettes
+Other Auto Parts: Autres pièces automobiles
+Suspension System: Système de suspension
 Transmission: Transmission
 Tricycles: Tricycles
-Universal Parts: Universal Parts
+Universal Parts: Pièces universelles
 UTV: UTV
-Valve Train: Valve Train
-Vehicle Equipment: Vehicle Equipment
-Vehicle Tools: Vehicle Tools
-Transportation: Transportation
-Aircraft: Aircraft
-Aviation Accessories: Aviation Accessories
-Aviation Parts: Aviation Parts
-Bicycle: Bicycle
-Bicycle Accessories: Bicycle Accessories
-Bicycle Parts: Bicycle Parts
-Boats & Ship: Boats & Ship
+Valve Train: Train de soupapes
+Vehicle Equipment: Équipement du véhicule
+Vehicle Tools: Outils de véhicule
+Transportation: Transport
+Aircraft: Avion
+Aviation Accessories: Accessoires d'aviation
+Aviation Parts: Pièces d'aviation
+Bicycle: Vélo
+Bicycle Accessories: Accessoires Vélo
+Bicycle Parts: Pièces pour vélos
+Boats & Ship: Bateaux et navires
 Bus: Bus
-Bus Accessories: Bus Accessories
-Bus Parts: Bus Parts
-Container: Container
-Electric Bicycle: Electric Bicycle
-Electric Bicycle Part: Electric Bicycle Part
-Emergency Vehicles: Emergency Vehicles
-Golf Carts: Golf Carts
+Bus Accessories: Accessories pour Bus
+Bus Parts: Pièces pour Bus
+Container: Récipient
+Electric Bicycle: Vélo électrique
+Electric Bicycle Part: Partie de bicyclette électrique
+Emergency Vehicles: Véhicules d'urgence
+Golf Carts: Chariots de Golf
 Locomotive: Locomotive
-Marine Supplies: Marine Supplies
-Personal Watercraft: Personal Watercraft
-Railway Supplies: Railway Supplies
-Snowmobile: Snowmobile
-Special Transportation: Special Transportation
-Trailers: Trailers
+Marine Supplies: Fournitures Marines
+Personal Watercraft: Motomarine
+Railway Supplies: Fournitures de chemin de fer
+Snowmobile: Motoneige
+Special Transportation: Transport spécial
+Trailers: Bandes annonces
 Train Carriage: Train Carriage
-Train Parts: Train Parts
-Truck: Truck
-Truck Accessories: Truck Accessories
-Truck Parts: Truck Parts
-Bags, Shoes & Accessories: Bags, Shoes & Accessories
-Luggage, Bags & Cases: Luggage, Bags & Cases
-Bag & Luggage Making Materials: Bag & Luggage Making Materials
-Bag Parts & Accessories: Bag Parts & Accessories
-Business Bags & Cases: Business Bags & Cases
-Digital Gear & Camera Bags: Digital Gear & Camera Bags
-Handbags & Messenger Bags: Handbags & Messenger Bags
-Luggage & Travel Bags: Luggage & Travel Bags
-Luggage Cart: Luggage Cart
-Other Luggage, Bags & Cases: Other Luggage, Bags & Cases
-Special Purpose Bags & Cases: Special Purpose Bags & Cases
-Sports & Leisure Bags: Sports & Leisure Bags
-Wallets & Holders: Wallets & Holders
-Carry-on Luggage: Carry-on Luggage
-Luggage Sets: Luggage Sets
-Trolley Bags: Trolley Bags
-Briefcases: Briefcases
-Cosmetic Bags & Cases: Cosmetic Bags & Cases
-Shopping Bags: Shopping Bags
-Handbags: Handbags
-Backpacks: Backpacks
+Train Parts: Pièces pour train
+Truck: camion
+Truck Accessories: Accessoires pour camion
+Truck Parts: pièces pour camion
+Bags, Shoes & Accessories: Sacs, chaussures et accessoires
+Luggage, Bags & Cases: Bagages, sacs et valises
+Bag & Luggage Making Materials: Matériel de fabrication de sacs et bagages
+Bag Parts & Accessories: Pièces de sac et accessoires
+Business Bags & Cases: Sacs et étuis d'affaires
+Digital Gear & Camera Bags: Sacs numériques pour appareils photo et appareils photo
+Handbags & Messenger Bags: Sacs à main et sacs messenger
+Luggage & Travel Bags: Bagages et sacs de voyage
+Luggage Cart: Chariot à bagages
+Other Luggage, Bags & Cases: Autres bagages, sacs et étuis
+Special Purpose Bags & Cases: Sacs et étuis à usage spécial
+Sports & Leisure Bags: Sacs de sport et de loisirs
+Wallets & Holders: Portefeuilles et supports
+Carry-on Luggage: bagages à main
+Luggage Sets: Ensembles de bagages
+Trolley Bags: Sacs à roulettes
+Briefcases: Mallettes
+Cosmetic Bags & Cases: Trousses et étuis à cosmétiques
+Shopping Bags: Sacs à provisions
+Handbags: Sacs à main
+Backpacks: Sacs à dos
 Wallets: Wallets
-Baby Shoes: Baby Shoes
-Boots: Boots
-Casual Shoes: Casual Shoes
-Children’s Shoes: Children’s Shoes
-Clogs: Clogs
-Dance Shoes: Dance Shoes
-Dress Shoes: Dress Shoes
-Genuine Leather Shoes: Genuine Leather Shoes
-Men’s Shoe: Men’s Shoe
-Other Shoes: Other Shoes
-Sandals: Sandals
-Shoe Materials: Shoe Materials
-Shoe Parts & Accessories: Shoe Parts & Accessories
-Shoe Repairing Equipment: Shoe Repairing Equipment
-Shoes Design Services: Shoes Design Services
-Shoes Processing Services: Shoes Processing Services
-Shoes Stock: Shoes Stock
-Slippers: Slippers
-Special Purpose Shoes: Special Purpose Shoes
-Sports Shoes: Sports Shoes
-Used Shoes: Used Shoes
-Women’s Shoes: Women’s Shoes
-Men’s Shoes: Men’s Shoes
-Seasonings & Condiments: Seasonings & Condiments
-Vegetable Products: Vegetable Products
-Apparel Processing Services: Apparel Processing Services
-Garment Accessoriess: Garment Accessoriess
-Pants & TrousersTea: Pants & TrousersTea
-SuspenTimepieces, Jewelry, Eyewearders: SuspenTimepieces, Jewelry, Eyewearders
-SuspAuto & Transportationenders: SuspAuto & Transportationenders
-TruLuggage, Bags & Casesck: TruLuggage, Bags & Casesck
+Baby Shoes: Chaussures de bébé
+Boots: Bottes
+Casual Shoes: Chaussures décontractées
+Children’s Shoes: Chaussures pour enfants
+Clogs: Sabots
+Dance Shoes: Chaussures de danse
+Dress Shoes: Chaussures habillées
+Genuine Leather Shoes: Chaussures en cuir véritable
+Men’s Shoe: Chaussure Homme
+Other Shoes: Autres chaussures
+Sandals: sandales
+Shoe Materials: Matériel de chaussure
+Shoe Parts & Accessories: Parties de chaussures et accessoires
+Shoe Repairing Equipment: Équipement de réparation de chaussures
+Shoes Design Services: Services de design de chaussures
+Shoes Processing Services: Services de traitement de chaussures
+Shoes Stock: Stock de chaussures
+Slippers: Chaussons
+Special Purpose Shoes: Chaussures à usage spécial
+Sports Shoes: Chaussures de sport
+Used Shoes: Chaussures usagées
+Women’s Shoes: Chaussures de femme
+Men’s Shoes: Chaussures pour hommes
+Seasonings & Condiments: Assaisonnements et Condiments
+Vegetable Products: Produits végétaux
+Apparel Processing Services: Services de traitement de vêtements
+Garment Accessoriess: Accessoires de vêtement
+Pants & TrousersTea: Pantalons & Pantalons Thé
+SuspenTimepieces, Jewelry, Eyewearders: Suspendre Montres, Bijoux, Eyewearders
+SuspAuto & Transportationenders: SuspAusto & Transport Tenders
+TruLuggage, Bags & Casesck: Tru Bagages, sacs et étuis
+#START 19-12
+#END
 #end categories
-
+#Groups
+clear: clair
+Search Results: Résultats de la recherche
+Opss looks like there’s no results.: Opss semble ne donner aucun résultat.
+Try to discover groups ..: Essayez de découvrir des groupes ..
+join group: rejoindre le groupe
+Cancel join request: Annuler la demande de participation
+exit group: groupe de sortie
+Delete Group: Supprimer le groupe
+View Group: Voir le groupe
+You are not currently managing any group: Vous ne gérez actuellement aucun groupe
+Currently there s no invites to manage: Il n´y a actuellement aucune invitation à gérer
+View Group: Voir le groupe
+exit group: groupe de sortie
+Decline invitation: Refuser l'invitation
+Accept invitation: Accepter l'invitation
+Currently you are not joignin any group: Actuellement vous n'êtes membre d'aucun groupe
+Are you sure that you want to exit this group ?: Êtes-vous sûr de vouloir quitter ce groupe?
+Are you sure that you want to delete this group ?: Êtes-vous sûr de vouloir supprimer ce groupe?
+About: à propos
+Members: Membres
+Configuration: Configuration
+Created By: Créé par
+on, : allumé,
+by: par
+remove from group: retirer du groupe
+Change name: Changer de nom
+Update Descreption: Mise à jour de la description
+Are you sure that you want to exit delet this comment ?: Êtes-vous sûr de vouloir quitter supprimer ce commentaire?
+Are you sure that you want to remove this member ?: Êtes-vous sûr de vouloir supprimer ce membre?
+Are you sure that you want to exit delet this post ?: Etes-vous sûr de vouloir quitter supprimer ce message?
+Join the Group Chat: Rejoindre le chat en groupe
+Dislike this: Je n'aime pas ça
+end this to friend or post it on your time line: mettre fin à ceci à un ami ou l'afficher sur votre ligne de temps
+Send this to friend or post it on your time line: Envoyez ceci à un ami ou postez-le sur votre ligne de temps
+get more posts: obtenir plus de messages
+Please , try again: Veuillez réessayer
+BACK TO LINKPAN: RETOUR à LINKPAN
+Firefox 46+,Chrome 45+,: Firefox 46+,Chrome 45+,
+Safari 9.1+, Opera 38+.: Safari 9.1+, Opera 38+.
+Company name: Nom de la compagnie
+Are you sure that you want to block this user ?: Êtes-vous sûr de vouloir bloquer cet utilisateur?
+Discover pans of: Découvrez les pans 
+There s no pans to discover in: Il n’ya pas de Pan à découvrir 
+Private: Privé
+You must activate your account: Vous devez activer votre compte
+#END 1
 #NOT COMPLETED YET *********************************************************************************
