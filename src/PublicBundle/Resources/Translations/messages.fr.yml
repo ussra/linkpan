@@ -5,3 +5,48 @@ signin_donthaveacc: Vous n'avez pas de compte?
 signin_forgotpass: Mot de passe oublié?
 signin_choice: Ou connectez-vous avec
 signin_withfb: Connectez-vous avec Facebook
+#HOME PUBLIC ===> START
+
+pub_myacc: Mon compte
+pub_lang: language
+pub_sign_up: s'inscrire
+pub_sign_up_now: s'inscrire maintenant !
+pub_home: accueil
+pub_discover: Découvrir
+pub_about_us: À propos
+pub_contact_us: Contactez-nous
+pub_search: Recherhcer
+  #END NAV
+
+  #SIGN UP
+pub_GlobalTrading:  Commerce mondial
+pub_NetworkingPlatform:  Plateforme de mise en réseau
+pub_firstname: Prénom
+pub_lastname:  Nom
+E-mail: E-mail
+pub_confirmpass: Confirmez le mot de passe
+pub_alreadyhaveacc: Vous avez déjà un compte ?
+pub_orsignup: Ou inscrivez-vous avec
+pub_orsignupwithfb: Inscrivez-vous avec facebook
+  #END SIGN UP
+
+#BODY Pans
+pub_AGRICULTURE: AGRICULTURE
+pub_ACCESSOIRIES: ACCESSOIRES
+pub_ELECTRONICS: ELECTRONIQUE
+pub_TOOLS: OUTILS
+pub_CHEMICALAS: PRODUITS CHIMIQUES
+pub_DISCOVER_MORE: DÉCOUVRIR PLUS
+pub_New_Pans: Nouvelles pan
+all: TOUT
+pub_Details: Details
+pub_Discover_Membership: Découvrez l'adhésion à l'ACE
+pub_Discover_Membership_text: Vous obtenez l'affichage global, Ace Logo And Dockies Prime. Dockies prime apporte à votre entreprise une option 100X pour que les transactions deviennent des transactions.
+pub_UPGRADE_NOW: METTRE À JOUR MAINTENANT
+
+#END BODY Pans
+
+#footer
+pub_Privacy: Confidentialité
+pub_Terms: termes
+#END footer
