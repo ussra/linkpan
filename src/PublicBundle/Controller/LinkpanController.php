@@ -67,7 +67,7 @@ class LinkpanController extends Controller
 
 
     /**
-     * @Route("{_locale}/linkpan/terms",name="faqs")
+     * @Route("{_locale}/linkpan/faqs",name="faqs")
      */
     public function faqsAction()
     {

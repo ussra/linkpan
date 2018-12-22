@@ -609,7 +609,7 @@ class GroupController extends Controller
 
 
     /**
-     * @Route("/linkpan/home/group_post_like",name="group_post_like")
+     * @Route("/linkpan/groups/group_post_like",name="group_post_like")
      */
     public function group_post_likeAction(Request $request)
     {
@@ -640,7 +640,7 @@ class GroupController extends Controller
     }
 
     /**
-     * @Route("/linkpan/home/group_post_dislike",name="group_post_dislike")
+     * @Route("/linkpan/groups/group_post_dislike",name="group_post_dislike")
      */
     public function post_dislikeAction(Request $request)
     {
@@ -668,7 +668,7 @@ class GroupController extends Controller
     }
 
     /**
-     * @Route("/linkpan/home/group_post_share",name="group_post_share")
+     * @Route("/linkpan/groups/group_post_share",name="group_post_share")
      */
     public function post_shareAction(Request $request)
     {
@@ -683,7 +683,7 @@ class GroupController extends Controller
     }
 
     /**
-     * @Route("/linkpan/home/group_post_comment",name="group_post_comment")
+     * @Route("/linkpan/groups/group_post_comment",name="group_post_comment")
      */
     public function post_commentAction(Request $request)
     {
@@ -706,7 +706,7 @@ class GroupController extends Controller
     }
 
     /**
-     * @Route("/linkpan/home/delete_comment",name="delete_comment")
+     * @Route("/linkpan/groups/group_delete_comment",name="group_delete_comment")
      */
     public function delete_commentAction(Request $request)
     {

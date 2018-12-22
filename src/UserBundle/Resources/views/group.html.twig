@@ -5,6 +5,56 @@
     <script src={{ asset('Userscripts/js/photos/ekko-lightbox.js') }}></script>
     <link rel="stylesheet" href={{ asset('Userscripts/css/newpost.css') }}>
     <link rel="stylesheet" href={{ asset('Userscripts/css/socialpost.css') }}>
+    <style>
+        /*input[type=checkbox]{
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 50px;
+            height: 30px;
+            background: grey;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+        }
+
+        label:after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+        }
+
+        input:checked + label {
+            background: rgb(26, 187, 156);
+        }
+
+        input:checked + label:after {
+            left: calc(100% - 5px);
+            transform: translateX(-100%);
+        }
+
+        label:active:after {
+            width: 30px;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }*/
+    </style>
 {% endblock %}
 
 {% block Title %}
@@ -14,58 +64,6 @@
 
 {% block pageContent %}
     {% set view_group = app.session.get('view_group') %}
-
-<style>
-input[type=checkbox]{
-	height: 0;
-	width: 0;
-	visibility: hidden;
-}
-
-label {
-	cursor: pointer;
-	text-indent: -9999px;
-	width: 50px;
-	height: 30px;
-	background: grey;
-	display: block;
-	border-radius: 100px;
-	position: relative;
-}
-
-label:after {
-	content: '';
-	position: absolute;
-	top: 5px;
-	left: 5px;
-	width: 20px;
-	height: 20px;
-	background: #fff;
-	border-radius: 90px;
-	transition: 0.3s;
-}
-
-input:checked + label {
-	background: rgb(26, 187, 156);
-}
-
-input:checked + label:after {
-	left: calc(100% - 5px);
-	transform: translateX(-100%);
-}
-
-label:active:after {
-	width: 30px;
-}
-
-// centering
-body {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-}
-</style>
     <div style="margin-top:80px">
         <div class="container bootstrap snippet">
             <div style="float: right;margin-top: 5px">
@@ -123,8 +121,8 @@ body {
                                             <i style="color:black" class="fa fa-ellipsis-h"></i>
                                         </button>
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li style="display:none"><a id="deletpostbtn" href="{{ path('delete_post',{'post': item.post.id }) }}">Delet</a></li>
-                                            <li><a onclick="deletpostfunc()" href="{{ path('delete_post',{'post': item.post.id }) }}">{{'Delet'|trans}}</a></li>
+                                            <li style="display:none"><a id="deletpostbtn{{ item.post.id }}" href="{{ path('delete_group_post',{'post': item.post.id ,'group': view_group.group.id}) }}">Delet</a></li>
+                                            <li><a onclick="deletpostfunc({{ item.post.id }})">{{'Delet'|trans}}</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -267,11 +265,11 @@ body {
                             <div class="fb-status-container fb-border">
                                 <div class="fb-time-action">
                                     {% if item.like_type == 'like' %}
-                                        <a href="#like" id="like{{ item.post.id }}" onclick="like({{ item.post.id }},item.likes)" title="Like this" style="background-color: transparent !important;"><i class="fa fa-thumbs-o-up" ></i></a>
-                                        <a href="#dislike" id="dislike{{ item.post.id }}" onclick="dislike({{ item.post.id }},item.likes)" title="Dislike this" style="background-color: transparent !important; display: none;" ><i class="fa fa-thumbs-up" ></i></a>
+                                        <a href="#like" id="like{{ item.post.id }}" onclick="like({{ item.post.id }},{{ item.likes }})" title="Like this" style="background-color: transparent !important;"><i class="fa fa-thumbs-o-up" ></i></a>
+                                        <a href="#dislike" id="dislike{{ item.post.id }}" onclick="dislike({{ item.post.id }},{{ item.likes }})" title="Dislike this" style="background-color: transparent !important; display: none;" ><i class="fa fa-thumbs-up" ></i></a>
                                     {% else %}
-                                        <a href="#dislike" id="dislike{{ item.post.id }}" title="{{'Dislike this'|trans}}" onclick="dislike({{ item.post.id }},item.likes)" style="background-color: transparent !important;"><i class="fa fa-thumbs-up" ></i></a>
-                                        <a href="#like" id="like{{ item.post.id }}" title="{{'like this'|trans}}" onclick="like({{ item.post.id }},item.likes)"  style="background-color: transparent !important; display: none;"><i class="fa fa-thumbs-o-up" ></i></a>
+                                        <a href="#dislike" id="dislike{{ item.post.id }}" title="{{'Dislike this'|trans}}" onclick="dislike({{ item.post.id }},{{ item.likes }})" style="background-color: transparent !important;"><i class="fa fa-thumbs-up" ></i></a>
+                                        <a href="#like" id="like{{ item.post.id }}" title="{{'like this'|trans}}" onclick="like({{ item.post.id }},{{ item.likes }})"  style="background-color: transparent !important; display: none;"><i class="fa fa-thumbs-o-up" ></i></a>
                                     {% endif %}
                                     <span></span>
                                     {% if view_group.group.privacy == 'public' %}
@@ -297,7 +295,7 @@ body {
                                     {% if item.like_type == 'dislike' %}
                                         <div id="youitem{{ item.post.id }}" style="display: inline;"><b style="display: inline;">  {{'You'|trans}}</b> {% if item.likes == 0 %}<small style="display: inline;">{{'like this'|trans}}</small>{% endif %} </div>
                                     {% else %}
-                                        <div id="youitem{{ item.post.id }}" style="display: none;"><b style="display: inline;"> {{'You'|trans}}</b> {% if item.likes == 0 %}<small style="display: inline;">{{'like this'|trans}}</small>{% endif %} </div>
+                                        <div id="youitem{{ item.post.id }}" style="display: none;"><b style="display: inline;"> {{'You'|trans}}</b> {% if item.likes  == 0 %}<small style="display: inline;">{{'like this'|trans}}</small>{% endif %} </div>
                                     {% endif %}
                                 </div>
 
@@ -316,8 +314,7 @@ body {
                                                                 <i style="color:black" class="fa fa-ellipsis-h"></i>
                                                             </button>
                                                             <ul class="dropdown-menu dropdown-menu-right">
-                                                                <li><a onclick="clickdeletcmnt()">{{'Delet'|trans}}</a></li>
-                                                                <li style="display:none"><a id="deletcmntbtn" onclick="DeleteComment({{ comment.id }})">Delet</a></li>
+                                                                <li><a onclick="clickdeletcmnt({{ comment.id }})">{{'Delet'|trans}}</a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -347,8 +344,7 @@ body {
                                                                         <i style="color:black" class="fa fa-ellipsis-h"></i>
                                                                     </button>
                                                                     <ul class="dropdown-menu dropdown-menu-right">
-                                                                        <li><a onclick="clickdeletcmnt()">{{'Delet'|trans}}</a></li>
-                                                                        <li style="display:none"><a id="deletcmntbtn" onclick="DeleteComment({{ comment.id }})">Delet</a></li>
+                                                                        <li><a onclick="clickdeletcmnt({{ comment.id }})">{{'Delet'|trans}}</a></li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
@@ -424,7 +420,13 @@ body {
                                                 </div>
                                                 <div class="block_content">
                                                     <div class="byline">
-                                                        <input type="checkbox" id="switch" /><label for="switch">Toggle</label>
+                                                        <span>
+                                                            {% if view_group.group.privacy == 'public' %}
+                                                                <strong>{{'Public'|trans}}</strong>
+                                                                {% else %}
+                                                                    <strong>{{'Privacy'|trans}}</strong>
+                                                            {% endif %}
+                                                        </span>
                                                     </div>
                                                     </p>
                                                 </div>
@@ -520,7 +522,7 @@ body {
 
 {% block scripts %}
     <script> 
-    function clickdeletcmnt(){
+    function clickdeletcmnt(data){
             swal({
             title: "{{'Are you sure?'|trans}}",
             text: "{{'Are you sure that you want to exit delet this comment ?'|trans}}",
@@ -530,12 +532,12 @@ body {
             })
             .then(willDelete => {
                 if (willDelete) {
-                    document.getElementById("deletcmntbtn").click();
+                    DeleteComment(data)
                 }
             });
         }
 
-        function deletpostfunc(){
+        function deletpostfunc(id){
             swal({
             title: "{{'Are you sure?'|trans}}",
             text: "{{'Are you sure that you want to exit delet this post ?'|trans}}",
@@ -545,7 +547,7 @@ body {
             })
             .then(willDelete => {
                 if (willDelete) {
-                    document.getElementById("deletpostbtn").click();
+                    document.getElementById("deletpostbtn".concat(id)).click();
                 }
             });
         }
@@ -773,8 +775,7 @@ body {
                             output += '<div style="display:inline;float:right"><div class="btn-group ">';
                             output += '<button style="visibility: hidden;"type="button" class="btn btn-primary">Right dropup</button>';
                             output += '<button type="button" style="background:#f6f6f6;border:0" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><i style="color:black" class="fa fa-ellipsis-h"></i></button><ul class="dropdown-menu dropdown-menu-right">'
-                            output += '<li><a onclick="clickdeletcmnt()">{{"Delet"|trans}}</a></li>'
-                            output += '<li style="display:none"><a id="deletcmntbtn" onclick="DeleteComment('+data+')">Delet</a></li>'
+                            output += '<li><a onclick="clickdeletcmnt('+data+')">{{"Delet"|trans}}</a></li>'
                             output += '<a  class="cmt-thumb"></button>'
                             output += '</ul></div></div>'
                             var image = '{{ currentimage }}'
@@ -824,7 +825,7 @@ body {
             $('#comment_'.concat(comment)).remove();
             //
             $.ajax({
-                url: '{{ (path('delete_comment')) }}',
+                url: '{{ (path('group_delete_comment')) }}',
                 type: 'POST',
                 dataType: 'json',
                 data:
