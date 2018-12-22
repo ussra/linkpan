@@ -111,4 +111,12 @@ class LinkpanController extends Controller
     {
         return $this->render('PublicBundle::aboutus.html.twig');
     }
+
+    /**
+     * @Route("{_locale}/linkpan/forget_password",name="forget_password")
+     */
+    public function forget_passwordAction()
+    {
+        return $this->render('PublicBundle::forgetpassword.html.twig');
+    }
 }

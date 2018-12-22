@@ -395,6 +395,13 @@
     <script src={{ asset('scripts/plugins/OwlCarousel2-2.2.1/owl.carousel.js') }}></script>
     <script src={{ asset('scripts/plugins/easing/easing.js') }}></script>
     <script src={{ asset('scripts/js/custom.js') }}></script>
+    <!--Reload Form -->
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+
+    </script>
     {% block PublicScripts  %}
         <!-- verify password -->
         <script>
