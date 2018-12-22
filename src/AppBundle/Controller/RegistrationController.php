@@ -56,7 +56,7 @@ class RegistrationController extends Controller
             //send email
             $message = \Swift_Message::newInstance()
                 ->setSubject('Linkpan Account')
-                ->setFrom('omarerrabaany@gmail.com')
+                ->setFrom('linkpandemo@gmail.com')
                 ->setTo($email)
                 ->setBody('link to activate your email : '.$this->generateUrl('active_account', array('token' => $token,'email'=>$email), UrlGeneratorInterface::ABSOLUTE_URL));
             $mailer = $this->get('mailer');
