@@ -98,7 +98,7 @@
                                         <form class="form-inline">
                                             <input class="form-control mr-sm-2" type="search" placeholder="{{'pub_search'|trans }}" aria-label="Search">
 
-                                            <button class="btn btn-outline-primary my-2 my-sm-0" type="button"><i class="fa fa-image"  title="Search By Image"></i></button>
+                                            <button class="btn btn-outline-primary my-2 my-sm-0" type="button"><i class="fa fa-search"  title="Search By Image"></i></button>
                                         </form>
                                     </li>
                                 {% endblock %}
@@ -233,7 +233,7 @@
         </div>
         <!-- Banner -->
 
-        <!--<div class="banner" style="margin-top: 10%">
+        <div class="banner" style="margin-top: 10%">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4">
@@ -280,11 +280,11 @@
                     </div>
                 </div>
             </div>
-        </div>-->
+        </div>
 
         <!-- New Arrivals -->
         
-        <!--<div class="new_arrivals">
+        <div class="new_arrivals">
             <div class="container">
                 <div class="row">
                     <div class="col text-center">
@@ -299,26 +299,33 @@
                 <div class="row">
                     <div class="col">
                         <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
-                            {% for item in app.session.get('DiscoverPans') %}
-                                <div class="product-item agriculture">
-                                    <div class="product product_filter">
-                                        <div class="product_image">
-                                            <img src="{{ asset('images/pans/') }}{{ item.image }}" >
+                            {% set news = app.session.get('DiscoverPans') %}
+                            {{ dump(news) }}
+                            {% if news|length > 0 %}
+                                    {% for item in news %}
+                                        <div class="product-item agriculture">
+                                            <div class="product product_filter">
+                                                <div class="product_image">
+                                                    <img src="{{ asset('images/pans/') }}{{ item.image }}" >
+                                                </div>
+                                                <div class="product_info">
+                                                    <h6 class="product_name"><a href="single.html">{{ item.name|upper }}</a></h6>
+                                                    <h8> {{ item.description }}</h8>
+                                                    <div class="product_price">${{ item.price }}</div>
+                                                </div>
+                                            </div>
+                                            <div class="red_button add_to_cart_button"><a href="#">{{'pub_Details'|trans }}</a></div>
                                         </div>
-                                        <div class="product_info">
-                                            <h6 class="product_name"><a href="single.html">{{ item.name|upper }} , {{ item.description }}</a></h6>
-                                            <div class="product_price">${{ item.price }}</div>
-                                        </div>
-                                    </div>
-                                    <div class="red_button add_to_cart_button"><a href="#">{{'pub_Details'|trans }}</a></div>
-                                </div>
 
-                            {% endfor %}
+                                    {% endfor %}
+                                {% else %}
+                                    <small><i>There s no news  to display</i> </small>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
             </div>
-        </div>-->
+        </div>
 
         <!-- Deal of the week -->
 

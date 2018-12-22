@@ -19,7 +19,7 @@ class LinkpanController extends Controller
                 ORDER BY p.id DESC
             '
         )->setParameter('type', 'Discover');
-        $pans = $query->setMaxResults(6)->getResult();
+        $pans = $query->setMaxResults(10)->getResult();
         $session->set('DiscoverPans',$pans);
     }
     /**
