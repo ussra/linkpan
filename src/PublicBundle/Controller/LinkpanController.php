@@ -22,22 +22,6 @@ class LinkpanController extends Controller
         $pans = $query->setMaxResults(15)->getResult();
         $session->set('DiscoverPans',$pans);
     }
-    private function getBestPans()
-    {
-        $em = $this->getDoctrine()->getManager();
-        $session = new Session();
-        $query = $em->createQuery(
-            '
-                SELECT DISTINCT p FROM UserBundle:Pan p
-                JOIN r FROM UserBundle:PanRating r
-                WHERE p.type = :type 
-                AND AVG(r.) 
-                ORDER BY p.id DESC
-            '
-        )->setParameter('type', 'Discover');
-        $pans = $query->setMaxResults(15)->getResult();
-        $session->set('DiscoverPans',$pans);
-    }
 
     /**
      * @Route("{_locale}/linkpan",name="linkpan")
