@@ -5,8 +5,24 @@
 {% endblock %}
 
 {% block pageContent %}
-
+<!-- Photos -->
+<link href={{ asset('Userscripts/js/photos/ekko-lightbox.css') }} rel="stylesheet">
 <style>
+/** **/
+
+@media (max-width: 593px){
+.post-3img-video-fixed {
+    margin: 1px 0 0 0px !important;
+}
+.post-2img-video {
+    max-width: 49% !important;
+    }
+
+}
+
+
+
+/** **/
 #hidebtn{
     display:none
 }
@@ -214,20 +230,24 @@
                                                 <div class="panel">
                                                     <div class="panel-body">
                                                         <!-- Image -->
-                                                        <div style="margin-bottom:3px;display:inline;"><span style="font-size:1.5em">{{ userProfile.user_first_name }} {{ userProfile.user_last_name }}</span><a href="{{ path('discover_post',{'post':item.object.id}) }}"> Shared a post: </a></div>
+                                                        <div style="margin-bottom:3px;display:inline;"><span style="font-size:1.5em">{{ userProfile.user_first_name }} {{ userProfile.user_last_name }}</span><a href="{ path('discover_post',{'post':item.object.id}) }}"> Shared a post: </a></div>
                                                         <div style="display:inline;float:right"><i class="fa fa-trash"></i></div>
                                                         <br><br>
                                                         <div class="fb-user-thumb" style="display:inline">
                                                             {% if item.object.user.image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.object.user.image  %}{% endif %}
-                                                            <a><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;display:block"></a>
+                                                            <a><img src="{{ asset('images/profile/') }}{{ image }}" class="img-circle" style="width: 70px;height: 70px;object-fit: cover;"></a>
                                                         </div>
                                                         <div class="fb-user-details">
-                                                            <a style="padding: 0 !important;" class="#"><span style="font-size:20px;">{{ item.object.user.firstname }} {{ item.object.user.lastname }}</span>  <span style="font-size:15px;display:block">{{ item.object.creationDate  }}</span></a>
-                                                            
+                                                            <h3><a>{{ item.object.user.firstname }} {{ item.object.user.lastname }}</a></h3>
+                                                            <span style="font-size:15px;display:block">{{ item.object.creationDate  }}</span>
                                                         </div>
+
+                                                        <div class="clearfix"></div>
                                                         <!-- display post content -->
                                                         <p class="fb-user-status">
-                                                            <div style="word-wrap:break-word">{{ item.object.content }} </div>
+                                                            <div style="word-wrap:break-word">
+                                                            {{ item.object.content }}
+                                                            </div>
                                                             <!-- ***********************************************************************************-->
                                                             <!-- images + video -->
                                                             <div class="parent" style="max-width: 650px;">
@@ -235,19 +255,19 @@
                                                                     {% if item.images|length > 0 %}
                                                                         {% if item.images|length == 1 %}<!-- 1 photo+video: -->
                                                                             <div style="max-width:600px">
-                                                                                <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                                <video  class="Vidoe_Player"  controls  playsinline  controls qualitychange>
                                                                                     <source src="{{ asset('videos/') }}{{ item.object.video }}" type="video/mp4">
                                                                                     {{'Your browser does not support the video tag.'|trans}}
                                                                                 </video>
                                                                             </div>
                                                                             <div>
-                                                                                <a  href="{{ asset('images/post/') }}{{ item.images|first }}" data-max-width="600" data-toggle="lightbox" data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ item.images|first }}" id="post_img" class="post-1img-video img-responsive"></a>
+                                                                                <a style="padding:0 !important;"  href="{{ asset('images/post/') }}{{ item.images|first }}" data-max-width="600" data-toggle="lightbox" data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ item.images|first }}" id="post_img" class="post-1img-video img-responsive"></a>
                                                                             </div>
                                                                         {% endif %}<!--end 1 photo+video: -->
 
                                                                         {% if item.images|length == 2 or item.images|length == 3   %}<!--end 2 or 3 photo+video -->
                                                                         <div style="max-width:600px">
-                                                                            <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                            <video   class="Vidoe_Player" controls  playsinline  controls qualitychange>
                                                                                 <source src="{{ asset('videos/') }}{{ item.object.video }}" type="video/mp4">
                                                                                 {{'Your browser does not support the video tag.'|trans}}
                                                                             </video>
@@ -255,7 +275,7 @@
 
                                                                         <div>
                                                                             {% for img in item.images %}
-                                                                                <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.images|length == 2 %}class="img-responsive post-2img-video" {% else %}class="post-3img-video-fixed img-responsive"{% endif %}></a>
+                                                                                <a style="padding:0 !important;"  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.images|length == 2 %}class="img-responsive post-2img-video" {% else %}class="post-3img-video-fixed img-responsive"{% endif %}></a>
                                                                             {% endfor %}
                                                                         </div>
 
@@ -263,7 +283,7 @@
 
                                                                     {% if item.images|length > 3 %}<!--more than 3 photo+video: -->
                                                                         <div style="max-width:600px">
-                                                                                <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                                <video   class="Vidoe_Player" controls  playsinline  controls qualitychange>
                                                                                     <source src="{{ asset('videos/') }}{{ item.object.video }}" type="video/mp4">
                                                                                     {{'Your browser does not support the video tag.'|trans}}
                                                                                 </video>
@@ -271,10 +291,10 @@
 
                                                                         <div>
                                                                             {% for img in item.images[0:2]  %}
-                                                                                <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
+                                                                                <a style="padding:0 !important;"  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
                                                                             {% endfor %}
 
-                                                                            <a  href="{{ asset('images/post/') }}{{ item.images[2] }}" data-toggle="lightbox"  data-gallery="{{ item.object.id }}">
+                                                                            <a style="padding:0 !important;" href="{{ asset('images/post/') }}{{ item.images[2] }}" data-toggle="lightbox"  data-gallery="{{ item.object.id }}">
                                                                                 <div class="post-3imgvid-wrapblack">
 
                                                                                     <img src="{{ asset('images/post/') }}{{ item.images[2] }}"  class="post-3imgvid-blackimg img-responsive">
@@ -297,7 +317,7 @@
 
                                                                     {% if item.images|length == 0  %}
                                                                         <div style="max-width:600px">
-                                                                            <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                            <video class="Vidoe_Player" controls  playsinline  controls qualitychange>
                                                                                 <source src="{{ asset('videos/') }}{{ item.object.video }}" type="video/mp4">
                                                                                 {{'Your browser does not support the video tag.'|trans}}
                                                                             </video>
@@ -309,14 +329,14 @@
                                                                 {% if item.object.video is null %}
                                                                     {% if item.images|length == 1  %}<!--1 photo -->
                                                                         <div>
-                                                                            <a  href="{{ asset('images/post/') }}{{ item.images|first }}" data-max-width="1000" data-toggle="lightbox" data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ item.images|first }}" id="post_img" class="post-1img img-responsive"></a>
+                                                                            <a style="padding:0 !important;" href="{{ asset('images/post/') }}{{ item.images|first }}" data-max-width="1000" data-toggle="lightbox" data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ item.images|first }}" id="post_img" class="post-1img img-responsive"></a>
                                                                         </div>
                                                                     {% endif %}<!--end 1 photo-->
 
                                                                     {% if item.images|length == 2 or item.images|length == 3   %}<!--2 or 3 photo -->
                                                                     <div>
                                                                         {% for img in item.images %}
-                                                                            <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.images|length == 2 %}class="img-responsive post-2-img" {% else %}class="post-3-img img-responsive"{% endif %}></a>
+                                                                            <a style="padding:0 !important;"  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.images|length == 2 %}class="img-responsive post-2-img" {% else %}class="post-3-img img-responsive"{% endif %}></a>
                                                                         {% endfor %}
                                                                     </div>
                                                                 {% endif %}<!--end 2 or 3 photo -->
@@ -324,10 +344,10 @@
                                                                     {% if item.images|length > 3   %} <!--more than 3 photo -->
                                                                     <div>
                                                                         {% for img in item.images[0:2]  %}
-                                                                            <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
+                                                                            <a style="padding:0 !important;" href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
                                                                         {% endfor %}
 
-                                                                        <a  href="{{ asset('images/post/') }}{{ item.images[2] }}" data-toggle="lightbox"  data-gallery="{{ item.object.id }}">
+                                                                        <a style="padding:0 !important;"  href="{{ asset('images/post/') }}{{ item.images[2] }}" data-toggle="lightbox"  data-gallery="{{ item.object.id }}">
                                                                             <div class="post-3imgvid-wrapblack">
 
                                                                                     <img src="{{ asset('images/post/') }}{{ item.images[2] }}"  class="post-3imgvid-blackimg img-responsive">
@@ -403,13 +423,22 @@
 {% endblock %}
 
 {% block scripts %}
-    <!-- block -->
+        <!-- Photos -->
+        <script src={{ asset('Userscripts/js/photos/ekko-lightbox.js') }}></script>
+        <!-- block -->
+    <script>
+        $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+            event.preventDefault();
+            $(this).ekkoLightbox();
+        });
+    </script>
     <script src="{{ asset('Userscripts/js/video/plyr.js') }}"></script>
     <script>
         //const player = new Plyr('.Vidoe_Player');
         const players = Array.from(document.querySelectorAll('.Vidoe_Player')).map(p => new Plyr(p));
 
     </script>
+
     <script>
         function block(userToBlock)
         {
