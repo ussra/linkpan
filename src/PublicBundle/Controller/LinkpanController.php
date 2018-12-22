@@ -19,7 +19,7 @@ class LinkpanController extends Controller
                 ORDER BY p.id DESC
             '
         )->setParameter('type', 'Discover');
-        $pans = $query->setMaxResults(10)->getResult();
+        $pans = $query->setMaxResults(15)->getResult();
         $session->set('DiscoverPans',$pans);
     }
     /**
@@ -91,7 +91,7 @@ class LinkpanController extends Controller
         $message = \Swift_Message::newInstance()
             ->setSubject('Linkpan Contact : '.$request->get('reason'))
             ->setFrom('linkpandemo@gmail.com')
-            ->setTo('mariamaital98@gmail.com')
+            ->setTo('linkpandemo@gmail.com')
             ->setBody('Description :  '.$request->get('description').' , FROM : '.$request->get('fullname').
                 ' , Email: '.$request->get('email').', Phone : '.$request->get('phone').
                 ', Company : '.$request->get('company'));
@@ -118,5 +118,58 @@ class LinkpanController extends Controller
     public function forget_passwordAction()
     {
         return $this->render('PublicBundle::forgetpassword.html.twig');
+    }
+
+
+    /**
+     * @Route("{_locale}/linkpan/discover/details",name="details")
+     */
+    public function detailsdAction(Request $request)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Pan');
+        $pan = $repo->findOneById($request->get('pan'));
+        $session = new Session();
+        $session->set('details',$pan);
+        //get average rating
+        $ratingrepo = $this->getDoctrine()->getRepository('UserBundle:PanRating');
+        $rating = $ratingrepo->findBy(
+            array('pan'=>$pan)
+        );
+        $average = 0;
+        if(sizeof($rating)>0)
+        {
+            foreach ($rating as $val)
+            {
+                $average += $val->getRate();
+            }
+            $average = $average / sizeof($rating);
+            if($average > 5)
+                $average = 5;
+        }
+        $session->set('average',$average);
+        //get reviews with rating
+        $results = array();
+        $reviewrepo = $this->getDoctrine()->getRepository('UserBundle:PanReview');
+        $reviews = $reviewrepo->findBy(
+          array('pan'=>$pan)
+        );
+        if(!is_null($reviews))
+        {
+            foreach ($reviews as $review)
+            {
+                //find review
+                $rate = $ratingrepo->findOneBy(
+                    array('pan'=>$pan,'user'=>$review->getUser())
+                );
+                //
+                $temp = array(
+                  'review'=>$review,
+                  'rate'=>$rate
+                );
+                array_push($results,$temp);
+            }
+        }
+        $session->set('reviews',$results);
+        return $this->render('PublicBundle::detail.html.twig');
     }
 }

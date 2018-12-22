@@ -300,7 +300,6 @@
                     <div class="col">
                         <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
                             {% set news = app.session.get('DiscoverPans') %}
-                            {{ dump(news) }}
                             {% if news|length > 0 %}
                                     {% for item in news %}
                                         <div class="product-item agriculture">
@@ -309,14 +308,13 @@
                                                     <img src="{{ asset('images/pans/') }}{{ item.image }}" >
                                                 </div>
                                                 <div class="product_info">
-                                                    <h6 class="product_name"><a href="single.html">{{ item.name|upper }}</a></h6>
+                                                    <h6 class="product_name"><a href="{{ path('details',{'pan':item.id}) }}">{{ item.name|upper }}</a></h6>
                                                     <h8> {{ item.description }}</h8>
                                                     <div class="product_price">${{ item.price }}</div>
                                                 </div>
                                             </div>
-                                            <div class="red_button add_to_cart_button"><a href="#">{{'pub_Details'|trans }}</a></div>
+                                            <div class="red_button add_to_cart_button"><a href="{{ path('details',{'pan':item.id}) }}">{{'pub_Details'|trans }}</a></div>
                                         </div>
-
                                     {% endfor %}
                                 {% else %}
                                     <small><i>There s no news  to display</i> </small>

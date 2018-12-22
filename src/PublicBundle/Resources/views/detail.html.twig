@@ -1,0 +1,175 @@
+{% extends "::base.html.twig" %}
+
+
+{% block PublicHead %}
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="{{ asset('scripts/styles/single_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('scripts/styles/single_responsive.css') }}">
+{% endblock %}
+
+{% block search %}
+{% endblock %}
+
+{% block Title %}
+    LINKPAN
+{% endblock %}
+
+{% block PublicBody %}
+    {% set pan = app.session.get('details') %}
+    {% if pan.id > 0 %}
+        <div class="container single_product_container">
+            <div class="row">
+                <div class="col">
+                    <!-- Breadcrumbs -->
+                    <div class="breadcrumbs d-flex flex-row align-items-center">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="single_product_pics">
+                        <div class="row">
+                            <!--<div class="col-lg-3 thumbnails_col order-lg-1 order-2">
+                                <div class="single_product_thumbnails">
+                                    <ul>
+                                        <li><img src="scripts/img/fujifilm.jpg" alt="" data-image="scripts/img/fujifilm.jpg"></li>
+                                        <li class="active"><img src="scripts/img/fuji2.jpg" alt="" data-image="scripts/img/fuji2.jpg"></li>
+                                        <li><img src="scripts/img/fuji3.jpg" alt="" data-image="scripts/img/fuji3.jpg"></li>
+                                    </ul>
+                                </div>
+                            </div>-->
+                            <div class="col-lg-9 image_col order-lg-2 order-1">
+                                <div class="single_product_image">
+                                    <div class="single_product_image_background" style="background-image:url({{ asset('images/pans/') }}{{ pan.image }})"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="product_details">
+                        <div class="product_details_title">
+                            <h2>{{ pan.name }}</h2>
+                            <p>{{ pan.description }}</p>
+                        </div>
+
+                        <!--<div class="original_price">$629.99</div>-->
+                        <div class="product_price">${{ pan.price }}</div>
+                        {% set  average = app.session.get('average') %}
+
+                        <ul class="star_rating">
+                            {% if average > 0 %}
+                                {% for i in range(0, average - 1) %}
+                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                {% endfor %}
+                                {% else %}
+                                    <small><i>No average rating to display yet</i></small>
+                            {% endif %}
+                        </ul>
+
+                        <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
+                            <span>Quantity:</span>
+                            <div class="quantity_selector text-center" style="width: 95%;">
+                                <span id="quantity_value" class=""> {{ pan.quentity }}  {{ pan.quantityType }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Tabs -->
+
+        <div class="tabs_section_container">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="tabs_container">
+                            <ul class="tabs d-flex flex-sm-row flex-column align-items-left align-items-md-center justify-content-center">
+
+                                <li class="tab active" data-active-tab="tab_2"><span>Additional Information</span></li>
+                                <li class="tab" data-active-tab="tab_3"><span>Reviews (2)</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <!-- Tab Additional Info -->
+                        <div id="tab_2" class="tab_container active">
+                            <div class="row">
+                                <div class="col additional_info_col">
+                                    <div class="tab_title additional_info_title">
+                                        <h4>Additional Information</h4>
+                                    </div>
+                                    <p>Other name  <span>{{ pan.othername }}</span></p>
+                                    <p>Origin <span>{{ pan.origin }}</span></p>
+                                    <p>Owner <span>{{ pan.user.firstname }} {{ pan.user.lastname }} </span></p>
+                                    {% if pan.attachement is not null %}
+                                        <p>Attachement <span><a href="{{ asset('attachements/pans/') }}{{ pan.attachement  }}" download><i class="fa fa-download"></i></a></span></p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tab Reviews -->
+
+                        <div id="tab_3" class="tab_container">
+                            <div class="row">
+
+                                <!-- User Reviews -->
+
+                                <div class="col-lg-6 reviews_col">
+                                    {% set reviews = app.session.get('reviews') %}
+                                    <div class="tab_title reviews_title">
+                                        <h4>Reviews ({{ reviews|length }})</h4>
+                                    </div>
+
+                                    <!-- User Review -->
+
+                                    {% for item in reviews %}
+                                        <div class="user_review_container d-flex flex-column flex-sm-row">
+                                            <div class="user">
+                                                {% if item.review.user.image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.review.user.image %} {% endif %}
+                                                <div class="user_pic"><img src="{{ asset('images/profile/') }}{{ image }}" style="width: 70px;height:70px;object-fit: cover; border-radius: 50%;;"></div>
+                                                <div class="user_rating">
+                                                    <ul class="star_rating">
+                                                        {% if item.rate is not null %}
+                                                            {% for i in range(0, item.rate.rate - 1) %}
+                                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                            {% endfor %}
+                                                        {% endif %}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="review">
+                                                {% if item.review.creationDate is not null %}
+                                                    <div class="review_date">{{ item.review.creationDate }}</div>
+                                                {% endif %}
+                                                <div class="user_name">{{ item.review.user.firstname }} {{ item.review.user.lastname }}</div>
+                                                <p>
+                                                    {{ item.review.review }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block PublicScripts  %}
+
+    <script src="{{ asset('scripts/js/single_custom.js') }}"></script>
+{% endblock %}
