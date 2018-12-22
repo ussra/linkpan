@@ -1,0 +1,256 @@
+{% extends "::base.html.twig" %}
+
+
+{% block PublicHead %}
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href={{ asset('scripts/styles/Dockies.css') }}>
+{% endblock %}
+
+{% block Title %}
+    About us
+{% endblock %}
+
+{% block search %}
+{% endblock %}
+
+{% block PublicBody %}
+    <div style="margin-top: 12.5%;">
+        <div class="container-fluid" id="section2">
+            <div class="row">  <!-- row 1 Master -->
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 text-center">
+                    <div class="row">
+                        <div class="col-12 text-center" style="padding-top:50px">
+                            <div class="titles" id="title2"><h4  class="display-4">What We Do ?</h4> </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <img src="{{ asset('scripts/img/whatwedo.svg') }}" class="img-fluid center-block" alt="Responsive image" height="350" width="350">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            By providing Tools and content of High Technological values to all our subcribers and friends atlarge.
+                            We shall always keep our temperament inline nomatter the outcome, study and stay ahead of the corporate curve that exist
+                            in the Ecommerce world,
+                            we shall do the extra work, which every other person(companies) avoids.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12  text-center">
+                    <div class="row">
+                        <div class="col-12 text-center" style="padding-top:50px">
+                            <div class="titles" id="title2"> <h4  class="display-4"> Launch Date</h4></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <img src="{{ asset('scripts/img/Startdate.svg') }}" class="img-fluid center-block" alt="Responsive image" height="350" width="350">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            We launched remotely on 07/18/2016, we have updated and re-analysed our product market fit
+                            constantly to bring about what we consider 'a disruptive approach.
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 text-center">
+                    <div class="row">
+                        <div class="col-12 text-center" style="padding-top:50px">
+                            <div class="titles" id="title2"><h4  class="display-4">Our promise</h4> </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <img src="{{ asset('scripts/img/our%20promis.svg') }}" class="img-fluid center-block" alt="Responsive image" height="350" width="350">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            to make it seamless for trading and betterment among partners across the world.
+                            We would always conduct transactions
+                            with this formula : Partners, Content then Success, (PCS)
+                            Providing something that is unique,( that makes a leap )
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="row">
+                        <div class="col-12 text-center"  style="padding-top:50px">
+                            <div class="titles" id="title2"><h4 class="display-4">Linkpan Code of Conduct</h4></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <img src="{{ asset('scripts/img/S2/law.svg') }}" class="img-fluid center-block" alt="Responsive image" height="400" width="400">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            We will respect and follow the law, stay in compliance with Business Ethics, Partners are our
+                            focus, content is what we provide and success is what they get. Conflict of Interest should<br>
+                            and will not be tolerated by the Linkpan Team and we share these values with our partners
+                            worldwide. We would promptly disengage and report any illegal endeavors to the<br>
+                            appropriate authorities. We learn by taking actions, every member of the linkpan team is a
+                            leader.
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div> <!--end row 1 Master -->
+
+        <div class="container-fluid" id="section3">
+            <div class="row">
+                <div class="col-12 text-center" >
+
+                    <blockquote class="blockquote text-center" style="margin-top: 50px;">
+                        <h2>preserve the core and stimulate progress</h2>
+                        <p>you have got to keep doing and going</p>
+                        <footer class="blockquote-footer">Henry Ford <cite title="Source Title"></cite></footer>
+                    </blockquote>
+
+
+                </div>
+            </div>
+        </div>
+        <!--Section 1-->
+        <div class="container-fluid fill" id="section1"><!--Container-->
+            <div class="row" style="padding:50px;">
+                <div class="col-12 text-center">
+                    <div class="titles" > <h4 style="color:white" class="display-4">Dockies</h4></div>
+                </div>
+            </div>
+            <!--slide show-->
+            <div id="slider4" class="carousel slide mb-5" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li class="active" data-target="#slider4" data-slide-to="0"></li>
+                    <li data-target="#slider4" data-slide-to="1"></li>
+                    <li data-target="#slider4" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner" role="listbox">
+
+
+                    <div class="carousel-item active">
+                        <div class="text-center">
+                            <img src="{{ asset('scripts/img/Dockies/Slider/intro.svg') }}" id="" class="img-fluid" alt="Responsive image" width="500px" height="500px"/>
+                        </div>
+
+                        <div class="carousel-caption">
+                            <p style="color:white">
+
+                                Dockies is a live system for fast trading, <br>
+                                where you find ready trading proposals and inquiries,<br>
+                                75% of options to close open deals and start negotiation.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="text-center">
+                            <img src="{{ asset('scripts/img/Dockies/Slider/intro2.svg') }}" id="" class="img-fluid" alt="Responsive image" width="500px" height="500px"/>
+                        </div>
+
+                        <div class="carousel-caption">
+                            <p style="color:white">
+                                The reason we created Dockies Prime, was to give both importers</br>
+                                and exporters alike a huge scale of negotiation by inducing</br>
+                                time and providing efficiency through corporate advantage.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <div class="text-center">
+                            <img src="{{ asset('scripts/img/Dockies/Slider/intro3.svg') }}" id="" class="img-fluid" alt="Responsive image" width="450px" height="450px"/>
+                        </div>
+
+                        <div class="carousel-caption">
+                            <p style="color:white">
+                                We understand the essence of product differentiation and the
+                                importance of competitive advantage. </p>
+
+                        </div>
+                    </div>
+
+                    <a href="#slider4" class="carousel-control-prev" data-slide="prev">
+                        <span class="carousel-control-prev-icon"></span>
+                    </a>
+
+                    <a href="#slider4" class="carousel-control-next" data-slide="next">
+                        <span class="carousel-control-next-icon"></span>
+                    </a>
+
+                </div>
+            </div><!--end slide show-->
+
+
+
+        </div>
+    </div> <!--End Container-->
+
+    <!--*****************************************-->
+    <div class="container-fluid" id="section2"><!--Container 2-->
+        <div class="row">  <!-- row 1 Master -->
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 text-center">
+
+                <div class="card">
+                    <img class="card-img-top" src="{{ asset('scripts/img/Dockies/S2/ACE.svg') }}" alt="Card image cap" height="350" width="350">
+                    <div class="card-body">
+                        <h4 class="card-title">Why upgrade to Ace Membership?</h4>
+                        <p class="card-text" style="padding-bottom:40px;">You get global posting, Ace Logo And Dockies Prime.
+                            Dockies prime takes your business to a 100X option to getting
+                            deals become transcations.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12  text-center">
+                <div class="card">
+                    <img class="card-img-top" src="{{ asset('scripts/img/Dockies/S2/what.svg') }}" alt="Card image cap" height="350" width="350">
+                    <div class="card-body">
+                        <h4 class="card-title">What you get ?</h4>
+                        <div class="card-text"></p>
+                            Buyers open contract with full offers, Sellers open contract with full offers,
+                            offers include options of Bank guarantee,BCL,ARDLC ,DLC,LC,MC103
+                            <div class="collapse mb-5" id="collapse-btn-1">
+                                DLC,LC,MC103,Certificate Of Inspection,
+                                Performance Bond,past performace,POP,LOI,SCO,FCO,ICPO,Certificate Of Origin and More...
+                            </div>
+                        </div>
+                        <!--<a data-toggle="collapse" data-target="#collapse-btn-1" style="color:#0e7ac3">Read More</a>-->
+                    </div>
+                </div>
+            </div>
+
+        </div> <!--end row 1 Master -->
+    </div><!--end container2 -->
+    <!--Section-->
+    <div class="container-fluid" id="section3">
+        <div class="row align-items-center">
+            <div class="col-12 text-center">
+                <div>
+                    <img src="{{ asset('scripts/img/Dockies/Section3/updatenow.svg') }}" class="img-fluid center-block" width="500px" height="500px"/>  </br>
+                </div>
+                <div>
+                    <h2 style="font-size: 60px"> UPGRADE TODAY</h2>
+                    and get what Your Business needs, time is of importance  and the <br>right people and partners
+                    must be of importance to Your Business.
+                </div>
+                <div id="btn" >
+                    <br><a href="{{ path('signin') }}"><button class="btn btn-dark btn-lg">Upgrade Now</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block PublicScripts  %}
+{% endblock %}

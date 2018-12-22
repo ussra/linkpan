@@ -103,4 +103,12 @@ class LinkpanController extends Controller
 
         return $this->render('PublicBundle::contactus.html.twig');
     }
+
+    /**
+     * @Route("{_locale}/linkpan/about",name="about")
+     */
+    public function aboutAction()
+    {
+        return $this->render('PublicBundle::aboutus.html.twig');
+    }
 }
