@@ -54,7 +54,7 @@
                                         </a>
                                         <ul class="account_selection">
                                             <li><a class="link-hover" href="{{ path('signin') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>{{'signin_SIGN_IN'|trans }}</a></li>
-                                            <li><a class="link-hover"><i class="fa fa-user-plus" aria-hidden="true"></i>{{'pub_sign_up'|trans }}</a></li>
+                                            <li><a class="link-hover" href="{{ path('signup') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>{{'pub_sign_up'|trans }}</a></li>
                                         </ul>
                                     </li>
                                     <li class="account">
@@ -91,8 +91,8 @@
                             <ul class="navbar_menu">
                                 <li><a class="link-hover" href="{{ path('linkpan') }}">{{'pub_home'|trans }}</a></li>
                                 <li><a class="link-hover" href="">{{'pub_discover'|trans }}</a></li>
-                                <li><a class="link-hover" href="">{{'pub_about_us'|trans }}</a></li>
-                                <li><a class="link-hover" href="">{{'pub_contact_us'|trans }}</a></li>
+                                <li><a class="link-hover" href="{{ path('about') }}">{{'pub_about_us'|trans }}</a></li>
+                                <li><a class="link-hover" href="{{ path('contact') }}">{{'pub_contact_us'|trans }}</a></li>
                                 {% block search %}
                                     <li>
                                         <form class="form-inline">
@@ -130,7 +130,7 @@
                     </a>
                     <ul class="menu_selection">
                         <li><a class="link-hover" href="{{ path('signin') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>{{'signin_SIGN_IN'|trans }}</a></li>
-                        <li><a class="link-hover" hraf="{{ path('signup') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>{{'pub_sign_up'|trans }}</a></li>
+                        <li><a class="link-hover" href="{{ path('signup') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>{{'pub_sign_up'|trans }}</a></li>
                     </ul>
                 </li>
                 <li><a href="{{ path('linkpan') }}">{{'pub_home'|trans }}</a></li>
@@ -395,6 +395,13 @@
     <script src={{ asset('scripts/plugins/OwlCarousel2-2.2.1/owl.carousel.js') }}></script>
     <script src={{ asset('scripts/plugins/easing/easing.js') }}></script>
     <script src={{ asset('scripts/js/custom.js') }}></script>
+    <!--Reload Form -->
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+
+    </script>
     {% block PublicScripts  %}
         <!-- verify password -->
         <script>

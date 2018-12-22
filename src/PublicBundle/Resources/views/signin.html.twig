@@ -41,8 +41,8 @@
                             </a>
                         </div>
                         <div class="text-center">
-                            <span style="color: white"> {{ 'signin_donthaveacc'|trans }} </span> &nbsp;<a  class="checkboxlink" > Sign up </a></br>
-                            <a href="#" ><span style="color: white">{{ 'signin_forgotpass'|trans }}</span></a>
+                            <span style="color: white"> {{ 'signin_donthaveacc'|trans }} </span> &nbsp;<a  class="checkboxlink" href="{{ path('signup') }}"> Sign up </a></br>
+                            <a href="{{ path('forget_password') }}" ><span style="color: white">{{ 'signin_forgotpass'|trans }}</span></a>
                         </div>
                     </form>
                     <!-- ******************** 
