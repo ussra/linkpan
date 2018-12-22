@@ -34,7 +34,7 @@ less comments: moins de comments
 Sorry there’s no posts to display now !: Désolé, il n'y a aucun message à afficher maintenant !
 User Account Security: Sécurité du compte d'utilisateur
 Go to linkpan!: Allez sur linkpan !
-do you really want to upgrade your membership: voulez-vous vraiment mettre à jour votre abonnement ?
+do you really want to upgrade your membership: voulez-vous vraiment mettre à jour votre abonnement 
 Dockies Type: Dockies Type **
 monthly: mensuel
 6 months: 6 mois
@@ -574,6 +574,850 @@ SuspenTimepieces, Jewelry, Eyewearders: Suspendre Montres, Bijoux, Eyewearders
 SuspAuto & Transportationenders: SuspAusto & Transport Tenders
 TruLuggage, Bags & Casesck: Tru Bagages, sacs et étuis
 #START 19-12
+Computer Hardware & Software : Matériel informatique et logiciels
+All-In-One PC : PC tout-en-un
+Barebone System : Système Barebone
+Computer Cables & Connectors : Câbles et connecteurs informatiques
+Computer Cases & Towers : Cases et tours d'ordinateur
+Computer Cleaners : Nettoyeurs d'ordinateurs
+Desktops : Ordinateurs de bureau
+Fans & Cooling : Ventilateurs et refroidissement
+Firewall & VPN : Pare-feu et VPN
+Graphics Cards : Cartes graphiques
+Hard Drives : Disques durs
+HDD Enclosure : Boîtier du disque dur
+Industrial Computer & Accessories : Ordinateur industriel et accessoires
+Keyboard Covers : Couvertures Clavier
+KVM Switches : Commutateurs KVM
+Laptop Accessories : Accessoires pour ordinateurs portables
+Laptop Cooling Pads : Tapis de refroidissement pour ordinateur portable
+Laptops : Ordinateurs portables
+Memory : Memoire
+Modems : Modems
+Monitors : Moniteurs
+Motherboards : Cartes mères
+Mouse & Keyboards : Souris et claviers
+Mouse Pads : Tapis de souris
+Netbooks & UMPC : Netbooks et UPMC
+Network Cabinets : Armoires de réseau
+Network Cards : Cartes réseau
+Network Hubs : Hubs de réseau
+Network Switches : Commutateurs réseau
+Networking Storage : Stockage en réseau
+Optical Drives : Lecteurs optiques
+Other Computer Accessories : Autres accessoires informatiques
+Other Computer Parts : Autres pièces informatiques
+Other Computer Products : Autres produits informatiques
+Other Drive & Storage Devices : Autres unités et périphériques de stockage 
+Other Networking Devices : Autres périphériques réseau
+PC Stations : Stations PC
+PDAs : PDAs
+Power Supply Units : Unités d'alimentation
+Printers : Des imprimantes
+Processors : Processeurs
+Routers :Routeurs
+Scanners : Scanners
+Servers : Serveurs
+Software : Logiciel
+Sound Cards : Cartes son
+Tablet PC : Tablette
+Tablet PC Stands : Supports Tablet PC
+Tablet Stylus Pen : Stylet tablette
+USB Flash Drives : Clés USB
+USB Gadgets : Gadgets USB
+USB Hubs : Hubs USB
+Used Computers & Accessories : Ordinateurs usagés et accessoires
+Webcams : Webcams
+Wireless Networking : Réseau sans fil
+Workstations : Postes de travail
+Home Appliance : Électroménager
+Air Conditioning Appliances : Appareils de climatisation
+Cleaning Appliances : Appareils de nettoyage
+Hand Dryers : Sèche-mains
+Home Appliance Parts : Pièces d'appareils ménagers
+Home Appliances Stocks : Appareils électroménagers
+Home Heaters : Chauffe-maison
+Kitchen Appliances : Appareils de cuisine
+Laundry Appliances : Appareils de blanchisserie
+Other Home Appliances : Autres appareils ménagers
+Refrigerators & Freezers : Réfrigérateurs et congélateurs
+Water Heaters : Chauffe-eau
+Water Treatment Appliances : Appareils de traitement de l'eau
+Wet Towel Dispensers : Distributeurs de serviettes humides
+Air Conditioners : Climatiseurs
+Fans : Ventilateurs
+Vacuum Cleaners : Aspirateurs
+Solar Water Heaters : Chauffe-eau solaires
+Cooking Appliances : Appareils de cuisson
+Coffee Makers : Cafetières
+Blenders : Mélangeurs
+Accessories & Parts : Accessoires et pièces
+Camera, Photo & Accessories : Appareil photo, photo et accessoires
+Electronic Publications : Publications électroniques
+Home Audio, Video & Accessories : Audio, vidéo et accessoires pour la maison
+Mobile Phone & Accessories : Accessoires de téléphonie mobile
+Other Consumer Electronics : Autres produits électroniques grand public
+Portable Audio, Video & Accessories : Audio, vidéo et accessoires portables
+Video Game & Accessories : Jeu vidéo et accessoires
+Mobile Phones : Téléphones portables
+Earphone & Headphone : Écouteur et casque
+Power Banks : Batterie externe
+Digital Camera : Appareil photo numérique
+Radio & TV Accessories : Accessoires Radio & TV
+Speaker : haut-parleurs
+Television : Télévision
+Cables : Câbles
+Charger : Chargeur
+Digital Battery : Batterie numérique
+Digital Photo Frame : Cadre photo numérique
+3D Glasses : lunettes 3D
+Access Control Systems & Products : Systèmes de contrôle d'accès et produits
+Alarm : Alarme
+CCTV Products : Produits de vidéosurveillance
+Firefighting Supplies : Fournitures de lutte contre l'incendie
+Key : Clé
+Lock Parts : Verrouiller les pièces
+Locks : Serrures
+Locksmith Supplies : Fournitures de serrurier
+Other Security & Protection Products : Other Security & Protection Products
+Police & Military Supplies : Fournitures de police et militaires
+Roadway Safety : Sécurité routière
+Safes : Coffres-forts
+Security Services : Services de sécurité
+Self Defense Supplies : Fournitures d'autodéfense
+Water Safety Products : Produits de sécurité de l'eau
+Workplace Safety Supplies : Fournitures de sécurité sur le lieu de travail
+CCTV Camera : Caméra de vidéosurveillance
+Bullet Proof Vest : Gilet pare-balles
+Alcohol Tester : Testeur d'alcool
+Fire Alarm : Alarme incendie
+Batteries : Batteries
+Circuit Breakers : Disjoncteurs
+Connectors & Terminals : Connecteurs et terminaux
+Contactors : Contacteurs
+Electrical Plugs & Sockets : Fiches et prises électriques
+Fuse Components : Composants Fusibles
+Fuses : Fusibles
+Generators : Générateurs
+Other Electrical Equipment : Autres équipements électriques
+Power Accessories : Accessoires d'alimentation
+Power Distribution Equipment : Equipement de distribution d'énergie
+Power Supplies : Alimentations
+Professional Audio, Video & Lighting : Audio, vidéo et éclairage professionnels
+Relays : Relais
+Switches : Commutateurs
+Transformers : Transformateurs
+Wires, Cables & Cable Assemblies : Fils, câbles et assemblages de câbles
+Wiring Accessories : Accessoires de câblage
+Solar Cells, Solar Panel : Cellules solaires, panneau solaire
+Active Components : Composants actifs
+EL Products : Produits EL
+Electronic Accessories & Supplies : Accessoires et fournitures électroniques
+Electronic Data Systems : Systèmes de données électroniques
+Electronic Signs : Signes électroniques
+Electronics Production Machinery : Machines de production électronique
+Electronics Stocks : Stocks d'électronique
+Optoelectronic Displays : Affichages optoélectroniques
+Other Electronic Components : Autres composants électroniques
+Passive Components : Composants passifs
+LCD Modules : Modules LCD
+LED Displays : Affichages LED
+PCB & PCBA : PCB & PCBA
+Keypads & Keyboards : Claviers
+Insulation Materials & Elements : Matériaux et éléments d'isolation
+Integrated Circuits : Circuits intégrés
+Diodes : Diodes
+Transistors : Transistors
+Capacitors : Condensateurs
+Resistors : Résistances
+Antennas for Communications : Antennes pour les communications
+Communication Equipment : Équipement de communication
+Telephones & Accessories : Téléphones et accessoires
+Communication Cables : Câbles de communication
+Fiber Optic Equipment : Équipement de fibre optique
+Fixed Wireless Terminals : Terminaux sans fil fixes
+WiFi Finder : Chercheur WiFi
+Telephone Accessories : Accessoires téléphoniques
+Corded Telephones : Téléphones filaires
+Cordless Telephones : Téléphones sans fil
+Wireless Networking Equipment : Equipement de réseau sans fil
+Telephone Headsets : Casques téléphoniques
+VoIP Products : Produits VoIP
+Repeater : Répétiteur
+PBX : PBX
+Telecom Parts : Pièces de télécom
+Phone Cards : Cartes téléphoniques
+Telephone Cords : Cordons téléphoniques
+Answering Machines : Répondeurs
+Caller ID Boxes : Boîtes d'identification de l'appelant
+Gifts, Sports & Toys : Cadeaux, sports et jouets
+Amusement Park : Parc d'attractions
+Artificial Grass & Sports Flooring : Plancher de gazon et de sport artificiel
+Fitness & Body Building : Fitness et musculation
+Gambling : Jeux d'argent
+Golf : Golf
+Indoor Sports : Sports d'intérieur
+Musical Instruments : Instruments de musique
+Other Sports & Entertainment Products : Autres produits de sport et de divertissement
+Outdoor Sports : Sports de plein air
+Sports Gloves : Gants de sport
+Sports Safety : Sécurité sportive
+Sports Souvenirs : Souvenirs sportifs
+Team Sports : Sports d'équipe
+Tennis : Tennis
+Water Sports : Sports nautiques
+Winter Sports : Sports d'hiver
+Camping & Hiking : Camping & Randonnée
+Scooters : Scooters
+Gym Equipment : 
+Swimming & Diving : Natation et plongée
+Antique Imitation Crafts : Artisanat d'imitation antique
+Art & Collectible : Art et Collection
+Artificial Crafts : Artisanat Artificiel
+Arts & Crafts Stocks : Stocks d'art et d'artisanat
+Bamboo Crafts : Artisanat de bambou
+Carving Crafts : Artisanat de sculpture
+Clay Crafts : Artisanat d'argile
+Cross Stitch: Point de croix
+Crystal Crafts : Artisanat en cristal
+Embroidery Crafts : Métiers de broderie
+Feng Shui Crafts : Artisanat Feng Shui
+Festive & Party Supplies: Articles de fête
+Flags, Banners & Accessories: Drapeaux, bannières et accessoires
+Folk Crafts : Artisanat folklorique
+Gift Sets : Coffrets cadeaux
+Glass Crafts : Artisanat du verre
+Holiday Gifts : Cadeaux de vacances
+Home Decoration : Décoration d'intérieur
+Key Chains : Porte-clés
+Knitting & Crocheting : Tricot et Crochet
+Lacquerware : Laque
+Lanyard : Cordon
+Leather Crafts : Artisanat du cuir
+Metal Crafts : Métiers en Métal
+Money Boxes : Tirelires
+Music Boxes : Boîtes à musique
+Natural Crafts : Artisanat Naturel
+Nautical Crafts : Artisanat nautiques
+Other Gifts & Crafts : Autres cadeaux et artisanat
+Paper Crafts : Artisanat en papier
+Plastic Crafts : Artisanat en plastique
+Pottery & Enamel : Poterie et émail
+Religious Crafts : Artisanat religieux
+Resin Crafts : Métiers de résine
+Sculptures : Des sculptures
+Semi-Precious Stone Crafts : Artisanat en pierre semi-précieuse
+Souvenirs : Souvenirs
+Stickers : Autocollants
+Stone Crafts : Artisanat en pierre 
+Textile & Fabric Crafts : Artisanat du textile et du tissu
+Wedding Decorations & Gifts : Décorations et cadeaux de mariage
+Wicker Crafts : Artisanat en osier
+Wood Crafts : Artisanat du bois
+Toys & Hobbies : Jouets & Loisirs
+Action Figure : Figurine
+Baby Toys : Jouets pour bébé
+Balloons : Ballons
+Candy Toys : Bonbons jouets
+Classic Toys : Jouets classiques
+Dolls : Poupées
+Educational Toys : Jouets éducatifs
+Electronic Toys : Jouets électroniques
+Glass Marbles : Billes de verre
+Inflatable Toys : Jouets gonflables
+Light-Up Toys : Jouets Lumineux
+Noise Maker : Fauteur de trouble
+Other Toys & Hobbies : Autres jouets et loisirs
+Outdoor Toys & Structures : Jouets et structures de plein air
+Plastic Toys : Jouets en plastique
+Pretend Play & Preschool : Jeu de simulation et préscolaire
+Solar Toys : Jouets solaires
+Toy Accessories : Accessoires de jouets
+Toy Animal : Animal jouet
+Toy Guns : Pistolets jouets
+Toy Parts : Pièces de jouets
+Toy Robots : Robots Jouets
+Toy Vehicle : Véhicule jouet
+Wind Up Toys : Jouets à remonter
+Wooden Toys : Jouets en bois
+Health & Medical : Santé et médecine
+Animal Extract : Extrait animal
+Plant Extracts : Extraits de plantes
+Body Weight : Poids
+Health Care Supplement : Supplément de soins de santé
+Health Care Supplies : Fournitures de soins de santé
+Crude Medicine : Médecine brute
+Prepared Drugs In Pieces : Drogues préparées en morceaux
+Traditional Patented Medicines : Médicaments brevetés traditionnels
+Body Fluid-Processing & Circulation Devices : Dispositifs de traitement et de circulation des fluides corporels
+Clinical Analytical Instruments : Instruments d'analyse clinique
+Dental Equipment : Équipement dentaire
+Emergency & Clinics Apparatuses : Appareils d'urgence et cliniques
+Equipments of Traditional Chinese Medicine : Equipements de médecine traditionnelle chinoise
+General Assay & Diagnostic Apparatuses : Appareils d'analyse et de diagnostic généraux
+Implants & Interventional Materials : Implants et matériel d'intervention
+Medical Consumable : Consommable médical
+Medical Cryogenic Equipments : Equipements Cryogéniques Médicaux
+Medical Software : Logiciel médical
+Physical Therapy Equipments : Equipements de kinésithérapie
+Radiology Equipment & Accessories : Matériel de radiologie et accessoires
+Sterilization Equipments : Équipements de stérilisation
+Surgical Instrument : Instrument chirurgical
+Ultrasonic, Optical, Electronic Equipment : Équipements ultrasoniques, optiques et électroniques
+Ward Nursing Equipments : Équipements de soins infirmiers
+Medicines : Médicaments
+Veterinary Instrument : Instrument vétérinaire
+Veterinary Medicine : Médecine vétérinaire
+Beauty & Personal Care : Beauté et soins personnels
+Baby Care : Soins bébé
+Bath Supplies : Bath Supplies
+Beauty Equipment : Équipement de beauté
+Body Art : Art corporel
+Breast Care : Soins du sein
+Feminine Hygiene : Hygiène féminine
+Fragrance & Deodorant : Parfum & Déodorant
+Hair Care : Soin des cheveux
+Hair Extensions & Wigs : Extensions de cheveux et perruques
+Hair Salon Equipment : Équipement de salon de coiffure
+Makeup: Maquillage
+Makeup Tools : Outils de maquillage
+Men Care : Soins Hommes
+Nail Supplies : Fournitures pour les ongles
+Oral Hygiene : Hygiène buccale
+Other Beauty & Personal Care Products : Autres produits de beauté et de soins personnels
+Sanitary Paper : Papier sanitaire
+Shaving & Hair Removal : Rasage & Epilation
+Skin Care : Soin de la peau
+Skin Care Tool : Outil de soin de la peau
+Spa Supplies : Fournitures Spa
+Weight Loss : Perte de poids
+Construction & Real Estate : Construction et immobilier
+Aluminum Composite Panels : Panneaux composites en aluminium
+Balustrades & Handrails : Balustrades et balustrades
+Bathroom : Salle de bains
+Boards : Planches
+Building Glass : Verre de construction
+Ceilings : Plafonds
+Corner Guards : Protection de coin
+Countertops,Vanity Tops & Table Tops : Plans de travail, dessus de vanité et dessus de table
+Curtain Walls & Accessories : Murs Rideaux & Accessoires
+Decorative Films : Films Décoratifs
+Door & Window Accessories : Accessoires de portes et fenêtres
+Doors & Windows : Portes et fenêtres
+Earthwork Products : Produits de terrassement
+Elevators & Elevator Parts : Ascenseurs et pièces d'ascenseur
+Escalators & Escalator Parts : Escalier mécanique et pièces d'escalier mécanique
+Faucets, Mixers & Taps: Robinets, mélangeurs et robinets
+Fiberglass Wall Meshes : Murs muraux en fibre de verre
+Fireplaces,Stoves : Cheminées, Poêles
+Fireproofing Materials : Matériaux ignifuges
+Floor Heating Systems & Parts : Systèmes de chauffage par le sol et pièces
+Flooring & Accessories : Revêtement de sol et accessoires
+Formwork : Coffrage
+Gates : portes
+Heat Insulation Materials : Matériaux d'isolation thermique
+HVAC Systems & Parts : Systèmes de CVC et pièces
+Kitchen : Cuisine
+Ladders & Scaffoldings : Échelles et échafaudages
+Landscaping Stone : Pierre d'aménagement paysager
+Masonry Materials : Matériaux de maçonnerie
+Metal Building Materials : Matériaux de construction en métal
+Mosaics : Mosaïques
+Mouldings : Moulures
+Multifunctional Materials : Matériaux multifonctionnels
+Other Construction & Real Estate : Autres construction et immobilier
+Plastic Building Materials : Matériaux de construction en plastique
+Quarry Stone & Slabs : Pierre de carrière et dalles
+Real Estate : Immobilier
+Soundproofing Materials : Matériaux d'insonorisation
+Stairs & Stair Parts : Escaliers et pièces d'escalier
+Stone Carvings and Sculptures : Sculptures en pierre et sculptures
+Sunrooms & Glass Houses : Solariums et Verrières 
+Tiles & Accessories : Tuiles & Accessoires
+Timber : Bois
+Tombstones and Monuments : Pierres tombales et monuments
+Wallpapers/Wall Coating : Revêtement de papier peint / mur
+Waterproofing Materials : Matériaux d'imperméabilisation
+Barware : Barware
+Bathroom Products : Produits de salle de bain
+Cooking Tools : Outils de cuisine
+Cookware : Batterie de cuisine
+Garden Supplies : Fournitures de jardin
+Home Decor : Décoration de maison
+Home Storage & Organization : Rangement domestique et organisation
+Household Chemicals : Produits chimiques ménagers
+Household Cleaning Tools & Accessories : Outils de nettoyage ménagers et accessoires
+Household Sundries : Articles ménagers
+Kitchen Knives & Accessories : Couteaux De Cuisine Et Accessoires
+Laundry Products : Produits de blanchisserie
+Pet Products : Produits pour animaux de compagnie
+Tableware : Vaisselle de table
+Dinnerware : Vaisselle
+Drinkware : Vaisselle de boisson
+Baby Supplies & Products : Fournitures et produits pour bébé
+Rain Gear : Équipement de pluie
+Lighters & Smoking Accessories : Briquets & Accessoires Fumeurs
+Emergency Lighting : Éclairage de secours
+Holiday Lighting : Éclairage de vacances
+Indoor Lighting : Éclairage intérieur
+LED Lighting : Éclairage LED
+Lighting Accessories : Accessoires d'éclairage
+Lighting Bulbs & Tubes : Eclairage Ampoules & Tubes
+Other Lights & Lighting Products : Autres lumières et produits d'éclairage
+Outdoor Lighting : Lumière d'extérieure
+Professional Lighting : Éclairage professionnel
+LED Residential Lighting : Éclairage résidentiel à LED
+LED Outdoor Lighting : Éclairage extérieur LED
+Chandeliers & Pendant Lights : Lustres & Suspensions
+Ceiling Lights : Plafonniers
+Crystal Lights : Lumières de cristal
+Stage Lights : Lumières de la scène
+Street Lights : Lampadaires
+Energy Saving & Fluorescent : Économie d'énergie et fluorescent
+LED Landscape Lamps : Lampes de paysage à LED
+LED Professional Lighting : Éclairage professionnel à LED
+LED Encapsulation Series : Série d'encapsulation de LED
+Antique Furniture : Meubles antiques
+Baby Furniture : Mobilier Bébé
+Bamboo Furniture : Meubles en bambou
+Children Furniture : Meubles pour enfants
+Commercial Furniture : Mobilier Commercial
+Folding Furniture : Meubles pliants
+Furniture Accessories : Accessoires de meubles
+Furniture Hardware : Quincaillerie d'ameublement
+Furniture Parts : Pièces de meubles
+Glass Furniture : Meubles en verre
+Home Furniture : Meubles de maison
+Inflatable Furniture : Meubles gonflables
+Metal Furniture : Meubles en métal
+Other Furniture : Autres meubles
+Outdoor Furniture : Mobilier de jardin
+Plastic Furniture : Meubles en plastique
+Rattan / Wicker Furniture : Meubles en rotin / osier
+Wood Furniture :  Meubles en bois
+Living Room Furniture : Meubles de salon
+Bedroom Furniture : Meubles de chambre à coucher
+Machinery, Industrial Parts & Tools : Machines, pièces industrielles et outils
+Agriculture Machinery & Equipment : Machines et équipement agricoles
+Apparel & Textile Machinery : Habillement et machines textiles
+Building Material Machinery : Machines de construction
+Chemical Machinery & Equipment : Machines et équipement chimiques
+Electronic Products Machinery : Machines de produits électroniques
+Energy & Mineral Equipment : Machines de produits électroniques
+Engineering & Construction Machinery: Machines d'ingénierie et de construction
+Food & Beverage Machinery : Machines pour la restauration
+General Industrial Equipment : Equipement industriel général
+Home Product Making Machinery : Produit de fabrication de machines
+Industry Laser Equipment : Equipement laser industriel
+Machine Tool Equipment : Équipement de machine-outil
+Metal & Metallurgy Machinery : Machines pour le métal et la métallurgie
+Other Machinery & Industry Equipment : Autre machinerie et équipement industriel
+Packaging Machine : Machine d'emballage
+Paper Production Machinery : Machines de production de papier
+Pharmaceutical Machinery : Machines pharmaceutiques
+Plastic & Rubber Machinery : Machines en plastique et en caoutchouc
+Printing Machine : Imprimante
+Refrigeration & Heat Exchange Equipment : Équipements de réfrigération et d'échange de chaleur
+Used Machinery & Equipment : Machines et équipement d'occasion
+Woodworking Machinery : Machines à bois
+Industrial Parts & Fabrication Services : Pièces industrielles et services de fabrication
+Ball Valves : Vannes À Bille
+Bearing Accessory : Accessoire de roulement
+Bearings : Roulements
+Brass Valves : Roulements vannes en laiton
+Butterfly Valves : Les vannes papillon
+Ceramic Valves : Vannes en céramique
+Check Valves : Clapets anti-retour
+Custom Fabrication Services : Services de fabrication sur mesure
+Diaphragm Valves : Vannes À Membrane
+Filter Supplies : Filtrer les fournitures
+Flanges : Des brides
+Gaskets : Joints
+Gate Valves : Vannes
+General Mechanical Components Stock : Stock de composants mécaniques généraux
+Industrial Brake : Frein industriel
+Linear Motion : Mouvement linéaire
+Machine Tools Accessory : Accessoire Machine Outils
+Manual Valves : Vannes Manuelles
+Motor Parts : Pièces de moteur
+Motors : Moteurs
+Moulds : Les moisissures
+Needle Valves : Vannes à aiguille
+Other General Mechanical Components : Autres composants mécaniques généraux
+Other Mechanical Parts : Autres pièces mécaniques
+Pipe Fittings : Raccords de tuyauterie
+Pneumatic & Hydraulic : Pneumatique et hydraulique
+Power Transmission : Puissance de transmission
+Pumps & Parts : Pompes et pièces
+Seals : Scellés
+Shafts : Les arbres
+Solenoid Valves : Électrovannes
+Used General Mechanical Components : Composants mécaniques usagés
+Vacuum Valves : Vannes à vide
+Valve Parts : Pièces de vannes
+Valves : Vannes
+Welding & Soldering Supplies : Fournitures de soudage et brasage
+Garden Tools : Outils de jardin
+Hand Tools : Outils
+Lifting Tools : Outils de levage
+Material Handling Tools : Outils de manutention
+Other Tools : Autres outils
+Power Tool Accessories : Accessoires pour outils électriques
+Power Tools : Outils électroportatifs
+Tool Design Services : Services de conception d'outils
+Tool Parts : Pièces d'outils
+Tool Processing Services : Services de traitement d'outils
+Tool Sets : Ensembles d'outils
+Tool Stock : Stock d'outils
+Tools Packaging : Outils d'emballage
+Used Tools : Outils d'occasion
+Electric Drill : Perceuse électrique
+Knife : Couteau
+Hand Carts & Trolleys : Chariots à main et chariots
+Lawn Mower : Tondeuse à gazon
+Sander : Ponceuse
+Abrasive Tools : Outils abrasifs
+Abrasives : Abrasifs
+Brackets : Supports
+Chains : Chaînes
+Clamps : Pinces
+Fasteners : Attaches
+Hardware Stock : Stock de matériel
+Hooks : Crochets
+Mould Design & Processing Services: Conception de moules et services de traitement
+Other Hardware : Autre matériel
+Springs : Ressorts
+Used Hardware : Matériel utilisé
+Bolts : Des boulons
+Screws : Des vis
+Nuts : Des noisettes
+Nails : Ongles
+Anchors : Les ancres
+Rivets : Rivets
+Washers : Rondelles
+Other Fasteners : Autres attaches
+Analyzers : Analyseurs
+Counters : Des compteurs
+Electrical Instruments : Instruments électriques
+Electronic Measuring Instruments : Instruments de mesure électroniques
+Flow Measuring Instruments : Instruments de mesure de débit
+Instrument Parts & Accessories : Pièces et accessoires d'instruments
+Lab Supplies : Fournitures de laboratoire
+Level Measuring Instruments : Instruments de mesure de niveau
+Measuring & Analysing Instrument Design Services : Services de conception d'instruments de mesure et d'analyse
+Measuring & Analysing Instrument Processing Services : Mesure et analyse des services de traitement d'instruments
+Measuring & Analysing Instrument Stocks : Mesurer et analyser les stocks d'instruments
+Measuring & Gauging Tools : Outils de mesure et de jaugeage
+Optical Instruments : Instruments optiques
+Other Measuring & Analysing Instruments : Autres instruments de mesure et d'analyse
+Physical Measuring Instruments : Instruments de mesure physique
+Pressure Measuring Instruments : Instruments de mesure de pression
+Temperature Instruments : Instruments de température
+Testing Equipment : Test de l'Équipement
+Timers : Minuteries
+Weighing Scales : Balance De Pesage
+Minerals & Metallurgy : Minéraux et Métallurgie
+Aluminum : Aluminium
+Barbed Wire : 
+Billets : Billets
+Carbon : Carbone
+Carbon Fiber : Fibre de carbone
+Cast & Forged : Moulé et forgé
+Cemented Carbide: Carbure Cémenté
+Ceramic Fiber Products : Produits en fibre de céramique
+Ceramics : Céramique
+Copper : Cuivre
+Copper Forged : Cuivre Forgé
+Fiberglass Products : Produits en fibre de verre
+Glass : Verre
+Graphite Products : Produits en graphite
+Ingots : Des lingots
+Iron : Le fer
+Lead : Conduire
+Lime : Citron vert
+Magnetic Materials : Matériaux magnétiques
+Metal Scrap : Ferraille
+Metal Slabs : Ferraille
+Mineral Wool : Laine minérale
+Molybdenum : Molybdène
+Nickel : Nickel
+Non-Metallic Mineral Deposit : Gisement minéral non métallique
+Ore : Minerai
+Other Metals & Metal Products : Autres métaux et produits métalliques
+Other Non-Metallic Minerals & Products : Autres minéraux et produits non métalliques
+Pig Iron : Fonte des cochons
+Quartz Products : Produits de quartz
+Rare Earth & Products : Terre rare et produits
+Rare Earth Magnets : Aimants de terres rares
+Refractory : Réfractaire
+Steel : Acier
+Titanium : Titane
+Tungsten : Tungstène
+Wire Mesh : Treillis métallique
+Zinc : Zinc
+Chemicals : Produits chimiques
+Gas Disposal : Produits chimiques
+Noise Reduction Device : Dispositif de réduction du bruit
+Other Environmental Products : Autres produits environnementaux
+Other Excess Inventory : Other Environmental Products
+Recycling : Recyclage
+Sewer : Égout
+Waste Management : La gestion des déchets
+Water Treatment : La gestion des déchets
+Textile Waste : Déchets textiles
+Waste Paper  : Papier de rebut
+Other Recycling Products : Autres produits de recyclage
+Plastic Processing Service : Service de traitement de plastique
+Plastic Products : Produits en plastique
+Plastic Projects : Projets en plastique
+Plastic Raw Materials : Matières premières en plastique
+Plastic Stocks : Stocks en plastique
+Recycled Plastic : Plastique recyclé
+Recycled Rubber : Caoutchouc recyclé
+Rubber Processing Service : Service de traitement du caoutchouc
+Rubber Products : Rubber Processing Service
+Rubber Projects : Projets en caoutchouc
+Rubber Raw Materials : Matières premières en caoutchouc
+Rubber Stocks : Stocks de caoutchouc
+Plastic Cards : Cartes en plastique
+PVC : PVC
+Plastic Tubes : Tubes en plastique
+HDPE : HDPE
+Rubber Hoses : Tuyaux en caoutchouc
+Plastic Sheets : Feuilles de plastique
+LDPE : LDPE
+Agricultural Rubber : Caoutchouc agricole
+Biodiesel : Biodiesel
+Biogas : Biogaz
+Charcoal : charbon
+Coal : Charbon
+Coal Gas : Charbon gaz
+Coke Fuel : Coke Fuel
+Crude Oil : Huile brute
+Electricity Generation : Production d'électricité
+Petrochemical Products : Produits pétrochimiques
+Solar Energy Products : Produits d'énergie solaire
+Industrial Fuel : Combustible Industriel
+Natural Gas : Gaz naturel
+Other Energy Related Products : Autres produits liés à l'énergie
+Wood Pellets : Granulés de bois
+Solar Energy Systems : Systèmes d'énergie solaire
+Lubricant : Lubrifiant
+Diesel Fuel : Gas-oil
+Solar Chargers  : Chargeurs solaires
+Solar Collectors : Solar Collectors 
+Bitumen : Bitume
+Additives : Additifs
+Adhesives & Sealants : Adhésifs et produits d'étanchéité
+Agrochemicals : Produits agrochimiques
+Basic Organic Chemicals : Produits chimiques organiques de base
+Catalysts & Chemical Auxiliary Agents : Catalyseurs et agents auxiliaires chimiques
+Chemical Reagent Products : Produits réactifs chimiques
+Chemical Waste : Déchets chimiques
+Custom Chemical Services : Services chimiques personnalisés
+Daily Chemical Raw Materials : Matières premières chimiques quotidiennes
+Flavour & Fragrance : Saveur & Fragrance
+Inorganic Chemicals : Produits chimiques inorganiques
+Non-Explosive Demolition Agents : Agents de démolition non explosifs
+Organic Intermediates : Intermédiaires organiques
+Other Chemicals : Organic Intermediates
+Paints & Coatings : Peintures et revêtements
+Pharmaceuticals : Médicaments
+Pigment & Dyestuff : Pigment et colorant
+Polymer : Polymère
+Food Additive Products : Produits additifs alimentaires
+Fertilizer : Engrais
+Packaging, Advertising & Office : Emballage, publicité et bureau
+Adhesive Tape : Ruban adhésif
+Agricultural Packaging : Emballage agricole
+Aluminum Foil : Feuille d'aluminium
+Apparel Packaging : Emballage de vêtements
+Blister Cards : Carte de Plaquettes
+Bottles : Bouteilles
+Cans : Canettes
+Chemical Packaging : Emballage chimique
+Composite Packaging Materials : Matériaux d'emballage composites
+Cosmetics Packaging : Emballage cosmétique:
+Electronics Packaging : Emballage électronique:
+Food Packaging : Emballages alimentaires :
+Gift Packaging : Emballage cadeau:
+Handles : Poignées
+Hot Stamping Foil : Feuille d'estampage à chaud
+Jars : Bocaux
+Lids, Bottle Caps, Closures : Couvercles, capsules, fermetures
+Media Packaging : Emballage des médias
+Metallized Film : Film métallisé
+Other Packaging Applications : Other Packaging Applications
+Other Packaging Materials : Autres matériaux d'emballage
+Packaging Bags : Sacs d'emballage
+Packaging Boxes : Boîtes d'emballage
+Packaging Labels : Étiquettes d'emballage
+Packaging Product Stocks : Stocks de produits d'emballage
+Packaging Rope : Corde d'emballage:
+Packaging Trays : Plateaux d'emballage
+Packaging Tubes : Tubes d'emballage
+Paper & Paperboard : Papier et carton
+Paper Packaging : Emballage de papier
+Pharmaceutical Packaging : Emballage pharmaceutique
+Plastic Film : Film plastique
+Plastic Packaging : Emballage plastique
+Printing Materials : Matériaux d'impression
+Printing Services : Services d'impression
+Protective Packaging : Emballage de protection
+Pulp : Pulpe
+Shrink Film : Film rétractable
+Strapping : Sangles
+Stretch Film : Film étirable
+Tobacco Packaging : Emballage de tabac
+Transport Packaging : Emballage de transport
+Art Supplies : Fournitures d'art 
+Badge Holder & Accessories : Porte-badge et accessoires
+Board : Planche
+Board Eraser : Conseil Eraser
+Book Cover : Couverture de livre
+Books : Livres
+Calculator : Calculatrice
+Calendar : Calendrier
+Clipboard : Presse-papiers
+Correction Supplies : Fournitures de correction
+Desk Organizer : Organiseur de bureau
+Drafting Supplies : Drafting Supplies
+Easels : Easels
+Educational Supplies : Fournitures éducatives
+Filing Products : Produits de classement
+Letter Pad / Paper : Bloc-notes / papier
+Magazines : Les magazines
+Map : carte
+Notebooks & Writing Pads : Cahiers et carnets
+Office Adhesives & Tapes : Adhésifs et rubans de bureau
+Office Binding Supplies : Fournitures de bureau
+Office Cutting Supplies : Fournitures de coupe de bureau
+Office Equipment : Equipement de bureau
+Office Paper : Papier de bureau
+Other Office & School Supplies : Autres fournitures de bureau et scolaires
+Paper Envelopes : Paper Envelopes
+Pencil Cases & Bags: Trousses et sacs à crayons
+Pencil Sharpeners : Taille-crayon 
+Printer Supplies : Fournitures d'imprimante
+Stamps : Timbres
+Stationery Set : Ensemble de papeterie
+Stencils : Pochoirs
+Writing Accessories : Writing Accessories
+Writing Instruments : Instruments d'écriture
+Yellow Pages : Pages Jaunes 
+Service Equipment : Equipement de service
+Advertising Equipment : Matériel de publicité
+Cargo & Storage Equipment : Équipement de fret et de stockage
+Commercial Laundry Equipment : Équipement de blanchisserie commerciale
+Funeral Supplies : Fournitures Funéraires
+Other Service Equipment : Autre équipement de service
+Restaurant & Hotel Supplies : Fournitures de restaurant et d'hôtel
+Store & Supermarket Supplies : Fournitures de magasin et de supermarché
+Trade Show Equipment : Équipement de foire commerciale
+Vending Machines : Distributeur automatique
+Wedding Supplies : Fournitures de mariage
+Display Racks : Présentoirs
+Advertising Players : Joueurs publicitaires
+Advertising Light Boxes : Boites Lumineuses Publicitaires
+Hotel Amenities : Services de l'hôtel
+POS Systems : Systèmes de point de vente
+Supermarket Shelves : Étagères de supermarché
+Stacking Racks & Shelves : Rayonnages et étagères empilables
+Refrigeration Equipment : Équipement de réfrigération
+Trade Show Tent : Tente d'exposition commerciale
+Acre/Acres : Acre/Acres 
+Ampere/Amperes : Ampère/Ampères
+Bags : Sacs
+Barrel/Barrels : Baril/Barils
+Boxes : Boites
+Bushel/Bushels : Boisseau/boisseaux
+Carat/Carats : Carat/Carats
+Carton/Cartons : Carton/Cartons
+Case/Cases : Cas
+Centimeter/Centimeters : Centimètre/Centimètres
+Chain/Chains : Chaîne/Chaînes
+Cubic Centimeter/Cubic Centimeters : Centimètre Cube/Centimètres Cubes
+Cubic Foot/Cubic Feet : Pied cube/pieds cubes
+Cubic Inch/Cubic Inches : Pouce Cubique/Pouces Cubiques
+Cubic Meter/Cubic Meters : Mètre cube/mètres cubes
+Cubic Yard/Cubic Yards : Cour cubique/cours cubiques
+Degrees Celsius : Degré Celsius
+Degrees Fahrenheit : Degrés Fahrenheit 
+Dozen/Dozens : Douzaine/Douzaines
+Dram/Drams : Drames/drames
+Fluid Ounce/Fluid Ounces : Once liquide/Onces liquides
+Foot : Foot
+Furlong/Furlongs : Furlong/Furlongs
+Gallon/Gallons : Gallon/Gallons
+Gill/Gills : Brachie/Branchies
+Grain/Grains : Grain/Grains
+Gram/Grams : Grammes/Grammes
+Gross : Brute
+Hectare/Hectares : Hectare/Hectares
+Hertz : Hertz
+Inch/Inches: Pouces/Pouces
+Kiloampere/Kiloamperes : Kiloampères/kAmpères
+Kilogram/Kilograms : Kilogramme/kilogrammes
+Kilohertz : Kilohertz
+Kilometer/Kilometers : Kilomètre/Kilomètres
+Kiloohm/Kiloohms : Kiloohm/Kiloohms
+Kilovolt/Kilovolts : Kilovolt/Kilovolts
+Kilowatt/Kilowatts : Kilowatt/Kilowatts
+Liter/Liters : Litres/litres
+Long Ton/Long Tons : Longue tonne/longue tonne
+Megahertz : Mégahertz
+Meter : Mètre
+Metric Ton/Metric Tons : Tonne métrique/tonnes métriques
+Mile/Miles : Mile/Miles
+Milliampere/Milliamperes : Milliampères/Milliampères
+Milligram/Milligrams : Milligramme/Milligrammes
+Millihertz : Millihertz
+Milliliter/Milliliters : Millilitre/ Millilitres
+Milliohm/Milliohms : Milliohm / Milliohms
+Millivolt/Millivolts : Millivolt/Millivolts
+Milliwatt/Milliwatts : Milliwatt / Milliwatts
+Nautical Mile/Nautical Miles : Mille Nautique / Milles Nautiques
+Ohm/Ohms : Ohm/Ohms
+Ounce/Ounces : Once/onces
+Pack/Packs: Paquet/Paquets
+Pairs : Paires
+Pallet/Pallets : Palette/Palettes
+Parcel/Parcels : Colis/Colis
+Perch/Perches : Perche/Perches
+Pieces : Pièces
+Pint/Pints : Pinte/Pintes
+Plant/Plants : Plante/Plantes
+Pole/Poles : Pôle/pôles
+Pound/Pounds : Pound/Pounds
+Quart/Quarts : Quart/Quarts
+Quarter/Quarters : Trimestre/Trimestre
+Reams : Rames
+Rod/Rods : Rod/Rods
+Rolls : Rouleaux
+Sets : Ensembles
+Sheet/Sheets : Feuille/Feuilles
+Short Ton/Short Tons : Tonne courte/tonne courte
+Square Centimeter/Square Centimeters : Centimètre Carré/Centimètres Carrés
+Square Feet : Pieds carrés
+Square Inch/Square Inches : Pouces carrés/pouces carrés
+Square Meters : Mètres carrés
+Square Mile/Square Miles : Mètre carré/Mètres carrés
+Square Yard/Square Yards : Yard carré
+Stone/Stones : Pierre/Pierres
+Strand/Strands : Brin/Brins
+Tonne/Tonnes : Tonne/Tonnes
+Tons : Tonnes
+Tray/Trays : Plateau/Plateaux
+Unit/Units : Unité/Unités
+Volt/Volts : Volt/Volts
+Watt/Watts : Watt / Watts
+Wp : Wp
+Yard/Yards : Verge
+
+
+
+
+
 #END
 #end categories
 #Groups
@@ -620,7 +1464,7 @@ Company name: Nom de la compagnie
 Are you sure that you want to block this user ?: Êtes-vous sûr de vouloir bloquer cet utilisateur?
 Discover pans of: Découvrez les pans 
 There s no pans to discover in: Il n’ya pas de Pan à découvrir 
-Private: Intimité
+Private: Privé
 You must activate your account: Vous devez activer votre compte
 #END 1
 #NOT COMPLETED YET *********************************************************************************
