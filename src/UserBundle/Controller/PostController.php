@@ -172,7 +172,7 @@ class PostController extends Controller
     public function delete_postAction(Request $request)
     {
         $repo = $this->getDoctrine()->getRepository('UserBundle:Post');
-        $post = $repo->findOneById($request->get('post'));
+        $post = $repo->findOneById($request->get('postToDelete'));
         if(!is_null($post))
         {
             $em = $this->getDoctrine()->getManager();

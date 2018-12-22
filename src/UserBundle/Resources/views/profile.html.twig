@@ -18,7 +18,6 @@
      #hidebtn{
     display:block}
 }
- }
 </style>
     <div style="margin-top:50px">
         <div class="x_panel">
@@ -228,9 +227,128 @@
                                                         </div>
                                                         <!-- display post content -->
                                                         <p class="fb-user-status">
-                                                            <div style="word-wrap:break-word">
-                                                                {{ item.object.content }} 
+                                                            <div style="word-wrap:break-word">{{ item.object.content }} </div>
+                                                            <!-- ***********************************************************************************-->
+                                                            <!-- images + video -->
+                                                            <div class="parent" style="max-width: 650px;">
+                                                                {% if item.object.video is not null %}
+                                                                    {% if item.images|length > 0 %}
+                                                                        {% if item.images|length == 1 %}<!-- 1 photo+video: -->
+                                                                            <div style="max-width:600px">
+                                                                                <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                                    <source src="{{ asset('videos/') }}{{ item.object.video }}" type="video/mp4">
+                                                                                    {{'Your browser does not support the video tag.'|trans}}
+                                                                                </video>
+                                                                            </div>
+                                                                            <div>
+                                                                                <a  href="{{ asset('images/post/') }}{{ item.images|first }}" data-max-width="600" data-toggle="lightbox" data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ item.images|first }}" id="post_img" class="post-1img-video img-responsive"></a>
+                                                                            </div>
+                                                                        {% endif %}<!--end 1 photo+video: -->
+
+                                                                        {% if item.images|length == 2 or item.images|length == 3   %}<!--end 2 or 3 photo+video -->
+                                                                        <div style="max-width:600px">
+                                                                            <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                                <source src="{{ asset('videos/') }}{{ item.object.video }}" type="video/mp4">
+                                                                                {{'Your browser does not support the video tag.'|trans}}
+                                                                            </video>
+                                                                        </div>
+
+                                                                        <div>
+                                                                            {% for img in item.images %}
+                                                                                <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.images|length == 2 %}class="img-responsive post-2img-video" {% else %}class="post-3img-video-fixed img-responsive"{% endif %}></a>
+                                                                            {% endfor %}
+                                                                        </div>
+
+                                                                    {% endif %}<!--end 2 or 3 photo+video -->
+
+                                                                    {% if item.images|length > 3 %}<!--more than 3 photo+video: -->
+                                                                        <div style="max-width:600px">
+                                                                                <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                                    <source src="{{ asset('videos/') }}{{ item.object.video }}" type="video/mp4">
+                                                                                    {{'Your browser does not support the video tag.'|trans}}
+                                                                                </video>
+                                                                            </div>
+
+                                                                        <div>
+                                                                            {% for img in item.images[0:2]  %}
+                                                                                <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
+                                                                            {% endfor %}
+
+                                                                            <a  href="{{ asset('images/post/') }}{{ item.images[2] }}" data-toggle="lightbox"  data-gallery="{{ item.object.id }}">
+                                                                                <div class="post-3imgvid-wrapblack">
+
+                                                                                    <img src="{{ asset('images/post/') }}{{ item.images[2] }}"  class="post-3imgvid-blackimg img-responsive">
+
+                                                                                    <div class="post-3imgvid-count">
+                                                                                        +{{ item.images|length - 2 }}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </a>
+
+                                                                        <!-- elements not showing, use data-remote -->
+                                                                        {% for img in item.images[3:item.images|length] %}
+                                                                            <div data-toggle="lightbox" data-gallery="{{ item.object.id }}" data-remote="{{ asset('images/post/') }}{{ img }}" ></div>
+                                                                        {% endfor %}
+
+
+                                                                        </div>
+
+                                                                {% endif %}<!--end more than 3 photo+video: -->
+
+                                                                    {% if item.images|length == 0  %}
+                                                                        <div style="max-width:600px">
+                                                                            <video  class="Vidoe_Player" controls  playsinline  controls qualitychange>
+                                                                                <source src="{{ asset('videos/') }}{{ item.object.video }}" type="video/mp4">
+                                                                                {{'Your browser does not support the video tag.'|trans}}
+                                                                            </video>
+                                                                        </div>
+                                                                    {% endif %}
+                                                                    {% endif %}
+                                                                {% endif %}
+
+                                                                {% if item.object.video is null %}
+                                                                    {% if item.images|length == 1  %}<!--1 photo -->
+                                                                        <div>
+                                                                            <a  href="{{ asset('images/post/') }}{{ item.images|first }}" data-max-width="1000" data-toggle="lightbox" data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ item.images|first }}" id="post_img" class="post-1img img-responsive"></a>
+                                                                        </div>
+                                                                    {% endif %}<!--end 1 photo-->
+
+                                                                    {% if item.images|length == 2 or item.images|length == 3   %}<!--2 or 3 photo -->
+                                                                    <div>
+                                                                        {% for img in item.images %}
+                                                                            <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox" data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ img }}" id="post_img" {% if item.images|length == 2 %}class="img-responsive post-2-img" {% else %}class="post-3-img img-responsive"{% endif %}></a>
+                                                                        {% endfor %}
+                                                                    </div>
+                                                                {% endif %}<!--end 2 or 3 photo -->
+
+                                                                    {% if item.images|length > 3   %} <!--more than 3 photo -->
+                                                                    <div>
+                                                                        {% for img in item.images[0:2]  %}
+                                                                            <a  href="{{ asset('images/post/') }}{{ img }}" data-toggle="lightbox"  data-gallery="{{ item.object.id }}"> <img src="{{ asset('images/post/') }}{{ img }}"  class="post-3img-video img-responsive"></a>
+                                                                        {% endfor %}
+
+                                                                        <a  href="{{ asset('images/post/') }}{{ item.images[2] }}" data-toggle="lightbox"  data-gallery="{{ item.object.id }}">
+                                                                            <div class="post-3imgvid-wrapblack">
+
+                                                                                    <img src="{{ asset('images/post/') }}{{ item.images[2] }}"  class="post-3imgvid-blackimg img-responsive">
+
+                                                                                    <div class="post-3imgvid-count">
+                                                                                        +{{ item.images|length - 2 }}
+                                                                                    </div>
+                                                                                </div>
+                                                                        </a>
+                                                                        <!-- elements not showing, use data-remote -->
+                                                                        {% for img in item.images[3:item.images|length] %}
+                                                                            <div data-toggle="lightbox" data-gallery="{{ item.object.id }}" data-remote="{{ asset('images/post/') }}{{ img }}" ></div>
+                                                                        {% endfor %}
+                                                                        </div>
+                                                                {% endif %}<!--more than 3 photo -->
+                                                                {% endif %}
+
+
                                                             </div>
+                                                            </p>
+                                                            <!-- ***********************************************************************************-->
                                                             <br>
                                                         </p>
                                                     </div>
@@ -286,6 +404,12 @@
 
 {% block scripts %}
     <!-- block -->
+    <script src="{{ asset('Userscripts/js/video/plyr.js') }}"></script>
+    <script>
+        //const player = new Plyr('.Vidoe_Player');
+        const players = Array.from(document.querySelectorAll('.Vidoe_Player')).map(p => new Plyr(p));
+
+    </script>
     <script>
         function block(userToBlock)
         {

@@ -71,6 +71,6 @@ class LinkpanController extends Controller
      */
     public function faqsAction()
     {
-        return $this->render('PublicBundle::faqs.html.twig');
+        return null;
     }
 }

@@ -172,10 +172,16 @@ class ProfileController extends Controller
                         $images = $imageRepo->findBy(
                             array('post'=>$post)
                         );
+                        $imgResult = array();
+                        if(!is_null($images))
+                        {
+                            foreach ($images as $img)
+                                array_push($imgResult,$img->getImage());
+                        }
                         $temp = array(
                             'type'=> 'post',
                             'object'=> $post,
-                            'images'=>$images
+                            'images'=>$imgResult
                         );
                         array_push($shares,$temp);
                     }
@@ -202,10 +208,16 @@ class ProfileController extends Controller
                         $images = $GroupimageRepo->findBy(
                             array('groupPost'=>$post)
                         );
+                        $imgResult = array();
+                        if(!is_null($images))
+                        {
+                            foreach ($images as $img)
+                                array_push($imgResult,$img->getImage());
+                        }
                         $temp = array(
                             'type'=> 'Group post',
                             'object'=>$post,
-                            'images'=>$images
+                            'images'=>$imgResult
                         );
                         array_push($shares,$temp);
                     }
