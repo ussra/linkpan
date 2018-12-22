@@ -231,7 +231,7 @@
                                                     <div class="panel-body">
                                                         <!-- Image -->
                                                         <div style="margin-bottom:3px;display:inline;"><span style="font-size:1.5em">{{ userProfile.user_first_name }} {{ userProfile.user_last_name }}</span><a href="{ path('discover_post',{'post':item.object.id}) }}"> Shared a post: </a></div>
-                                                        <div style="display:inline;float:right"><i class="fa fa-trash"></i></div>
+                                                        <!--<div style="display:inline;float:right"><i class="fa fa-trash"></i></div>-->
                                                         <br><br>
                                                         <div class="fb-user-thumb" style="display:inline">
                                                             {% if item.object.user.image is null %} {% set image = 'default.png' %} {% else %} {% set image = item.object.user.image  %}{% endif %}
