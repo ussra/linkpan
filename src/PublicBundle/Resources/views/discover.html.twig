@@ -21,8 +21,9 @@
                 <!-- Breadcrumbs -->
                 <div class="breadcrumbs d-flex flex-row align-items-center">
                     <ul>
+                        {% set category = app.session.get('pub_discover_category') %}
                         <li><a href="{{ path('linkpan') }}">Home</a></li>
-                        <li class="active"><a ><i class="fa fa-angle-right" aria-hidden="true"></i>Agriculture</a></li>
+                        <li class="active"><a ><i class="fa fa-angle-right" aria-hidden="true"></i>{{ category }}</a></li>
                     </ul>
                 </div>
                 <!-- Sidebar -->
@@ -61,7 +62,7 @@
                             <h5>Product Category</h5>
                         </div>
                         <ul class="sidebar_categories">
-                            {% set category = app.session.get('pub_discover_category') %}
+
                             <li {% if category == 'Agriculture' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Agriculture'}) }}">{% if category == 'Agriculture' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %}Agriculture</a></li>
                             <li {% if category == 'Vegetable Products' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Vegetable Products'}) }}" >{% if category == 'Vegetable Products' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %}Vegetable Products</a></li>
                             <li {% if category == 'Men’s Clothing' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Men’s Clothing'}) }}" >{% if category == 'Men’s Clothing' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %}Men’s Clothing</a></li>

@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="485b6df8-cd1d-419e-a911-7f9228242476" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/PublicBundle/Controller/LinkpanController.php" afterPath="$PROJECT_DIR$/src/PublicBundle/Controller/LinkpanController.php" />
-      <change beforePath="$PROJECT_DIR$/src/PublicBundle/Resources/views/detail.html.twig" afterPath="$PROJECT_DIR$/src/PublicBundle/Resources/views/detail.html.twig" />
       <change beforePath="$PROJECT_DIR$/src/PublicBundle/Resources/views/discover.html.twig" afterPath="$PROJECT_DIR$/src/PublicBundle/Resources/views/discover.html.twig" />
-      <change beforePath="$PROJECT_DIR$/src/UserBundle/Resources/views/pans.html.twig" afterPath="$PROJECT_DIR$/src/UserBundle/Resources/views/pans.html.twig" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
     <ignored path="$PROJECT_DIR$/vendor/doctrine/annotations/" />
@@ -62,30 +59,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="discover.html.twig" pinned="false" current-in-tab="false">
+      <file leaf-file-name="discover.html.twig" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/PublicBundle/Resources/views/discover.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="109" column="222" lean-forward="false" selection-start-line="109" selection-start-column="210" selection-end-line="109" selection-end-column="222" />
-              <folding>
-                <element signature="e#1534#3316#0#HTML" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LinkpanController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/PublicBundle/Controller/LinkpanController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="199">
-              <caret line="166" column="37" lean-forward="false" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
-              <folding>
-                <element signature="e#2146#2219#0#PHP" expanded="false" />
-                <marker date="1545584777653" expanded="true" signature="536:648" ph="SELECT DISTI... UserBundle" />
-                <marker date="1545584777653" expanded="true" signature="3960:4115" ph="SELECT DISTI... UserBundle" />
-                <marker date="1545584777653" expanded="true" signature="4372:4530" ph="SELECT DISTI... UserBundle" />
-                <marker date="1545584777653" expanded="true" signature="4786:4943" ph="SELECT DISTI... UserBundle" />
-              </folding>
+              <caret line="25" column="110" lean-forward="false" selection-start-line="25" selection-start-column="110" selection-end-line="25" selection-end-column="110" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -188,8 +167,8 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/pans.html.twig" />
         <option value="$PROJECT_DIR$/src/PublicBundle/Resources/views/detail.html.twig" />
-        <option value="$PROJECT_DIR$/src/PublicBundle/Resources/views/discover.html.twig" />
         <option value="$PROJECT_DIR$/src/PublicBundle/Controller/LinkpanController.php" />
+        <option value="$PROJECT_DIR$/src/PublicBundle/Resources/views/discover.html.twig" />
       </list>
     </option>
   </component>
@@ -287,14 +266,22 @@
               <item name="linkpan" type="b2602c69:ProjectViewProjectNode" />
               <item name="linkpan" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="UserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="PublicBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="linkpan" type="b2602c69:ProjectViewProjectNode" />
               <item name="linkpan" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="UserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="PublicBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="linkpan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="linkpan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="PublicBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="Resources" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="views" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="linkpan" type="b2602c69:ProjectViewProjectNode" />
@@ -407,12 +394,12 @@
       <workItem from="1545334768409" duration="4486000" />
       <workItem from="1545422148409" duration="6955000" />
       <workItem from="1545478935072" duration="34772000" />
-      <workItem from="1545569645134" duration="11614000" />
+      <workItem from="1545569645134" duration="12862000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="597073000" />
+    <option name="totallyTimeSpent" value="598321000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1384" height="738" extended-state="6" />
@@ -863,20 +850,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PublicBundle/Resources/views/discover.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="109" column="222" lean-forward="false" selection-start-line="109" selection-start-column="210" selection-end-line="109" selection-end-column="222" />
-          <folding>
-            <element signature="e#1534#3316#0#HTML" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PublicBundle/Controller/LinkpanController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="166" column="37" lean-forward="false" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
+        <state relative-caret-position="95">
+          <caret line="162" column="17" lean-forward="false" selection-start-line="162" selection-start-column="17" selection-end-line="162" selection-end-column="17" />
           <folding>
             <element signature="e#2146#2219#0#PHP" expanded="false" />
             <marker date="1545584777653" expanded="true" signature="536:648" ph="SELECT DISTI... UserBundle" />
@@ -884,6 +861,14 @@
             <marker date="1545584777653" expanded="true" signature="4372:4530" ph="SELECT DISTI... UserBundle" />
             <marker date="1545584777653" expanded="true" signature="4786:4943" ph="SELECT DISTI... UserBundle" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PublicBundle/Resources/views/discover.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="25" column="110" lean-forward="false" selection-start-line="25" selection-start-column="110" selection-end-line="25" selection-end-column="110" />
+          <folding />
         </state>
       </provider>
     </entry>
