@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Cookie;
 class LinkpanController extends Controller
 {
 
@@ -121,18 +122,74 @@ class LinkpanController extends Controller
         return $this->render('PublicBundle::forgetpassword.html.twig');
     }
 
+    private function GetPans($category,$length,$filter){
+        $em = $this->getDoctrine()->getManager();
+        $session = new Session();
+        if($category == null)
+            $categorySearch = 'Agriculture'; else $categorySearch = $category;
 
+        if($length == null)
+            $lengthSearch = 15; else $lengthSearch = $length;
+
+        if($filter == null || $filter == 'Default Sorting')
+        {
+            $query = $em->createQuery(
+                '
+                SELECT DISTINCT p FROM UserBundle:Pan p
+                WHERE p.type = :type 
+                AND p.category = :category
+                ORDER BY p.id DESC
+            '
+            )->setParameter('type', 'Discover')
+                ->setParameter('category', $categorySearch);
+        }
+
+        if($filter == 'Highest Price')
+        {
+            $query = $em->createQuery(
+                '
+                SELECT DISTINCT p FROM UserBundle:Pan p
+                WHERE p.type = :type 
+                AND p.category = :category
+                ORDER BY p.price DESC
+            '
+            )->setParameter('type', 'Discover')
+                ->setParameter('category', $categorySearch);
+        }
+
+        if($filter == 'Lowest Price')
+        {
+            $query = $em->createQuery(
+                '
+                SELECT DISTINCT p FROM UserBundle:Pan p
+                WHERE p.type = :type 
+                AND p.category = :category
+                ORDER BY p.price ASC 
+            '
+            )->setParameter('type', 'Discover')
+                ->setParameter('category', $categorySearch);
+        }
+
+        $pans = $query->setMaxResults($lengthSearch)->getResult();
+        $session->set('pub_discover_pans',$pans);
+        $session->set('pub_discover_category',$categorySearch);
+        $session->set('pub_discover_length',$length);
+    }
     /**
      * @Route("{_locale}/linkpan/discover/pans",name="discoverPans")
      */
-    public function discoverdAction()
+    public function discoverdAction(Request $request)
     {
+        $category = $request->get('category');
+        $length = $request->get('length');
+        $filter = $request->get('filter');
+        $this->GetPans($category,$length,$filter);
         return $this->render('PublicBundle::discover.html.twig');
     }
 
 
     /**
-     * @Route("{_locale}/linkpan/discover//pans/details",name="details")
+     * @Route("{_locale}/linkpan/discover/pans/details",name="details")
      */
     public function detailsdAction(Request $request)
     {

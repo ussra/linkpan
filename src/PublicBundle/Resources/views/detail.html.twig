@@ -89,9 +89,9 @@
                     <div class="col">
                         <div class="tabs_container">
                             <ul class="tabs d-flex flex-sm-row flex-column align-items-left align-items-md-center justify-content-center">
-
+                                {% set reviews = app.session.get('reviews') %}
                                 <li class="tab active" data-active-tab="tab_2"><span>Additional Information</span></li>
-                                <li class="tab" data-active-tab="tab_3"><span>Reviews (2)</span></li>
+                                <li class="tab" data-active-tab="tab_3"><span>Reviews ({{ reviews|length }})</span></li>
                             </ul>
                         </div>
                     </div>
@@ -123,7 +123,7 @@
                                 <!-- User Reviews -->
 
                                 <div class="col-lg-6 reviews_col">
-                                    {% set reviews = app.session.get('reviews') %}
+
                                     <div class="tab_title reviews_title">
                                         <h4>Reviews ({{ reviews|length }})</h4>
                                     </div>

@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="485b6df8-cd1d-419e-a911-7f9228242476" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change beforePath="$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php" />
       <change beforePath="$PROJECT_DIR$/src/PublicBundle/Controller/LinkpanController.php" afterPath="$PROJECT_DIR$/src/PublicBundle/Controller/LinkpanController.php" />
-      <change beforePath="$PROJECT_DIR$/src/PublicBundle/Resources/Translations/messages.fr.yml" afterPath="$PROJECT_DIR$/src/PublicBundle/Resources/Translations/messages.fr.yml" />
+      <change beforePath="$PROJECT_DIR$/src/PublicBundle/Resources/views/detail.html.twig" afterPath="$PROJECT_DIR$/src/PublicBundle/Resources/views/detail.html.twig" />
       <change beforePath="$PROJECT_DIR$/src/PublicBundle/Resources/views/discover.html.twig" afterPath="$PROJECT_DIR$/src/PublicBundle/Resources/views/discover.html.twig" />
+      <change beforePath="$PROJECT_DIR$/src/UserBundle/Resources/views/pans.html.twig" afterPath="$PROJECT_DIR$/src/UserBundle/Resources/views/pans.html.twig" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
     <ignored path="$PROJECT_DIR$/vendor/doctrine/annotations/" />
@@ -67,19 +65,27 @@
       <file leaf-file-name="discover.html.twig" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PublicBundle/Resources/views/discover.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="24" column="23" lean-forward="false" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
-              <folding />
+            <state relative-caret-position="285">
+              <caret line="109" column="222" lean-forward="false" selection-start-line="109" selection-start-column="210" selection-end-line="109" selection-end-column="222" />
+              <folding>
+                <element signature="e#1534#3316#0#HTML" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SecurityController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php">
+      <file leaf-file-name="LinkpanController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/PublicBundle/Controller/LinkpanController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="26">
-              <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="199">
+              <caret line="166" column="37" lean-forward="false" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
+              <folding>
+                <element signature="e#2146#2219#0#PHP" expanded="false" />
+                <marker date="1545584777653" expanded="true" signature="536:648" ph="SELECT DISTI... UserBundle" />
+                <marker date="1545584777653" expanded="true" signature="3960:4115" ph="SELECT DISTI... UserBundle" />
+                <marker date="1545584777653" expanded="true" signature="4372:4530" ph="SELECT DISTI... UserBundle" />
+                <marker date="1545584777653" expanded="true" signature="4786:4943" ph="SELECT DISTI... UserBundle" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -95,18 +101,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>clickdeletcmnt</find>
-      <find>DeleteComment</find>
-      <find>delete_comment</find>
-      <find>Private</find>
-      <find>item.likes</find>
-      <find>public</find>
-      <find>do you</find>
-      <find>do you really want to upgrade your membership</find>
-      <find>search</find>
-      <find>nimate.css</find>
-      <find>PublicBody</find>
-      <find>privacy</find>
       <find>about</find>
       <find>index</find>
       <find>eas</find>
@@ -125,6 +119,18 @@
       <find>trash</find>
       <find>discover</find>
       <find>discov</find>
+      <find>Filter</find>
+      <find>Agriculture</find>
+      <find>Food &amp; Beverage</find>
+      <find>Security &amp; Protection</find>
+      <find>Automobiles &amp; Motorcycles</find>
+      <find>Electronics</find>
+      <find>6</find>
+      <find>deta</find>
+      <find>2</find>
+      <find>details</find>
+      <find>15</find>
+      <find>Last</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -175,15 +181,15 @@
         <option value="$PROJECT_DIR$/src/PublicBundle/Resources/views/forgetpassword.html.twig" />
         <option value="$PROJECT_DIR$/src/PublicBundle/Resources/Translations/messages.en.yml" />
         <option value="$PROJECT_DIR$/src/PublicBundle/Resources/Translations/messages.fr.yml" />
-        <option value="$PROJECT_DIR$/src/PublicBundle/Resources/views/detail.html.twig" />
-        <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/pans.html.twig" />
         <option value="$PROJECT_DIR$/src/PublicBundle/Resources/views/signin.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/userbase.html.twig" />
         <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/profile.html.twig" />
-        <option value="$PROJECT_DIR$/src/PublicBundle/Controller/LinkpanController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-        <option value="$PROJECT_DIR$/src/PublicBundle/Resources/views/discover.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php" />
+        <option value="$PROJECT_DIR$/src/UserBundle/Resources/views/pans.html.twig" />
+        <option value="$PROJECT_DIR$/src/PublicBundle/Resources/views/detail.html.twig" />
+        <option value="$PROJECT_DIR$/src/PublicBundle/Resources/views/discover.html.twig" />
+        <option value="$PROJECT_DIR$/src/PublicBundle/Controller/LinkpanController.php" />
       </list>
     </option>
   </component>
@@ -281,14 +287,25 @@
               <item name="linkpan" type="b2602c69:ProjectViewProjectNode" />
               <item name="linkpan" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="UserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="linkpan" type="b2602c69:ProjectViewProjectNode" />
               <item name="linkpan" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
-              <item name="AppBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="UserBundle" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="Controller" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="linkpan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="linkpan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="linkpan" type="b2602c69:ProjectViewProjectNode" />
+              <item name="linkpan" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="web" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="images" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
           </expand>
           <select />
@@ -390,23 +407,23 @@
       <workItem from="1545334768409" duration="4486000" />
       <workItem from="1545422148409" duration="6955000" />
       <workItem from="1545478935072" duration="34772000" />
-      <workItem from="1545569645134" duration="1423000" />
+      <workItem from="1545569645134" duration="11614000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="586882000" />
+    <option name="totallyTimeSpent" value="597073000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1384" height="738" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28975534" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21941896" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5817223" sideWeight="0.5061162" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32864675" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1261468" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46045694" sideWeight="0.4938838" order="7" side_tool="false" content_ui="tabs" />
@@ -549,13 +566,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/discover.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="1160" column="63" lean-forward="true" selection-start-line="1160" selection-start-column="63" selection-end-line="1160" selection-end-column="63" />
         </state>
       </provider>
     </entry>
@@ -706,24 +716,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PublicBundle/Resources/views/detail.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="262">
-          <caret line="111" column="181" lean-forward="false" selection-start-line="111" selection-start-column="181" selection-end-line="111" selection-end-column="181" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Entity/PanRating.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="364">
           <caret line="71" column="27" lean-forward="false" selection-start-line="71" selection-start-column="20" selection-end-line="71" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/pans.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="1605" column="124" lean-forward="false" selection-start-line="1605" selection-start-column="124" selection-end-line="1605" selection-end-column="124" />
         </state>
       </provider>
     </entry>
@@ -762,35 +758,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/DiscoverController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="15" column="41" lean-forward="false" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/HomeController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
           <caret line="291" column="58" lean-forward="false" selection-start-line="291" selection-start-column="50" selection-end-line="291" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="93" column="85" lean-forward="false" selection-start-line="93" selection-start-column="85" selection-end-line="93" selection-end-column="85" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/PublicBundle/Controller/LinkpanController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="124" column="7" lean-forward="true" selection-start-line="124" selection-start-column="7" selection-end-line="124" selection-end-column="7" />
-          <folding>
-            <element signature="e#2101#2174#0#PHP" expanded="false" />
-            <marker date="1545520665382" expanded="true" signature="491:603" ph="SELECT DISTI... UserBundle" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -804,19 +775,115 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/PublicBundle/Resources/views/discover.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="24" column="23" lean-forward="false" selection-start-line="24" selection-start-column="23" selection-end-line="24" selection-end-column="23" />
+        <state relative-caret-position="156">
+          <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/SecurityController.php">
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/pans.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="26">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        <state relative-caret-position="338">
+          <caret line="1716" column="83" lean-forward="false" selection-start-line="1716" selection-start-column="67" selection-end-line="1716" selection-end-column="83" />
+          <folding>
+            <element signature="e#52738#55508#0#HTML" expanded="false" />
+            <element signature="e#55557#58446#0#HTML" expanded="false" />
+            <element signature="e#58495#63696#0#HTML" expanded="false" />
+            <element signature="e#63745#66096#0#HTML" expanded="false" />
+            <element signature="e#66145#68658#0#HTML" expanded="false" />
+            <element signature="e#68707#71211#0#HTML" expanded="false" />
+            <element signature="e#71260#75404#0#HTML" expanded="false" />
+            <element signature="e#75453#78501#0#HTML" expanded="false" />
+            <element signature="e#78550#83774#0#HTML" expanded="false" />
+            <element signature="e#83823#93809#0#HTML" expanded="false" />
+            <element signature="e#93858#96556#0#HTML" expanded="false" />
+            <element signature="e#96605#99237#0#HTML" expanded="false" />
+            <element signature="e#99286#107330#0#HTML" expanded="false" />
+            <element signature="e#107379#109970#0#HTML" expanded="false" />
+            <element signature="e#110019#118551#0#HTML" expanded="false" />
+            <element signature="e#118600#125526#0#HTML" expanded="false" />
+            <element signature="e#125575#131906#0#HTML" expanded="false" />
+            <element signature="e#131955#134481#0#HTML" expanded="false" />
+            <element signature="e#134530#137293#0#HTML" expanded="false" />
+            <element signature="e#137342#140168#0#HTML" expanded="false" />
+            <element signature="e#140217#148404#0#HTML" expanded="false" />
+            <element signature="e#148453#150851#0#HTML" expanded="false" />
+            <element signature="e#150900#153257#0#HTML" expanded="false" />
+            <element signature="e#153306#156489#0#HTML" expanded="false" />
+            <element signature="e#156538#162775#0#HTML" expanded="false" />
+            <element signature="e#162824#165390#0#HTML" expanded="false" />
+            <element signature="e#165439#167929#0#HTML" expanded="false" />
+            <element signature="e#167978#170881#0#HTML" expanded="false" />
+            <element signature="e#170930#176315#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="311" column="124" lean-forward="false" selection-start-line="311" selection-start-column="80" selection-end-line="311" selection-end-column="124" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PublicBundle/Resources/views/detail.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="93" column="107" lean-forward="false" selection-start-line="93" selection-start-column="107" selection-end-line="93" selection-end-column="107" />
+          <folding>
+            <element signature="e#4783#5724#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Resources/views/discover.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="37" column="60" lean-forward="false" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/UserBundle/Controller/DiscoverController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3703">
+          <caret line="15" column="41" lean-forward="false" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="41" />
+          <folding>
+            <marker date="1545168953996" expanded="true" signature="1101:2030" ph="SELECT DISTI... UserBundle" />
+            <marker date="1545168953996" expanded="true" signature="3862:4801" ph="SELECT COUNT... UserBundle" />
+            <marker date="1545168953996" expanded="true" signature="5208:6140" ph="SELECT DISTI... UserBundle" />
+            <marker date="1545168953996" expanded="true" signature="6380:7311" ph="SELECT DISTI... UserBundle" />
+            <marker date="1545168953996" expanded="true" signature="7535:8464" ph="SELECT DISTI... UserBundle" />
+            <marker date="1545168953996" expanded="true" signature="8693:9795" ph="SELECT DISTI... UserBundle" />
+            <marker date="1545168953996" expanded="true" signature="10146:11118" ph="SELECT DISTI... UserBundle" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PublicBundle/Resources/views/discover.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="109" column="222" lean-forward="false" selection-start-line="109" selection-start-column="210" selection-end-line="109" selection-end-column="222" />
+          <folding>
+            <element signature="e#1534#3316#0#HTML" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PublicBundle/Controller/LinkpanController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="166" column="37" lean-forward="false" selection-start-line="166" selection-start-column="37" selection-end-line="166" selection-end-column="37" />
+          <folding>
+            <element signature="e#2146#2219#0#PHP" expanded="false" />
+            <marker date="1545584777653" expanded="true" signature="536:648" ph="SELECT DISTI... UserBundle" />
+            <marker date="1545584777653" expanded="true" signature="3960:4115" ph="SELECT DISTI... UserBundle" />
+            <marker date="1545584777653" expanded="true" signature="4372:4530" ph="SELECT DISTI... UserBundle" />
+            <marker date="1545584777653" expanded="true" signature="4786:4943" ph="SELECT DISTI... UserBundle" />
+          </folding>
         </state>
       </provider>
     </entry>

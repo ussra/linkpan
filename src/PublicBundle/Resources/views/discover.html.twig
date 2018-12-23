@@ -18,18 +18,14 @@
     <div class="container product_section_container">
         <div class="row">
             <div class="col product_section clearfix">
-
                 <!-- Breadcrumbs -->
-
                 <div class="breadcrumbs d-flex flex-row align-items-center">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active"><a href="index.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Accesoiries</a></li>
+                        <li><a href="{{ path('linkpan') }}">Home</a></li>
+                        <li class="active"><a ><i class="fa fa-angle-right" aria-hidden="true"></i>Agriculture</a></li>
                     </ul>
                 </div>
-
                 <!-- Sidebar -->
-
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown" id="resp-cat">
                     <div class="btn-group" role="group">
                         <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin:10px 0 10px 0">
@@ -37,77 +33,57 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                             <a href="#"class="dropdown-item">Agriculture</a>
-                            <a href="#" class="dropdown-item">Food & Beverage</a>
-                            <a href="#" class="dropdown-item">Apparel,Textiles & Accessories</a>
-                            <a href="#" class="dropdown-item">Textile & Leather Product </a>
-                            <a href="#" class="dropdown-item">Timepieces, Jewelry, Eyewear  </a>
-                            <a href="#" class="dropdown-item">Automobiles & Motorcycles  </a>
-                            <a href="#" class="dropdown-item">Electronics </a></li>
-                            <a href="#" class="dropdown-item">Security & Protection  </a>
-                            <a href="#" class="dropdown-item">Electrical Equipment & Supplies </a>
-                            <a href="#" class="dropdown-item">Telecommunication </a>
-                            <a href="#" class="dropdown-item">Sports & Entertainment  </a>
-                            <a href="#" class="dropdown-item">Gifts & Crafts </a>
-                            <a href="#" class="dropdown-item">Health & Beauty</a>
-                            <a href="#" class="dropdown-item">Home, Lights & Construction</a>
-                            <a href="#" class="dropdown-item">Lights & Lighting </a>
-                            <a href="#" class="dropdown-item">Machinery </a>
-                            <a href="#" class="dropdown-item"> Construction Tools </a>
-                            <a href="#" class="dropdown-item"> Hardware </a>
-                            <a href="#" class="dropdown-item"> Measurement & Analysis Instruments  </a>
-                            <a href="#"class="dropdown-item">Metallurgy, Chemicals, Rubber & Plastics</a>
-                            <a href="#" class="dropdown-item">Packaging & Printing </a>
-                            <a href="#" class="dropdown-item">Office & School Supplies  </a>
+                            <a href="#" class="dropdown-item">Vegetable Products</a>
+                            <a href="#" class="dropdown-item">Men’s Clothing</a>
+                            <a href="#" class="dropdown-item">Textile Stock</a>
+                            <a href="#" class="dropdown-item">Fashion Accessories Stock</a>
+                            <a href="#" class="dropdown-item">Watches</a>
+                            <a href="#" class="dropdown-item">Vehicle Tools</a>
+                            <a href="#" class="dropdown-item">Computer Hardware & Software</a>
+                            <a href="#" class="dropdown-item">Mobile Phone & Accessories</a>
+                            <a href="#" class="dropdown-item">Security Services</a>
+                            <a href="#" class="dropdown-item">Fitness & Body Building</a>
+                            <a href="#" class="dropdown-item">Musical Instruments</a>
+                            <a href="#" class="dropdown-item">Holiday Gifts</a>
+                            <a href="#" class="dropdown-item">Home Decoration</a>
+                            <a href="#" class="dropdown-item">Medical Software</a>
+                            <a href="#" class="dropdown-item">Beauty & Personal Care</a>
+                            <a href="#" class="dropdown-item">Apparel & Textile Machinery</a>
+                            <a href="#" class="dropdown-item">Books</a>
+                            <a href="#" class="dropdown-item">Office Equipment</a>
+                            <a href="{{ path('signin') }}" class="dropdown-item">Others</a>
                         </div>
                     </div>
                 </div>
-
-
-
                 <div class="sidebar">
                     <div class="sidebar_section">
                         <div class="sidebar_title">
                             <h5>Product Category</h5>
                         </div>
                         <ul class="sidebar_categories">
-                            <li><a href="#">Agriculture</a></li>
-                            <li><a href="#">Food & Beverage</a></li>
-                            <li class="active"><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Accesoiries</a></li>
-                            <li><a href="#">Apparel,Textiles & Accessories</a></li>
-                            <li><a href="#">Textile & Leather Product </a></li>
-                            <li><a href="#">Timepieces, Jewelry, Eyewear  </a></li>
-                            <li><a href="#">Automobiles & Motorcycles  </a></li>
-                            <li><a href="#">Electronics </a></li>
-                            <li><a href="#">Security & Protection  </a></li>
-                            <li><a href="#">Electrical Equipment & Supplies </a></li>
-                            <li><a href="#">Telecommunication </a></li>
-                            <li><a href="#">Sports & Entertainment  </a></li>
-                            <li><a href="#">Gifts & Crafts </a></li>
-                            <li><a href="#">Health & Beauty</a></li>
-                            <li><a href="#">Home, Lights & Construction</a></li>
-                            <li><a href="#">Lights & Lighting </a></li>
-                            <li><a href="#">Machinery </a></li>
-                            <li><a href="#"> Construction Tools </a></li>
-                            <li><a href="#"> Hardware </a></li>
-                            <li><a href="#"> Measurement & Analysis Instruments  </a></li>
-                            <li><a href="#">Metallurgy, Chemicals, Rubber & Plastics</a></li>
-                            <li><a href="#">Packaging & Printing </a></li>
-                            <li><a href="#">Office & School Supplies  </a></li>
+                            {% set category = app.session.get('pub_discover_category') %}
+                            <li {% if category == 'Agriculture' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Agriculture'}) }}">{% if category == 'Agriculture' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %}Agriculture</a></li>
+                            <li {% if category == 'Vegetable Products' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Vegetable Products'}) }}" >{% if category == 'Vegetable Products' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %}Vegetable Products</a></li>
+                            <li {% if category == 'Men’s Clothing' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Men’s Clothing'}) }}" >{% if category == 'Men’s Clothing' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %}Men’s Clothing</a></li>
+                            <li {% if category == 'Textile Stock' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Textile Stock'}) }}" >{% if category == 'Textile Stock' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %}Textile Stock</a></li>
+                            <li {% if category == 'Fashion Accessories Stock' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Fashion Accessories Stock'}) }}" >{% if category == 'Fashion Accessories Stock' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %}Fashion Accessories Stock</a></li>
+                            <li {% if category == 'Watches' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Watches'}) }}" > {% if category == 'Watches' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %}Watches</a></li>
+                            <li {% if category == 'Vehicle Tools' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Vehicle Tools'}) }}" > {% if category == 'Vehicle Tools' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %}Vehicle Tools</a></li>
+                            <li {% if category == 'Computer Hardware & Software' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Computer Hardware & Software'}) }}" > {% if category == 'Computer Hardware & Software' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %}Computer Hardware & Software</a></li>
+                            <li {% if category == 'Mobile Phone & Accessories' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Mobile Phone & Accessories'}) }}" > {% if category == 'Mobile Phone & Accessories' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %}Mobile Phone & Accessories</a></li>
+                            <li {% if category == 'Security Services' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Security Services'}) }}" > {% if category == 'Security Services' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %}Security Services</a></li>
+                            <li {% if category == 'Fitness & Body Building' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Fitness & Body Building'}) }}" > {% if category == 'Fitness & Body Building' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %} Fitness & Body Building</a></li>
+                            <li {% if category == 'Musical Instruments' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Musical Instruments'}) }}" > {% if category == 'Musical Instruments' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %} Musical Instruments</a></li>
+                            <li {% if category == 'Holiday Gifts' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Holiday Gifts'}) }}" > {% if category == 'Holiday Gifts' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %} Holiday Gifts</a></li>
+                            <li {% if category == 'Home Decoration' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Home Decoration'}) }}" > {% if category == 'Home Decoration' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %} Home Decoration</a></li>
+                            <li {% if category == 'Medical Software' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Medical Software'}) }}" > {% if category == 'Medical Software' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %} Medical Software</a></li>
+                            <li {% if category == 'Beauty & Personal Care' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Beauty & Personal Care'}) }}" > {% if category == 'Beauty & Personal Care' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %} Beauty & Personal Care</a></li>
+                            <li {% if category == 'Apparel & Textile Machinery' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Apparel & Textile Machinery'}) }}" > {% if category == 'Apparel & Textile Machinery' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %} Apparel & Textile Machinery</a></li>
+                            <li {% if category == 'Books' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Books'}) }}" > {% if category == 'Books' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %} Books</a></li>
+                            <li {% if category == 'Office Equipment' %}class="active"{% endif %}><a href="{{ path('discoverPans',{'category':'Office Equipment'}) }}" > {% if category == 'Office Equipment' %}<span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>{% endif %} Office Equipment</a></li>
+                            <li><a href="{{ path('signin') }}"> Others</a></li>
                         </ul>
                     </div>
-
-                    <!-- Price Range Filtering -->
-                    <div class="sidebar_section">
-                        <div class="sidebar_title">
-                            <h5>Filter by Price</h5>
-                        </div>
-                        <p>
-                            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                        </p>
-                        <div id="slider-range"></div>
-                        <div class="filter_button"><span>filter</span></div>
-                    </div>
-
                 </div>
 
                 <!-- Main Content -->
@@ -123,24 +99,26 @@
                                 <!-- Product Sorting -->
 
                                 <div class="product_sorting_container product_sorting_container_top">
+                                    {% set length = app.session.get('pub_discover_length') %}
                                     <ul class="product_sorting">
                                         <li>
                                             <span class="type_sorting_text">Default Sorting</span>
                                             <i class="fa fa-angle-down"></i>
                                             <ul class="sorting_type">
-                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Default Sorting</span></li>
-                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Price</span></li>
-                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Average Rating</span></li>
+                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span><a href="{{ path('discoverPans',{'category':category,'length': 15,'filter':'Default Sorting'}) }}">Default Sorting</a></span></li>
+                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "highest-price" }'><span><a href="{{ path('discoverPans',{'category':category,'length': 15,'filter':'Highest Price'}) }}">Highest Price</a></span></li>
+                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "lowest-price" }'><span><a href="{{ path('discoverPans',{'category':category,'length': 15,'filter':'Lowest Price'}) }}">Lowest Price</a></span></li>
                                             </ul>
                                         </li>
                                         <li>
+
                                             <span>Show</span>
-                                            <span class="num_sorting_text">6</span>
+                                            <span class="num_sorting_text">{{ length }}</span>
                                             <i class="fa fa-angle-down"></i>
                                             <ul class="sorting_num">
-                                                <li class="num_sorting_btn"><span>6</span></li>
-                                                <li class="num_sorting_btn"><span>12</span></li>
-                                                <li class="num_sorting_btn"><span>24</span></li>
+                                                <li class="num_sorting_btn"><span><a href="{{ path('discoverPans',{'category':category,'length': 15}) }}">15</a></span></li>
+                                                <li class="num_sorting_btn"><span><a href="{{ path('discoverPans',{'category':category,'length': 30}) }}">30</a></span></li>
+                                                <li class="num_sorting_btn"><span><a href="{{ path('discoverPans',{'category':category,'length': 60}) }}">60</a></span></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -150,194 +128,29 @@
                                 <!-- Product Grid -->
 
                                 <div class="product-grid">
-
-                                    <!-- Product 1 -->
-
-                                    <div class="product-item men">
-                                        <div class="product discount product_filter">
-                                            <div class="product_image">
-                                                <img src="scripts/img/product_2.png" alt="">
+                                    {% set pans =  app.session.get('pub_discover_pans') %}
+                                    {% if pans|length > 0 %}
+                                        {% for item in pans %}
+                                            <div class="product-item men">
+                                                <div class="product discount product_filter">
+                                                    <div class="product_image">
+                                                        <img src="{{ asset('images/pans/') }}{{ item.image }}" alt="">
+                                                    </div>
+                                                    <div class="favorite favorite_left"></div>
+                                                    <div class="product_info">
+                                                        <h6 class="product_name"><a href="single.html">{{ item.name }}</a></h6>
+                                                        <small><i>{{ item.description }}</i></small>
+                                                        <div class="product_price">${{ item.price }}</div>
+                                                    </div>
+                                                </div>
+                                                <div class="red_button add_to_cart_button"><a href="{{ path('details',{'pan':item.id}) }}">Détails</a></div>
                                             </div>
-                                            <div class="favorite favorite_left"></div>
-                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
-                                                <div class="product_price">$520.00<span>$590.00</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
-                                    </div>
+                                        {% endfor %}
 
-                                    <!-- Product 2 -->
-
-                                    <div class="product-item women">
-                                        <div class="product product_filter">
-                                            <div class="product_image">
-                                                <img src="scripts/img/product_2.png" alt="">
-                                            </div>
-                                            <div class="favorite"></div>
-                                            <div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
-                                                <div class="product_price">$610.00</div>
-                                            </div>
-                                        </div>
-                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
-                                    </div>
-
-                                    <!-- Product 3 -->
-
-                                    <div class="product-item women">
-                                        <div class="product product_filter">
-                                            <div class="product_image">
-                                                <img src="scripts/img/product_2.png" alt="">
-                                            </div>
-                                            <div class="favorite"></div>
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="single.html">Blue Yeti USB Microphone Blackout Edition</a></h6>
-                                                <div class="product_price">$120.00</div>
-                                            </div>
-                                        </div>
-                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
-                                    </div>
-
-                                    <!-- Product 4 -->
-
-
-
-                                    <!-- Product 5 -->
-
-                                    <div class="product-item women men">
-                                        <div class="product product_filter">
-                                            <div class="product_image">
-                                                <img src="scripts/img/product_2.png" alt="">
-                                            </div>
-                                            <div class="favorite"></div>
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="single.html">Pryma Headphones, Rose Gold & Grey</a></h6>
-                                                <div class="product_price">$180.00</div>
-                                            </div>
-                                        </div>
-                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
-                                    </div>
-
-                                    <!-- Product 6 -->
-
-                                    <div class="product-item accessories">
-                                        <div class="product discount product_filter">
-                                            <div class="product_image">
-                                                <img src="scripts/img/product_2.png" alt="">
-                                            </div>
-                                            <div class="favorite favorite_left"></div>
-                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
-                                                <div class="product_price">$520.00<span>$590.00</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
-                                    </div>
-
-                                    <!-- Product 7 -->
-
-                                    <div class="product-item women">
-                                        <div class="product product_filter">
-                                            <div class="product_image">
-                                                <img src="scripts/img/product_2.png" alt="">
-                                            </div>
-                                            <div class="favorite"></div>
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
-                                                <div class="product_price">$610.00</div>
-                                            </div>
-                                        </div>
-                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
-                                    </div>
-
-                                    <!-- Product 8 -->
-
-                                    <div class="product-item accessories">
-                                        <div class="product product_filter">
-                                            <div class="product_image">
-                                                <img src="scripts/img/product_2.png" alt="">
-                                            </div>
-                                            <div class="favorite"></div>
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="single.html">Blue Yeti USB Microphone Blackout Edition</a></h6>
-                                                <div class="product_price">$120.00</div>
-                                            </div>
-                                        </div>
-                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
-                                    </div>
-
-                                    <!-- Product 9 -->
-
-                                    <div class="product-item men">
-                                        <div class="product product_filter">
-                                            <div class="product_image">
-                                                <img src="scripts/img/product_2.png" alt="">
-                                            </div>
-                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
-                                            <div class="favorite favorite_left"></div>
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="single.html">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
-                                                <div class="product_price">$410.00</div>
-                                            </div>
-                                        </div>
-                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
-                                    </div>
-
-                                    <!-- Product 10 -->
-
-                                    <div class="product-item men">
-                                        <div class="product product_filter">
-                                            <div class="product_image">
-                                                <img src="scripts/img/product_2.png" alt="">
-                                            </div>
-                                            <div class="favorite"></div>
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="single.html">Pryma Headphones, Rose Gold & Grey</a></h6>
-                                                <div class="product_price">$180.00</div>
-                                            </div>
-                                        </div>
-                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
-                                    </div>
-
-                                    <!-- Product 11 -->
-
-                                    <div class="product-item women men">
-                                        <div class="product product_filter">
-                                            <div class="product_image">
-                                                <img src="scripts/img/product_2.png" alt="">
-                                            </div>
-                                            <div class="favorite"></div>
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="single.html">Pryma Headphones, Rose Gold & Grey</a></h6>
-                                                <div class="product_price">$180.00</div>
-                                            </div>
-                                        </div>
-                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
-                                    </div>
-
-                                    <!-- Product 12 -->
-
-                                    <div class="product-item accessories">
-                                        <div class="product discount product_filter">
-                                            <div class="product_image">
-                                                <img src="scripts/img/product_2.png" alt="">
-                                            </div>
-                                            <div class="favorite favorite_left"></div>
-                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
-                                            <div class="product_info">
-                                                <h6 class="product_name"><a href="single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
-                                                <div class="product_price">$520.00<span>$590.00</span></div>
-                                            </div>
-                                        </div>
-                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
-                                    </div>
+                                        {% else %}
+                                            <small><i>Nothing to display</i></small>
+                                    {% endif %}
                                 </div>
-
-                            </div>
                         </div>
                     </div>
                 </div>
