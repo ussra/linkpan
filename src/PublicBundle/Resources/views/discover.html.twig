@@ -3,7 +3,8 @@
 
 {% block PublicHead %}
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('scripts/styles/categories_styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('scripts/styles/categories_responsive.css') }}">
 {% endblock %}
 
 {% block Title %}
@@ -14,8 +15,338 @@
 {% endblock %}
 
 {% block PublicBody %}
+    <div class="container product_section_container">
+        <div class="row">
+            <div class="col product_section clearfix">
+
+                <!-- Breadcrumbs -->
+
+                <div class="breadcrumbs d-flex flex-row align-items-center">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active"><a href="index.html"><i class="fa fa-angle-right" aria-hidden="true"></i>Accesoiries</a></li>
+                    </ul>
+                </div>
+
+                <!-- Sidebar -->
+
+                <div class="btn-group" role="group" aria-label="Button group with nested dropdown" id="resp-cat">
+                    <div class="btn-group" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="margin:10px 0 10px 0">
+                            Categories
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                            <a href="#"class="dropdown-item">Agriculture</a>
+                            <a href="#" class="dropdown-item">Food & Beverage</a>
+                            <a href="#" class="dropdown-item">Apparel,Textiles & Accessories</a>
+                            <a href="#" class="dropdown-item">Textile & Leather Product </a>
+                            <a href="#" class="dropdown-item">Timepieces, Jewelry, Eyewear  </a>
+                            <a href="#" class="dropdown-item">Automobiles & Motorcycles  </a>
+                            <a href="#" class="dropdown-item">Electronics </a></li>
+                            <a href="#" class="dropdown-item">Security & Protection  </a>
+                            <a href="#" class="dropdown-item">Electrical Equipment & Supplies </a>
+                            <a href="#" class="dropdown-item">Telecommunication </a>
+                            <a href="#" class="dropdown-item">Sports & Entertainment  </a>
+                            <a href="#" class="dropdown-item">Gifts & Crafts </a>
+                            <a href="#" class="dropdown-item">Health & Beauty</a>
+                            <a href="#" class="dropdown-item">Home, Lights & Construction</a>
+                            <a href="#" class="dropdown-item">Lights & Lighting </a>
+                            <a href="#" class="dropdown-item">Machinery </a>
+                            <a href="#" class="dropdown-item"> Construction Tools </a>
+                            <a href="#" class="dropdown-item"> Hardware </a>
+                            <a href="#" class="dropdown-item"> Measurement & Analysis Instruments  </a>
+                            <a href="#"class="dropdown-item">Metallurgy, Chemicals, Rubber & Plastics</a>
+                            <a href="#" class="dropdown-item">Packaging & Printing </a>
+                            <a href="#" class="dropdown-item">Office & School Supplies  </a>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="sidebar">
+                    <div class="sidebar_section">
+                        <div class="sidebar_title">
+                            <h5>Product Category</h5>
+                        </div>
+                        <ul class="sidebar_categories">
+                            <li><a href="#">Agriculture</a></li>
+                            <li><a href="#">Food & Beverage</a></li>
+                            <li class="active"><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i></span>Accesoiries</a></li>
+                            <li><a href="#">Apparel,Textiles & Accessories</a></li>
+                            <li><a href="#">Textile & Leather Product </a></li>
+                            <li><a href="#">Timepieces, Jewelry, Eyewear  </a></li>
+                            <li><a href="#">Automobiles & Motorcycles  </a></li>
+                            <li><a href="#">Electronics </a></li>
+                            <li><a href="#">Security & Protection  </a></li>
+                            <li><a href="#">Electrical Equipment & Supplies </a></li>
+                            <li><a href="#">Telecommunication </a></li>
+                            <li><a href="#">Sports & Entertainment  </a></li>
+                            <li><a href="#">Gifts & Crafts </a></li>
+                            <li><a href="#">Health & Beauty</a></li>
+                            <li><a href="#">Home, Lights & Construction</a></li>
+                            <li><a href="#">Lights & Lighting </a></li>
+                            <li><a href="#">Machinery </a></li>
+                            <li><a href="#"> Construction Tools </a></li>
+                            <li><a href="#"> Hardware </a></li>
+                            <li><a href="#"> Measurement & Analysis Instruments  </a></li>
+                            <li><a href="#">Metallurgy, Chemicals, Rubber & Plastics</a></li>
+                            <li><a href="#">Packaging & Printing </a></li>
+                            <li><a href="#">Office & School Supplies  </a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Price Range Filtering -->
+                    <div class="sidebar_section">
+                        <div class="sidebar_title">
+                            <h5>Filter by Price</h5>
+                        </div>
+                        <p>
+                            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                        </p>
+                        <div id="slider-range"></div>
+                        <div class="filter_button"><span>filter</span></div>
+                    </div>
+
+                </div>
+
+                <!-- Main Content -->
+
+                <div class="main_content">
+
+                    <!-- Products -->
+
+                    <div class="products_iso">
+                        <div class="row">
+                            <div class="col">
+
+                                <!-- Product Sorting -->
+
+                                <div class="product_sorting_container product_sorting_container_top">
+                                    <ul class="product_sorting">
+                                        <li>
+                                            <span class="type_sorting_text">Default Sorting</span>
+                                            <i class="fa fa-angle-down"></i>
+                                            <ul class="sorting_type">
+                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Default Sorting</span></li>
+                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Price</span></li>
+                                                <li class="type_sorting_btn" data-isotope-option='{ "sortBy": "name" }'><span>Average Rating</span></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <span>Show</span>
+                                            <span class="num_sorting_text">6</span>
+                                            <i class="fa fa-angle-down"></i>
+                                            <ul class="sorting_num">
+                                                <li class="num_sorting_btn"><span>6</span></li>
+                                                <li class="num_sorting_btn"><span>12</span></li>
+                                                <li class="num_sorting_btn"><span>24</span></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+                                <!-- Product Grid -->
+
+                                <div class="product-grid">
+
+                                    <!-- Product 1 -->
+
+                                    <div class="product-item men">
+                                        <div class="product discount product_filter">
+                                            <div class="product_image">
+                                                <img src="scripts/img/product_2.png" alt="">
+                                            </div>
+                                            <div class="favorite favorite_left"></div>
+                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                                            <div class="product_info">
+                                                <h6 class="product_name"><a href="single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
+                                                <div class="product_price">$520.00<span>$590.00</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
+                                    </div>
+
+                                    <!-- Product 2 -->
+
+                                    <div class="product-item women">
+                                        <div class="product product_filter">
+                                            <div class="product_image">
+                                                <img src="scripts/img/product_2.png" alt="">
+                                            </div>
+                                            <div class="favorite"></div>
+                                            <div class="product_bubble product_bubble_left product_bubble_green d-flex flex-column align-items-center"><span>new</span></div>
+                                            <div class="product_info">
+                                                <h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
+                                                <div class="product_price">$610.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
+                                    </div>
+
+                                    <!-- Product 3 -->
+
+                                    <div class="product-item women">
+                                        <div class="product product_filter">
+                                            <div class="product_image">
+                                                <img src="scripts/img/product_2.png" alt="">
+                                            </div>
+                                            <div class="favorite"></div>
+                                            <div class="product_info">
+                                                <h6 class="product_name"><a href="single.html">Blue Yeti USB Microphone Blackout Edition</a></h6>
+                                                <div class="product_price">$120.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
+                                    </div>
+
+                                    <!-- Product 4 -->
+
+
+
+                                    <!-- Product 5 -->
+
+                                    <div class="product-item women men">
+                                        <div class="product product_filter">
+                                            <div class="product_image">
+                                                <img src="scripts/img/product_2.png" alt="">
+                                            </div>
+                                            <div class="favorite"></div>
+                                            <div class="product_info">
+                                                <h6 class="product_name"><a href="single.html">Pryma Headphones, Rose Gold & Grey</a></h6>
+                                                <div class="product_price">$180.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
+                                    </div>
+
+                                    <!-- Product 6 -->
+
+                                    <div class="product-item accessories">
+                                        <div class="product discount product_filter">
+                                            <div class="product_image">
+                                                <img src="scripts/img/product_2.png" alt="">
+                                            </div>
+                                            <div class="favorite favorite_left"></div>
+                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                                            <div class="product_info">
+                                                <h6 class="product_name"><a href="single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
+                                                <div class="product_price">$520.00<span>$590.00</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
+                                    </div>
+
+                                    <!-- Product 7 -->
+
+                                    <div class="product-item women">
+                                        <div class="product product_filter">
+                                            <div class="product_image">
+                                                <img src="scripts/img/product_2.png" alt="">
+                                            </div>
+                                            <div class="favorite"></div>
+                                            <div class="product_info">
+                                                <h6 class="product_name"><a href="single.html">Samsung CF591 Series Curved 27-Inch FHD Monitor</a></h6>
+                                                <div class="product_price">$610.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
+                                    </div>
+
+                                    <!-- Product 8 -->
+
+                                    <div class="product-item accessories">
+                                        <div class="product product_filter">
+                                            <div class="product_image">
+                                                <img src="scripts/img/product_2.png" alt="">
+                                            </div>
+                                            <div class="favorite"></div>
+                                            <div class="product_info">
+                                                <h6 class="product_name"><a href="single.html">Blue Yeti USB Microphone Blackout Edition</a></h6>
+                                                <div class="product_price">$120.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
+                                    </div>
+
+                                    <!-- Product 9 -->
+
+                                    <div class="product-item men">
+                                        <div class="product product_filter">
+                                            <div class="product_image">
+                                                <img src="scripts/img/product_2.png" alt="">
+                                            </div>
+                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>sale</span></div>
+                                            <div class="favorite favorite_left"></div>
+                                            <div class="product_info">
+                                                <h6 class="product_name"><a href="single.html">DYMO LabelWriter 450 Turbo Thermal Label Printer</a></h6>
+                                                <div class="product_price">$410.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
+                                    </div>
+
+                                    <!-- Product 10 -->
+
+                                    <div class="product-item men">
+                                        <div class="product product_filter">
+                                            <div class="product_image">
+                                                <img src="scripts/img/product_2.png" alt="">
+                                            </div>
+                                            <div class="favorite"></div>
+                                            <div class="product_info">
+                                                <h6 class="product_name"><a href="single.html">Pryma Headphones, Rose Gold & Grey</a></h6>
+                                                <div class="product_price">$180.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
+                                    </div>
+
+                                    <!-- Product 11 -->
+
+                                    <div class="product-item women men">
+                                        <div class="product product_filter">
+                                            <div class="product_image">
+                                                <img src="scripts/img/product_2.png" alt="">
+                                            </div>
+                                            <div class="favorite"></div>
+                                            <div class="product_info">
+                                                <h6 class="product_name"><a href="single.html">Pryma Headphones, Rose Gold & Grey</a></h6>
+                                                <div class="product_price">$180.00</div>
+                                            </div>
+                                        </div>
+                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
+                                    </div>
+
+                                    <!-- Product 12 -->
+
+                                    <div class="product-item accessories">
+                                        <div class="product discount product_filter">
+                                            <div class="product_image">
+                                                <img src="scripts/img/product_2.png" alt="">
+                                            </div>
+                                            <div class="favorite favorite_left"></div>
+                                            <div class="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center"><span>-$20</span></div>
+                                            <div class="product_info">
+                                                <h6 class="product_name"><a href="single.html">Fujifilm X100T 16 MP Digital Camera (Silver)</a></h6>
+                                                <div class="product_price">$520.00<span>$590.00</span></div>
+                                            </div>
+                                        </div>
+                                        <div class="red_button add_to_cart_button"><a href="#">Contact Seller</a></div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
 
 {% block PublicScripts  %}
+    <script src="{{ asset('scripts/js/categories_custom.js') }}"></script>
 {% endblock %}

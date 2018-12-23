@@ -31,6 +31,6 @@ class SecurityController extends Controller
         $em->flush();
         $this->get('security.token_storage')->setToken(null);
         $this->get('session')->clear();
-        return $this->render('PublicBundle::signin.html.twig');
+        return $this->redirect($this->generateUrl('signin'));
     }
 }

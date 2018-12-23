@@ -5,7 +5,7 @@ signin_donthaveacc: Vous n'avez pas de compte?
 signin_forgotpass: Mot de passe oublié?
 signin_choice: Ou connectez-vous avec
 signin_withfb: Connectez-vous avec Facebook
-#HOME PUBLIC ===> START
+#HOME PUBLIC 
 
 pub_myacc: Mon compte
 pub_lang: language
@@ -51,4 +51,5 @@ pub_Privacy: Confidentialité
 pub_Terms: termes
 #END footer
 
-There s no news  to display: Aucune nouvelle à afficher
+Theres no news  to display: Aucune nouvelle à afficher
+
