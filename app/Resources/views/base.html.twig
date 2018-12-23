@@ -96,10 +96,9 @@
                                 <li><a class="link-hover" href="{{ path('contact') }}">{{'pub_contact_us'|trans }}</a></li>
                                 {% block search %}
                                     <li>
-                                        <form class="form-inline">
-                                            <input class="form-control mr-sm-2" type="search" placeholder="{{'pub_search'|trans }}" aria-label="Search">
-
-                                            <button class="btn btn-outline-primary my-2 my-sm-0" type="button"><i class="fa fa-search"  title="Search By Image"></i></button>
+                                        <form class="form-inline" method="post" action="{{ path('ByName') }}">
+                                            <input class="form-control mr-sm-2" name="name" type="search" placeholder="{{'pub_search'|trans }}" aria-label="Search">
+                                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fa fa-search"  title="Search By Name"></i></button>
                                         </form>
                                     </li>
                                 {% endblock %}
@@ -139,9 +138,9 @@
                 <li><a href="">{{'pub_about_us'|trans }}</a></li>
                 <li><a href="">{{'pub_contact_us'|trans }}</a></li>
                 <li  style="margin-top:30px; margin-left:20px;">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="{{'pub_search'|trans }}" aria-label="Search" style="width: 65%;">
-                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fa fa-image"></i></button>
+                    <form class="form-inline" method="post" action="{{ path('ByName') }}">
+                        <input class="form-control mr-sm-2" name="name" type="search" placeholder="{{'pub_search'|trans }}" aria-label="Search" style="width: 65%;">
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </li>
             </ul>

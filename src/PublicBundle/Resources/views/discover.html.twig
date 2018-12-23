@@ -33,25 +33,25 @@
                             Categories
                         </button>
                         <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                            <a href="#"class="dropdown-item">Agriculture</a>
-                            <a href="#" class="dropdown-item">Vegetable Products</a>
-                            <a href="#" class="dropdown-item">Men’s Clothing</a>
-                            <a href="#" class="dropdown-item">Textile Stock</a>
-                            <a href="#" class="dropdown-item">Fashion Accessories Stock</a>
-                            <a href="#" class="dropdown-item">Watches</a>
-                            <a href="#" class="dropdown-item">Vehicle Tools</a>
-                            <a href="#" class="dropdown-item">Computer Hardware & Software</a>
-                            <a href="#" class="dropdown-item">Mobile Phone & Accessories</a>
-                            <a href="#" class="dropdown-item">Security Services</a>
-                            <a href="#" class="dropdown-item">Fitness & Body Building</a>
-                            <a href="#" class="dropdown-item">Musical Instruments</a>
-                            <a href="#" class="dropdown-item">Holiday Gifts</a>
-                            <a href="#" class="dropdown-item">Home Decoration</a>
-                            <a href="#" class="dropdown-item">Medical Software</a>
-                            <a href="#" class="dropdown-item">Beauty & Personal Care</a>
-                            <a href="#" class="dropdown-item">Apparel & Textile Machinery</a>
-                            <a href="#" class="dropdown-item">Books</a>
-                            <a href="#" class="dropdown-item">Office Equipment</a>
+                            <a href="{{ path('discoverPans',{'category':'Agriculture'}) }}" class="dropdown-item">Agriculture</a>
+                            <a href="{{ path('discoverPans',{'category':'Vegetable Products'}) }}" class="dropdown-item">Vegetable Products</a>
+                            <a href="{{ path('discoverPans',{'category':'Men’s Clothing'}) }}" class="dropdown-item">Men’s Clothing</a>
+                            <a href="{{ path('discoverPans',{'category':'Textile Stock'}) }}" class="dropdown-item">Textile Stock</a>
+                            <a href="{{ path('discoverPans',{'category':'Fashion Accessories Stock'}) }}" class="dropdown-item">Fashion Accessories Stock</a>
+                            <a href="{{ path('discoverPans',{'category':'Watches'}) }}" class="dropdown-item">Watches</a>
+                            <a href="{{ path('discoverPans',{'category':'Vehicle Tools'}) }}" class="dropdown-item">Vehicle Tools</a>
+                            <a href="{{ path('discoverPans',{'category':'Computer Hardware & Software'}) }}" class="dropdown-item">Computer Hardware & Software</a>
+                            <a href="{{ path('discoverPans',{'category':'Mobile Phone & Accessories'}) }}" class="dropdown-item">Mobile Phone & Accessories</a>
+                            <a href="{{ path('discoverPans',{'category':'Security Services'}) }}" class="dropdown-item">Security Services</a>
+                            <a href="{{ path('discoverPans',{'category':'Fitness & Body Building'}) }}" class="dropdown-item">Fitness & Body Building</a>
+                            <a href="{{ path('discoverPans',{'category':'Musical Instruments'}) }}" class="dropdown-item">Musical Instruments</a>
+                            <a href="{{ path('discoverPans',{'category':'Holiday Gifts'}) }}" class="dropdown-item">Holiday Gifts</a>
+                            <a href="{{ path('discoverPans',{'category':'Home Decoration'}) }}" class="dropdown-item">Home Decoration</a>
+                            <a href="{{ path('discoverPans',{'category':'Medical Software'}) }}" class="dropdown-item">Medical Software</a>
+                            <a href="{{ path('discoverPans',{'category':'Beauty & Personal Care'}) }}" class="dropdown-item">Beauty & Personal Care</a>
+                            <a href="{{ path('discoverPans',{'category':'Apparel & Textile Machinery'}) }}"  class="dropdown-item">Apparel & Textile Machinery</a>
+                            <a href="{{ path('discoverPans',{'category':'Books'}) }}" class="dropdown-item">Books</a>
+                            <a href="{{ path('discoverPans',{'category':'Office Equipment'}) }}" class="dropdown-item">Office Equipment</a>
                             <a href="{{ path('signin') }}" class="dropdown-item">Others</a>
                         </div>
                     </div>
@@ -113,8 +113,8 @@
                                         </li>
                                         <li>
 
-                                            <span>Show</span>
-                                            <span class="num_sorting_text">{{ length }}</span>
+                                            <span>Show </span>
+                                            <span class="num_sorting_text"> {% if length is not null %}{{ length }}{% else %} 15 {% endif %}</span>
                                             <i class="fa fa-angle-down"></i>
                                             <ul class="sorting_num">
                                                 <li class="num_sorting_btn"><span><a href="{{ path('discoverPans',{'category':category,'length': 15}) }}">15</a></span></li>

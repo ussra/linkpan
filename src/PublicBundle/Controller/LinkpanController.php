@@ -4,6 +4,7 @@ namespace PublicBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Cookie;
@@ -175,6 +176,7 @@ class LinkpanController extends Controller
         $session->set('pub_discover_category',$categorySearch);
         $session->set('pub_discover_length',$length);
     }
+
     /**
      * @Route("{_locale}/linkpan/discover/pans",name="discoverPans")
      */
@@ -187,6 +189,33 @@ class LinkpanController extends Controller
         return $this->render('PublicBundle::discover.html.twig');
     }
 
+
+    private function GetByName($name)
+    {
+        $repo = $this->getDoctrine()->getRepository('UserBundle:Pan');
+        $pan = $repo->findOneBy(
+          array('name'=>$name)
+        );
+        if(!is_null($pan))
+            return $pan->getId();
+        else
+            return 0;
+    }
+
+    /**
+     * @Route("{_locale}/linkpan/discover/pans/ByName",name="ByName")
+     */
+    public function getByNameAction(Request $request)
+    {
+        $id = $this->GetByName($request->get('name'));
+        if($id > 0)
+            return $this->redirect($this->generateUrl('details',array('pan'=>$id)));
+        else
+        {
+            echo '<script language="javascript">alert("There s no pan to display with this name :'.$request->get('name').', please sign in and display other pans ")</script>';
+            return $this->render('PublicBundle::signin.html.twig');
+        }
+    }
 
     /**
      * @Route("{_locale}/linkpan/discover/pans/details",name="details")
@@ -238,5 +267,32 @@ class LinkpanController extends Controller
         }
         $session->set('reviews',$results);
         return $this->render('PublicBundle::detail.html.twig');
+    }
+
+
+    /**
+     * @Route("{_locale}/linkpan/signin/forgetPassword/CheckEmail",name="forgetPassword_CheckEmail")
+     */
+    public function CheckEmailAction(Request $request)
+    {
+        $email = $request->get('Email');
+        $repo = $this->getDoctrine()->getRepository('AppBundle:User');
+        $user  = $repo->findOneBy(
+          array('email'=>$email)
+        );
+        // Get if he has a security question
+        if(is_null($user->getSecuityQuestion()))
+        {
+            // send mail
+        }
+        else
+        {
+            // send data
+        }
+        //
+        /*if(!is_null($user))
+            return new JsonResponse($user->getId());
+        else*/
+        return new JsonResponse(0);
     }
 }

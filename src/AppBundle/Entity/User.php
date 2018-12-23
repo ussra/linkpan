@@ -27,7 +27,7 @@ class User implements UserInterface
     protected $isActive;
 
     /**
-     * @ORM\Column(type="string", length=255, unique=true)
+     * @ORM\Column(type="string", length=255, unique=true,name="email")
      */
     protected $email;
 
